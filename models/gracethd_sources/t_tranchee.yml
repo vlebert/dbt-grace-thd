@@ -1,0 +1,27 @@
+version: 2
+
+sources:
+  - name: gracethd
+    schema: gracethd_source
+    tables:
+      - name: t_tranchee
+        description: "Element linéaire de Génie Civil créé lors du déploiement du réseau de fibre optique."
+        columns:
+          - name: tr_code
+            description: "Code de la tranchée."
+          - name: tr_perirec
+            description: "Identifiant du périmètre récolé livré à un instant t"
+          - name: tr_pa1
+            description: "Référence au point d'accueil d'une extrémité de l'ensemble de tranchées - constituant un cheminement - dont la tranchée fait partie."
+          - name: tr_pa2
+            description: "Référence au point d'accueil de l'autre extrémité de l'ensemble de tranchées - constituant un cheminement - dont la tranchée fait partie."
+          - name: tr_compo
+            description: "Attribut d'aggrégation décrivant la composition du multitubulaire."
+          - name: tr_couptyp
+            description: "Référence à une coupe type"
+          - name: tr_lgreel
+            description: "Longueur en mètres mesurée sur le terrain ou estimée."
+          - name: tr_dtclass
+            description: "Classe de précision au sens du décret DT-DICT."
+          - name: geom
+            description: "Ligne"

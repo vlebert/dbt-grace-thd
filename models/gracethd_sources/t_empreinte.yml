@@ -1,0 +1,25 @@
+version: 2
+
+sources:
+  - name: gracethd
+    schema: gracethd_source
+    tables:
+      - name: t_empreinte
+        description: "Empreintes spatiales des documents."
+        columns:
+          - name: em_code
+            description: ""
+          - name: em_do_code
+            description: ""
+          - name: em_geolsrc
+            description: ""
+          - name: em_creadat
+            description: ""
+          - name: em_majdate
+            description: ""
+          - name: em_majsrc
+            description: ""
+          - name: em_abddate
+            description: ""
+          - name: em_abdsrc
+            description: ""

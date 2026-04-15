@@ -1,0 +1,20 @@
+version: 2
+sources:
+  - name: gracethd
+    schema: gracethd_source
+    tables:
+      - name: t_fibre
+        description: "Fibres optiques constituant les câbles."
+        columns:
+          - name: fo_code
+            description: "Identifiant unique de la fibre"
+          - name: fo_cb_code
+            description: "Identifiant unique du câble auquel la fibre appartient"
+          - name: fo_nincab
+            description: "Numéro de fibre dans le câble"
+          - name: fo_numtub
+            description: "Numéro du tube auquel appartient la fibre"
+          - name: fo_nintub
+            description: "Numéro de la fibre dans le tube (1 à 12, …)"
+          - name: fo_etat
+            description: "Etat de fonctionnement de la fibre."

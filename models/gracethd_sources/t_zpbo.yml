@@ -1,0 +1,9 @@
+version: 2
+
+sources:
+  - name: gracethd
+    schema: gracethd_source
+    tables:
+      - name: t_zpbo
+        description: "Zone arrière d'un Point de Branchement Optique (PBO)"
+        columns: []

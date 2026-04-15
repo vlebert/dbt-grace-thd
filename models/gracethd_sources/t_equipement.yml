@@ -1,0 +1,36 @@
+version: 2
+sources:
+  - name: gracethd
+    schema: gracethd_source
+    tables:
+      - name: t_equipement
+        description: "Équipements du réseau, incluant les équipements actifs et ceux fournissant des fonctions de support"
+        columns:
+          - name: eq_code
+            description: "Code unique de l'équipement"
+          - name: eq_codeext
+            description: "Code externe de l'équipement"
+          - name: eq_etiquet
+            description: "Étiquette de l'équipement"
+          - name: eq_ba_code
+            description: "Code de la baie contenant l'équipement"
+          - name: eq_prop
+            description: "Propriétaire de l'équipement"
+          - name: eq_rf_code
+            description: "Code de référence de l'équipement"
+          - name: eq_dateins
+            description: "Date d'installation de l'équipement"
+          - name: eq_datemes
+            description: "Date de la mesure"
+          - name: eq_comment
+            description: "Commentaire sur l'équipement"
+          - name: eq_creadat
+            description: "Date de création de l'objet en base"
+          - name: eq_majdate
+            description: "Date de la mise à jour de l'objet en base"
+          - name: eq_majsrc
+            description: "Source utilisée pour la mise à jour"
+          - name: eq_abddate
+            description: "Date d'abandon de l'objet"
+          - name: eq_abdsrc
+            description: "Cause de l'abandon de l'objet"

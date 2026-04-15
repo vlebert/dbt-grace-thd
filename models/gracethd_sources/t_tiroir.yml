@@ -1,0 +1,30 @@
+version: 2
+sources:
+  - name: gracethd
+    schema: gracethd_source
+    tables:
+      - name: t_tiroir
+        description: "Regroupe la liste des tiroirs (donc positionnés en baie), et des têtes de câble optiques (positionnées sur des fermes). (1 enregistrement par item)."
+        columns:
+          - name: ti_code
+            description: "Code du tiroir optique"
+          - name: ti_codeext
+            description: "Code chez un tiers ou dans une autre base de données."
+          - name: ti_perirec
+            description: "Identifiant de perimetre récolé à un instant t"
+          - name: ti_abandon
+            description: "Défini si l'entité est abandonnée ou non dans un SI"
+          - name: ti_etiquet
+            description: "Etiquette sur le terrain"
+          - name: ti_ba_code
+            description: "Identifiant unique contenu dans la table t_baie"
+          - name: ti_prop
+            description: "Propriétaire du tiroir"
+          - name: ti_type
+            description: "Type du contenant selon qu'il s'agisse d'un TIROIR ou d'une TETE DE CABLE."
+          - name: ti_rf_code
+            description: "Identifiant de la référence du tiroir dans la table référence."
+          - name: ti_taille
+            description: "Taille du tiroir en nombre de U"
+          - name: ti_placemt
+            description: "Position du tiroir en \"nombre de U\""

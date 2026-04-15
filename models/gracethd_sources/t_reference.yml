@@ -1,0 +1,14 @@
+version: 2
+sources:
+  - name: gracethd
+    schema: gracethd_source
+    tables:
+      - name: t_reference
+        description: "Référence de matériel ou de coupe type."
+        columns:
+          - name: rf_code
+            description: "Code permettant d'identifier la référence d'un matériel dans la base."
+          - name: rf_type
+            description: "Type de matériel"
+          - name: rf_design
+            description: "Design"

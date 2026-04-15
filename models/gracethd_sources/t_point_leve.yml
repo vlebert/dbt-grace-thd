@@ -1,0 +1,20 @@
+version: 2
+sources:
+  - name: gracethd
+    schema: gracethd_source
+    tables:
+      - name: t_point_leve
+        description: "Cette classe décrit les points levés spécifiques au réseau et permet d'indiquer la profondeur ou l'altimétrie connue en certains points des tranchées. L'indication de la charge à la génératrice a pour objet de répondre à l'obligation de mentionner les points de l'ouvrage qui ne satisferaient pas à l'éventuelle règle de profondeur minimale réglementaire à la date de pose de l'ouvrage. Cette information est intrinsèquement moins fiable que les indications d'altitude de l'ouvrage, le terrain naturel ayant pu évoluer depuis la pose. Elle est donc à limiter à cet usage."
+        columns:
+          - name: pl_code
+            description: "Code du point levé"
+          - name: pl_x
+            description: "X en lambert 93"
+          - name: pl_y
+            description: "Y en lambert 93"
+          - name: pl_z
+            description: "Z de la génératrice supérieure de réseau en IGN69"
+          - name: pl_charge
+            description: "Charge (profondeur) de la génératrice supérieure du réseau (=0 pour les affleurants) en cm"
+          - name: geom
+            description: "Géométrie du point levé"

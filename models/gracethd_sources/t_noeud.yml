@@ -1,0 +1,13 @@
+version: 2
+
+sources:
+  - name: gracethd
+    schema: gracethd_source
+    tables:
+      - name: t_noeud
+        description: "Classe abstraite portant la géométrie d'un site ou d'un point technique. Classe mère de <PointTechnique> et <Site>."
+        columns:
+          - name: nd_code
+            description: "Code noeud"
+          - name: geom
+            description: "Point abstrait (Geometry(Point,SRID))"

@@ -1,0 +1,29 @@
+version: 2
+
+sources:
+  - name: gracethd
+    schema: gracethd_source
+    tables:
+      - name: t_organisme
+        description: "Coordonnées et identification d'organismes publics et privés"
+        columns:
+          - name: or_code
+            description: "Code de l'organisme"
+          - name: or_nom
+            description: "Nom de l'opérateur, de la collectivité, de l'entreprise, etc-"
+          - name: or_type
+            description: "Classification juridique-  Littéral ou nomenclature INSEE-"
+          - name: or_siret
+            description: "Numéro SIRET dans le cas d'un établissement (sens INSEE, base SIRENE)"
+          - name: or_nomvoie
+            description: "Nom de la voie"
+          - name: or_numero
+            description: "Numéro  éventuel  de  l'adresse  dans  la voie"
+          - name: or_rep
+            description: "Indice de répétition associé au numéro (par exemple Bis, A, 1…)"
+          - name: or_local
+            description: "Complément d'adresse pour identifier le local-"
+          - name: or_postal
+            description: "Code  postal  du  bureau  de  distribution de la voie"
+          - name: or_commune
+            description: "Nom officiel de la commune"

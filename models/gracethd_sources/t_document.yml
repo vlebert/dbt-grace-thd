@@ -1,0 +1,46 @@
+version: 2
+sources:
+  - name: gracethd
+    schema: gracethd_source
+    tables:
+      - name: t_document
+        description: "Registre des documents relatifs au réseau."
+        columns:
+          - name: do_code
+            description: ""
+          - name: do_ref
+            description: ""
+          - name: do_reftier
+            description: ""
+          - name: do_r1_code
+            description: ""
+          - name: do_r2_code
+            description: ""
+          - name: do_r3_code
+            description: ""
+          - name: do_r4_code
+            description: ""
+          - name: do_type
+            description: ""
+          - name: do_indice
+            description: ""
+          - name: do_date
+            description: ""
+          - name: do_classe
+            description: ""
+          - name: do_url1
+            description: ""
+          - name: do_url2
+            description: ""
+          - name: do_comment
+            description: ""
+          - name: do_creadat
+            description: ""
+          - name: do_majdate
+            description: ""
+          - name: do_majsrc
+            description: ""
+          - name: do_abddate
+            description: ""
+          - name: do_abdsrc
+            description: ""

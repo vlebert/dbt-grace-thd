@@ -1,0 +1,16 @@
+version: 2
+sources:
+  - name: gracethd
+    schema: gracethd_source
+    tables:
+      - name: t_love
+        description: "Permet de localiser les loves de câble. Chaque enregistrement associe un câble à un Nœud Physique, ainsi qu'une longueur de love."
+        columns:
+          - name: lv_id
+            description: "Identifiant unique pouvant être auto-incrémenté (selon plages d'identitifiants)"
+          - name: lv_cb_code
+            description: "Code du câble"
+          - name: lv_nd_code
+            description: "Code du nœud dans lequel est positionné ce love"
+          - name: lv_long
+            description: "longueur du love du câble dans le nœud en mètre"

@@ -1,0 +1,81 @@
+version: 2
+
+sources:
+  - name: gracethd
+    schema: gracethd_source
+    tables:
+      - name: t_adresse
+        description: "Adresses telles qu'identifiées par les opérateurs. Cette classe d'objets participe à la génération de Fichiers d'Informations Préalable (IPE), pour l'activation des services opérateurs auprès des abonnés. Peut identifier une plaque adresse ou un bâtiment."
+        columns:
+          - name: ad_code
+            description: "Code unique de l'adresse."
+          - name: ad_raclong
+            description: "Pour distinguer les raccordements longs (1) des autres raccordements (0)"
+          - name: ad_datmodi
+            description: "Date de dernière mise à jour de l'adresse (changement d'un attribut, de la géométrie, modification liée à l'adresse ex : changement de liaison adresse/EBP)"
+          - name: ad_nomvoie
+            description: "Nom de la voie (officiel si BAL certifiée)"
+          - name: ad_numero
+            description: "Numéro éventuel de l'adresse dans la voie (officiel si BAL certifiée)"
+          - name: ad_rep
+            description: "Indice de répétition associé au numéro (par exemple Bis, A, 1…) (officiel si BAL certifiée)"
+          - name: ad_insee
+            description: "Identifiant INSEE de la commune fondé sur le COG en cours"
+          - name: ad_postal
+            description: "Code postal du bureau de distribution de la voie"
+          - name: ad_commune
+            description: "Nom officiel de la commune"
+          - name: ad_hexacle
+            description: "Code HEXACLE"
+          - name: ad_distinf
+            description: "Distance à l'infrastructure"
+          - name: ad_isole
+            description: "Est-ce une adresse isolée ? (1=oui, 0=non)"
+          - name: ad_prio
+            description: "Le raccordement du site est-il prioritaire (1) ou non (0) ?"
+          - name: ad_racc
+            description: "Type d'implantation/raccordement"
+          - name: ad_batcode
+            description: "Identifiant du bâtiment dans une base de données externe."
+          - name: ad_codtemp
+            description: "Code temporaire avant création de l'ad_batcode"
+          - name: ad_nombat
+            description: "Nom du bâtiment ou de l'immeuble"
+          - name: ad_ietat
+            description: "Etat de l'immeuble"
+          - name: ad_imneuf
+            description: "Immeuble neuf ? (1=oui, 0=non)"
+          - name: ad_gest
+            description: "Gestionnaire d'immeuble (entreprise ou personne) dans le référentiel des gestionnaires (Conditionnel IPE)"
+          - name: ad_idatsgn
+            description: "Date de la signature de la convention avec le gestionnaire de l'immeuble. (Conditionnel IPE)"
+          - name: ad_iaccgst
+            description: "Permet de savoir si un accord du gestionnaire d'immeuble (copropriété, syndic, etc.) est nécessaire (1) ou non (0) pour aller raccorder l'adresse. (Obligatoire IPE)"
+          - name: ad_nblres
+            description: "Nombre de locaux résidentiels."
+          - name: ad_nblpro
+            description: "Nombre de locaux professionnels."
+          - name: ad_nblent
+            description: "Nombre de locaux d'entreprises identifiés comme éligibles à une offre de raccordement spécifique (FTTE, FTTO, FON)."
+          - name: ad_nblpub
+            description: "Nombre de locaux exploités par des services publics."
+          - name: ad_nblobj
+            description: "Nombre de locaux de type objet connectés"
+          - name: ad_nblope
+            description: "Nombre de locaux exploités exclusivement pour des usages d'opérateurs télécoms."
+          - name: ad_nbfotte
+            description: "Nombre de fibres FTTE (Fibre activée en point-à-point sur la Boucle Locale Optique Mutualisée)"
+          - name: ad_nbfogfu
+            description: "Nombre de fibres GFU (Groupement Ferme d'Utilisateurs tel que defini par la decision ARCEP n 05 0208)"
+          - name: ad_nbfotto
+            description: "Nombre de fibres FTTO (Offre Sur Mesure sans modalites de raccordement reglemente)."
+          - name: ad_nbfotth
+            description: "Nombre de fibres FTTH"
+          - name: ad_nbfofon
+            description: "Nombre de fibres noires."
+          - name: ad_dta
+            description: "1 si un Diagnostic Technique Amiante (DTA) est obligatoire, 0 si ce n'est pas le cas."
+          - name: ad_geolqlt
+            description: "Qualité de la géolocalisation"
+          - name: geom
+            description: "Point abstrait (Geometry(Point,SRID))"

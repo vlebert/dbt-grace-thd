@@ -1,0 +1,42 @@
+version: 2
+sources:
+  - name: gracethd
+    schema: gracethd_source
+    tables:
+      - name: t_ptech
+        description: "Liste des Points Techniques faisant partie de l'Infrastructure de Génie Civil souterraine et aérienne. Il pourra donc s'agir de ponctuel de type chambre, poteau, traverse, crochet de façade, fixation d'encorbellement, … etc."
+        columns:
+          - name: pt_code
+            description: "Code du point technique"
+          - name: pt_codeext
+            description: "Code chez un tiers ou dans une autre base de données."
+          - name: pt_abandon
+            description: "Défini si l'entité est abandonnée ou non dans un SI"
+          - name: pt_etiquet
+            description: "Etiquette sur le terrain"
+          - name: pt_perirec
+            description: ""
+          - name: pt_nd_code
+            description: "Code noeud"
+          - name: pt_prop
+            description: "Propriétaire"
+          - name: pt_gest
+            description: "Gestionnaire du point technique"
+          - name: pt_proptyp
+            description: "Type de propriété"
+          - name: pt_statut
+            description: "Statut de déploiement."
+          - name: pt_avct
+            description: "Attribut synthétisant l'avancement. Utile pour distinguer en phase d'étude ce qui est existant et à créer. "
+          - name: pt_typephy
+            description: "Type de point technique"
+          - name: pt_nature
+            description: "Nature du point technique."
+          - name: pt_secu
+            description: "Point technique équipé d'un système de verrouillage, ou tout autre système permettant d'en sécuriser l'accès."
+          - name: pt_a_struc
+            description: "Simple, Moisé, Haubané, Couple, …"
+          - name: pt_a_haut
+            description: "Hauteur en mètre entre le sol et la base de l'infrastructure (réseau en façade ou aérien)"
+          - name: pt_section
+            description: "Si un point technique en propriété propre n'est pas en domaine public, possibilité de saisir le numéro de section cadastrale. "

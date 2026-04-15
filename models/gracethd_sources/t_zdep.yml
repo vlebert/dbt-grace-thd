@@ -1,0 +1,26 @@
+version: 2
+sources:
+  - name: gracethd
+    schema: gracethd_source
+    tables:
+      - name: t_zdep
+        description: "Zone de déploiement. Pour définir des zones correspondant à des phases de déploiement."
+        columns:
+          - name: zd_code
+            description: "Code de zone de déploiement d'infrastructure."
+          - name: zd_nd_code
+            description: "Code interne hérité du Noeud"
+          - name: zd_zs_code
+            description: "Code de la Zone arrière de SRO parente s'il s'agit d'une subdivision."
+          - name: zd_r1_code
+            description: "Code d'un référencement du réseau 1 (plaque, dsp, BM, etc.)"
+          - name: zd_r2_code
+            description: "Code d'un référencement du réseau 2 (poche, tronçon, etc.)"
+          - name: zd_r3_code
+            description: "Code d'un référencement du réseau 3 (secteur, etc.)"
+          - name: zd_r4_code
+            description: "Code d'un référencement du réseau 4"
+          - name: zd_statut
+            description: "Statut de déploiement."
+          - name: geom
+            description: "Surface de couverture"

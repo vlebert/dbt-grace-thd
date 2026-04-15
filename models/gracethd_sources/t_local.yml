@@ -1,0 +1,47 @@
+version: 2
+
+sources:
+  - name: gracethd
+    schema: gracethd_source
+    tables:
+      - name: t_local
+        description: "Un local est un sous ensemble d'un site (logement, local entreprise, local technique…etc.)"
+        columns:
+          - name: lc_code
+            description: "Code du local"
+          - name: lc_bp_codf
+            description: "Code du PBO pré-identifié pour alimenter le local en FTTH."
+          - name: lc_bp_codp
+            description: "Code du PBO FTTE ou BPE pré-identifié pour alimenter le local sur les usages point à point de type FTTE, FTTO, GFU, FON"
+          - name: lc_codeext
+            description: "Code chez un tiers ou dans une autre base de données."
+          - name: lc_abandon
+            description: "Défini si l'entité est abandonnée ou non dans un SI"
+          - name: lc_prop
+            description: "Propriétaire du local."
+          - name: lc_gest
+            description: "Gestionnaire du local."
+          - name: lc_statut
+            description: "Statut de déploiement."
+          - name: lc_dateins
+            description: "Date d'installation"
+          - name: lc_elec
+            description: "Présence d'une alimentation électrique"
+          - name: lc_bat
+            description: "Nom du bâtiment"
+          - name: lc_escal
+            description: "Nom ou numéro d'escalier du local"
+          - name: lc_etage
+            description: "Numéro d'étage du local."
+          - name: lc_avct
+            description: "Attribut synthétisant l'avancement. Utile pour distinguer en phase d'étude ce qui est existant et à créer."
+          - name: lc_perirec
+            description: "Identifiant du périmètre récolé livré à un instant t"
+          - name: lc_etiquet
+            description: "Nom du local tel qu'étiqueté sur le terrain (selon règles et plages de nommage)"
+          - name: lc_st_code
+            description: "Identifiant unique contenu dans la classe  SITE"
+          - name: lc_typelog
+            description: "Type logique du local"
+          - name: lc_proptyp
+            description: "Type de propriété"

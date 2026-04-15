@@ -1,0 +1,14 @@
+version: 2
+sources:
+  - name: gracethd
+    schema: gracethd_source
+    tables:
+      - name: t_cableline
+        description: "Les câbles nécessitant une géométrie (globalement les câbles cheminant en extrasite) peuvent être modélisés dans cette table. Les câbles ne nécessitant pas de géométrie (globalement les câbles intrasites comme les jarretières, breakouts, etc.) n'ont ainsi pas besoin d'être modélisés géométriquement."
+        columns:
+          - name: cl_code
+            description: "Code unique permettant d'identifier une géométrie modélisant un câble."
+          - name: cl_cb_code
+            description: "Code unique du câble."
+          - name: geom
+            description: "Ligne"

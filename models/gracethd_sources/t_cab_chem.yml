@@ -1,0 +1,12 @@
+version: 2
+sources:
+  - name: gracethd
+    schema: gracethd_source
+    tables:
+      - name: t_cab_chem
+        description: "Relations entre les câbles et les cheminement en remplacement de la table t_conduite, t_cond_chem et t_cab_cond, modélisant les passages de câbles."
+        columns:
+          - name: cc_cb_code
+            description: "Code câble"
+          - name: cc_cm_code
+            description: "Code du cheminement par lequel passe le câble."

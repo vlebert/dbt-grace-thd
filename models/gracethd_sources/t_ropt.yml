@@ -1,0 +1,30 @@
+version: 2
+sources:
+  - name: gracethd
+    schema: gracethd_source
+    tables:
+      - name: t_ropt
+        description: "Itinéraires optiques du réseau, distincts des alignements de fibres."
+        columns:
+          - name: rt_id
+            description: ""
+          - name: rt_code
+            description: ""
+          - name: rt_code_ext
+            description: ""
+          - name: rt_fo_code
+            description: ""
+          - name: rt_fo_ordr
+            description: ""
+          - name: rt_comment
+            description: ""
+          - name: rt_creadat
+            description: ""
+          - name: rt_majdate
+            description: ""
+          - name: rt_majsrc
+            description: ""
+          - name: rt_abddate
+            description: ""
+          - name: rt_abdsrc
+            description: ""

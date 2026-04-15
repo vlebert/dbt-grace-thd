@@ -1,0 +1,26 @@
+version: 2
+sources:
+  - name: gracethd
+    schema: gracethd_source
+    tables:
+      - name: t_znro
+        description: "Zone arrière d'un Noeud de Raccordement Optique (NRO)."
+        columns:
+          - name: geom
+            description: "Surface de couverture"
+          - name: zn_code
+            description: "Code la zone arrière de NRO"
+          - name: zn_etat
+            description: "Etat d'avancement du NRO (Interop CPN)"
+          - name: zn_lc_code
+            description: "Local  (fonctionnel) ayant la fonction de NRO."
+          - name: zn_nd_code
+            description: "Code interne hérité du Noeud"
+          - name: zn_nom
+            description: "Nom que la collectivité donne à la ZNRO"
+          - name: zn_nroref
+            description: "Référence du NRO (Interop CPN)"
+          - name: zn_r1_code
+            description: "Code d'un référencement du réseau 1 (plaque, dsp, BM, etc.)"
+          - name: zn_r2_code
+            description: "Code d'un référencement du réseau 2 (poche, tronçon, etc.)"

@@ -1,0 +1,20 @@
+version: 2
+sources:
+  - name: gracethd
+    schema: gracethd_source
+    tables:
+      - name: t_cassette
+        description: "Cassettes contenues dans les éléments de branchements passifs du réseau (voir définition classe ElementBranchementPassif) et modules contenus dans les tiroirs."
+        columns:
+          - name: cs_code
+            description: "Code unique de la cassette (ou du module dans un tiroir)."
+          - name: cs_bp_code
+            description: "Identifiant unique de l'EBP auquel appartient la cassette"
+          - name: cs_num
+            description: "Numéro de la cassette (ou du module dans un tiroir) dans l'organiseur du BPE."
+          - name: cs_type
+            description: "Type de cassette (ou du module dans un tiroir) dans un tiroir (SOUDURE, LOVAGE, SPLITTER, CONNECTEUR, …etc.)"
+          - name: cs_face
+            description: "Face du BPE sur laquelle est enfichée la cassette/le module dans un tiroir"
+          - name: cs_rf_code
+            description: "Identifiant unique dans la table référence."

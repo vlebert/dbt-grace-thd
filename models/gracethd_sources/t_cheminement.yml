@@ -1,0 +1,33 @@
+version: 2
+
+sources:
+  - name: gracethd
+    schema: gracethd_source
+    tables:
+      - name: t_cheminement
+        description: "Un cheminement représente, entre deux points techniques/sites : Un parcours physique approchant pour l'infrastructure GC créé. Le cheminement exact est livré dans la table t_tranchee. Un parcours physique à partir des données de l'exploitant pour les infrastructures existantes."
+        columns:
+          - name: cm_code
+            description: "Code du cheminement."
+          - name: cm_perirec
+            description: "Identifiant du périmètre récolé livré à un instant t"
+          - name: cm_ndcode1
+            description: "Code du Noeud à une extrémité du cheminement."
+          - name: cm_ndcode2
+            description: "Code du Noeud à l'autre extrémité du cheminement."
+          - name: cm_compo
+            description: "Attribut d'aggrégation décrivant la composition du multitubulaire."
+          - name: cm_statut
+            description: "Statut de déploiement."
+          - name: cm_avct
+            description: "Attribut synthétisant l'avancement. Utile pour distinguer en phase d'étude ce qui est existant et à créer."
+          - name: cm_typelog
+            description: "Type logique de l'infrastructure"
+          - name: cm_typ_imp
+            description: "Type d'implantation"
+          - name: cm_prop
+            description: "Propriétaire de la conduite du cheminement"
+          - name: cm_gest
+            description: "Gestionnaire de la conduite du cheminement"
+          - name: geom
+            description: "Ligne"

@@ -1,0 +1,39 @@
+version: 2
+
+sources:
+  - name: gracethd
+    schema: gracethd_source
+    tables:
+      - name: t_pointaccueil
+        description: "Cette classe regroupe: les sites et les points techniques du Génie Civil créé lors du déploiement du réseau de fibre optique. Les sites ou points techniques d'extrémité d'un linéaire de Génie Civil créé lors du déploiement du réseau de fibre optique."
+        columns:
+          - name: pa_code
+            description: "Code du ponctuel"
+          - name: pa_perirec
+            description: "Identifiant du périmètre récolé livré à un instant t"
+          - name: pa_codtemp
+            description: "Code temporaire avant création du codeext."
+          - name: pa_a_struc
+            description: "Simple, Moisé, Haubané, Couple, …"
+          - name: pa_a_haut
+            description: "Hauteur en mètre entre le sol et la base de l'infrastructure (réseau en façade ou aérien)"
+          - name: pa_rotatio
+            description: "Angle du grand axe du point technique en degrés dans le sens retrograde (sens des aiguilles d'une montre) à partir du Nord."
+          - name: pa_datecon
+            description: "Date de construction"
+          - name: pa_codeext
+            description: "Code chez un tiers ou dans une autre base de données."
+          - name: pa_prop
+            description: "Propriétaire"
+          - name: pa_gest
+            description: "Gestionnaire du point d'accueil"
+          - name: pa_typephy
+            description: "Type de point technique/site."
+          - name: pa_nature
+            description: "Nature du point technique/site."
+          - name: pa_secu
+            description: "Point technique/site équipé d'un système de verrouillage, ou tout autre système permettant d'en sécuriser l'accès."
+          - name: pa_dtclass
+            description: "Classe de précision du point d'accueil au sens du décret DT/DICT"
+          - name: geom
+            description: "Point"

@@ -1,0 +1,38 @@
+version: 2
+sources:
+  - name: gracethd
+    schema: gracethd_source
+    tables:
+      - name: t_zsro
+        description: "Zone Arrière d'un Sous-Répartiteur Optique (SRO)."
+        columns:
+          - name: zs_code
+            description: "Code la zone arrière de SRO"
+          - name: zs_zn_code
+            description: "Code de la Zone Arrière de NRO correspondante."
+          - name: zs_r1_code
+            description: "Code d'un référencement du réseau 1 (plaque, dsp, BM, etc.)"
+          - name: zs_r2_code
+            description: "Code d'un référencement du réseau 2 (poche, tronçon, etc.)"
+          - name: zs_r3_code
+            description: "Code d'un référencement du réseau 3 (secteur, etc.)"
+          - name: zs_etatpm
+            description: "IPE : Doit être renseigné dès lors que le SRO apparait dans l'IPE."
+          - name: zs_capamax
+            description: "IPE : Capacité maximum théorique du SRO ."
+          - name: zs_nblogmt
+            description: ""
+          - name: zs_actif
+            description: "IPE: Indique s'il y a de l'electricité au SRO pour permettre à un opérateur commercial d'y disposer des équipements actifs."
+          - name: zs_lc_code
+            description: "Local  (fonctionnel) ayant la fonction de SRO ."
+          - name: zs_lgmaxln
+            description: ""
+          - name: zs_nom
+            description: "Nom que la collectivité donne à la ZSRO"
+          - name: zs_znllong
+            description: ""
+          - name: zs_refpm
+            description: ""
+          - name: geom
+            description: "Surface de couverture"

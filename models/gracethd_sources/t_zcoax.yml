@@ -1,0 +1,43 @@
+version: 2
+
+sources:
+  - name: gracethd
+    schema: gracethd_source
+    tables:
+      - name: t_zcoax
+        description: "Zones couvertes par les services d'un cablo-opérateur"
+        columns:
+          - name: zc_code
+            description: ""
+          - name: zc_codeext
+            description: ""
+          - name: zc_nd_code
+            description: ""
+          - name: zc_r1_code
+            description: ""
+          - name: zc_r2_code
+            description: ""
+          - name: zc_r3_code
+            description: ""
+          - name: zc_r4_code
+            description: ""
+          - name: zc_prop
+            description: ""
+          - name: zc_gest
+            description: ""
+          - name: zc_statut
+            description: ""
+          - name: zc_comment
+            description: ""
+          - name: zc_geolsrc
+            description: ""
+          - name: zc_creadat
+            description: ""
+          - name: zc_majdate
+            description: ""
+          - name: zc_majsrc
+            description: ""
+          - name: zc_abddate
+            description: ""
+          - name: zc_abdsrc
+            description: ""

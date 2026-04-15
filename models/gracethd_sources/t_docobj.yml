@@ -1,0 +1,26 @@
+version: 2
+sources:
+  - name: gracethd
+    schema: gracethd_source
+    tables:
+      - name: t_docobj
+        description: ""
+        columns:
+          - name: od_id
+            description: ""
+          - name: od_do_code
+            description: ""
+          - name: od_tbltype
+            description: ""
+          - name: od_codeobj
+            description: ""
+          - name: od_creadat
+            description: ""
+          - name: od_majdate
+            description: ""
+          - name: od_majsrc
+            description: ""
+          - name: od_abddate
+            description: ""
+          - name: od_abdsrc
+            description: ""
