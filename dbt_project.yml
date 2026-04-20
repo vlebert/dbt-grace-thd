@@ -43,6 +43,15 @@ seeds:
   grace_thd:
     controls:
       +schema: seeds
+      ctrl_fk:
+        +column_types:
+          id_test: varchar(50)
+          classe: varchar(50)
+          attribut: varchar(50)
+          cle_primaire: varchar(50)
+          classe_cible: varchar(50)
+          attribut_cible: varchar(50)
+          actif: boolean
       ctrl_remplissage:
         +column_types:
           id_test: varchar(50)

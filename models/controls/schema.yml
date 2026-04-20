@@ -16,6 +16,21 @@ models:
       - name: id_entite
       - name: detail_erreur
 
+  - name: ctrl_fk
+    description: >
+      Contrôle générique d'intégrité référentielle. Une ligne par entité dont
+      un attribut FK est non NULL mais absent de la table cible. Paramétré par
+      le seed `ctrl_fk`. Les valeurs NULL ne sont pas signalées ici (géré par
+      ctrl_remplissage).
+    columns:
+      - name: id_test
+      - name: type_controle
+      - name: description
+      - name: classe
+      - name: attribut
+      - name: id_entite
+      - name: detail_erreur
+
   - name: rapport_controles
     description: >
       Rapport consolidé de tous les contrôles taggés 'control'.
@@ -60,4 +75,18 @@ seeds:
       - name: conteneur_c2
       - name: conteneur_c3
       - name: conteneur_c4
+      - name: actif
+
+  - name: ctrl_fk
+    description: >
+      Paramétrage du contrôle générique de clés étrangères. Une ligne par
+      relation FK à vérifier entre (classe, attribut) et (classe_cible,
+      attribut_cible).
+    columns:
+      - name: id_test
+      - name: classe
+      - name: attribut
+      - name: cle_primaire
+      - name: classe_cible
+      - name: attribut_cible
       - name: actif
