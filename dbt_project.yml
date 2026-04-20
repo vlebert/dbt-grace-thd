@@ -66,6 +66,16 @@ seeds:
           cle_primaire: varchar(50)
           table_liste: varchar(100)
           actif: boolean
+      param_ctrl_presence_table:
+        +column_types:
+          id_test: varchar(50)
+          classe: varchar(50)
+          cle_primaire: varchar(50)
+          conteneur_c1: varchar(1)
+          conteneur_c2: varchar(1)
+          conteneur_c3: varchar(1)
+          conteneur_c4: varchar(1)
+          actif: boolean
       param_ctrl_unicite:
         +column_types:
           id_test: varchar(50)
