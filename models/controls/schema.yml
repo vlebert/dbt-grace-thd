@@ -45,6 +45,20 @@ models:
       - name: id_entite
       - name: detail_erreur
 
+  - name: ctrl_unicite
+    description: >
+      Contrôle générique d'unicité des attributs. Une ligne par entité dont
+      un attribut prend une valeur dupliquée dans la table. Les valeurs NULL
+      ne sont pas signalées ici (géré par ctrl_remplissage).
+    columns:
+      - name: id_test
+      - name: type_controle
+      - name: description
+      - name: classe
+      - name: attribut
+      - name: id_entite
+      - name: detail_erreur
+
   - name: rapport_controles
     description: >
       Rapport consolidé de tous les contrôles taggés 'control'.
@@ -103,6 +117,17 @@ seeds:
       - name: cle_primaire
       - name: classe_cible
       - name: attribut_cible
+      - name: actif
+
+  - name: param_ctrl_unicite
+    description: >
+      Paramétrage du contrôle générique d'unicité. Une ligne par attribut
+      à vérifier pour l'unicité dans sa table.
+    columns:
+      - name: id_test
+      - name: classe
+      - name: attribut
+      - name: cle_primaire
       - name: actif
 
   - name: param_ctrl_liste_valeur

@@ -66,6 +66,13 @@ seeds:
           cle_primaire: varchar(50)
           table_liste: varchar(100)
           actif: boolean
+      param_ctrl_unicite:
+        +column_types:
+          id_test: varchar(50)
+          classe: varchar(50)
+          attribut: varchar(50)
+          cle_primaire: varchar(50)
+          actif: boolean
       param_ctrl_remplissage:
         +column_types:
           id_test: varchar(50)
