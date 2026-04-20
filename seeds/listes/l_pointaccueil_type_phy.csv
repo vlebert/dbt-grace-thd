@@ -1,0 +1,14 @@
+code,libelle,definition
+APP,APPUI,
+CHB,CHAMBRE,
+FCD,ANCRAGE FACADE,
+IMM,IMMEUBLE,
+ZZZ,AUTRE,
+ADR,ARMOIRE DE RUE,
+BAT,BATIMENT,
+CHV,"CHAMBRE
+     VISITABLE","Chambre accueillant au moins une baie, donc traitee comme un site technique. Provient de gracethd_genie_civil.l_site_type_phy"
+COF,COFFRET,Notamment coffrets qui peuvent etre fixes sur des appuis et qui font office d armoires.Provient de gracethd_genie_civil.l_site_type_phy
+SHE,SHELTER,Provient de gracethd_genie_civil.l_site_type_phy
+STR,CONSTRUCTION SOUTERRAINE,Espace souterrain aménagé et visitable comportant un ou plusieurs locaux techniques et accueillant au moins une baie.Provient de gracethd_genie_civil.l_site_type_phy
+LOG,LOGETTE ELECTRIQUE,

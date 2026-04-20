@@ -1,0 +1,8 @@
+code,libelle,definition
+CI,CIBLE,L adresse se situe dans la zone arriere d un SRO deploye ou en cours de deploiement ou ayant fait l objet d une consultation (Interop:EtatImmeuble)
+RD,RACCORDABLE DEMANDE,Notion reglementaire de raccordable a la demande. Signifie que la pose du PBO peut se faire sur demande d un OC et selon les conditions specifiques definies par l OI dans son contrat  (Interop:EtatImmeuble)
+RC,RAD EN COURS DE DEPLOIEMENT,RAD en cours de deploiement : signifie qu une commande de PB a ete transmise par un OC sur une adresse raccordable a la demande. Toutes les adresses connues de la zone arriere du PB passent a cet etat.  (Interop:EtatImmeuble)
+SI,SIGNE,Une convention a ete signee avec le gestionnaire de l adresse. (Interop:EtatImmeuble)
+EC,EN COURS DE DEPLOIEMENT,"L adresse est en cours de deploiement, sans qu une definition precise de ce terme n ait ete partagee en Interop (Interop:EtatImmeuble)"
+DE,DEPLOYE,"Signifie que l adresse est techniquement raccordable en fibre, que le PB est pose et que l adresse est mise a disposition aux operateurs commerciaux. Cet etat correspond a un etat ""raccordable"" au sens de la réglementation (Interop:EtatImmeuble)"
+AB,ABANDONNE,"La commercialisation de l adresse est annulee par l operateur d immeuble, quelqu en soit le motif (deconventionnement, insecurite installateur, fiabilisation des adresses, destruction de l immeuble …). (Interop:EtatImmeuble)"

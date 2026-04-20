@@ -41,6 +41,12 @@ models:
 
 seeds:
   grace_thd:
+    listes:
+      +schema: listes
+      +column_types:
+        code: varchar(254)
+        libelle: varchar(254)
+        definition: varchar(254)
     controls:
       +schema: seeds
       ctrl_fk:

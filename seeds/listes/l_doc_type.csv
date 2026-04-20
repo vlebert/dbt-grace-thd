@@ -1,0 +1,45 @@
+code,libelle,definition
+DIG,DOSSIER D INGENIERIE : REGLES D INGENIERIE UTILISEES,Ensemble des regles d ingenierie etablies par la collectivite pour le deploiement du reseau. Voir GraceTHD-MOD.
+ETU,RAPPORT D ETUDE,Rapport de l etude. Le rapport pourra contenir notamment l index des documents produits dans le cadre de l etude. Voir GraceTHD-MOD.
+PSI,"PLAN DE SITUATION, SYNOPTIQUE GEOGRAPHIQUE","Vue globale du projet, ou d une partie du projet de deploiement. Fond de carte, trace du projet, eventuellement, reperage des plans du projet ou d autres elements selon besoin. Voir GraceTHD-MOD."
+PPH,PLAN DE PHASAGE,Phasage prevu des deploiements. Voir GraceTHD-MOD.
+PCB,PLAN DE CABLAGE,"Vue d ensemble de l infrastrcuture d accueil et du cablage : fond de carte avec noms et numeros de rues, zone de desserte, cables, points techniques, ebp, … Voir GraceTHD-MOD."
+PMQ,PLAN DE MASQUE OU FICHE FOA,"Plan des masques de la chambre, position des alveoles, fourreaux et eventuellement câbles"
+DPO,DOSSIER APPUIS AERIENS,"Documents relatifs a l utilisation d un appui aerien : fiche descriptive, etude de charge, documents pour redressement, renforcement ou remplacement d appui. Voir GraceTHD-MOD."
+FOT,PHOTO,Voir GraceTHD-MOD.
+PGC,PLAN DE GENIE CIVIL,"Detail du genie civil, et plus particulierement : fond de plan topographique, cheminement des conduites telecoms, affleurants, cotations, points de mesure, habillage, … Voir GraceTHD-MOD."
+DLV,DOSSIER DE LEVE OU D INVESTIGATIONS COMPLEMENTAIRES,"Documents et fichiers fournis dans le cadre d une prestation de releve topographique, avec ou sans detection (investigations complementaires et/ou releves autres). Voir GraceTHD-MOD."
+SGC,DETAIL OU SCHEMA DE GENIE CIVIL,"Complement de detail au plan de genie civil. Le plan ou schema de detail est generalement necessaire dans le cas d un forage dirige, d un encorbellement, d une pose en ovoïde… Voir GraceTHD-MOD."
+DPI,DOSSIER DE PIQUETAGE,"Dossier contenant l ensemble des documents relatifs aux operations de piquetage d une infrastructure : rapport, annotations terrain, photos, mesures… Voir GraceTHD-MOD."
+DBL,DOSSIER DE RELEVE BOITES AUX LETTRES,Dossier contenant l ensemble des documents produits dans le cadre d un releve de boîtes aux lettres. Voir GraceTHD-MOD.
+KRV,REGLEMENT DE VOIRIE,Copie du règlement de voirie en application au moment du projet. Voir GraceTHD-MOD.
+CPV,PERMISSION OU AUTORISATION DE VOIRIE,Copie du PLU existant au moment du projet. Voir GraceTHD-MOD.
+DTT,DT EMISES DANS LE CADRE DU PROJET DE DEPLOIEMENT,"Modalites techniques de l execution des travaux, autorisation d occuper le domaine public, definition de la redevance annuelle a adresser au gestionnaire de la voirie, zone concernee et duree de validite fixee. Voir GraceTHD-MOD."
+DIT,DICT EMISES DANS LE CADRE DU PROJET DE DEPLOIEMENT,"DT emises sous la responsabilite de la MOA (sauf si delegation MOE) : formulaire Cerfa envoye aux differents exploitants de reseaux dans la zone des travaux, compilation des reponses et suivi. Voir GraceTHD-MOD."
+DAM,DIAGNOSTIC AMIANTE ENROBE,"DICT emises sous la responsabilite de l entreprise de travaux :  formulaire Cerfa envoye aux differents exploitants de reseaux dans la zone des travaux, compilation des reponses et suivi. Voir GraceTHD-MOD."
+CIN,CONTRAT OU CONVENTION DE LOCATION/CESSION/ACHAT/OCCUPATION D INFRASTRUCTURE,"Localisation des points de sondage, resultat des carottages et analyses. Voir GraceTHD-MOD."
+CMU,CONTRAT OU CONVENTION DE CO-CONSTRUCTION OU MUTUALISATION DE TRAVAUX,Diagnostic Technique Amiante pour un immeuble. Voir GraceTHD-MOD.
+DIP,"DOSSIER D IMPLANTATION (SRO, NRO, BPI…)","Conditions, redevance eventuelle, zone concernee, description des infrastrutures concernees, duree de validite… Voir GraceTHD-MOD."
+SOP,SYNOPTIQUE OPTIQUE,"Dossier contenant l ensemble des documents relatifs a la commande (fichiers de commande, suivi des echanges, bon de reception, etc .). Voir GraceTHD-MOD."
+SBP,"PLAN DE BOITE, OU AUTRE ELEMENT DE BRANCHEMENT PASSIF",Mutualisation de travaux dans le cadre de la L49 (loi Pintat). Voir GraceTHD-MOD.
+SRA,"SCHEMA DE RACCORDEMENT (BAIE, ARMOIRE, REPARTITEUR…)","Dossier contenant toutes les informations techniques relatives a la construction, a l adduction et au cablage d un site (zone privative y compris l eventuel deploiement d infrastructures intra-site et les BPE attenantes). Voir GraceTHD-MOD."
+KEQ,DOCUMENTATION TECHNIQUE D EQUIPEMENT,"Dossier contenant toutes les informations techniques relatives  au deploiement, a l adduction et au cablage d un site (zone privative y compris l eventuel deploiement d infrastructures intra-site et les BPE attenantes). Voir GraceTHD-MOD."
+CIM,CONVENTION THD IMMEUBLE,"Contient toutes les informations techniques, plans d amenagement, schemas, PV et consuel, photos… relatifs  a l implantation du site (voie publique). Voir GraceTHD-MOD."
+CIS,CONVENTION CADRE BAILLEUR SOCIAL,Vue logique des aligements de fibres. Voir GraceTHD-MOD.
+CDS,REGLEMENT DE SERVICE,"Organisation de la boîte, des arrivees de câbles, des loves, des cassettes et de la connectique. Voir GraceTHD-MOD."
+COC,AUTRE CONVENTION D OCCUPATION EMPRISE PRIVEE,"Organisation de la connectique a l interieur d une baie, d une armoire ou d un repartiteur. Voir GraceTHD-MOD."
+MRF,MESURE DE REFLECTOMETRIE,Fiche technique et specifications techniques d un equipement. Voir GraceTHD-MOD.
+MFX,"TEST D ETANCHEITE DE FOURREAUX ET/OU TESTS DE MANDRINAGE, AIGUILLAGE",Voir modele propose par l ARCEP. Voir GraceTHD-MOD.
+RGC,PV DE RECEPTION GENIE CIVIL,Voir modele propose par l ARCEP. Voir GraceTHD-MOD.
+DIF,DOSSIER INFRASTRUCTURE D ACCUEIL,"Reglement signe par les occupants d un immeuble raccorde au FTTH, pour clarifier les regles de bon usage visant la non degradation des equipements poses par la collectivite. Voir GraceTHD-MOD."
+DCB,DOSSIER DE CABLAGE,Voir GraceTHD-MOD.
+DOP,DOSSIER OPTIQUE,Courbes et donnees brutes. Voir GraceTHD-MOD.
+DPR,DOSSIER DE PROJET,Fiches de tests. Voir GraceTHD-MOD.
+DLG,DOSSIER DE LIVRABLES GRACETHD,Proces verbal de reception pour les travaux de genie civil. Voir GraceTHD-MOD.
+DCI,DOSSIER DE COMMANDE POUR LOCATION/OCCUPATION D INFRASTRUCTURE,"Proces verbal de reception de voirie delivre par le gestionnaire de la voirie, vaut acceptation des travaux par le gestionnaire. Voir GraceTHD-MOD."
+DCS,DOSSIER DE CREATION DE SITE,"Fiche de recette pour la reception de travaux quels qu ils soient. La fiche de recette peut inclure des resultats de tests, des fichiers ou des informations complementaires. Voir GraceTHD-MOD."
+DRS,DOSSIER DE RACCORDEMENT DE SITE,"Dossier contenant un ensemble de documents relatifs a une infrastructure d accueil. Ce dossier n est pas un type de document a proprement parler, mais un conteneur d une multiplicite de documents. Voir GraceTHD-MOD."
+KPL,PLAN LOCAL D URBANISME,"Dossier contenant un ensemble de documents relatifs au câblage d une infrastructure. Ce dossier n est pas un type de document a proprement parler, mais un conteneur d une multiplicite de documents. Voir GraceTHD-MOD."
+RFR,FICHE DE RECETTE,"Dossier contenant un ensemble de documents relatifs au raccordement d une infrastructure. Ce dossier n est pas un type de document a proprement parler, mais un conteneur d une multiplicite de documents. Voir GraceTHD-MOD."
+RVR,PV DE RECEPTION DE VOIRIE,"Dossier contenant un ensemble de documents relatifs au projet de deploiement. Ce dossier n est pas un type de document a proprement parler, mais un conteneur d une multiplicite de documents. Voir GraceTHD-MOD."
+DTA,DIAGNOSTIC TECHNIQUE AMIANTE POUR UN IMMEUBLE,Dossier contenant un ensemble de livrables GraceTHD. Les livrables doivent eux-meme etre nommes et crees selon les exigences du Geostandard ANT. Voir GraceTHD-MOD.
