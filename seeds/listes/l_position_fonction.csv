@@ -1,7 +1,7 @@
-code,libelle,definition
-CO,CONNECTEUR,
-EP,EPISSURE,
-PI,PIGTAIL,
-AT,ATTENTE,Fibres optiques utiles ou disponibles en attente
-PA,PASSAGE,
-MA,MANŒUVRE,Fibres optiques en attente dans une des deux positions d une cassette réelle qui n as pas d assignation
+"code","libelle","definition"
+"CO","CONNECTEUR",""
+"EP","EPISSURE",""
+"PI","PIGTAIL",""
+"AT","ATTENTE","Fibres optiques utiles ou disponibles en attente"
+"PA","PASSAGE",""
+"MA","MANŒUVRE","Fibres optiques en attente dans une des deux positions d une cassette réelle qui n as pas d assignation"

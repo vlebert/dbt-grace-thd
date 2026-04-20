@@ -1,6 +1,6 @@
-code,libelle,definition
-ADR,SROE-ARMOIRE DE RUE,"SRO Exterieur au sens de la reglementation, contenu dans une armoire de rue."
-SHE,SROE-SHELTER,"SRO Exterieur au sens de la reglementation, contenu dans un shelter"
-LTE,SROE-LOCAL TECHNIQUE,"SRO Exterieur au sens de la reglementation, contenu dans un local technique, par exemple NRO."
-PME,SRO-EXTERIEUR,"SRO Exterieur au sens de la reglementation, dont l information du contenu n est pas disponible dans le SI de l OI."
-PMI,SRO-INTERIEUR,"Situe dans une partie privative necessitant l accord d un tiers (syndic, gestionnaire) en plus de l accord de l OI."
+"code","libelle","definition"
+"ADR","SROE-ARMOIRE DE RUE","SRO Exterieur au sens de la reglementation, contenu dans une armoire de rue."
+"SHE","SROE-SHELTER","SRO Exterieur au sens de la reglementation, contenu dans un shelter"
+"LTE","SROE-LOCAL TECHNIQUE","SRO Exterieur au sens de la reglementation, contenu dans un local technique, par exemple NRO."
+"PME","SRO-EXTERIEUR","SRO Exterieur au sens de la reglementation, dont l information du contenu n est pas disponible dans le SI de l OI."
+"PMI","SRO-INTERIEUR","Situe dans une partie privative necessitant l accord d un tiers (syndic, gestionnaire) en plus de l accord de l OI."

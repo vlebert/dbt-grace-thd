@@ -1,12 +1,13 @@
-code,libelle,definition
-RES,RESIDENTIEL,
-TEC,TECHNIQUE,"Emplacement technique dédié à un équipement passif dans un bâtiment (ex : BPE, PBO, câble … etc.)"
-PRO,PROFESSIONNEL,
-ENT,ENTREPRISE,Entreprise en fibre en point-à-point sur la Boucle Locale Optique Mutualisee.
-PUB,LOCAUX PUBLICS,Locaux publics (ex : annexe de mairie). 
-OPE,OPERATEUR,"Local symbolisant un besoin de fibrage spécifique aux opérateurs (Ex : Antenne, point de livraison réseau)"
-OBJ,OBJET CONNECTE A LA FIBRE,"Objet nécessitant une connexion à la fibre (ascenseur, caméra de surveillance, transformateur..etc.)"
-NRO,NŒUD RACCORDEMENT OPTIQUE,
-SRO,SOUS-REPARTITEUR OPTIQUE,
-NRA,NŒUD RACCORDEMENT D ABONNES POUR HEBERGER UN/DES EQUIPEMENTS(S) PASSIF(S) ET/OU ACTIF(S),
-NRAMED,NŒUD RACCORDEMENT D ABONNES - MONTEE EN DEBIT,
+"code","libelle","definition"
+"RES","RESIDENTIEL",""
+"TEC","TECHNIQUE","Emplacement technique dédié à un équipement passif dans un bâtiment (ex : BPE, PBO, câble … etc.)"
+"PRO","PROFESSIONNEL",""
+"ENT","ENTREPRISE","Entreprise en fibre en point-à-point sur la Boucle Locale Optique Mutualisee."
+"PUB","LOCAUX PUBLICS","Locaux publics (ex : annexe de mairie). "
+"OPE","OPERATEUR","Local symbolisant un besoin de fibrage spécifique aux opérateurs (Ex : Antenne, point de livraison réseau)"
+"OBJ","OBJET CONNECTE A LA FIBRE","Objet nécessitant une connexion à la fibre (ascenseur, caméra de surveillance, transformateur..etc.)"
+"NRO","NŒUD RACCORDEMENT OPTIQUE",""
+"SRO","SOUS-REPARTITEUR OPTIQUE",""
+"FTTH","RESIDENTIEL OU PROFESSIONNEL","A partir de la phase MCO, ce type de local permet d'éviter de transmettre de l'information non-vérifiée (les types RES/PRO peuvent changer sans que l'opérateur n'en soit informé)."
+"NRA","NŒUD RACCORDEMENT D ABONNES POUR HEBERGER UN/DES EQUIPEMENTS(S) PASSIF(S) ET/OU ACTIF(S)",""
+"NRAMED","NŒUD RACCORDEMENT D ABONNES - MONTEE EN DEBIT",""

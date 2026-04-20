@@ -147,7 +147,7 @@ def process_files(sql_files, output_dir):
 
         out_path = os.path.join(output_dir, f"{table_name}.csv")
         with open(out_path, "w", newline="", encoding="utf-8") as f:
-            writer = csv.writer(f)
+            writer = csv.writer(f, quoting=csv.QUOTE_ALL)
             writer.writerow(cols)
             for row in rows:
                 # Pad ou tronque pour correspondre au nombre de colonnes

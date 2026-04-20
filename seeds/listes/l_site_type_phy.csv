@@ -1,8 +1,8 @@
-code,libelle,definition
-ADR,ARMOIRE DE RUE,
-BAT,BATIMENT,
-CHV,CHAMBRE VISITABLE,"Chambre accueillant au moins une baie, donc traitee comme un site technique."
-COF,COFFRET,Notamment coffrets qui peuvent etre fixes sur des appuis et qui font office d armoires.
-POH,POINT HAUT,Site spécifique dédié à l émission radio. Les bâtiments utilisés comme support d antenne sont décris comme des bâtiments (BAT).
-SHE,SHELTER,
-STR,CONSTRUCTION SOUTERRAINE,Espace souterrain amenage et Visitable comportant un ou plusieurs locaux techniques et accueillant au moins une baie.
+"code","libelle","definition"
+"ADR","ARMOIRE DE RUE",""
+"BAT","BATIMENT",""
+"CHV","CHAMBRE VISITABLE","Chambre accueillant au moins une baie, donc traitee comme un site technique."
+"COF","COFFRET","Notamment coffrets qui peuvent etre fixes sur des appuis et qui font office d armoires."
+"POH","POINT HAUT","Site spécifique dédié à l émission radio. Les bâtiments utilisés comme support d antenne sont décris comme des bâtiments (BAT)."
+"SHE","SHELTER",""
+"STR","CONSTRUCTION SOUTERRAINE","Espace souterrain amenage et Visitable comportant un ou plusieurs locaux techniques et accueillant au moins une baie."
