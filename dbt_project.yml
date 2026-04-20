@@ -23,14 +23,34 @@ clean-targets:         # directories to be removed by `dbt clean`
   - "dbt_packages"
 
 
-# Configuring models
-# Full documentation: https://docs.getdbt.com/docs/configuring-models
+vars:
+  # Niveau de conteneur GRACE THD appliqué aux contrôles de remplissage
+  # (valeurs attendues : C1, C2, C3, C4)
+  grace_container_level: 'C3'
 
-# In this example config, we tell dbt to build all models in the example/
-# directory as views. These settings can be overridden in the individual model
-# files using the `{{ config(...) }}` macro.
 models:
   grace_thd:
-    # Config indicated by + and applies to all files under models/example/
-    example:
-      +materialized: view
+    controls:
+      +schema: controles
+      generique:
+        +materialized: table
+        +tags: ['control']
+      specifique:
+        +materialized: table
+        +tags: ['control']
+
+seeds:
+  grace_thd:
+    controls:
+      +schema: seeds
+      ctrl_remplissage:
+        +column_types:
+          id_test: varchar(50)
+          classe: varchar(50)
+          attribut: varchar(50)
+          cle_primaire: varchar(50)
+          conteneur_c1: varchar(1)
+          conteneur_c2: varchar(1)
+          conteneur_c3: varchar(1)
+          conteneur_c4: varchar(1)
+          actif: boolean

@@ -1,0 +1,63 @@
+version: 2
+
+models:
+  - name: ctrl_remplissage
+    description: >
+      Contrôle générique de remplissage des attributs obligatoires.
+      Une ligne par entité dont un attribut déclaré obligatoire (au niveau de
+      conteneur courant) est NULL ou vide. Paramétré par le seed
+      `ctrl_remplissage`. Ne porte pas de géométrie (voir rapport_controles_geo).
+    columns:
+      - name: id_test
+      - name: type_controle
+      - name: description
+      - name: classe
+      - name: attribut
+      - name: id_entite
+      - name: detail_erreur
+
+  - name: rapport_controles
+    description: >
+      Rapport consolidé de tous les contrôles taggés 'control'.
+      Assemblage dynamique via introspection du graph dbt.
+      Pas de géométrie : utiliser rapport_controles_geo pour la restitution SIG.
+    columns:
+      - name: id_test
+      - name: type_controle
+      - name: description
+      - name: classe
+      - name: attribut
+      - name: id_entite
+      - name: detail_erreur
+
+  - name: rapport_controles_geo
+    description: >
+      rapport_controles enrichi d'une colonne geom résolue par (classe,
+      id_entite). Adapté à la consommation par QGIS pour localiser les erreurs.
+    columns:
+      - name: id_test
+      - name: type_controle
+      - name: description
+      - name: classe
+      - name: attribut
+      - name: id_entite
+      - name: detail_erreur
+      - name: geom
+
+seeds:
+  - name: ctrl_remplissage
+    description: >
+      Paramétrage du contrôle générique de remplissage. Une ligne par couple
+      (classe, attribut) à contrôler. La colonne `conteneur_cX` indique le
+      caractère obligatoire (O), conditionnel (C) ou absent (N) au niveau de
+      conteneur X.
+    columns:
+      - name: id_test
+      - name: classe
+      - name: attribut
+      - name: cle_primaire
+      - name: conteneur_c1
+      - name: conteneur_c2
+      - name: conteneur_c3
+      - name: conteneur_c4
+      - name: actif

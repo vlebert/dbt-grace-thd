@@ -4,3 +4,5 @@ dbt_packages/
 logs/
 
 dev_specs
+dev_data
+.DS_Store

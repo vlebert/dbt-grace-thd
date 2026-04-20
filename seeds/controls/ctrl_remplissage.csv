@@ -1,0 +1,15 @@
+id_test,classe,attribut,cle_primaire,conteneur_c1,conteneur_c2,conteneur_c3,conteneur_c4,actif
+ctrl_rem_0001,t_adresse,ad_code,ad_code,O,O,O,O,true
+ctrl_rem_0002,t_adresse,ad_commune,ad_code,O,O,O,O,true
+ctrl_rem_0003,t_adresse,ad_insee,ad_code,O,O,O,O,true
+ctrl_rem_0004,t_adresse,ad_postal,ad_code,O,O,O,O,true
+ctrl_rem_0005,t_adresse,ad_nomvoie,ad_code,O,O,O,O,true
+ctrl_rem_0006,t_adresse,ad_numero,ad_code,O,O,O,O,true
+ctrl_rem_0007,t_adresse,ad_nblres,ad_code,O,O,O,N,true
+ctrl_rem_0008,t_adresse,ad_nblpro,ad_code,O,O,O,O,true
+ctrl_rem_0009,t_adresse,ad_ietat,ad_code,O,O,O,N,true
+ctrl_rem_0010,t_baie,ba_code,ba_code,N,O,O,O,true
+ctrl_rem_0011,t_baie,ba_lc_code,ba_code,N,O,O,O,true
+ctrl_rem_0012,t_baie,ba_etiquet,ba_code,N,N,O,O,true
+ctrl_rem_0013,t_cable,cb_code,cb_code,N,O,O,O,true
+ctrl_rem_0014,t_cable,cb_codeext,cb_code,N,O,O,O,true
