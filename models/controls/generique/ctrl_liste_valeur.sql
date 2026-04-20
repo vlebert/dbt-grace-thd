@@ -55,6 +55,6 @@ where src."{{ test['attribut'] }}" is not null
   and not exists (
     select 1
     from {{ listes_schema }}.{{ test['table_liste'] }} as ref_lv
-    where ref_lv.code = src."{{ test['attribut'] }}"
+    where ref_lv.code = src."{{ test['attribut'] }}"::text
   )
 {% endfor %}
