@@ -1,0 +1,4 @@
+id_test,classe,attribut,cle_primaire,table_liste,actif
+ctrl_lv_0001,t_ptech,pt_nature,pt_code,l_ptech_nature,true
+ctrl_lv_0002,t_cheminement,cm_nature,cm_code,l_cheminement_nature,true
+ctrl_lv_0003,t_noeud,nd_nature,nd_code,l_noeud_nature,true

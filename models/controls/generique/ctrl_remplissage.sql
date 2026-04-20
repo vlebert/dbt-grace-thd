@@ -13,7 +13,7 @@
   gérée en aval par `rapport_controles_geo` à partir de (classe, id_entite).
 #}
 
-{%- set seed_ref = ref('ctrl_remplissage') -%}
+{%- set seed_ref = ref('param_ctrl_remplissage') -%}
 
 {%- set container_level = var('grace_container_level', 'C3') | lower -%}
 {%- set container_col = 'conteneur_' ~ container_level -%}

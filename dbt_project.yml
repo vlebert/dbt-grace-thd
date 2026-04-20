@@ -49,7 +49,7 @@ seeds:
         definition: varchar(254)
     controls:
       +schema: seeds
-      ctrl_fk:
+      param_ctrl_fk:
         +column_types:
           id_test: varchar(50)
           classe: varchar(50)
@@ -58,7 +58,15 @@ seeds:
           classe_cible: varchar(50)
           attribut_cible: varchar(50)
           actif: boolean
-      ctrl_remplissage:
+      param_ctrl_liste_valeur:
+        +column_types:
+          id_test: varchar(50)
+          classe: varchar(50)
+          attribut: varchar(50)
+          cle_primaire: varchar(50)
+          table_liste: varchar(100)
+          actif: boolean
+      param_ctrl_remplissage:
         +column_types:
           id_test: varchar(50)
           classe: varchar(50)

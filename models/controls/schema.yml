@@ -31,6 +31,20 @@ models:
       - name: id_entite
       - name: detail_erreur
 
+  - name: ctrl_liste_valeur
+    description: >
+      Contrôle générique de conformité aux listes de valeurs. Une ligne par
+      entité dont un attribut est non NULL mais absent du référentiel l_*
+      correspondant (colonne `code`). Paramétré par le seed `ctrl_liste_valeur`.
+    columns:
+      - name: id_test
+      - name: type_controle
+      - name: description
+      - name: classe
+      - name: attribut
+      - name: id_entite
+      - name: detail_erreur
+
   - name: rapport_controles
     description: >
       Rapport consolidé de tous les contrôles taggés 'control'.
@@ -60,7 +74,7 @@ models:
       - name: geom
 
 seeds:
-  - name: ctrl_remplissage
+  - name: param_ctrl_remplissage
     description: >
       Paramétrage du contrôle générique de remplissage. Une ligne par couple
       (classe, attribut) à contrôler. La colonne `conteneur_cX` indique le
@@ -77,7 +91,7 @@ seeds:
       - name: conteneur_c4
       - name: actif
 
-  - name: ctrl_fk
+  - name: param_ctrl_fk
     description: >
       Paramétrage du contrôle générique de clés étrangères. Une ligne par
       relation FK à vérifier entre (classe, attribut) et (classe_cible,
@@ -89,4 +103,17 @@ seeds:
       - name: cle_primaire
       - name: classe_cible
       - name: attribut_cible
+      - name: actif
+
+  - name: param_ctrl_liste_valeur
+    description: >
+      Paramétrage du contrôle générique de conformité aux listes de valeurs.
+      Une ligne par couple (classe, attribut) à vérifier contre un référentiel
+      l_* (colonne `code`).
+    columns:
+      - name: id_test
+      - name: classe
+      - name: attribut
+      - name: cle_primaire
+      - name: table_liste
       - name: actif

@@ -1,24 +1,23 @@
 {{ config(materialized='table', tags=['control']) }}
 
 {#
-  Contrôle générique de cohérence des clés étrangères.
+  Contrôle générique de conformité aux listes de valeurs.
 
-  Paramétré par le seed `ctrl_fk` :
+  Paramétré par le seed `ctrl_liste_valeur` :
     - Chaque ligne active (actif = true) produit une branche de l'UNION ALL.
-    - Seules les entités dont l'attribut FK est non NULL mais absent de la table
-      cible sont remontées (erreur d'intégrité référentielle).
-    - Les attributs NULL ne sont pas signalés ici : leur caractère obligatoire
-      est vérifié par `ctrl_remplissage`.
+    - Seules les entités dont l'attribut est non NULL mais absent du référentiel
+      `table_liste` (colonne `code`) sont remontées.
+    - Les attributs NULL ne sont pas signalés ici : voir `ctrl_remplissage`.
 
-  Note t_cab_chem : table de jonction sans PK mono-colonne ; `cle_primaire`
-  vaut `cc_cb_code` par convention (identifie le câble impliqué).
+  Les seeds de listes de valeurs (l_*) sont chargés dans le schéma
+  `<target.schema>_listes` via `+schema: listes` dans dbt_project.yml.
 #}
 
-{%- set seed_ref = ref('param_ctrl_fk') -%}
+{%- set seed_ref = ref('param_ctrl_liste_valeur') -%}
 
 {%- if execute -%}
   {%- set query -%}
-    select id_test, classe, attribut, cle_primaire, classe_cible, attribut_cible
+    select id_test, classe, attribut, cle_primaire, table_liste
     from {{ seed_ref }}
     where actif = true
     order by id_test
@@ -28,6 +27,8 @@
 {%- else -%}
   {%- set tests = [] -%}
 {%- endif %}
+
+{%- set listes_schema = target.schema ~ '_listes' -%}
 
 select
   null::text as id_test,
@@ -43,8 +44,8 @@ where false
 union all
 select
   '{{ test['id_test'] }}'::text                   as id_test,
-  'relations'::text                               as type_controle,
-  'Clé étrangère invalide'::text                  as description,
+  'liste_valeurs'::text                           as type_controle,
+  'Valeur absente du référentiel'::text           as description,
   '{{ test['classe'] }}'::text                    as classe,
   '{{ test['attribut'] }}'::text                  as attribut,
   src."{{ test['cle_primaire'] }}"::text          as id_entite,
@@ -53,7 +54,7 @@ from {{ source('gracethd', test['classe']) }} as src
 where src."{{ test['attribut'] }}" is not null
   and not exists (
     select 1
-    from {{ source('gracethd', test['classe_cible']) }} as tgt
-    where tgt."{{ test['attribut_cible'] }}" = src."{{ test['attribut'] }}"
+    from {{ listes_schema }}.{{ test['table_liste'] }} as ref_lv
+    where ref_lv.code = src."{{ test['attribut'] }}"
   )
 {% endfor %}
