@@ -35,6 +35,8 @@ vars:
     - ctrl_presence_table
     - ctrl_remplissage
     - ctrl_unicite
+    - rc_0001_t_cable_cb_r3_code
+    - rc_0002_t_cheminement_cm_compo
 
   # Extensions utilisateur : ajouter ici les contrôles personnalisés
   grace_ctrl_models_ext: []

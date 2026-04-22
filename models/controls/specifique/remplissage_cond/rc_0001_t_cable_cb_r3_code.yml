@@ -1,0 +1,15 @@
+version: 2
+
+models:
+  - name: rc_0001_t_cable_cb_r3_code
+    description: >
+      Le champ [cb_r3_code] est vide alors que le câble déployé est limité à un
+      usage distribution (cb_typelog = 'DI').
+    columns:
+      - name: id_test
+      - name: type_controle
+      - name: description
+      - name: classe
+      - name: attribut
+      - name: id_entite
+      - name: detail_erreur
