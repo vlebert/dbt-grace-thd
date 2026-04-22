@@ -28,6 +28,17 @@ vars:
   # (valeurs attendues : C1, C2, C3, C4)
   grace_container_level: 'C3'
 
+  # Modèles de contrôle inclus dans rapport_controles (modèles du package)
+  grace_ctrl_models:
+    - ctrl_fk
+    - ctrl_liste_valeur
+    - ctrl_presence_table
+    - ctrl_remplissage
+    - ctrl_unicite
+
+  # Extensions utilisateur : ajouter ici les contrôles personnalisés
+  grace_ctrl_models_ext: []
+
 models:
   grace_thd:
     controls:

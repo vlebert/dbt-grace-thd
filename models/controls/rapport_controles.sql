@@ -1,25 +1,23 @@
 {{ config(materialized='table', tags=['rapport']) }}
 
 {#
-  Consolidation de tous les contrôles taggés 'control'.
+  Consolidation de tous les contrôles déclarés dans la var `grace_ctrl_models`.
 
-  Introspection du graph dbt au parse : chaque modèle portant le tag 'control'
-  est intégré automatiquement dans l'UNION ALL. Aucune liste manuelle à
-  maintenir - il suffit de créer un nouveau modèle avec `tags=['control']`
-  pour qu'il soit inclus.
+  Pour ajouter un contrôle personnalisé, étendre la var dans dbt_project.yml :
+    vars:
+      grace_ctrl_models:
+        - ctrl_mon_controle
 
-  Ce modèle ne contient pas de géométrie. Pour une restitution géolocalisée,
-  utiliser `rapport_controles_geo` qui résout la geom via (classe, id_entite).
+  Les modèles du package sont déclarés dans sa propre section vars.
+  dbt génère les depends_on depuis cette liste → `+rapport_controles` fonctionne.
 #}
 
-{%- set control_nodes = [] -%}
-{%- for node in graph.nodes.values() -%}
-  {%- if 'control' in node.config.tags -%}
-    {%- do control_nodes.append(node) -%}
-  {%- endif -%}
-{%- endfor %}
+{%- set ctrl_models = var('grace_ctrl_models', []) + var('grace_ctrl_models_ext', []) -%}
 
--- Placeholder : garantit un schéma stable même si aucun contrôle n'existe
+{% for m in ctrl_models %}
+-- depends_on: {{ ref(m) }}
+{% endfor %}
+
 select
   null::text as id_test,
   null::text as type_controle,
@@ -30,7 +28,7 @@ select
   null::text as detail_erreur
 where false
 
-{% for node in control_nodes %}
+{% for m in ctrl_models %}
 union all
-select * from {{ ref(node.name) }}
+select * from {{ ref(m) }}
 {% endfor %}
