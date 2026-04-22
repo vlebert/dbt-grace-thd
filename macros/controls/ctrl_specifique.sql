@@ -11,11 +11,11 @@
 ) %}
 
 select
-    '{{ id_test }}'::text             as id_test,
-    '{{ type_controle }}'::text       as type_controle,
-    '{{ description }}'::text         as description,
-    '{{ classe }}'::text              as classe,
-    '{{ attribut }}'::text            as attribut,
+    $str${{ id_test }}$str$::text             as id_test,
+    $str${{ type_controle }}$str$::text       as type_controle,
+    $str${{ description }}$str$::text         as description,
+    $str${{ classe }}$str$::text              as classe,
+    $str${{ attribut }}$str$::text            as attribut,
     src."{{ cle_primaire }}"::text    as id_entite,
     {{ detail_erreur }}               as detail_erreur
 from ({{ requ_princ }}) as src
