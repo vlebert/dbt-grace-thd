@@ -1,83 +1,11 @@
 version: 2
 
 models:
-  - name: ctrl_remplissage
-    description: >
-      Contrôle générique de remplissage des attributs obligatoires.
-      Une ligne par entité dont un attribut déclaré obligatoire (au niveau de
-      conteneur courant) est NULL ou vide. Paramétré par le seed
-      `ctrl_remplissage`. Ne porte pas de géométrie (voir rapport_controles_geo).
-    columns:
-      - name: id_test
-      - name: type_controle
-      - name: description
-      - name: classe
-      - name: attribut
-      - name: id_entite
-      - name: detail_erreur
-
-  - name: ctrl_fk
-    description: >
-      Contrôle générique d'intégrité référentielle. Une ligne par entité dont
-      un attribut FK est non NULL mais absent de la table cible. Paramétré par
-      le seed `ctrl_fk`. Les valeurs NULL ne sont pas signalées ici (géré par
-      ctrl_remplissage).
-    columns:
-      - name: id_test
-      - name: type_controle
-      - name: description
-      - name: classe
-      - name: attribut
-      - name: id_entite
-      - name: detail_erreur
-
-  - name: ctrl_liste_valeur
-    description: >
-      Contrôle générique de conformité aux listes de valeurs. Une ligne par
-      entité dont un attribut est non NULL mais absent du référentiel l_*
-      correspondant (colonne `code`). Paramétré par le seed `ctrl_liste_valeur`.
-    columns:
-      - name: id_test
-      - name: type_controle
-      - name: description
-      - name: classe
-      - name: attribut
-      - name: id_entite
-      - name: detail_erreur
-
-  - name: ctrl_presence_table
-    description: >
-      Contrôle de présence et de remplissage des tables obligatoires GRACE THD.
-      Signale les tables absentes du schéma source et les tables présentes mais
-      vides, pour le niveau de conteneur courant.
-    columns:
-      - name: id_test
-      - name: type_controle
-      - name: description
-      - name: classe
-      - name: attribut
-      - name: id_entite
-      - name: detail_erreur
-
-  - name: ctrl_unicite
-    description: >
-      Contrôle générique d'unicité des attributs. Une ligne par entité dont
-      un attribut prend une valeur dupliquée dans la table. Les valeurs NULL
-      ne sont pas signalées ici (géré par ctrl_remplissage).
-    columns:
-      - name: id_test
-      - name: type_controle
-      - name: description
-      - name: classe
-      - name: attribut
-      - name: id_entite
-      - name: detail_erreur
-
   - name: rapport_controles
     description: >
-      Rapport consolidé de tous les contrôles taggés 'control'.
-      Assemblage dynamique via introspection du graph dbt.
-      Pas de géométrie : utiliser rapport_controles_geo pour la restitution SIG.
+      Rapport consolidé de tous les contrôles déclarés dans `grace_ctrl_models`
+      et `grace_ctrl_models_ext`. Pas de géométrie : utiliser
+      rapport_controles_geo pour la restitution SIG.
     columns:
       - name: id_test
       - name: type_controle
@@ -102,6 +30,21 @@ models:
       - name: geom
 
 seeds:
+  - name: param_ctrl_presence_table
+    description: >
+      Paramétrage du contrôle de présence des tables GRACE THD. Une ligne par
+      table, avec le caractère obligatoire (O), conditionnel (C) ou absent (N)
+      par niveau de conteneur, et la clé primaire de la table.
+    columns:
+      - name: id_test
+      - name: classe
+      - name: cle_primaire
+      - name: conteneur_c1
+      - name: conteneur_c2
+      - name: conteneur_c3
+      - name: conteneur_c4
+      - name: actif
+
   - name: param_ctrl_remplissage
     description: >
       Paramétrage du contrôle générique de remplissage. Une ligne par couple
@@ -119,6 +62,17 @@ seeds:
       - name: conteneur_c4
       - name: actif
 
+  - name: param_ctrl_unicite
+    description: >
+      Paramétrage du contrôle générique d'unicité. Une ligne par attribut
+      à vérifier pour l'unicité dans sa table.
+    columns:
+      - name: id_test
+      - name: classe
+      - name: attribut
+      - name: cle_primaire
+      - name: actif
+
   - name: param_ctrl_fk
     description: >
       Paramétrage du contrôle générique de clés étrangères. Une ligne par
@@ -131,32 +85,6 @@ seeds:
       - name: cle_primaire
       - name: classe_cible
       - name: attribut_cible
-      - name: actif
-
-  - name: param_ctrl_presence_table
-    description: >
-      Paramétrage du contrôle de présence des tables GRACE THD. Une ligne par
-      table, avec le caractère obligatoire (O), conditionnel (C) ou absent (N)
-      par niveau de conteneur, et la clé primaire de la table.
-    columns:
-      - name: id_test
-      - name: classe
-      - name: cle_primaire
-      - name: conteneur_c1
-      - name: conteneur_c2
-      - name: conteneur_c3
-      - name: conteneur_c4
-      - name: actif
-
-  - name: param_ctrl_unicite
-    description: >
-      Paramétrage du contrôle générique d'unicité. Une ligne par attribut
-      à vérifier pour l'unicité dans sa table.
-    columns:
-      - name: id_test
-      - name: classe
-      - name: attribut
-      - name: cle_primaire
       - name: actif
 
   - name: param_ctrl_liste_valeur
