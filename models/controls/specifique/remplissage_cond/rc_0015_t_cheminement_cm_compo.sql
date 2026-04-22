@@ -2,7 +2,7 @@
 
 {{
     ctrl_specifique(
-        id_test        = 'ctrl_rc_0002',
+        id_test        = 'ctrl_rc_0015',
         type_controle  = 'remplissage_conditionnel',
         classe         = 't_cheminement',
         cle_primaire = 'cm_code',

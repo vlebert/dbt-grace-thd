@@ -2,7 +2,7 @@
 
 {{
     ctrl_specifique(
-        id_test        = 'ctrl_rc_0001',
+        id_test        = 'ctrl_rc_0013',
         type_controle  = 'remplissage_conditionnel',
         classe         = 't_cable',
         cle_primaire = 'cb_code',
