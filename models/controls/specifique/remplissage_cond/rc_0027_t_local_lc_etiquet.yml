@@ -1,0 +1,14 @@
+version: 2
+
+models:
+  - name: rc_0027_t_local_lc_etiquet
+    description: >
+      Le champ [lc_etiquet] est vide alors que [lc_typelog] = SRO ou NRO
+    columns:
+      - name: id_test
+      - name: type_controle
+      - name: description
+      - name: classe
+      - name: attribut
+      - name: id_entite
+      - name: detail_erreur

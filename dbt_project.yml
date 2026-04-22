@@ -35,8 +35,43 @@ vars:
     - ctrl_presence_table
     - ctrl_remplissage
     - ctrl_unicite
+    - rc_0002_t_adresse_ad_codtemp
+    - rc_0003_t_adresse_ad_distinf
     - rc_0013_t_cable_cb_r3_code
+    - rc_0014_t_cassette_cs_bp_code
     - rc_0015_t_cheminement_cm_compo
+    - rc_0018_t_local_lc_avct
+    - rc_0020_t_local_lc_bp_codf
+    - rc_0021_t_local_lc_bp_codp
+    - rc_0022_t_local_lc_codeext
+    - rc_0023_t_local_lc_dateins
+    - rc_0024_t_local_lc_elec
+    - rc_0027_t_local_lc_etiquet
+    - rc_0028_t_local_lc_gest
+    - rc_0029_t_local_lc_prop
+    - rc_0030_t_local_lc_proptyp
+    - rc_0031_t_local_lc_statut
+    - rc_0041_t_pointaccueil_pa_a_haut
+    - rc_0042_t_pointaccueil_pa_a_struc
+    - rc_0045_t_pointaccueil_pa_codtemp
+    - rc_0047_t_pointaccueil_pa_rotatio
+    - rc_0059_t_site_st_ad_code
+    - rc_0060_t_site_st_avct
+    - rc_0061_t_site_st_codeext
+    - rc_0062_t_site_st_commune
+    - rc_0063_t_site_st_dateins
+    - rc_0064_t_site_st_gest
+    - rc_0065_t_site_st_insee
+    - rc_0067_t_site_st_nomvoie
+    - rc_0068_t_site_st_postal
+    - rc_0069_t_site_st_prop
+    - rc_0070_t_site_st_proptyp
+    - rc_0073_t_site_st_statut
+    - rc_0083_t_cable_cb_dateins
+    - rc_0084_t_ebp_bp_dateins
+    - rc_0085_t_local_lc_dateins
+    - rc_0086_t_site_st_dateins
+    - rc_0087_t_site_st_numero
 
   # Extensions utilisateur : ajouter ici les contrôles personnalisés
   grace_ctrl_models_ext: []

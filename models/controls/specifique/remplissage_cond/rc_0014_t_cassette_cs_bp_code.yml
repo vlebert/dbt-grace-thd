@@ -1,0 +1,15 @@
+version: 2
+
+models:
+  - name: rc_0014_t_cassette_cs_bp_code
+    description: >
+      Le champ [cs_bp_code] est vide alors que la cassette est de type
+      Epissure.
+    columns:
+      - name: id_test
+      - name: type_controle
+      - name: description
+      - name: classe
+      - name: attribut
+      - name: id_entite
+      - name: detail_erreur
