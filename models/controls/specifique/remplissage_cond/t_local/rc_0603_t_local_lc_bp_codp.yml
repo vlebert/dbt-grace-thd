@@ -1,0 +1,14 @@
+version: 2
+
+models:
+  - name: rc_0603_t_local_lc_bp_codp
+    description: >
+      Le champ [lc_bp_codp] est vide alors que [lc_typelog] = ENT
+    columns:
+      - name: id_test
+      - name: type_controle
+      - name: description
+      - name: classe
+      - name: attribut
+      - name: id_entite
+      - name: detail_erreur
