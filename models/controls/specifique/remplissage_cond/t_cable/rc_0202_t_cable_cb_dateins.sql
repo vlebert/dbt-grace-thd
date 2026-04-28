@@ -7,8 +7,8 @@
         classe         = 't_cable',
         cle_primaire   = 'cb_code',
         attribut       = 'cb_dateins',
-        description    = "Valeur nulle pour un attribut obligatoire avec condition d'avancement",
-        requ_princ     = "SELECT cb_code, cb_dateins as attribut, cb_statut as statut, cb_avct as avct FROM " ~ source('gracethd', 't_cable'),
-        condition      = "src.statut = 'REC' AND src.avct IN ('E', 'S') AND src.attribut IS NULL"
+        description    = "Le champ [cb_dateins] est vide alors que [cb_statut] IN ('REC','MCO')",
+        requ_princ     = "SELECT cb_code, cb_dateins, cb_statut FROM " ~ source('gracethd', 't_cable'),
+        condition      = "src.cb_dateins IS NULL AND src.cb_statut IN ('REC','MCO')"
     )
 }}

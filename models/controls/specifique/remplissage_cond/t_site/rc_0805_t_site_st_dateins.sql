@@ -7,8 +7,9 @@
         classe         = 't_site',
         cle_primaire   = 'st_code',
         attribut       = 'st_dateins',
-        description    = "Le champ [st_dateins] est vide alors que [st_typelog] = RESEAU",
-        requ_princ     = "SELECT st_code, st_dateins, st_typelog FROM " ~ source('gracethd', 't_site'),
-        condition      = "src.st_dateins IS NULL AND src.st_typelog = 'RESEAU'"
+        description    = "Le champ [st_dateins] est vide alors que [st_typelog] = 'RESEAU' ET [st_statut] IN ('REC','MCO')",
+        requ_princ     = "SELECT st_code, st_dateins, st_typelog, st_statut FROM " ~ source('gracethd', 't_site'),
+        condition      = "src.st_dateins IS NULL AND src.st_typelog = 'RESEAU' AND src.st_statut IN ('REC','MCO')",
+        detail_erreur  = "'st_typelog = ' || src.st_typelog || ' / st_statut = ' || src.st_statut"
     )
 }}

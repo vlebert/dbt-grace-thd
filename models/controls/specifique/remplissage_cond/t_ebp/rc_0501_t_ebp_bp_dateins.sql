@@ -7,8 +7,8 @@
         classe         = 't_ebp',
         cle_primaire   = 'bp_code',
         attribut       = 'bp_dateins',
-        description    = "Valeur nulle pour un attribut obligatoire avec condition d'avancement",
-        requ_princ     = "SELECT bp_code, bp_dateins as attribut, bp_statut as statut, bp_avct as avct FROM " ~ source('gracethd', 't_ebp'),
-        condition      = "src.statut = 'REC' AND (src.avct = 'E' OR src.avct = 'S') AND (src.attribut IS NULL)"
+        description    = "Le champ [bp_dateins] est vide alors que [bp_statut] IN ('REC','MCO')",
+        requ_princ     = "SELECT bp_code, bp_dateins, bp_statut FROM " ~ source('gracethd', 't_ebp'),
+        condition      = "src.bp_dateins IS NULL AND src.bp_statut IN ('REC','MCO')"
     )
 }}
