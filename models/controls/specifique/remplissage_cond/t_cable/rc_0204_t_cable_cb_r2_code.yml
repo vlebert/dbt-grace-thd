@@ -1,0 +1,13 @@
+version: 2
+
+models:
+  - name: rc_0204_t_cable_cb_r2_code
+    description: Le champ [cb_r2_code] est vide alors que le câble est de type transport ou distribution (cb_typelog IN 'TR', 'DI', 'CT').
+    columns:
+      - name: id_test
+      - name: type_controle
+      - name: description
+      - name: classe
+      - name: attribut
+      - name: id_entite
+      - name: detail_erreur

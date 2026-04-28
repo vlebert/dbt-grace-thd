@@ -1,0 +1,13 @@
+version: 2
+
+models:
+  - name: rc_0815_t_site_st_design
+    description: Le champ [st_design] est vide alors que le site est de type ADR ou SHE.
+    columns:
+      - name: id_test
+      - name: type_controle
+      - name: description
+      - name: classe
+      - name: attribut
+      - name: id_entite
+      - name: detail_erreur
