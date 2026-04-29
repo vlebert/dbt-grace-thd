@@ -1,12 +1,11 @@
-
 # Name your project! Project names should contain only lowercase characters
 # and underscores. A good package name should reflect your organization's
 # name or the intended use of these models
-name: 'grace_thd'
-version: '1.0.0'
+name: "grace_thd"
+version: "1.0.0"
 
 # This setting configures which "profile" dbt uses for this project.
-profile: 'grace_thd'
+profile: "grace_thd"
 
 # These configurations specify where dbt should look for different types of files.
 # The `model-paths` config, for example, states that models in this project can be
@@ -18,15 +17,14 @@ seed-paths: ["seeds"]
 macro-paths: ["macros"]
 snapshot-paths: ["snapshots"]
 
-clean-targets:         # directories to be removed by `dbt clean`
+clean-targets: # directories to be removed by `dbt clean`
   - "target"
   - "dbt_packages"
-
 
 vars:
   # Niveau de conteneur GRACE THD appliqué aux contrôles de remplissage
   # (valeurs attendues : C1, C2, C3, C4)
-  grace_container_level: 'C3'
+  grace_container_level: "C3"
 
   # Modèles de contrôle inclus dans rapport_controles (modèles du package)
   grace_ctrl_models:
@@ -35,43 +33,52 @@ vars:
     - ctrl_presence_table
     - ctrl_remplissage
     - ctrl_unicite
-    - rc_0002_t_adresse_ad_codtemp
-    - rc_0003_t_adresse_ad_distinf
-    - rc_0013_t_cable_cb_r3_code
-    - rc_0014_t_cassette_cs_bp_code
-    - rc_0015_t_cheminement_cm_compo
-    - rc_0018_t_local_lc_avct
-    - rc_0020_t_local_lc_bp_codf
-    - rc_0021_t_local_lc_bp_codp
-    - rc_0022_t_local_lc_codeext
-    - rc_0023_t_local_lc_dateins
-    - rc_0024_t_local_lc_elec
-    - rc_0027_t_local_lc_etiquet
-    - rc_0028_t_local_lc_gest
-    - rc_0029_t_local_lc_prop
-    - rc_0030_t_local_lc_proptyp
-    - rc_0031_t_local_lc_statut
-    - rc_0041_t_pointaccueil_pa_a_haut
-    - rc_0042_t_pointaccueil_pa_a_struc
-    - rc_0045_t_pointaccueil_pa_codtemp
-    - rc_0047_t_pointaccueil_pa_rotatio
-    - rc_0059_t_site_st_ad_code
-    - rc_0060_t_site_st_avct
-    - rc_0061_t_site_st_codeext
-    - rc_0062_t_site_st_commune
-    - rc_0063_t_site_st_dateins
-    - rc_0064_t_site_st_gest
-    - rc_0065_t_site_st_insee
-    - rc_0067_t_site_st_nomvoie
-    - rc_0068_t_site_st_postal
-    - rc_0069_t_site_st_prop
-    - rc_0070_t_site_st_proptyp
-    - rc_0073_t_site_st_statut
-    - rc_0083_t_cable_cb_dateins
-    - rc_0084_t_ebp_bp_dateins
-    - rc_0085_t_local_lc_dateins
-    - rc_0086_t_site_st_dateins
-    - rc_0087_t_site_st_numero
+    # t_adresse
+    - rc_0101_t_adresse_ad_codtemp
+    - rc_0102_t_adresse_ad_distinf
+    # t_cable
+    - rc_0201_t_cable_cb_r3_code
+    - rc_0202_t_cable_cb_dateins
+    - rc_0203_t_cable_cb_lgreel
+    - rc_0204_t_cable_cb_r2_code
+    # t_cassette
+    - rc_0301_t_cassette_cs_bp_code
+    # t_cheminement
+    - rc_0401_t_cheminement_cm_compo
+    # t_ebp
+    - rc_0501_t_ebp_bp_dateins
+    # t_local
+    - rc_0601_t_local_lc_avct
+    - rc_0602_t_local_lc_bp_codf
+    - rc_0603_t_local_lc_bp_codp
+    - rc_0604_t_local_lc_codeext
+    - rc_0605_t_local_lc_dateins
+    - rc_0606_t_local_lc_elec
+    - rc_0607_t_local_lc_etiquet
+    - rc_0608_t_local_lc_gest
+    - rc_0609_t_local_lc_prop
+    - rc_0610_t_local_lc_proptyp
+    - rc_0611_t_local_lc_statut
+    # t_pointaccueil
+    - rc_0701_t_pointaccueil_pa_a_haut
+    - rc_0702_t_pointaccueil_pa_a_struc
+    - rc_0703_t_pointaccueil_pa_codtemp
+    - rc_0704_t_pointaccueil_pa_rotatio
+    # t_site
+    - rc_0801_t_site_st_ad_code
+    - rc_0802_t_site_st_avct
+    - rc_0803_t_site_st_codeext
+    - rc_0804_t_site_st_commune
+    - rc_0805_t_site_st_dateins
+    - rc_0806_t_site_st_gest
+    - rc_0807_t_site_st_insee
+    - rc_0808_t_site_st_nomvoie
+    - rc_0809_t_site_st_postal
+    - rc_0810_t_site_st_prop
+    - rc_0811_t_site_st_proptyp
+    - rc_0812_t_site_st_statut
+    - rc_0814_t_site_st_numero
+    - rc_0815_t_site_st_design
 
   # Extensions utilisateur : ajouter ici les contrôles personnalisés
   grace_ctrl_models_ext: []
@@ -82,10 +89,10 @@ models:
       +schema: controles
       generique:
         +materialized: table
-        +tags: ['control']
+        +tags: ["control"]
       specifique:
         +materialized: table
-        +tags: ['control']
+        +tags: ["control"]
 
 seeds:
   grace_thd:
