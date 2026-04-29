@@ -138,7 +138,7 @@ Définie dans `macros/controls/ctrl_specifique.sql`. Paramètres :
 | `requ_princ` | oui | SQL complet du sous-SELECT aliasé `src` (table simple ou jointure) |
 | `condition` | oui | Clause WHERE appliquée sur `src` (préfixer les colonnes par `src.`) |
 | `detail_erreur` | non | Expression SQL pour `detail_erreur` ; défaut : `NULL::text` |
-| `is_active` | non | Booléen pour activation dynamique (défaut: `true`). Pour les RC, calculé via `conteneurs[container_level] == 'C'` |
+| `is_active` | non | Booléen pour activation dynamique (défaut: `true`). Pour les RC, utiliser `get_rc_config(id_test)` |
 
 Exemple d'appel — cas simple (table unique) :
 
@@ -174,6 +174,19 @@ Exemple d'appel — cas avec jointure :
 ) }}
 ```
 
+### Macro `get_rc_config`
+
+Définie dans `macros/controls/get_rc_config.sql`. Centralise l'activation des contrôles de **remplissage conditionnel**.
+
+| Paramètre | Obligatoire | Description |
+|---|---|---|
+| `id_test` | oui | Identifiant du test, ex. `ctrl_rc_0001` |
+
+Fonctionnement :
+- Lit le seed `param_ctrl_remplissage_cond` via `run_query`
+- Vérifie si `actif = true` ET si `conteneur_{grace_container_level} = 'C'`
+- Retourne un booléen pour `is_active` dans `ctrl_specifique`
+
 ### Convention de nommage des fichiers
 
 Format : `<prefixe>_<digit>_<table>_<attribut>[_<description-courte>].sql`
@@ -200,13 +213,9 @@ Chaque fichier `.sql` est accompagné d'un `.yml` de même nom portant la descri
 ### Activation
 
 Pour les contrôles spécifiques **remplissage conditionnel** (`ctrl_rc_*`):
-- **Paramétrés dans `param_ctrl_remplissage.csv`** avec colonnes `conteneur_c1..c4` (valeurs `O`/`C`/`N`) et `actif` (booléen)
-- Chaque fichier `rc_*.sql` déclare :
-  ```jinja
-  {%- set container_level = var('grace_container_level', 'C3') -%}
-  {%- set conteneurs = {'C1': 'N', 'C2': 'N', 'C3': 'C', 'C4': 'N'} -%}
-  ```
-- Activation dynamique via : `is_active = conteneurs[container_level] == 'C'` passé à `ctrl_specifique`
+- **Paramétrés dans `param_ctrl_remplissage_cond`** avec colonnes `id_test`, `actif` (booléen), et `conteneur_c1..c4` (valeurs `O`/`C`/`N`)
+- Activation centralisée via la macro `get_rc_config(id_test)` qui lit directement la configuration depuis le seed
+- Chaque fichier `rc_*.sql` utilise : `is_active = get_rc_config('ctrl_rc_XXXX')`
 - Le contrôle est actif si **`actif = true` ET `conteneur_cX = 'C'`** où X = `grace_container_level`
 
 Pour les autres contrôles spécifiques (topologie, métier) : l'activation se fait en incluant ou non le modèle dans `grace_ctrl_models` (package) ou `grace_ctrl_models_ext` (projet utilisateur).
