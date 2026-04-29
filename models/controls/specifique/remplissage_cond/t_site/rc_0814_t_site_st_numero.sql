@@ -1,5 +1,8 @@
 {{ config(materialized='table', tags=['control']) }}
 
+{%- set container_level = var('grace_container_level', 'C3') -%}
+{%- set conteneurs = {'C1': 'N', 'C2': 'N', 'C3': 'C', 'C4': 'N'} -%}
+
 {{
     ctrl_specifique(
         id_test        = 'ctrl_rc_0814',
@@ -9,6 +12,7 @@
         attribut       = 'st_numero',
         description    = "Le champ [st_numero] est vide alors que [st_typelog] = RESEAU",
         requ_princ     = "SELECT st_code, st_numero, st_typelog FROM " ~ source('gracethd', 't_site'),
-        condition      = "src.st_numero IS NULL AND src.st_typelog = 'RESEAU'"
+        condition      = "src.st_numero IS NULL AND src.st_typelog = 'RESEAU'",
+        is_active      = conteneurs[container_level] == 'C'
     )
 }}

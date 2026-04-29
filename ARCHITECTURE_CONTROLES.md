@@ -57,6 +57,7 @@ seeds/
 scripts/
   sql_listes_to_seeds.py              # génère les seeds listes/ depuis les SQL MCD
   generate_param_ctrl_liste_valeur.py # génère param_ctrl_liste_valeur.csv depuis FK SQL
+  update_rc_controls.py            # met à jour les contrôles RC avec activation par conteneur
 ```
 
 ## Contrôles génériques
@@ -86,7 +87,7 @@ Colonnes communes : `id_test`, `classe`, `cle_primaire`, `actif` (booléen).
 | Seed | Colonnes spécifiques |
 |---|---|
 | `param_ctrl_presence_table.csv` | `conteneur_c1..c4` (O/C/N) |
-| `param_ctrl_remplissage.csv` | `attribut`, `conteneur_c1..c4` (O/C/N) |
+| `param_ctrl_remplissage.csv` | `attribut`, `conteneur_c1..c4` (O/C/N) — inclut aussi les contrôles **RC** (`ctrl_rc_*`) avec `conteneur_cX='C'` pour activation conditionnelle |
 | `param_ctrl_unicite.csv` | `attribut` |
 | `param_ctrl_fk.csv` | `attribut`, `classe_cible`, `attribut_cible` |
 | `param_ctrl_liste_valeur.csv` | `attribut`, `table_liste` (ex. `l_bool`, `l_etat_avancement`) |
@@ -137,6 +138,7 @@ Définie dans `macros/controls/ctrl_specifique.sql`. Paramètres :
 | `requ_princ` | oui | SQL complet du sous-SELECT aliasé `src` (table simple ou jointure) |
 | `condition` | oui | Clause WHERE appliquée sur `src` (préfixer les colonnes par `src.`) |
 | `detail_erreur` | non | Expression SQL pour `detail_erreur` ; défaut : `NULL::text` |
+| `is_active` | non | Booléen pour activation dynamique (défaut: `true`). Pour les RC, calculé via `conteneurs[container_level] == 'C'` |
 
 Exemple d'appel — cas simple (table unique) :
 
@@ -197,7 +199,17 @@ Chaque fichier `.sql` est accompagné d'un `.yml` de même nom portant la descri
 
 ### Activation
 
-Pour les contrôles spécifiques, l'activation se fait en incluant ou non le modèle dans `grace_ctrl_models` (package) ou `grace_ctrl_models_ext` (projet utilisateur). Pas de colonne `actif` : retirer le modèle de la liste suffit.
+Pour les contrôles spécifiques **remplissage conditionnel** (`ctrl_rc_*`):
+- **Paramétrés dans `param_ctrl_remplissage.csv`** avec colonnes `conteneur_c1..c4` (valeurs `O`/`C`/`N`) et `actif` (booléen)
+- Chaque fichier `rc_*.sql` déclare :
+  ```jinja
+  {%- set container_level = var('grace_container_level', 'C3') -%}
+  {%- set conteneurs = {'C1': 'N', 'C2': 'N', 'C3': 'C', 'C4': 'N'} -%}
+  ```
+- Activation dynamique via : `is_active = conteneurs[container_level] == 'C'` passé à `ctrl_specifique`
+- Le contrôle est actif si **`actif = true` ET `conteneur_cX = 'C'`** où X = `grace_container_level`
+
+Pour les autres contrôles spécifiques (topologie, métier) : l'activation se fait en incluant ou non le modèle dans `grace_ctrl_models` (package) ou `grace_ctrl_models_ext` (projet utilisateur).
 
 ## Consolidation : `rapport_controles.sql`
 
@@ -259,10 +271,3 @@ Stratégie : un `UNION ALL` dispatché par `classe`, chaque branche utilisant la
 - **Héritage noeud partagé** (`t_baie`, `t_ebp`…) : `LEFT JOIN t_noeud ON nd_code = id_entite`.
 - **Héritage noeud via FK** (`t_ptech`, `t_site`) : jointure double, source puis `t_noeud`.
 - **Fallback** : `geom = NULL` pour les classes non mappées.
-
-## Décisions différées
-
-- **Activation fine des contrôles spécifiques** — mécanisme à définir (seed `ctrl_actifs.csv` + macro `is_ctrl_active`, ou colonne `actif` dans un seed dédié par contrôle spécifique).
-- **Paramètres configurables des règles métier** — envisager un seed `ctrl_parametres.csv` (colonnes `id_test`, `nom_param`, `valeur`) lu via une macro `get_ctrl_param()`.
-- **Matérialisation incrémentale du rapport** — à réévaluer si les performances deviennent problématiques sur gros volumes.
-- **Reporting multi-conteneurs** — actuellement un run = un niveau (`grace_container_level`). Si besoin de comparer les 4 niveaux en parallèle, ajouter une dimension dans le rapport.

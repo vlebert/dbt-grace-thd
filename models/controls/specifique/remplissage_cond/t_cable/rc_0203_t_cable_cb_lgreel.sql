@@ -1,5 +1,8 @@
 {{ config(materialized='table', tags=['control']) }}
 
+{%- set container_level = var('grace_container_level', 'C3') -%}
+{%- set conteneurs = {'C1': 'N', 'C2': 'N', 'C3': 'C', 'C4': 'N'} -%}
+
 {{
     ctrl_specifique(
         id_test        = 'ctrl_rc_0203',
@@ -9,6 +12,7 @@
         attribut       = 'cb_lgreel',
         description    = "Le champ [cb_lgreel] est vide alors que le câble est extrasite (cb_nd1 != cb_nd2)",
         requ_princ     = "SELECT cb_code, cb_lgreel, cb_nd1, cb_nd2 FROM " ~ source('gracethd', 't_cable'),
-        condition      = "src.cb_lgreel IS NULL AND src.cb_nd1 != src.cb_nd2"
+        condition      = "src.cb_lgreel IS NULL AND src.cb_nd1 != src.cb_nd2",
+        is_active      = conteneurs[container_level] == 'C'
     )
 }}

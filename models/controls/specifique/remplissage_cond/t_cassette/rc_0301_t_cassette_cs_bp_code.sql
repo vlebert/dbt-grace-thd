@@ -1,5 +1,8 @@
 {{ config(materialized='table', tags=['control']) }}
 
+{%- set container_level = var('grace_container_level', 'C3') -%}
+{%- set conteneurs = {'C1': 'N', 'C2': 'N', 'C3': 'C', 'C4': 'N'} -%}
+
 {{
     ctrl_specifique(
         id_test        = 'ctrl_rc_0301',
@@ -9,6 +12,7 @@
         attribut       = 'cs_bp_code',
         description    = "Le champ [cs_bp_code] est vide alors que la cassette est de type Epissure",
         requ_princ     = "SELECT cs_code, cs_bp_code, cs_type FROM " ~ source('gracethd', 't_cassette'),
-        condition      = "src.cs_bp_code IS NULL AND src.cs_type = 'E'"
+        condition      = "src.cs_bp_code IS NULL AND src.cs_type = 'E'",
+        is_active      = conteneurs[container_level] == 'C'
     )
 }}

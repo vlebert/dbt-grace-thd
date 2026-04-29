@@ -1,5 +1,8 @@
 {{ config(materialized='table', tags=['control']) }}
 
+{%- set container_level = var('grace_container_level', 'C3') -%}
+{%- set conteneurs = {'C1': 'N', 'C2': 'N', 'C3': 'C', 'C4': 'N'} -%}
+
 {{
     ctrl_specifique(
         id_test        = 'ctrl_rc_0101',
@@ -9,6 +12,7 @@
         attribut       = 'ad_codtemp',
         description    = "Le code temporaire de l'adresse [ad_codtemp] est vide alors que [ad_batcode] est également vide",
         requ_princ     = "SELECT ad_code, ad_codtemp, ad_batcode FROM " ~ source('gracethd', 't_adresse'),
-        condition      = "src.ad_codtemp IS NULL AND src.ad_batcode IS NULL"
+        condition      = "src.ad_codtemp IS NULL AND src.ad_batcode IS NULL",
+        is_active      = conteneurs[container_level] == 'C'
     )
 }}
