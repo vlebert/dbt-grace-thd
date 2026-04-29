@@ -1,4 +1,4 @@
-﻿id_test,classe,attribut,cle_primaire,conteneur_c1,conteneur_c2,conteneur_c3,conteneur_c4,actif,commentaire
+id_test,classe,attribut,cle_primaire,conteneur_c1,conteneur_c2,conteneur_c3,conteneur_c4,actif,commentaire
 ctrl_rem_0001,t_adresse,ad_batcode,ad_code,C,C,C,O,true,remplissage conditionnel | O->true
 ctrl_rem_0002,t_adresse,ad_code,ad_code,O,O,O,O,true,
 ctrl_rem_0003,t_adresse,ad_codtemp,ad_code,C,C,C,N,false,remplissage conditionnel
