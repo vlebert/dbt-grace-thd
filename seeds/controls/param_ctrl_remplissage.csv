@@ -1,322 +1,284 @@
-id_test,classe,attribut,cle_primaire,conteneur_c1,conteneur_c2,conteneur_c3,conteneur_c4,actif
-ctrl_rem_0001,t_adresse,ad_batcode,ad_code,C,C,C,O,true
-ctrl_rem_0002,t_adresse,ad_code,ad_code,O,O,O,O,true
-ctrl_rem_0003,t_adresse,ad_codtemp,ad_code,C,C,C,N,true
-ctrl_rem_0004,t_adresse,ad_commune,ad_code,O,O,O,O,true
-ctrl_rem_0005,t_adresse,ad_datmodi,ad_code,O,O,O,N,true
-ctrl_rem_0006,t_adresse,ad_distinf,ad_code,N,C,C,C,true
-ctrl_rem_0007,t_adresse,ad_dta,ad_code,N,N,C,C,true
-ctrl_rem_0008,t_adresse,ad_gest,ad_code,N,N,C,N,true
-ctrl_rem_0009,t_adresse,ad_hexacle,ad_code,C,C,C,C,true
-ctrl_rem_0010,t_adresse,ad_iaccgst,ad_code,N,N,O,N,true
-ctrl_rem_0011,t_adresse,ad_idatsgn,ad_code,N,N,C,N,true
-ctrl_rem_0012,t_adresse,ad_ietat,ad_code,O,O,O,N,true
-ctrl_rem_0013,t_adresse,ad_imneuf,ad_code,O,O,O,N,true
-ctrl_rem_0014,t_adresse,ad_insee,ad_code,O,O,O,O,true
-ctrl_rem_0015,t_adresse,ad_isole,ad_code,N,O,O,O,true
-ctrl_rem_0016,t_adresse,ad_nbfofon,ad_code,C,C,C,N,true
-ctrl_rem_0017,t_adresse,ad_nbfogfu,ad_code,C,C,C,N,true
-ctrl_rem_0018,t_adresse,ad_nbfotte,ad_code,C,C,C,N,true
-ctrl_rem_0019,t_adresse,ad_nbfotth,ad_code,O,O,O,N,true
-ctrl_rem_0020,t_adresse,ad_nbfotto,ad_code,C,C,C,N,true
-ctrl_rem_0021,t_adresse,ad_nblent,ad_code,C,C,C,C,true
-ctrl_rem_0022,t_adresse,ad_nblobj,ad_code,C,C,C,C,true
-ctrl_rem_0023,t_adresse,ad_nblope,ad_code,C,C,C,C,true
-ctrl_rem_0024,t_adresse,ad_nblpro,ad_code,O,O,O,O,true
-ctrl_rem_0025,t_adresse,ad_nblpub,ad_code,C,C,C,C,true
-ctrl_rem_0026,t_adresse,ad_nblres,ad_code,O,O,O,O,true
-ctrl_rem_0027,t_adresse,ad_nombat,ad_code,C,C,C,C,true
-ctrl_rem_0028,t_adresse,ad_nomvoie,ad_code,O,O,O,O,true
-ctrl_rem_0029,t_adresse,ad_numero,ad_code,O,O,O,O,true
-ctrl_rem_0030,t_adresse,ad_postal,ad_code,O,O,O,O,true
-ctrl_rem_0031,t_adresse,ad_prio,ad_code,O,O,O,N,true
-ctrl_rem_0032,t_adresse,ad_racc,ad_code,N,O,O,O,true
-ctrl_rem_0033,t_adresse,ad_raclong,ad_code,O,O,O,N,true
-ctrl_rem_0034,t_adresse,ad_rep,ad_code,C,C,C,C,true
-ctrl_rem_0035,t_adresse,geom,ad_code,O,O,O,O,true
-ctrl_rem_0036,t_baie,ba_abandon,ba_code,N,N,O,O,true
-ctrl_rem_0037,t_baie,ba_code,ba_code,N,O,O,O,true
-ctrl_rem_0038,t_baie,ba_codeext,ba_code,N,N,O,O,true
-ctrl_rem_0039,t_baie,ba_etiquet,ba_code,N,N,O,O,true
-ctrl_rem_0040,t_baie,ba_gest,ba_code,N,N,O,O,true
-ctrl_rem_0041,t_baie,ba_lc_code,ba_code,N,O,O,O,true
-ctrl_rem_0042,t_baie,ba_nb_u,ba_code,N,O,O,O,true
-ctrl_rem_0043,t_baie,ba_perirec,ba_code,N,N,C,N,true
-ctrl_rem_0044,t_baie,ba_prop,ba_code,N,N,O,O,true
-ctrl_rem_0045,t_baie,ba_proptyp,ba_code,N,N,O,O,true
-ctrl_rem_0046,t_baie,ba_rf_code,ba_code,N,N,O,O,true
-ctrl_rem_0047,t_baie,ba_statut,ba_code,N,O,O,O,true
-ctrl_rem_0048,t_baie,ba_type,ba_code,N,N,O,O,true
-ctrl_rem_0049,t_cab_chem,cc_cb_code,cc_cm_code,N,O,O,O,true
-ctrl_rem_0050,t_cab_chem,cc_cm_code,cc_cm_code,N,O,O,O,true
-ctrl_rem_0051,t_cable,cb_abandon,cb_code,N,N,O,O,true
-ctrl_rem_0052,t_cable,cb_avct,cb_code,N,O,O,O,true
-ctrl_rem_0053,t_cable,cb_ba1,cb_code,N,C,C,C,true
-ctrl_rem_0054,t_cable,cb_ba2,cb_code,N,C,C,C,true
-ctrl_rem_0055,t_cable,cb_bp1,cb_code,N,C,C,C,true
-ctrl_rem_0056,t_cable,cb_bp2,cb_code,N,C,C,C,true
-ctrl_rem_0057,t_cable,cb_cabphy,cb_code,N,O,O,O,true
-ctrl_rem_0058,t_cable,cb_capafo,cb_code,N,O,O,O,true
-ctrl_rem_0059,t_cable,cb_code,cb_code,N,O,O,O,true
-ctrl_rem_0060,t_cable,cb_codeext,cb_code,N,O,O,O,true
-ctrl_rem_0061,t_cable,cb_dateins,cb_code,N,N,C,C,true
-ctrl_rem_0062,t_cable,cb_etiquet,cb_code,N,O,O,O,true
-ctrl_rem_0063,t_cable,cb_fo_disp,cb_code,N,O,N,N,true
-ctrl_rem_0064,t_cable,cb_fo_type,cb_code,N,O,O,O,true
-ctrl_rem_0065,t_cable,cb_fo_util,cb_code,N,O,N,N,true
-ctrl_rem_0066,t_cable,cb_gest,cb_code,N,O,O,O,true
-ctrl_rem_0067,t_cable,cb_lgreel,cb_code,N,N,C,C,true
-ctrl_rem_0068,t_cable,cb_modulo,cb_code,N,O,O,O,true
-ctrl_rem_0069,t_cable,cb_nd1,cb_code,N,O,O,O,true
-ctrl_rem_0070,t_cable,cb_nd2,cb_code,N,O,O,O,true
-ctrl_rem_0071,t_cable,cb_perirec,cb_code,N,N,C,N,true
-ctrl_rem_0072,t_cable,cb_prop,cb_code,N,O,O,O,true
-ctrl_rem_0073,t_cable,cb_proptyp,cb_code,N,O,O,O,true
-ctrl_rem_0074,t_cable,cb_r1_code,cb_code,N,O,O,O,true
-ctrl_rem_0075,t_cable,cb_r2_code,cb_code,N,C,C,C,true
-ctrl_rem_0076,t_cable,cb_r3_code,cb_code,N,C,C,C,true
-ctrl_rem_0077,t_cable,cb_rf_code,cb_code,N,N,O,O,true
-ctrl_rem_0078,t_cable,cb_statut,cb_code,N,O,O,O,true
-ctrl_rem_0079,t_cable,cb_typelog,cb_code,N,O,O,O,true
-ctrl_rem_0080,t_cable,cb_typephy,cb_code,N,O,O,O,true
-ctrl_rem_0081,t_cableline,cl_cb_code,cl_code,N,O,O,O,true
-ctrl_rem_0082,t_cableline,cl_code,cl_code,N,O,O,O,true
-ctrl_rem_0083,t_cableline,geom,cl_code,N,O,O,O,true
-ctrl_rem_0084,t_cassette,cs_bp_code,cs_code,N,N,C,C,true
-ctrl_rem_0085,t_cassette,cs_code,cs_code,N,N,O,O,true
-ctrl_rem_0086,t_cassette,cs_face,cs_code,N,N,O,O,true
-ctrl_rem_0087,t_cassette,cs_num,cs_code,N,N,O,O,true
-ctrl_rem_0088,t_cassette,cs_rf_code,cs_code,N,N,O,O,true
-ctrl_rem_0089,t_cassette,cs_type,cs_code,N,N,O,O,true
-ctrl_rem_0090,t_cheminement,cm_avct,cm_code,N,O,O,O,true
-ctrl_rem_0091,t_cheminement,cm_code,cm_code,N,O,O,O,true
-ctrl_rem_0092,t_cheminement,cm_compo,cm_code,N,C,C,C,true
-ctrl_rem_0093,t_cheminement,cm_gest,cm_code,N,O,O,O,true
-ctrl_rem_0094,t_cheminement,cm_ndcode1,cm_code,N,O,O,O,true
-ctrl_rem_0095,t_cheminement,cm_ndcode2,cm_code,N,O,O,O,true
-ctrl_rem_0096,t_cheminement,cm_perirec,cm_code,N,N,C,N,true
-ctrl_rem_0097,t_cheminement,cm_prop,cm_code,N,O,O,O,true
-ctrl_rem_0098,t_cheminement,cm_statut,cm_code,N,O,O,O,true
-ctrl_rem_0099,t_cheminement,cm_typ_imp,cm_code,N,O,O,O,true
-ctrl_rem_0100,t_cheminement,cm_typelog,cm_code,N,O,O,O,true
-ctrl_rem_0101,t_cheminement,geom,cm_code,N,O,O,O,true
-ctrl_rem_0102,t_ebp,bp_abandon,bp_code,N,N,O,O,true
-ctrl_rem_0103,t_ebp,bp_avct,bp_code,N,O,O,O,true
-ctrl_rem_0104,t_ebp,bp_code,bp_code,N,O,O,O,true
-ctrl_rem_0105,t_ebp,bp_codeext,bp_code,N,O,O,O,true
-ctrl_rem_0106,t_ebp,bp_dateins,bp_code,N,N,C,C,true
-ctrl_rem_0107,t_ebp,bp_etiquet,bp_code,N,O,O,O,true
-ctrl_rem_0108,t_ebp,bp_gest,bp_code,N,O,O,O,true
-ctrl_rem_0109,t_ebp,bp_lc_code,bp_code,N,C,C,C,true
-ctrl_rem_0110,t_ebp,bp_perirec,bp_code,N,N,C,N,true
-ctrl_rem_0111,t_ebp,bp_prop,bp_code,N,O,O,O,true
-ctrl_rem_0112,t_ebp,bp_proptyp,bp_code,N,O,O,O,true
-ctrl_rem_0113,t_ebp,bp_pt_code,bp_code,N,C,C,C,true
-ctrl_rem_0114,t_ebp,bp_rf_code,bp_code,N,O,O,O,true
-ctrl_rem_0115,t_ebp,bp_statut,bp_code,N,O,O,O,true
-ctrl_rem_0116,t_ebp,bp_typelog,bp_code,N,O,O,O,true
-ctrl_rem_0117,t_ebp,bp_typephy,bp_code,N,O,O,O,true
-ctrl_rem_0118,t_fibre,fo_cb_code,fo_code,N,N,O,O,true
-ctrl_rem_0119,t_fibre,fo_code,fo_code,N,N,O,O,true
-ctrl_rem_0120,t_fibre,fo_etat,fo_code,N,N,O,O,true
-ctrl_rem_0121,t_fibre,fo_nincab,fo_code,N,N,O,O,true
-ctrl_rem_0122,t_fibre,fo_nintub,fo_code,N,N,O,O,true
-ctrl_rem_0123,t_fibre,fo_numtub,fo_code,N,N,O,O,true
-ctrl_rem_0124,t_local,lc_abandon,lc_code,N,N,O,O,true
-ctrl_rem_0125,t_local,lc_avct,lc_code,C,C,C,C,true
-ctrl_rem_0126,t_local,lc_bat,lc_code,N,N,C,C,true
-ctrl_rem_0127,t_local,lc_bp_codf,lc_code,N,C,C,C,true
-ctrl_rem_0128,t_local,lc_bp_codp,lc_code,N,C,C,C,true
-ctrl_rem_0129,t_local,lc_code,lc_code,O,O,O,O,true
-ctrl_rem_0130,t_local,lc_codeext,lc_code,C,C,C,C,true
-ctrl_rem_0131,t_local,lc_dateins,lc_code,N,N,C,C,true
-ctrl_rem_0132,t_local,lc_elec,lc_code,N,N,C,C,true
-ctrl_rem_0133,t_local,lc_escal,lc_code,N,N,C,C,true
-ctrl_rem_0134,t_local,lc_etage,lc_code,N,N,C,C,true
-ctrl_rem_0135,t_local,lc_etiquet,lc_code,N,C,C,C,true
-ctrl_rem_0136,t_local,lc_gest,lc_code,C,C,C,C,true
-ctrl_rem_0137,t_local,lc_perirec,lc_code,N,N,C,N,true
-ctrl_rem_0138,t_local,lc_prop,lc_code,C,C,C,C,true
-ctrl_rem_0139,t_local,lc_proptyp,lc_code,N,C,C,C,true
-ctrl_rem_0140,t_local,lc_st_code,lc_code,O,O,O,O,true
-ctrl_rem_0141,t_local,lc_statut,lc_code,C,C,C,C,true
-ctrl_rem_0142,t_local,lc_typelog,lc_code,O,O,O,O,true
-ctrl_rem_0143,t_love,lv_cb_code,lv_id,N,C,C,C,true
-ctrl_rem_0144,t_love,lv_id,lv_id,N,C,C,C,true
-ctrl_rem_0145,t_love,lv_long,lv_id,N,C,C,C,true
-ctrl_rem_0146,t_love,lv_nd_code,lv_id,N,C,C,C,true
-ctrl_rem_0147,t_noeud,geom,nd_code,O,O,O,O,true
-ctrl_rem_0148,t_noeud,nd_code,nd_code,O,O,O,O,true
-ctrl_rem_0149,t_organisme,or_code,or_code,O,O,O,O,true
-ctrl_rem_0150,t_organisme,or_commune,or_code,N,N,C,C,true
-ctrl_rem_0151,t_organisme,or_local,or_code,N,N,C,C,true
-ctrl_rem_0152,t_organisme,or_nom,or_code,O,O,O,O,true
-ctrl_rem_0153,t_organisme,or_nomvoie,or_code,N,N,C,C,true
-ctrl_rem_0154,t_organisme,or_numero,or_code,N,N,C,C,true
-ctrl_rem_0155,t_organisme,or_postal,or_code,N,N,C,C,true
-ctrl_rem_0156,t_organisme,or_rep,or_code,N,N,C,C,true
-ctrl_rem_0157,t_organisme,or_siret,or_code,N,N,C,C,true
-ctrl_rem_0158,t_organisme,or_type,or_code,N,N,C,C,true
-ctrl_rem_0159,t_point_leve,geom,pl_code,N,N,C,C,true
-ctrl_rem_0160,t_point_leve,pl_charge,pl_code,N,N,C,C,true
-ctrl_rem_0161,t_point_leve,pl_code,pl_code,N,N,C,C,true
-ctrl_rem_0162,t_point_leve,pl_x,pl_code,N,N,C,C,true
-ctrl_rem_0163,t_point_leve,pl_y,pl_code,N,N,C,C,true
-ctrl_rem_0164,t_point_leve,pl_z,pl_code,N,N,C,C,true
-ctrl_rem_0165,t_pointaccueil,geom,pa_code,N,C,O,O,true
-ctrl_rem_0166,t_pointaccueil,pa_a_haut,pa_code,N,C,C,C,true
-ctrl_rem_0167,t_pointaccueil,pa_a_struc,pa_code,N,C,C,C,true
-ctrl_rem_0168,t_pointaccueil,pa_code,pa_code,N,C,O,O,true
-ctrl_rem_0169,t_pointaccueil,pa_codeext,pa_code,N,N,C,C,true
-ctrl_rem_0170,t_pointaccueil,pa_codtemp,pa_code,N,C,C,C,true
-ctrl_rem_0171,t_pointaccueil,pa_datecon,pa_code,N,N,C,C,true
-ctrl_rem_0172,t_pointaccueil,pa_dtclass,pa_code,N,N,C,C,true
-ctrl_rem_0173,t_pointaccueil,pa_gest,pa_code,N,N,O,O,true
-ctrl_rem_0174,t_pointaccueil,pa_nature,pa_code,N,C,O,O,true
-ctrl_rem_0175,t_pointaccueil,pa_perirec,pa_code,N,N,C,N,true
-ctrl_rem_0176,t_pointaccueil,pa_prop,pa_code,N,N,O,O,true
-ctrl_rem_0177,t_pointaccueil,pa_rotatio,pa_code,N,N,C,C,true
-ctrl_rem_0178,t_pointaccueil,pa_secu,pa_code,N,N,C,C,true
-ctrl_rem_0179,t_pointaccueil,pa_typephy,pa_code,N,C,O,O,true
-ctrl_rem_0180,t_position,ps_1,ps_code,N,N,C,C,true
-ctrl_rem_0181,t_position,ps_2,ps_code,N,N,C,C,true
-ctrl_rem_0182,t_position,ps_code,ps_code,N,N,O,O,true
-ctrl_rem_0183,t_position,ps_cs_code,ps_code,N,N,O,O,true
-ctrl_rem_0184,t_position,ps_fonct,ps_code,N,N,O,O,true
-ctrl_rem_0185,t_position,ps_numero,ps_code,N,N,O,O,true
-ctrl_rem_0186,t_position,ps_preaff,ps_code,N,N,C,C,true
-ctrl_rem_0187,t_position,ps_ti_code,ps_code,N,N,C,C,true
-ctrl_rem_0188,t_position,ps_type,ps_code,N,N,O,O,true
-ctrl_rem_0189,t_ptech,pt_a_haut,pt_code,N,N,C,C,true
-ctrl_rem_0190,t_ptech,pt_a_struc,pt_code,N,N,C,C,true
-ctrl_rem_0191,t_ptech,pt_abandon,pt_code,N,N,O,O,true
-ctrl_rem_0192,t_ptech,pt_avct,pt_code,N,O,O,O,true
-ctrl_rem_0193,t_ptech,pt_code,pt_code,N,O,O,O,true
-ctrl_rem_0194,t_ptech,pt_codeext,pt_code,N,O,O,O,true
-ctrl_rem_0195,t_ptech,pt_etiquet,pt_code,N,C,C,C,true
-ctrl_rem_0196,t_ptech,pt_gest,pt_code,N,O,O,O,true
-ctrl_rem_0197,t_ptech,pt_nature,pt_code,N,O,O,O,true
-ctrl_rem_0198,t_ptech,pt_nd_code,pt_code,N,O,O,O,true
-ctrl_rem_0199,t_ptech,pt_perirec,pt_code,N,N,C,N,true
-ctrl_rem_0200,t_ptech,pt_prop,pt_code,N,O,O,O,true
-ctrl_rem_0201,t_ptech,pt_proptyp,pt_code,N,C,C,C,true
-ctrl_rem_0202,t_ptech,pt_secu,pt_code,N,N,C,C,true
-ctrl_rem_0203,t_ptech,pt_statut,pt_code,N,O,O,O,true
-ctrl_rem_0204,t_ptech,pt_typephy,pt_code,N,O,O,O,true
-ctrl_rem_0205,t_reference,rf_code,rf_code,N,O,O,O,true
-ctrl_rem_0206,t_reference,rf_design,rf_code,N,O,O,O,true
-ctrl_rem_0207,t_reference,rf_type,rf_code,N,O,O,O,true
-ctrl_rem_0208,t_site,st_abandon,st_code,N,N,O,O,true
-ctrl_rem_0209,t_site,st_ad_code,st_code,C,C,C,C,true
-ctrl_rem_0210,t_site,st_avct,st_code,C,C,C,C,true
-ctrl_rem_0211,t_site,st_code,st_code,O,O,O,O,true
-ctrl_rem_0212,t_site,st_codeext,st_code,C,C,C,C,true
-ctrl_rem_0213,t_site,st_commune,st_code,C,C,C,C,true
-ctrl_rem_0214,t_site,st_dateins,st_code,N,N,C,C,true
-ctrl_rem_0215,t_site,st_design,st_code,N,N,C,C,true
-ctrl_rem_0216,t_site,st_gest,st_code,C,C,C,C,true
-ctrl_rem_0217,t_site,st_insee,st_code,C,C,C,C,true
-ctrl_rem_0218,t_site,st_nd_code,st_code,O,O,O,O,true
-ctrl_rem_0219,t_site,st_nombat,st_code,C,C,C,C,true
-ctrl_rem_0220,t_site,st_nomvoie,st_code,C,C,C,C,true
-ctrl_rem_0221,t_site,st_nra,st_code,O,O,O,O,true
-ctrl_rem_0222,t_site,st_numero,st_code,C,C,C,C,true
-ctrl_rem_0223,t_site,st_perirec,st_code,N,N,C,N,true
-ctrl_rem_0224,t_site,st_postal,st_code,C,C,C,C,true
-ctrl_rem_0225,t_site,st_prop,st_code,C,C,C,C,true
-ctrl_rem_0226,t_site,st_proptyp,st_code,N,C,C,C,true
-ctrl_rem_0227,t_site,st_rep,st_code,C,C,C,C,true
-ctrl_rem_0228,t_site,st_statut,st_code,C,C,C,C,true
-ctrl_rem_0229,t_site,st_typelog,st_code,O,O,O,O,true
-ctrl_rem_0230,t_site,st_typephy,st_code,O,O,O,O,true
-ctrl_rem_0231,t_tiroir,ti_abandon,ti_code,N,N,O,O,true
-ctrl_rem_0232,t_tiroir,ti_ba_code,ti_code,N,N,O,O,true
-ctrl_rem_0233,t_tiroir,ti_code,ti_code,N,N,O,O,true
-ctrl_rem_0234,t_tiroir,ti_codeext,ti_code,N,N,O,O,true
-ctrl_rem_0235,t_tiroir,ti_etiquet,ti_code,N,N,O,O,true
-ctrl_rem_0236,t_tiroir,ti_perirec,ti_code,N,N,C,N,true
-ctrl_rem_0237,t_tiroir,ti_placemt,ti_code,N,N,O,O,true
-ctrl_rem_0238,t_tiroir,ti_prop,ti_code,N,N,O,O,true
-ctrl_rem_0239,t_tiroir,ti_rf_code,ti_code,N,N,O,O,true
-ctrl_rem_0240,t_tiroir,ti_taille,ti_code,N,N,O,O,true
-ctrl_rem_0241,t_tiroir,ti_type,ti_code,N,N,O,O,true
-ctrl_rem_0242,t_tranchee,geom,tr_code,N,C,O,O,true
-ctrl_rem_0243,t_tranchee,tr_code,tr_code,N,C,O,O,true
-ctrl_rem_0244,t_tranchee,tr_compo,tr_code,N,C,O,O,true
-ctrl_rem_0245,t_tranchee,tr_couptyp,tr_code,N,C,C,C,true
-ctrl_rem_0246,t_tranchee,tr_dtclass,tr_code,N,N,O,O,true
-ctrl_rem_0247,t_tranchee,tr_lgreel,tr_code,N,N,O,O,true
-ctrl_rem_0248,t_tranchee,tr_pa1,tr_code,N,N,O,O,true
-ctrl_rem_0249,t_tranchee,tr_pa2,tr_code,N,N,O,O,true
-ctrl_rem_0250,t_tranchee,tr_perirec,tr_code,N,N,C,N,true
-ctrl_rem_0251,t_zdep,geom,zd_code,N,N,O,N,true
-ctrl_rem_0252,t_zdep,zd_code,zd_code,N,N,O,N,true
-ctrl_rem_0253,t_zdep,zd_nd_code,zd_code,N,N,C,N,true
-ctrl_rem_0254,t_zdep,zd_r1_code,zd_code,N,N,O,N,true
-ctrl_rem_0255,t_zdep,zd_r2_code,zd_code,N,N,O,N,true
-ctrl_rem_0256,t_zdep,zd_r3_code,zd_code,N,N,O,N,true
-ctrl_rem_0257,t_zdep,zd_r4_code,zd_code,N,N,C,N,true
-ctrl_rem_0258,t_zdep,zd_statut,zd_code,N,N,O,N,true
-ctrl_rem_0259,t_zdep,zd_zs_code,zd_code,N,N,C,N,true
-ctrl_rem_0260,t_znro,geom,zn_code,O,O,O,O,true
-ctrl_rem_0261,t_znro,zn_code,zn_code,O,O,O,O,true
-ctrl_rem_0262,t_znro,zn_etat,zn_code,O,O,O,O,true
-ctrl_rem_0263,t_znro,zn_lc_code,zn_code,O,O,O,O,true
-ctrl_rem_0264,t_znro,zn_nd_code,zn_code,O,O,O,O,true
-ctrl_rem_0265,t_znro,zn_nom,zn_code,O,O,N,N,true
-ctrl_rem_0266,t_znro,zn_nroref,zn_code,C,O,O,O,true
-ctrl_rem_0267,t_znro,zn_r1_code,zn_code,O,O,O,O,true
-ctrl_rem_0268,t_znro,zn_r2_code,zn_code,O,O,O,O,true
-ctrl_rem_0269,t_zsro,geom,zs_code,O,O,O,O,true
-ctrl_rem_0270,t_zsro,zs_actif,zs_code,N,O,O,O,true
-ctrl_rem_0271,t_zsro,zs_capamax,zs_code,O,O,O,O,true
-ctrl_rem_0272,t_zsro,zs_code,zs_code,O,O,O,O,true
-ctrl_rem_0273,t_zsro,zs_etatpm,zs_code,O,O,O,O,true
-ctrl_rem_0274,t_zsro,zs_lc_code,zs_code,O,O,O,O,true
-ctrl_rem_0275,t_zsro,zs_lgmaxln,zs_code,O,O,O,O,true
-ctrl_rem_0276,t_zsro,zs_nblogmt,zs_code,O,O,O,O,true
-ctrl_rem_0277,t_zsro,zs_nom,zs_code,O,O,N,N,true
-ctrl_rem_0278,t_zsro,zs_r1_code,zs_code,O,O,O,O,true
-ctrl_rem_0279,t_zsro,zs_r2_code,zs_code,O,O,O,O,true
-ctrl_rem_0280,t_zsro,zs_r3_code,zs_code,N,O,O,O,true
-ctrl_rem_0281,t_zsro,zs_refpm,zs_code,C,O,O,O,true
-ctrl_rem_0282,t_zsro,zs_zn_code,zs_code,O,O,O,O,true
-ctrl_rem_0283,t_zsro,zs_znllong,zs_code,O,O,O,O,true
-ctrl_rc_0501,t_ebp,bp_dateins,bp_code,N,N,C,N,true
-ctrl_rc_0803,t_site,st_codeext,st_code,N,N,C,N,true
-ctrl_rc_0805,t_site,st_dateins,st_code,N,N,C,N,true
-ctrl_rc_0808,t_site,st_nomvoie,st_code,N,N,C,N,true
-ctrl_rc_0806,t_site,st_gest,st_code,N,N,C,N,true
-ctrl_rc_0809,t_site,st_postal,st_code,N,N,C,N,true
-ctrl_rc_0812,t_site,st_statut,st_code,N,N,C,N,true
-ctrl_rc_0802,t_site,st_avct,st_code,N,N,C,N,true
-ctrl_rc_0814,t_site,st_numero,st_code,N,N,C,N,true
-ctrl_rc_0807,t_site,st_insee,st_code,N,N,C,N,true
-ctrl_rc_0815,t_site,st_design,st_code,N,N,C,N,true
-ctrl_rc_0804,t_site,st_commune,st_code,N,N,C,N,true
-ctrl_rc_0811,t_site,st_proptyp,st_code,N,N,C,N,true
-ctrl_rc_0810,t_site,st_prop,st_code,N,N,C,N,true
-ctrl_rc_0801,t_site,st_ad_code,st_code,N,N,C,N,true
-ctrl_rc_0102,t_adresse,ad_distinf,ad_code,N,N,C,N,true
-ctrl_rc_0101,t_adresse,ad_codtemp,ad_code,N,N,C,N,true
-ctrl_rc_0201,t_cable,cb_r3_code,cb_code,N,N,C,N,true
-ctrl_rc_0202,t_cable,cb_dateins,cb_code,N,N,C,N,true
-ctrl_rc_0204,t_cable,cb_r2_code,cb_code,N,N,C,N,true
-ctrl_rc_0203,t_cable,cb_lgreel,cb_code,N,N,C,N,true
-ctrl_rc_0301,t_cassette,cs_bp_code,cs_code,N,N,C,N,true
-ctrl_rc_0701,t_pointaccueil,pa_a_haut,pa_code,N,N,C,N,true
-ctrl_rc_0702,t_pointaccueil,pa_a_struc,pa_code,N,N,C,N,true
-ctrl_rc_0704,t_pointaccueil,pa_rotatio,pa_code,N,N,C,N,true
-ctrl_rc_0703,t_pointaccueil,pa_codtemp,pa_code,N,N,C,N,true
-ctrl_rc_0609,t_local,lc_prop,lc_code,N,N,C,N,true
-ctrl_rc_0611,t_local,lc_statut,lc_code,N,N,C,N,true
-ctrl_rc_0608,t_local,lc_gest,lc_code,N,N,C,N,true
-ctrl_rc_0602,t_local,lc_bp_codf,lc_code,N,N,C,N,true
-ctrl_rc_0606,t_local,lc_elec,lc_code,N,N,C,N,true
-ctrl_rc_0603,t_local,lc_bp_codp,lc_code,N,N,C,N,true
-ctrl_rc_0610,t_local,lc_proptyp,lc_code,N,N,C,N,true
-ctrl_rc_0605,t_local,lc_dateins,lc_code,N,N,C,N,true
-ctrl_rc_0604,t_local,lc_codeext,lc_code,N,N,C,N,true
-ctrl_rc_0601,t_local,lc_avct,lc_code,N,N,C,N,true
-ctrl_rc_0607,t_local,lc_etiquet,lc_code,N,N,C,N,true
-ctrl_rc_0401,t_cheminement,cm_compo,cm_code,N,N,C,N,true
+﻿id_test,classe,attribut,cle_primaire,conteneur_c1,conteneur_c2,conteneur_c3,conteneur_c4,actif,commentaire
+ctrl_rem_0001,t_adresse,ad_batcode,ad_code,C,C,C,O,false,remplissage conditionnel
+ctrl_rem_0002,t_adresse,ad_code,ad_code,O,O,O,O,true,
+ctrl_rem_0003,t_adresse,ad_codtemp,ad_code,C,C,C,N,false,remplissage conditionnel
+ctrl_rem_0004,t_adresse,ad_commune,ad_code,O,O,O,O,true,
+ctrl_rem_0005,t_adresse,ad_datmodi,ad_code,O,O,O,N,true,
+ctrl_rem_0006,t_adresse,ad_distinf,ad_code,N,C,C,C,false,remplissage conditionnel
+ctrl_rem_0007,t_adresse,ad_dta,ad_code,N,N,C,C,false,remplissage conditionnel
+ctrl_rem_0008,t_adresse,ad_gest,ad_code,N,N,C,N,false,remplissage conditionnel
+ctrl_rem_0009,t_adresse,ad_hexacle,ad_code,C,C,C,C,false,remplissage conditionnel
+ctrl_rem_0010,t_adresse,ad_iaccgst,ad_code,N,N,O,N,true,
+ctrl_rem_0011,t_adresse,ad_idatsgn,ad_code,N,N,C,N,false,remplissage conditionnel
+ctrl_rem_0012,t_adresse,ad_ietat,ad_code,O,O,O,N,true,
+ctrl_rem_0013,t_adresse,ad_imneuf,ad_code,O,O,O,N,true,
+ctrl_rem_0014,t_adresse,ad_insee,ad_code,O,O,O,O,true,
+ctrl_rem_0015,t_adresse,ad_isole,ad_code,N,O,O,O,true,
+ctrl_rem_0016,t_adresse,ad_nbfofon,ad_code,C,C,C,N,false,remplissage conditionnel
+ctrl_rem_0017,t_adresse,ad_nbfogfu,ad_code,C,C,C,N,false,remplissage conditionnel
+ctrl_rem_0018,t_adresse,ad_nbfotte,ad_code,C,C,C,N,false,remplissage conditionnel
+ctrl_rem_0019,t_adresse,ad_nbfotth,ad_code,O,O,O,N,true,
+ctrl_rem_0020,t_adresse,ad_nbfotto,ad_code,C,C,C,N,false,remplissage conditionnel
+ctrl_rem_0021,t_adresse,ad_nblent,ad_code,C,C,C,C,false,remplissage conditionnel
+ctrl_rem_0022,t_adresse,ad_nblobj,ad_code,C,C,C,C,false,remplissage conditionnel
+ctrl_rem_0023,t_adresse,ad_nblope,ad_code,C,C,C,C,false,remplissage conditionnel
+ctrl_rem_0024,t_adresse,ad_nblpro,ad_code,O,O,O,O,true,
+ctrl_rem_0025,t_adresse,ad_nblpub,ad_code,C,C,C,C,false,remplissage conditionnel
+ctrl_rem_0026,t_adresse,ad_nblres,ad_code,O,O,O,O,true,
+ctrl_rem_0027,t_adresse,ad_nombat,ad_code,C,C,C,C,false,remplissage conditionnel
+ctrl_rem_0028,t_adresse,ad_nomvoie,ad_code,O,O,O,O,true,
+ctrl_rem_0029,t_adresse,ad_numero,ad_code,O,O,O,O,true,
+ctrl_rem_0030,t_adresse,ad_postal,ad_code,O,O,O,O,true,
+ctrl_rem_0031,t_adresse,ad_prio,ad_code,O,O,O,N,true,
+ctrl_rem_0032,t_adresse,ad_racc,ad_code,N,O,O,O,true,
+ctrl_rem_0033,t_adresse,ad_raclong,ad_code,O,O,O,N,true,
+ctrl_rem_0034,t_adresse,ad_rep,ad_code,C,C,C,C,false,remplissage conditionnel
+ctrl_rem_0035,t_adresse,geom,ad_code,O,O,O,O,true,
+ctrl_rem_0036,t_baie,ba_abandon,ba_code,N,N,O,O,true,
+ctrl_rem_0037,t_baie,ba_code,ba_code,N,O,O,O,true,
+ctrl_rem_0038,t_baie,ba_codeext,ba_code,N,N,O,O,true,
+ctrl_rem_0039,t_baie,ba_etiquet,ba_code,N,N,O,O,true,
+ctrl_rem_0040,t_baie,ba_gest,ba_code,N,N,O,O,true,
+ctrl_rem_0041,t_baie,ba_lc_code,ba_code,N,O,O,O,true,
+ctrl_rem_0042,t_baie,ba_nb_u,ba_code,N,O,O,O,true,
+ctrl_rem_0043,t_baie,ba_perirec,ba_code,N,N,C,N,false,remplissage conditionnel
+ctrl_rem_0044,t_baie,ba_prop,ba_code,N,N,O,O,true,
+ctrl_rem_0045,t_baie,ba_proptyp,ba_code,N,N,O,O,true,
+ctrl_rem_0046,t_baie,ba_rf_code,ba_code,N,N,O,O,true,
+ctrl_rem_0047,t_baie,ba_statut,ba_code,N,O,O,O,true,
+ctrl_rem_0048,t_baie,ba_type,ba_code,N,N,O,O,true,
+ctrl_rem_0049,t_cab_chem,cc_cb_code,cc_cm_code,N,O,O,O,true,
+ctrl_rem_0050,t_cab_chem,cc_cm_code,cc_cm_code,N,O,O,O,true,
+ctrl_rem_0051,t_cable,cb_abandon,cb_code,N,N,O,O,true,
+ctrl_rem_0052,t_cable,cb_avct,cb_code,N,O,O,O,true,
+ctrl_rem_0053,t_cable,cb_ba1,cb_code,N,C,C,C,false,remplissage conditionnel
+ctrl_rem_0054,t_cable,cb_ba2,cb_code,N,C,C,C,false,remplissage conditionnel
+ctrl_rem_0055,t_cable,cb_bp1,cb_code,N,C,C,C,false,remplissage conditionnel
+ctrl_rem_0056,t_cable,cb_bp2,cb_code,N,C,C,C,false,remplissage conditionnel
+ctrl_rem_0057,t_cable,cb_cabphy,cb_code,N,O,O,O,true,
+ctrl_rem_0058,t_cable,cb_capafo,cb_code,N,O,O,O,true,
+ctrl_rem_0059,t_cable,cb_code,cb_code,N,O,O,O,true,
+ctrl_rem_0060,t_cable,cb_codeext,cb_code,N,O,O,O,true,
+ctrl_rem_0061,t_cable,cb_dateins,cb_code,N,N,C,C,false,remplissage conditionnel
+ctrl_rem_0062,t_cable,cb_etiquet,cb_code,N,O,O,O,true,
+ctrl_rem_0063,t_cable,cb_fo_disp,cb_code,N,O,N,N,true,
+ctrl_rem_0064,t_cable,cb_fo_type,cb_code,N,O,O,O,true,
+ctrl_rem_0065,t_cable,cb_fo_util,cb_code,N,O,N,N,true,
+ctrl_rem_0066,t_cable,cb_gest,cb_code,N,O,O,O,true,
+ctrl_rem_0067,t_cable,cb_lgreel,cb_code,N,N,C,C,false,remplissage conditionnel
+ctrl_rem_0068,t_cable,cb_modulo,cb_code,N,O,O,O,true,
+ctrl_rem_0069,t_cable,cb_nd1,cb_code,N,O,O,O,true,
+ctrl_rem_0070,t_cable,cb_nd2,cb_code,N,O,O,O,true,
+ctrl_rem_0071,t_cable,cb_perirec,cb_code,N,N,C,N,false,remplissage conditionnel
+ctrl_rem_0072,t_cable,cb_prop,cb_code,N,O,O,O,true,
+ctrl_rem_0073,t_cable,cb_proptyp,cb_code,N,O,O,O,true,
+ctrl_rem_0074,t_cable,cb_r1_code,cb_code,N,O,O,O,true,
+ctrl_rem_0075,t_cable,cb_r2_code,cb_code,N,C,C,C,false,remplissage conditionnel
+ctrl_rem_0076,t_cable,cb_r3_code,cb_code,N,C,C,C,false,remplissage conditionnel
+ctrl_rem_0077,t_cable,cb_rf_code,cb_code,N,N,O,O,true,
+ctrl_rem_0078,t_cable,cb_statut,cb_code,N,O,O,O,true,
+ctrl_rem_0079,t_cable,cb_typelog,cb_code,N,O,O,O,true,
+ctrl_rem_0080,t_cable,cb_typephy,cb_code,N,O,O,O,true,
+ctrl_rem_0081,t_cableline,cl_cb_code,cl_code,N,O,O,O,true,
+ctrl_rem_0082,t_cableline,cl_code,cl_code,N,O,O,O,true,
+ctrl_rem_0083,t_cableline,geom,cl_code,N,O,O,O,true,
+ctrl_rem_0084,t_cassette,cs_bp_code,cs_code,N,N,C,C,false,remplissage conditionnel
+ctrl_rem_0085,t_cassette,cs_code,cs_code,N,N,O,O,true,
+ctrl_rem_0086,t_cassette,cs_face,cs_code,N,N,O,O,true,
+ctrl_rem_0087,t_cassette,cs_num,cs_code,N,N,O,O,true,
+ctrl_rem_0088,t_cassette,cs_rf_code,cs_code,N,N,O,O,true,
+ctrl_rem_0089,t_cassette,cs_type,cs_code,N,N,O,O,true,
+ctrl_rem_0090,t_cheminement,cm_avct,cm_code,N,O,O,O,true,
+ctrl_rem_0091,t_cheminement,cm_code,cm_code,N,O,O,O,true,
+ctrl_rem_0092,t_cheminement,cm_compo,cm_code,N,C,C,C,false,remplissage conditionnel
+ctrl_rem_0093,t_cheminement,cm_gest,cm_code,N,O,O,O,true,
+ctrl_rem_0094,t_cheminement,cm_ndcode1,cm_code,N,O,O,O,true,
+ctrl_rem_0095,t_cheminement,cm_ndcode2,cm_code,N,O,O,O,true,
+ctrl_rem_0096,t_cheminement,cm_perirec,cm_code,N,N,C,N,false,remplissage conditionnel
+ctrl_rem_0097,t_cheminement,cm_prop,cm_code,N,O,O,O,true,
+ctrl_rem_0098,t_cheminement,cm_statut,cm_code,N,O,O,O,true,
+ctrl_rem_0099,t_cheminement,cm_typ_imp,cm_code,N,O,O,O,true,
+ctrl_rem_0100,t_cheminement,cm_typelog,cm_code,N,O,O,O,true,
+ctrl_rem_0101,t_cheminement,geom,cm_code,N,O,O,O,true,
+ctrl_rem_0102,t_ebp,bp_abandon,bp_code,N,N,O,O,true,
+ctrl_rem_0103,t_ebp,bp_avct,bp_code,N,O,O,O,true,
+ctrl_rem_0104,t_ebp,bp_code,bp_code,N,O,O,O,true,
+ctrl_rem_0105,t_ebp,bp_codeext,bp_code,N,O,O,O,true,
+ctrl_rem_0106,t_ebp,bp_dateins,bp_code,N,N,C,C,false,remplissage conditionnel
+ctrl_rem_0107,t_ebp,bp_etiquet,bp_code,N,O,O,O,true,
+ctrl_rem_0108,t_ebp,bp_gest,bp_code,N,O,O,O,true,
+ctrl_rem_0109,t_ebp,bp_lc_code,bp_code,N,C,C,C,false,remplissage conditionnel
+ctrl_rem_0110,t_ebp,bp_perirec,bp_code,N,N,C,N,false,remplissage conditionnel
+ctrl_rem_0111,t_ebp,bp_prop,bp_code,N,O,O,O,true,
+ctrl_rem_0112,t_ebp,bp_proptyp,bp_code,N,O,O,O,true,
+ctrl_rem_0113,t_ebp,bp_pt_code,bp_code,N,C,C,C,false,remplissage conditionnel
+ctrl_rem_0114,t_ebp,bp_rf_code,bp_code,N,O,O,O,true,
+ctrl_rem_0115,t_ebp,bp_statut,bp_code,N,O,O,O,true,
+ctrl_rem_0116,t_ebp,bp_typelog,bp_code,N,O,O,O,true,
+ctrl_rem_0117,t_ebp,bp_typephy,bp_code,N,O,O,O,true,
+ctrl_rem_0118,t_fibre,fo_cb_code,fo_code,N,N,O,O,true,
+ctrl_rem_0119,t_fibre,fo_code,fo_code,N,N,O,O,true,
+ctrl_rem_0120,t_fibre,fo_etat,fo_code,N,N,O,O,true,
+ctrl_rem_0121,t_fibre,fo_nincab,fo_code,N,N,O,O,true,
+ctrl_rem_0122,t_fibre,fo_nintub,fo_code,N,N,O,O,true,
+ctrl_rem_0123,t_fibre,fo_numtub,fo_code,N,N,O,O,true,
+ctrl_rem_0124,t_local,lc_abandon,lc_code,N,N,O,O,true,
+ctrl_rem_0125,t_local,lc_avct,lc_code,C,C,C,C,false,remplissage conditionnel
+ctrl_rem_0126,t_local,lc_bat,lc_code,N,N,C,C,false,remplissage conditionnel
+ctrl_rem_0127,t_local,lc_bp_codf,lc_code,N,C,C,C,false,remplissage conditionnel
+ctrl_rem_0128,t_local,lc_bp_codp,lc_code,N,C,C,C,false,remplissage conditionnel
+ctrl_rem_0129,t_local,lc_code,lc_code,O,O,O,O,true,
+ctrl_rem_0130,t_local,lc_codeext,lc_code,C,C,C,C,false,remplissage conditionnel
+ctrl_rem_0131,t_local,lc_dateins,lc_code,N,N,C,C,false,remplissage conditionnel
+ctrl_rem_0132,t_local,lc_elec,lc_code,N,N,C,C,false,remplissage conditionnel
+ctrl_rem_0133,t_local,lc_escal,lc_code,N,N,C,C,false,remplissage conditionnel
+ctrl_rem_0134,t_local,lc_etage,lc_code,N,N,C,C,false,remplissage conditionnel
+ctrl_rem_0135,t_local,lc_etiquet,lc_code,N,C,C,C,false,remplissage conditionnel
+ctrl_rem_0136,t_local,lc_gest,lc_code,C,C,C,C,false,remplissage conditionnel
+ctrl_rem_0137,t_local,lc_perirec,lc_code,N,N,C,N,false,remplissage conditionnel
+ctrl_rem_0138,t_local,lc_prop,lc_code,C,C,C,C,false,remplissage conditionnel
+ctrl_rem_0139,t_local,lc_proptyp,lc_code,N,C,C,C,false,remplissage conditionnel
+ctrl_rem_0140,t_local,lc_st_code,lc_code,O,O,O,O,true,
+ctrl_rem_0141,t_local,lc_statut,lc_code,C,C,C,C,false,remplissage conditionnel
+ctrl_rem_0142,t_local,lc_typelog,lc_code,O,O,O,O,true,
+ctrl_rem_0143,t_love,lv_cb_code,lv_id,N,C,C,C,false,remplissage conditionnel
+ctrl_rem_0144,t_love,lv_id,lv_id,N,C,C,C,false,remplissage conditionnel
+ctrl_rem_0145,t_love,lv_long,lv_id,N,C,C,C,false,remplissage conditionnel
+ctrl_rem_0146,t_love,lv_nd_code,lv_id,N,C,C,C,false,remplissage conditionnel
+ctrl_rem_0147,t_noeud,geom,nd_code,O,O,O,O,true,
+ctrl_rem_0148,t_noeud,nd_code,nd_code,O,O,O,O,true,
+ctrl_rem_0149,t_organisme,or_code,or_code,O,O,O,O,true,
+ctrl_rem_0150,t_organisme,or_commune,or_code,N,N,C,C,false,remplissage conditionnel
+ctrl_rem_0151,t_organisme,or_local,or_code,N,N,C,C,false,remplissage conditionnel
+ctrl_rem_0152,t_organisme,or_nom,or_code,O,O,O,O,true,
+ctrl_rem_0153,t_organisme,or_nomvoie,or_code,N,N,C,C,false,remplissage conditionnel
+ctrl_rem_0154,t_organisme,or_numero,or_code,N,N,C,C,false,remplissage conditionnel
+ctrl_rem_0155,t_organisme,or_postal,or_code,N,N,C,C,false,remplissage conditionnel
+ctrl_rem_0156,t_organisme,or_rep,or_code,N,N,C,C,false,remplissage conditionnel
+ctrl_rem_0157,t_organisme,or_siret,or_code,N,N,C,C,false,remplissage conditionnel
+ctrl_rem_0158,t_organisme,or_type,or_code,N,N,C,C,false,remplissage conditionnel
+ctrl_rem_0159,t_point_leve,geom,pl_code,N,N,C,C,false,remplissage conditionnel
+ctrl_rem_0160,t_point_leve,pl_charge,pl_code,N,N,C,C,false,remplissage conditionnel
+ctrl_rem_0161,t_point_leve,pl_code,pl_code,N,N,C,C,false,remplissage conditionnel
+ctrl_rem_0162,t_point_leve,pl_x,pl_code,N,N,C,C,false,remplissage conditionnel
+ctrl_rem_0163,t_point_leve,pl_y,pl_code,N,N,C,C,false,remplissage conditionnel
+ctrl_rem_0164,t_point_leve,pl_z,pl_code,N,N,C,C,false,remplissage conditionnel
+ctrl_rem_0165,t_pointaccueil,geom,pa_code,N,C,O,O,false,remplissage conditionnel
+ctrl_rem_0166,t_pointaccueil,pa_a_haut,pa_code,N,C,C,C,false,remplissage conditionnel
+ctrl_rem_0167,t_pointaccueil,pa_a_struc,pa_code,N,C,C,C,false,remplissage conditionnel
+ctrl_rem_0168,t_pointaccueil,pa_code,pa_code,N,C,O,O,false,remplissage conditionnel
+ctrl_rem_0169,t_pointaccueil,pa_codeext,pa_code,N,N,C,C,false,remplissage conditionnel
+ctrl_rem_0170,t_pointaccueil,pa_codtemp,pa_code,N,C,C,C,false,remplissage conditionnel
+ctrl_rem_0171,t_pointaccueil,pa_datecon,pa_code,N,N,C,C,false,remplissage conditionnel
+ctrl_rem_0172,t_pointaccueil,pa_dtclass,pa_code,N,N,C,C,false,remplissage conditionnel
+ctrl_rem_0173,t_pointaccueil,pa_gest,pa_code,N,N,O,O,true,
+ctrl_rem_0174,t_pointaccueil,pa_nature,pa_code,N,C,O,O,false,remplissage conditionnel
+ctrl_rem_0175,t_pointaccueil,pa_perirec,pa_code,N,N,C,N,false,remplissage conditionnel
+ctrl_rem_0176,t_pointaccueil,pa_prop,pa_code,N,N,O,O,true,
+ctrl_rem_0177,t_pointaccueil,pa_rotatio,pa_code,N,N,C,C,false,remplissage conditionnel
+ctrl_rem_0178,t_pointaccueil,pa_secu,pa_code,N,N,C,C,false,remplissage conditionnel
+ctrl_rem_0179,t_pointaccueil,pa_typephy,pa_code,N,C,O,O,false,remplissage conditionnel
+ctrl_rem_0180,t_position,ps_1,ps_code,N,N,C,C,false,remplissage conditionnel
+ctrl_rem_0181,t_position,ps_2,ps_code,N,N,C,C,false,remplissage conditionnel
+ctrl_rem_0182,t_position,ps_code,ps_code,N,N,O,O,true,
+ctrl_rem_0183,t_position,ps_cs_code,ps_code,N,N,O,O,true,
+ctrl_rem_0184,t_position,ps_fonct,ps_code,N,N,O,O,true,
+ctrl_rem_0185,t_position,ps_numero,ps_code,N,N,O,O,true,
+ctrl_rem_0186,t_position,ps_preaff,ps_code,N,N,C,C,false,remplissage conditionnel
+ctrl_rem_0187,t_position,ps_ti_code,ps_code,N,N,C,C,false,remplissage conditionnel
+ctrl_rem_0188,t_position,ps_type,ps_code,N,N,O,O,true,
+ctrl_rem_0189,t_ptech,pt_a_haut,pt_code,N,N,C,C,false,remplissage conditionnel
+ctrl_rem_0190,t_ptech,pt_a_struc,pt_code,N,N,C,C,false,remplissage conditionnel
+ctrl_rem_0191,t_ptech,pt_abandon,pt_code,N,N,O,O,true,
+ctrl_rem_0192,t_ptech,pt_avct,pt_code,N,O,O,O,true,
+ctrl_rem_0193,t_ptech,pt_code,pt_code,N,O,O,O,true,
+ctrl_rem_0194,t_ptech,pt_codeext,pt_code,N,O,O,O,true,
+ctrl_rem_0195,t_ptech,pt_etiquet,pt_code,N,C,C,C,false,remplissage conditionnel
+ctrl_rem_0196,t_ptech,pt_gest,pt_code,N,O,O,O,true,
+ctrl_rem_0197,t_ptech,pt_nature,pt_code,N,O,O,O,true,
+ctrl_rem_0198,t_ptech,pt_nd_code,pt_code,N,O,O,O,true,
+ctrl_rem_0199,t_ptech,pt_perirec,pt_code,N,N,C,N,false,remplissage conditionnel
+ctrl_rem_0200,t_ptech,pt_prop,pt_code,N,O,O,O,true,
+ctrl_rem_0201,t_ptech,pt_proptyp,pt_code,N,C,C,C,false,remplissage conditionnel
+ctrl_rem_0202,t_ptech,pt_secu,pt_code,N,N,C,C,false,remplissage conditionnel
+ctrl_rem_0203,t_ptech,pt_statut,pt_code,N,O,O,O,true,
+ctrl_rem_0204,t_ptech,pt_typephy,pt_code,N,O,O,O,true,
+ctrl_rem_0205,t_reference,rf_code,rf_code,N,O,O,O,true,
+ctrl_rem_0206,t_reference,rf_design,rf_code,N,O,O,O,true,
+ctrl_rem_0207,t_reference,rf_type,rf_code,N,O,O,O,true,
+ctrl_rem_0208,t_site,st_abandon,st_code,N,N,O,O,true,
+ctrl_rem_0209,t_site,st_ad_code,st_code,C,C,C,C,false,remplissage conditionnel
+ctrl_rem_0210,t_site,st_avct,st_code,C,C,C,C,false,remplissage conditionnel
+ctrl_rem_0211,t_site,st_code,st_code,O,O,O,O,true,
+ctrl_rem_0212,t_site,st_codeext,st_code,C,C,C,C,false,remplissage conditionnel
+ctrl_rem_0213,t_site,st_commune,st_code,C,C,C,C,false,remplissage conditionnel
+ctrl_rem_0214,t_site,st_dateins,st_code,N,N,C,C,false,remplissage conditionnel
+ctrl_rem_0215,t_site,st_design,st_code,N,N,C,C,false,remplissage conditionnel
+ctrl_rem_0216,t_site,st_gest,st_code,C,C,C,C,false,remplissage conditionnel
+ctrl_rem_0217,t_site,st_insee,st_code,C,C,C,C,false,remplissage conditionnel
+ctrl_rem_0218,t_site,st_nd_code,st_code,O,O,O,O,true,
+ctrl_rem_0219,t_site,st_nombat,st_code,C,C,C,C,false,remplissage conditionnel
+ctrl_rem_0220,t_site,st_nomvoie,st_code,C,C,C,C,false,remplissage conditionnel
+ctrl_rem_0221,t_site,st_nra,st_code,O,O,O,O,true,
+ctrl_rem_0222,t_site,st_numero,st_code,C,C,C,C,false,remplissage conditionnel
+ctrl_rem_0223,t_site,st_perirec,st_code,N,N,C,N,false,remplissage conditionnel
+ctrl_rem_0224,t_site,st_postal,st_code,C,C,C,C,false,remplissage conditionnel
+ctrl_rem_0225,t_site,st_prop,st_code,C,C,C,C,false,remplissage conditionnel
+ctrl_rem_0226,t_site,st_proptyp,st_code,N,C,C,C,false,remplissage conditionnel
+ctrl_rem_0227,t_site,st_rep,st_code,C,C,C,C,false,remplissage conditionnel
+ctrl_rem_0228,t_site,st_statut,st_code,C,C,C,C,false,remplissage conditionnel
+ctrl_rem_0229,t_site,st_typelog,st_code,O,O,O,O,true,
+ctrl_rem_0230,t_site,st_typephy,st_code,O,O,O,O,true,
+ctrl_rem_0231,t_tiroir,ti_abandon,ti_code,N,N,O,O,true,
+ctrl_rem_0232,t_tiroir,ti_ba_code,ti_code,N,N,O,O,true,
+ctrl_rem_0233,t_tiroir,ti_code,ti_code,N,N,O,O,true,
+ctrl_rem_0234,t_tiroir,ti_codeext,ti_code,N,N,O,O,true,
+ctrl_rem_0235,t_tiroir,ti_etiquet,ti_code,N,N,O,O,true,
+ctrl_rem_0236,t_tiroir,ti_perirec,ti_code,N,N,C,N,false,remplissage conditionnel
+ctrl_rem_0237,t_tiroir,ti_placemt,ti_code,N,N,O,O,true,
+ctrl_rem_0238,t_tiroir,ti_prop,ti_code,N,N,O,O,true,
+ctrl_rem_0239,t_tiroir,ti_rf_code,ti_code,N,N,O,O,true,
+ctrl_rem_0240,t_tiroir,ti_taille,ti_code,N,N,O,O,true,
+ctrl_rem_0241,t_tiroir,ti_type,ti_code,N,N,O,O,true,
+ctrl_rem_0242,t_tranchee,geom,tr_code,N,C,O,O,false,remplissage conditionnel
+ctrl_rem_0243,t_tranchee,tr_code,tr_code,N,C,O,O,false,remplissage conditionnel
+ctrl_rem_0244,t_tranchee,tr_compo,tr_code,N,C,O,O,false,remplissage conditionnel
+ctrl_rem_0245,t_tranchee,tr_couptyp,tr_code,N,C,C,C,false,remplissage conditionnel
+ctrl_rem_0246,t_tranchee,tr_dtclass,tr_code,N,N,O,O,true,
+ctrl_rem_0247,t_tranchee,tr_lgreel,tr_code,N,N,O,O,true,
+ctrl_rem_0248,t_tranchee,tr_pa1,tr_code,N,N,O,O,true,
+ctrl_rem_0249,t_tranchee,tr_pa2,tr_code,N,N,O,O,true,
+ctrl_rem_0250,t_tranchee,tr_perirec,tr_code,N,N,C,N,false,remplissage conditionnel
+ctrl_rem_0251,t_zdep,geom,zd_code,N,N,O,N,true,
+ctrl_rem_0252,t_zdep,zd_code,zd_code,N,N,O,N,true,
+ctrl_rem_0253,t_zdep,zd_nd_code,zd_code,N,N,C,N,false,remplissage conditionnel
+ctrl_rem_0254,t_zdep,zd_r1_code,zd_code,N,N,O,N,true,
+ctrl_rem_0255,t_zdep,zd_r2_code,zd_code,N,N,O,N,true,
+ctrl_rem_0256,t_zdep,zd_r3_code,zd_code,N,N,O,N,true,
+ctrl_rem_0257,t_zdep,zd_r4_code,zd_code,N,N,C,N,false,remplissage conditionnel
+ctrl_rem_0258,t_zdep,zd_statut,zd_code,N,N,O,N,true,
+ctrl_rem_0259,t_zdep,zd_zs_code,zd_code,N,N,C,N,false,remplissage conditionnel
+ctrl_rem_0260,t_znro,geom,zn_code,O,O,O,O,true,
+ctrl_rem_0261,t_znro,zn_code,zn_code,O,O,O,O,true,
+ctrl_rem_0262,t_znro,zn_etat,zn_code,O,O,O,O,true,
+ctrl_rem_0263,t_znro,zn_lc_code,zn_code,O,O,O,O,true,
+ctrl_rem_0264,t_znro,zn_nd_code,zn_code,O,O,O,O,true,
+ctrl_rem_0265,t_znro,zn_nom,zn_code,O,O,N,N,true,
+ctrl_rem_0266,t_znro,zn_nroref,zn_code,C,O,O,O,false,remplissage conditionnel
+ctrl_rem_0267,t_znro,zn_r1_code,zn_code,O,O,O,O,true,
+ctrl_rem_0268,t_znro,zn_r2_code,zn_code,O,O,O,O,true,
+ctrl_rem_0269,t_zsro,geom,zs_code,O,O,O,O,true,
+ctrl_rem_0270,t_zsro,zs_actif,zs_code,N,O,O,O,true,
+ctrl_rem_0271,t_zsro,zs_capamax,zs_code,O,O,O,O,true,
+ctrl_rem_0272,t_zsro,zs_code,zs_code,O,O,O,O,true,
+ctrl_rem_0273,t_zsro,zs_etatpm,zs_code,O,O,O,O,true,
+ctrl_rem_0274,t_zsro,zs_lc_code,zs_code,O,O,O,O,true,
+ctrl_rem_0275,t_zsro,zs_lgmaxln,zs_code,O,O,O,O,true,
+ctrl_rem_0276,t_zsro,zs_nblogmt,zs_code,O,O,O,O,true,
+ctrl_rem_0277,t_zsro,zs_nom,zs_code,O,O,N,N,true,
+ctrl_rem_0278,t_zsro,zs_r1_code,zs_code,O,O,O,O,true,
+ctrl_rem_0279,t_zsro,zs_r2_code,zs_code,O,O,O,O,true,
+ctrl_rem_0280,t_zsro,zs_r3_code,zs_code,N,O,O,O,true,
+ctrl_rem_0281,t_zsro,zs_refpm,zs_code,C,O,O,O,false,remplissage conditionnel
+ctrl_rem_0282,t_zsro,zs_zn_code,zs_code,O,O,O,O,true,
+ctrl_rem_0283,t_zsro,zs_znllong,zs_code,O,O,O,O,true,

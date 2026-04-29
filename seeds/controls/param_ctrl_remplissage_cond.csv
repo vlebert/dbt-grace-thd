@@ -1,132 +1,132 @@
-﻿"id_test","classe","attribut","cle_primaire","conteneur_c1","conteneur_c2","conteneur_c3","conteneur_c4","actif","condition"
-"","t_adresse","ad_batcode","","C","C","C","O","true","Si délégué au constructeur/intégrateur ou si généré par l'opérateur "
-"","t_adresse","ad_codtemp","","C","C","C","N","true","Si ad_batcode vide ou NULL"
-"","t_adresse","ad_distinf","","N","C","C","C","true","N'est pas rempli dans le cas où le PB est dans l'immeuble"
-"","t_adresse","ad_dta","","N","N","C","C","true","Si adresse sous convention syndic"
-"","t_adresse","ad_gest","","N","N","C","N","true","Si adresse sous convention syndic"
-"","t_adresse","ad_hexacle","","C","C","C","C","true","Si existant"
-"","t_adresse","ad_idatsgn","","N","N","C","N","true","Si adresse sous convention syndic"
-"","t_adresse","ad_nbfofon","","C","C","C","N","true","Donnée relevée et fournie à l'exploitant dans un format exploitable permettant de générer en GraceTHD v3 et ultérieure."
-"","t_adresse","ad_nbfogfu","","C","C","C","N","true","Donnée relevée et fournie à l'exploitant dans un format exploitable permettant de générer en GraceTHD v3 et ultérieure."
-"","t_adresse","ad_nbfotte","","C","C","C","N","true","Donnée relevée et fournie à l'exploitant dans un format exploitable permettant de générer en GraceTHD v3 et ultérieure."
-"","t_adresse","ad_nbfotto","","C","C","C","N","true","Donnée relevée et fournie à l'exploitant dans un format exploitable permettant de générer en GraceTHD v3 et ultérieure."
-"","t_adresse","ad_nblent","","C","C","C","C","true","Donnée relevée et fournie à l'exploitant dans un format exploitable permettant de générer en GraceTHD v3 et ultérieure."
-"","t_adresse","ad_nblobj","","C","C","C","C","true","Donnée relevée et fournie à l'exploitant dans un format exploitable permettant de générer en GraceTHD v3 et ultérieure."
-"","t_adresse","ad_nblope","","C","C","C","C","true","Donnée relevée et fournie à l'exploitant dans un format exploitable permettant de générer en GraceTHD v3 et ultérieure."
-"","t_adresse","ad_nblpub","","C","C","C","C","true","Donnée relevée et fournie à l'exploitant dans un format exploitable permettant de générer en GraceTHD v3 et ultérieure."
-"","t_adresse","ad_nombat","","C","C","C","C","true","Si existant"
-"","t_adresse","ad_rep","","C","C","C","C","true","Si existant"
-"","t_baie","ba_perirec","","N","N","C","N","true","Si besoin pour échanges intra RIP"
-"","t_cable","cb_ba1","","N","C","C","C","true","Si part d'un NRO ou d'un  SRO"
-"","t_cable","cb_ba2","","N","C","C","C","true","Si arrive dans d'un NRO ou d'un  SRO"
-"","t_cable","cb_bp1","","N","C","C","C","true","Si part d'une boite d'epissure"
-"","t_cable","cb_bp2","","N","C","C","C","true","Si arrive dans une boite d'epissure"
-"","t_cable","cb_dateins","","N","N","C","C","true","Si cb_statut IN ('REC','MCO')"
-"","t_cable","cb_lgreel","","N","N","C","C","true","Si cb_nd1 != cb_nd2 (câble extrasite)"
-"","t_cable","cb_perirec","","N","N","C","N","true","Si besoin pour échanges intra RIP"
-"","t_cable","cb_r2_code","","N","C","C","C","true","Si transport ou distribution"
-"","t_cable","cb_r3_code","","N","C","C","C","true","Si cable déployé limité à un usage distribution"
-"","t_cassette","cs_bp_code","","N","N","C","C","true","Si BPE"
-"","t_cheminement","cm_compo","","N","C","C","C","true","Si GC construit dans le cadre du projet OU si données disponibles dans le PIT dans le cadre de l’utilisation du GC Orange. "
-"","t_cheminement","cm_perirec","","N","N","C","N","true","Si besoin pour échanges intra RIP"
-"","t_ebp","bp_dateins","","N","N","C","C","true","Si bp_statut IN ('REC','MCO')"
-"","t_ebp","bp_lc_code","","N","C","C","C","true","Si l'ebp n'est pas rattaché à un point technique (donc s'il est dans un local)"
-"","t_ebp","bp_perirec","","N","N","C","N","true","Si besoin pour échanges intra RIP"
-"","t_ebp","bp_pt_code","","N","C","C","C","true","Si boite d'epissure positionnée sur un point technique"
-"","t_local","lc_avct","","C","C","C","C","true","Si lc_typelog = SRO ou NRO "
-"","t_local","lc_bat","","N","N","C","C","true","Si locaux technique (NRO, SRO) et nécessité de différencier la localisation d’un local par rapport au st_nombat de la table site."
-"","t_local","lc_bp_codf","","N","C","C","C","true","Si lc_typelog = RES ou PRO, sinon selon contrat"
-"","t_local","lc_bp_codp","","N","C","C","C","true","Si lc_typelog = ENT, sinon selon contrat"
-"","t_local","lc_codeext","","C","C","C","C","true","Tous les conteneurs : Si lc_typelog = SRO ou NRO
+﻿id_test,classe,attribut,cle_primaire,conteneur_c1,conteneur_c2,conteneur_c3,conteneur_c4,actif,condition
+,t_adresse,ad_batcode,,C,C,C,O,true,Si délégué au constructeur/intégrateur ou si généré par l'opérateur 
+ctrl_rc_0101,t_adresse,ad_codtemp,,C,C,C,N,true,Si ad_batcode vide ou NULL
+ctrl_rc_0102,t_adresse,ad_distinf,,N,C,C,C,true,N'est pas rempli dans le cas où le PB est dans l'immeuble
+,t_adresse,ad_dta,,N,N,C,C,true,Si adresse sous convention syndic
+,t_adresse,ad_gest,,N,N,C,N,true,Si adresse sous convention syndic
+,t_adresse,ad_hexacle,,C,C,C,C,true,Si existant
+,t_adresse,ad_idatsgn,,N,N,C,N,true,Si adresse sous convention syndic
+,t_adresse,ad_nbfofon,,C,C,C,N,true,Donnée relevée et fournie à l'exploitant dans un format exploitable permettant de générer en GraceTHD v3 et ultérieure.
+,t_adresse,ad_nbfogfu,,C,C,C,N,true,Donnée relevée et fournie à l'exploitant dans un format exploitable permettant de générer en GraceTHD v3 et ultérieure.
+,t_adresse,ad_nbfotte,,C,C,C,N,true,Donnée relevée et fournie à l'exploitant dans un format exploitable permettant de générer en GraceTHD v3 et ultérieure.
+,t_adresse,ad_nbfotto,,C,C,C,N,true,Donnée relevée et fournie à l'exploitant dans un format exploitable permettant de générer en GraceTHD v3 et ultérieure.
+,t_adresse,ad_nblent,,C,C,C,C,true,Donnée relevée et fournie à l'exploitant dans un format exploitable permettant de générer en GraceTHD v3 et ultérieure.
+,t_adresse,ad_nblobj,,C,C,C,C,true,Donnée relevée et fournie à l'exploitant dans un format exploitable permettant de générer en GraceTHD v3 et ultérieure.
+,t_adresse,ad_nblope,,C,C,C,C,true,Donnée relevée et fournie à l'exploitant dans un format exploitable permettant de générer en GraceTHD v3 et ultérieure.
+,t_adresse,ad_nblpub,,C,C,C,C,true,Donnée relevée et fournie à l'exploitant dans un format exploitable permettant de générer en GraceTHD v3 et ultérieure.
+,t_adresse,ad_nombat,,C,C,C,C,true,Si existant
+,t_adresse,ad_rep,,C,C,C,C,true,Si existant
+,t_baie,ba_perirec,,N,N,C,N,true,Si besoin pour échanges intra RIP
+,t_cable,cb_ba1,,N,C,C,C,true,Si part d'un NRO ou d'un  SRO
+,t_cable,cb_ba2,,N,C,C,C,true,Si arrive dans d'un NRO ou d'un  SRO
+,t_cable,cb_bp1,,N,C,C,C,true,Si part d'une boite d'epissure
+,t_cable,cb_bp2,,N,C,C,C,true,Si arrive dans une boite d'epissure
+ctrl_rc_0202,t_cable,cb_dateins,,N,N,C,C,true,"Si cb_statut IN ('REC','MCO')"
+ctrl_rc_0203,t_cable,cb_lgreel,,N,N,C,C,true,Si cb_nd1 != cb_nd2 (câble extrasite)
+,t_cable,cb_perirec,,N,N,C,N,true,Si besoin pour échanges intra RIP
+ctrl_rc_0204,t_cable,cb_r2_code,,N,C,C,C,true,Si transport ou distribution
+ctrl_rc_0201,t_cable,cb_r3_code,,N,C,C,C,true,Si cable déployé limité à un usage distribution
+ctrl_rc_0301,t_cassette,cs_bp_code,,N,N,C,C,true,Si BPE
+ctrl_rc_0401,t_cheminement,cm_compo,,N,C,C,C,true,Si GC construit dans le cadre du projet OU si données disponibles dans le PIT dans le cadre de l’utilisation du GC Orange. 
+,t_cheminement,cm_perirec,,N,N,C,N,true,Si besoin pour échanges intra RIP
+ctrl_rc_0501,t_ebp,bp_dateins,,N,N,C,C,true,"Si bp_statut IN ('REC','MCO')"
+,t_ebp,bp_lc_code,,N,C,C,C,true,Si l'ebp n'est pas rattaché à un point technique (donc s'il est dans un local)
+,t_ebp,bp_perirec,,N,N,C,N,true,Si besoin pour échanges intra RIP
+,t_ebp,bp_pt_code,,N,C,C,C,true,Si boite d'epissure positionnée sur un point technique
+ctrl_rc_0601,t_local,lc_avct,,C,C,C,C,true,Si lc_typelog = SRO ou NRO 
+,t_local,lc_bat,,N,N,C,C,true,"Si locaux technique (NRO, SRO) et nécessité de différencier la localisation d’un local par rapport au st_nombat de la table site."
+ctrl_rc_0602,t_local,lc_bp_codf,,N,C,C,C,true,"Si lc_typelog = RES ou PRO, sinon selon contrat"
+ctrl_rc_0603,t_local,lc_bp_codp,,N,C,C,C,true,"Si lc_typelog = ENT, sinon selon contrat"
+ctrl_rc_0604,t_local,lc_codeext,,C,C,C,C,true,"Tous les conteneurs : Si lc_typelog = SRO ou NRO
 Conteneur 1 : Si nom délégué ou si nommage déjà généré par l'exploitant"
-"","t_local","lc_dateins","","N","N","C","C","true","Si lc_typelog = SRO ou NRO ET lc_statut IN ('REC','MCO')"
-"","t_local","lc_elec","","N","N","C","C","true","Si lc_typelog = SRO ou NRO "
-"","t_local","lc_escal","","N","N","C","C","true","Si existant et si lc_typelog = RES, PRO, ENT, PUB, OPE ou OBJ. Ou PB en immeuble (TEC). Ou BPI (TEC). "
-"","t_local","lc_etage","","N","N","C","C","true","Si existant et si lc_typelog = RES, PRO, ENT, PUB, OPE ou OBJ. Ou PB en immeuble (TEC). Ou BPI (TEC). "
-"","t_local","lc_etiquet","","N","C","C","C","true","Si local est de type SRO ou NRO."
-"","t_local","lc_gest","","C","C","C","C","true","Si lc_typelog = SRO ou NRO "
-"","t_local","lc_perirec","","N","N","C","N","true","Si besoin pour échanges intra RIP"
-"","t_local","lc_prop","","C","C","C","C","true","Si lc_typelog = SRO ou NRO "
-"","t_local","lc_proptyp","","N","C","C","C","true","Si lc_typelog = SRO ou NRO et si local herbergé dans un site st_typelog='CLIENT'"
-"","t_local","lc_statut","","C","C","C","C","true","Si lc_typelog = SRO ou NRO "
-"","t_love","lv_cb_code","","N","C","C","C","true","Dans le cas d'un réseau en exploitation, le constructeur doit livrer à l’exploitant la t_love dans un format exploitable permettant de générer un export GraceTHD v3, qui aura la charge de conserver l'information et la lui relivrer par la suite."
-"","t_love","lv_id","","N","C","C","C","true","Dans le cas d'un réseau en exploitation, le constructeur doit livrer à l’exploitant la t_love dans un format exploitable permettant de générer un export GraceTHD v3, qui aura la charge de conserver l'information et la lui relivrer par la suite."
-"","t_love","lv_long","","N","C","C","C","true","Dans le cas d'un réseau en exploitation, le constructeur doit livrer à l’exploitant la t_love dans un format exploitable permettant de générer un export GraceTHD v3, qui aura la charge de conserver l'information et la lui relivrer par la suite."
-"","t_love","lv_nd_code","","N","C","C","C","true","Dans le cas d'un réseau en exploitation, le constructeur doit livrer à l’exploitant la t_love dans un format exploitable permettant de générer un export GraceTHD v3, qui aura la charge de conserver l'information et la lui relivrer par la suite."
-"","t_organisme","or_commune","","N","N","C","C","true","Si adresse sous convention syndic"
-"","t_organisme","or_local","","N","N","C","C","true","Si adresse sous convention syndic"
-"","t_organisme","or_nomvoie","","N","N","C","C","true","Si adresse sous convention syndic"
-"","t_organisme","or_numero","","N","N","C","C","true","Si adresse sous convention syndic "
-"","t_organisme","or_postal","","N","N","C","C","true","Si adresse sous convention syndic"
-"","t_organisme","or_rep","","N","N","C","C","true","Si adresse sous convention syndic"
-"","t_organisme","or_siret","","N","N","C","C","true","Si adresse sous convention syndic et si syndic dispose d’un SIRET"
-"","t_organisme","or_type","","N","N","C","C","true","Si adresse sous convention syndic"
-"","t_point_leve","geom","","N","N","C","C","true","Selon contrats."
-"","t_point_leve","pl_charge","","N","N","C","C","true","Si la charge est demandée contractuellement au format GraceTHD, ou si elle a été fournie par le passé, dans un format SIG exploitable, à l’acteur qui livre la donnée.​
+ctrl_rc_0605,t_local,lc_dateins,,N,N,C,C,true,"Si lc_typelog = SRO ou NRO ET lc_statut IN ('REC','MCO')"
+ctrl_rc_0606,t_local,lc_elec,,N,N,C,C,true,Si lc_typelog = SRO ou NRO 
+,t_local,lc_escal,,N,N,C,C,true,"Si existant et si lc_typelog = RES, PRO, ENT, PUB, OPE ou OBJ. Ou PB en immeuble (TEC). Ou BPI (TEC). "
+,t_local,lc_etage,,N,N,C,C,true,"Si existant et si lc_typelog = RES, PRO, ENT, PUB, OPE ou OBJ. Ou PB en immeuble (TEC). Ou BPI (TEC). "
+ctrl_rc_0607,t_local,lc_etiquet,,N,C,C,C,true,Si local est de type SRO ou NRO.
+ctrl_rc_0608,t_local,lc_gest,,C,C,C,C,true,Si lc_typelog = SRO ou NRO 
+,t_local,lc_perirec,,N,N,C,N,true,Si besoin pour échanges intra RIP
+ctrl_rc_0609,t_local,lc_prop,,C,C,C,C,true,Si lc_typelog = SRO ou NRO 
+ctrl_rc_0610,t_local,lc_proptyp,,N,C,C,C,true,Si lc_typelog = SRO ou NRO et si local herbergé dans un site st_typelog='CLIENT'
+ctrl_rc_0611,t_local,lc_statut,,C,C,C,C,true,Si lc_typelog = SRO ou NRO 
+,t_love,lv_cb_code,,N,C,C,C,true,"Dans le cas d'un réseau en exploitation, le constructeur doit livrer à l’exploitant la t_love dans un format exploitable permettant de générer un export GraceTHD v3, qui aura la charge de conserver l'information et la lui relivrer par la suite."
+,t_love,lv_id,,N,C,C,C,true,"Dans le cas d'un réseau en exploitation, le constructeur doit livrer à l’exploitant la t_love dans un format exploitable permettant de générer un export GraceTHD v3, qui aura la charge de conserver l'information et la lui relivrer par la suite."
+,t_love,lv_long,,N,C,C,C,true,"Dans le cas d'un réseau en exploitation, le constructeur doit livrer à l’exploitant la t_love dans un format exploitable permettant de générer un export GraceTHD v3, qui aura la charge de conserver l'information et la lui relivrer par la suite."
+,t_love,lv_nd_code,,N,C,C,C,true,"Dans le cas d'un réseau en exploitation, le constructeur doit livrer à l’exploitant la t_love dans un format exploitable permettant de générer un export GraceTHD v3, qui aura la charge de conserver l'information et la lui relivrer par la suite."
+,t_organisme,or_commune,,N,N,C,C,true,Si adresse sous convention syndic
+,t_organisme,or_local,,N,N,C,C,true,Si adresse sous convention syndic
+,t_organisme,or_nomvoie,,N,N,C,C,true,Si adresse sous convention syndic
+,t_organisme,or_numero,,N,N,C,C,true,Si adresse sous convention syndic 
+,t_organisme,or_postal,,N,N,C,C,true,Si adresse sous convention syndic
+,t_organisme,or_rep,,N,N,C,C,true,Si adresse sous convention syndic
+,t_organisme,or_siret,,N,N,C,C,true,Si adresse sous convention syndic et si syndic dispose d’un SIRET
+,t_organisme,or_type,,N,N,C,C,true,Si adresse sous convention syndic
+,t_point_leve,geom,,N,N,C,C,true,Selon contrats.
+,t_point_leve,pl_charge,,N,N,C,C,true,"Si la charge est demandée contractuellement au format GraceTHD, ou si elle a été fournie par le passé, dans un format SIG exploitable, à l’acteur qui livre la donnée.​
 Si l’ouvrage associé au point levé ne satisfait pas à éventuelle règle de profondeur minimale réglementaire à la date de pose de l’ouvrage [DT-DICT]."
-"","t_point_leve","pl_code","","N","N","C","C","true","Selon contrats."
-"","t_point_leve","pl_x","","N","N","C","C","true","Selon contrats."
-"","t_point_leve","pl_y","","N","N","C","C","true","Selon contrats."
-"","t_point_leve","pl_z","","N","N","C","C","true","Selon contrats."
-"","t_pointaccueil","geom","","N","C","O","O","true","Conteneur 2 : Selon contrat"
-"","t_pointaccueil","pa_a_haut","","N","C","C","C","true","Conteneur 2 : Si pa_typephys = APPUI et  selon contrat
+,t_point_leve,pl_code,,N,N,C,C,true,Selon contrats.
+,t_point_leve,pl_x,,N,N,C,C,true,Selon contrats.
+,t_point_leve,pl_y,,N,N,C,C,true,Selon contrats.
+,t_point_leve,pl_z,,N,N,C,C,true,Selon contrats.
+,t_pointaccueil,geom,,N,C,O,O,true,Conteneur 2 : Selon contrat
+ctrl_rc_0701,t_pointaccueil,pa_a_haut,,N,C,C,C,true,"Conteneur 2 : Si pa_typephys = APPUI et  selon contrat
 Conteneur 3 : Si pa_typephys = APPUI"
-"","t_pointaccueil","pa_a_struc","","N","C","C","C","true","Conteneur 2 : Si pa_typephy = APPUI et  selon contrat
+ctrl_rc_0702,t_pointaccueil,pa_a_struc,,N,C,C,C,true,"Conteneur 2 : Si pa_typephy = APPUI et  selon contrat
 Conteneur 3 : Si pa_typephy = APPUI"
-"","t_pointaccueil","pa_code","","N","C","O","O","true","Conteneur 2 : Selon contrat"
-"","t_pointaccueil","pa_codeext","","N","N","C","C","true","à partir de l'intégration dans le SI-SIG de l'exploitant"
-"","t_pointaccueil","pa_codtemp","","N","C","C","C","true","Si pa_codeext NULL ou vide"
-"","t_pointaccueil","pa_datecon","","N","N","C","C","true","Si site et points techniques créés pour la collectivité "
-"","t_pointaccueil","pa_dtclass","","N","N","C","C","true","Si site et points techniques créés pour la collectivité "
-"","t_pointaccueil","pa_nature","","N","C","O","O","true","Conteneur 2 : Selon contrat"
-"","t_pointaccueil","pa_perirec","","N","N","C","N","true","Si besoin pour échanges intra RIP"
-"","t_pointaccueil","pa_rotatio","","N","N","C","C","true","Si pa_typephys = CHAMBRE"
-"","t_pointaccueil","pa_secu","","N","N","C","C","true","Si chambre construite ET sécurisation est demandée en construction
+,t_pointaccueil,pa_code,,N,C,O,O,true,Conteneur 2 : Selon contrat
+,t_pointaccueil,pa_codeext,,N,N,C,C,true,à partir de l'intégration dans le SI-SIG de l'exploitant
+ctrl_rc_0703,t_pointaccueil,pa_codtemp,,N,C,C,C,true,Si pa_codeext NULL ou vide
+,t_pointaccueil,pa_datecon,,N,N,C,C,true,Si site et points techniques créés pour la collectivité 
+,t_pointaccueil,pa_dtclass,,N,N,C,C,true,Si site et points techniques créés pour la collectivité 
+,t_pointaccueil,pa_nature,,N,C,O,O,true,Conteneur 2 : Selon contrat
+,t_pointaccueil,pa_perirec,,N,N,C,N,true,Si besoin pour échanges intra RIP
+ctrl_rc_0704,t_pointaccueil,pa_rotatio,,N,N,C,C,true,Si pa_typephys = CHAMBRE
+,t_pointaccueil,pa_secu,,N,N,C,C,true,"Si chambre construite ET sécurisation est demandée en construction
 OU
 Si chambre existante et demandé avant le lancement des piquetages
 "
-"","t_pointaccueil","pa_typephy","","N","C","O","O","true","Conteneur 2 : Selon contrat"
-"","t_position","ps_1","","N","N","C","C","true","cf recommandation MTHD - Partie Fibrage"
-"","t_position","ps_2","","N","N","C","C","true","cf recommandation MTHD - Partie Fibrage"
-"","t_position","ps_preaff","","N","N","C","C","true","Si nécessaire pour des besoins opérationnels (par exemple pour préciser à un sous-traitant les fibres réservées pour une extensions de réseau).
+,t_pointaccueil,pa_typephy,,N,C,O,O,true,Conteneur 2 : Selon contrat
+,t_position,ps_1,,N,N,C,C,true,cf recommandation MTHD - Partie Fibrage
+,t_position,ps_2,,N,N,C,C,true,cf recommandation MTHD - Partie Fibrage
+,t_position,ps_preaff,,N,N,C,C,true,"Si nécessaire pour des besoins opérationnels (par exemple pour préciser à un sous-traitant les fibres réservées pour une extensions de réseau).
 Par contre il n’est pas nécessaire pour les exports type inventaire ou patrimoine."
-"","t_position","ps_ti_code","","N","N","C","C","true","Si le tiroir auquel appartient la position est un tiroir de baie ou armoire"
-"","t_ptech","pt_a_haut","","N","N","C","C","true","Si pt_typephy = APPUI ET point technique créé pour le projet"
-"","t_ptech","pt_a_struc","","N","N","C","C","true","Si pt_typephy = APPUI et construit pour la collectivité"
-"","t_ptech","pt_etiquet","","N","C","C","C","true","Si existant"
-"","t_ptech","pt_perirec","","N","N","C","N","true","Si besoin pour échanges intra RIP"
-"","t_ptech","pt_proptyp","","N","C","C","C","true","Donnée fournie par la collectivité en début de marché"
-"","t_ptech","pt_secu","","N","N","C","C","true","Si chambre construite ET sécurisation est demandée en construction
+,t_position,ps_ti_code,,N,N,C,C,true,Si le tiroir auquel appartient la position est un tiroir de baie ou armoire
+,t_ptech,pt_a_haut,,N,N,C,C,true,Si pt_typephy = APPUI ET point technique créé pour le projet
+,t_ptech,pt_a_struc,,N,N,C,C,true,Si pt_typephy = APPUI et construit pour la collectivité
+,t_ptech,pt_etiquet,,N,C,C,C,true,Si existant
+,t_ptech,pt_perirec,,N,N,C,N,true,Si besoin pour échanges intra RIP
+,t_ptech,pt_proptyp,,N,C,C,C,true,Donnée fournie par la collectivité en début de marché
+,t_ptech,pt_secu,,N,N,C,C,true,"Si chambre construite ET sécurisation est demandée en construction
 OU
 Si chambre existante et demandé avant le lancement des piquetages
 "
-"","t_site","st_ad_code","","C","C","C","C","true","Si st_typelog = CLIENT"
-"","t_site","st_avct","","C","C","C","C","true","Si st_typelog = 'RESEAU' "
-"","t_site","st_codeext","","C","C","C","C","true","Tous conteneurs :Si st_typelog = 'RESEAU'
+ctrl_rc_0801,t_site,st_ad_code,,C,C,C,C,true,Si st_typelog = CLIENT
+ctrl_rc_0802,t_site,st_avct,,C,C,C,C,true,Si st_typelog = 'RESEAU' 
+ctrl_rc_0803,t_site,st_codeext,,C,C,C,C,true,"Tous conteneurs :Si st_typelog = 'RESEAU'
 Conteneur 1 :  si nommage délégué ou si généré par l'exploitant"
-"","t_site","st_commune","","C","C","C","C","true","Si st_typelog = 'RESEAU' "
-"","t_site","st_dateins","","N","N","C","C","true","Si st_typelog = 'RESEAU'  ET st_statut IN ('REC','MCO')"
-"","t_site","st_design","","N","N","C","C","true","Si st_typephy= ADR ou SHE"
-"","t_site","st_gest","","C","C","C","C","true","Si st_typelog = 'RESEAU' "
-"","t_site","st_insee","","C","C","C","C","true","Si st_typelog = 'RESEAU' "
-"","t_site","st_nombat","","C","C","C","C","true","Si existant et si st_typelog = 'RESEAU' "
-"","t_site","st_nomvoie","","C","C","C","C","true","Si st_typelog = 'RESEAU' "
-"","t_site","st_numero","","C","C","C","C","true","Si st_typelog = 'RESEAU' "
-"","t_site","st_perirec","","N","N","C","N","true","Si besoin pour échanges intra RIP"
-"","t_site","st_postal","","C","C","C","C","true","Si st_typelog = 'RESEAU' "
-"","t_site","st_prop","","C","C","C","C","true","Si st_typelog = 'RESEAU' "
-"","t_site","st_proptyp","","N","C","C","C","true","Si st_typelog = 'RESEAU' "
-"","t_site","st_rep","","C","C","C","C","true","Si existant et si st_typelog = 'RESEAU' "
-"","t_site","st_statut","","C","C","C","C","true","Si st_typelog = 'RESEAU' "
-"","t_tiroir","ti_perirec","","N","N","C","N","true","Si besoin pour échanges intra RIP"
-"","t_tranchee","geom","","N","C","O","O","true","C2: Selon contrat"
-"","t_tranchee","tr_code","","N","C","O","O","true","C2: Selon contrat"
-"","t_tranchee","tr_compo","","N","C","O","O","true","C2: Selon contrat"
-"","t_tranchee","tr_couptyp","","N","C","C","C","true","Si demandé contractuellement et si données transmise à l’OI dans un format exploitable permettant la génération en GraceTHD v3."
-"","t_tranchee","tr_perirec","","N","N","C","N","true","Si besoin pour échanges intra RIP"
-"","t_zdep","zd_nd_code","","N","N","C","N","true","à renseigner pour les ZPA"
-"","t_zdep","zd_r4_code","","N","N","C","N","true","à renseigner pour les ZPA  "
-"","t_zdep","zd_zs_code","","N","N","C","N","true","à renseigner pour les ZPA
+ctrl_rc_0804,t_site,st_commune,,C,C,C,C,true,Si st_typelog = 'RESEAU' 
+ctrl_rc_0805,t_site,st_dateins,,N,N,C,C,true,"Si st_typelog = 'RESEAU'  ET st_statut IN ('REC','MCO')"
+ctrl_rc_0815,t_site,st_design,,N,N,C,C,true,Si st_typephy= ADR ou SHE
+ctrl_rc_0806,t_site,st_gest,,C,C,C,C,true,Si st_typelog = 'RESEAU' 
+ctrl_rc_0807,t_site,st_insee,,C,C,C,C,true,Si st_typelog = 'RESEAU' 
+,t_site,st_nombat,,C,C,C,C,true,Si existant et si st_typelog = 'RESEAU' 
+ctrl_rc_0808,t_site,st_nomvoie,,C,C,C,C,true,Si st_typelog = 'RESEAU' 
+ctrl_rc_0814,t_site,st_numero,,C,C,C,C,true,Si st_typelog = 'RESEAU' 
+,t_site,st_perirec,,N,N,C,N,true,Si besoin pour échanges intra RIP
+ctrl_rc_0809,t_site,st_postal,,C,C,C,C,true,Si st_typelog = 'RESEAU' 
+ctrl_rc_0810,t_site,st_prop,,C,C,C,C,true,Si st_typelog = 'RESEAU' 
+ctrl_rc_0811,t_site,st_proptyp,,N,C,C,C,true,Si st_typelog = 'RESEAU' 
+,t_site,st_rep,,C,C,C,C,true,Si existant et si st_typelog = 'RESEAU' 
+ctrl_rc_0812,t_site,st_statut,,C,C,C,C,true,Si st_typelog = 'RESEAU' 
+,t_tiroir,ti_perirec,,N,N,C,N,true,Si besoin pour échanges intra RIP
+,t_tranchee,geom,,N,C,O,O,true,C2: Selon contrat
+,t_tranchee,tr_code,,N,C,O,O,true,C2: Selon contrat
+,t_tranchee,tr_compo,,N,C,O,O,true,C2: Selon contrat
+,t_tranchee,tr_couptyp,,N,C,C,C,true,Si demandé contractuellement et si données transmise à l’OI dans un format exploitable permettant la génération en GraceTHD v3.
+,t_tranchee,tr_perirec,,N,N,C,N,true,Si besoin pour échanges intra RIP
+,t_zdep,zd_nd_code,,N,N,C,N,true,à renseigner pour les ZPA
+,t_zdep,zd_r4_code,,N,N,C,N,true,à renseigner pour les ZPA  
+,t_zdep,zd_zs_code,,N,N,C,N,true,"à renseigner pour les ZPA
 code figé à partir de l'AVP"
-"","t_znro","zn_nroref","","C","O","O","O","true","Si nommage délégué par l'opérateur au constructeur ou si zsro intégrée par l'exploitant (donc nommage déjà généré)"
-"","t_zsro","zs_refpm","","C","O","O","O","true","Si nommage délégué par l'opérateur au constructeur ou si zsro intégrée par l'exploitant (donc nommage déjà généré)"
+,t_znro,zn_nroref,,C,O,O,O,true,Si nommage délégué par l'opérateur au constructeur ou si zsro intégrée par l'exploitant (donc nommage déjà généré)
+,t_zsro,zs_refpm,,C,O,O,O,true,Si nommage délégué par l'opérateur au constructeur ou si zsro intégrée par l'exploitant (donc nommage déjà généré)
