@@ -1,5 +1,5 @@
 ﻿id_test,classe,attribut,cle_primaire,conteneur_c1,conteneur_c2,conteneur_c3,conteneur_c4,actif,commentaire
-ctrl_rem_0001,t_adresse,ad_batcode,ad_code,C,C,C,O,false,remplissage conditionnel
+ctrl_rem_0001,t_adresse,ad_batcode,ad_code,C,C,C,O,true,remplissage conditionnel | O->true
 ctrl_rem_0002,t_adresse,ad_code,ad_code,O,O,O,O,true,
 ctrl_rem_0003,t_adresse,ad_codtemp,ad_code,C,C,C,N,false,remplissage conditionnel
 ctrl_rem_0004,t_adresse,ad_commune,ad_code,O,O,O,O,true,
@@ -163,21 +163,21 @@ ctrl_rem_0161,t_point_leve,pl_code,pl_code,N,N,C,C,false,remplissage conditionne
 ctrl_rem_0162,t_point_leve,pl_x,pl_code,N,N,C,C,false,remplissage conditionnel
 ctrl_rem_0163,t_point_leve,pl_y,pl_code,N,N,C,C,false,remplissage conditionnel
 ctrl_rem_0164,t_point_leve,pl_z,pl_code,N,N,C,C,false,remplissage conditionnel
-ctrl_rem_0165,t_pointaccueil,geom,pa_code,N,C,O,O,false,remplissage conditionnel
+ctrl_rem_0165,t_pointaccueil,geom,pa_code,N,C,O,O,true,remplissage conditionnel | O->true
 ctrl_rem_0166,t_pointaccueil,pa_a_haut,pa_code,N,C,C,C,false,remplissage conditionnel
 ctrl_rem_0167,t_pointaccueil,pa_a_struc,pa_code,N,C,C,C,false,remplissage conditionnel
-ctrl_rem_0168,t_pointaccueil,pa_code,pa_code,N,C,O,O,false,remplissage conditionnel
+ctrl_rem_0168,t_pointaccueil,pa_code,pa_code,N,C,O,O,true,remplissage conditionnel | O->true
 ctrl_rem_0169,t_pointaccueil,pa_codeext,pa_code,N,N,C,C,false,remplissage conditionnel
 ctrl_rem_0170,t_pointaccueil,pa_codtemp,pa_code,N,C,C,C,false,remplissage conditionnel
 ctrl_rem_0171,t_pointaccueil,pa_datecon,pa_code,N,N,C,C,false,remplissage conditionnel
 ctrl_rem_0172,t_pointaccueil,pa_dtclass,pa_code,N,N,C,C,false,remplissage conditionnel
 ctrl_rem_0173,t_pointaccueil,pa_gest,pa_code,N,N,O,O,true,
-ctrl_rem_0174,t_pointaccueil,pa_nature,pa_code,N,C,O,O,false,remplissage conditionnel
+ctrl_rem_0174,t_pointaccueil,pa_nature,pa_code,N,C,O,O,true,remplissage conditionnel | O->true
 ctrl_rem_0175,t_pointaccueil,pa_perirec,pa_code,N,N,C,N,false,remplissage conditionnel
 ctrl_rem_0176,t_pointaccueil,pa_prop,pa_code,N,N,O,O,true,
 ctrl_rem_0177,t_pointaccueil,pa_rotatio,pa_code,N,N,C,C,false,remplissage conditionnel
 ctrl_rem_0178,t_pointaccueil,pa_secu,pa_code,N,N,C,C,false,remplissage conditionnel
-ctrl_rem_0179,t_pointaccueil,pa_typephy,pa_code,N,C,O,O,false,remplissage conditionnel
+ctrl_rem_0179,t_pointaccueil,pa_typephy,pa_code,N,C,O,O,true,remplissage conditionnel | O->true
 ctrl_rem_0180,t_position,ps_1,ps_code,N,N,C,C,false,remplissage conditionnel
 ctrl_rem_0181,t_position,ps_2,ps_code,N,N,C,C,false,remplissage conditionnel
 ctrl_rem_0182,t_position,ps_code,ps_code,N,N,O,O,true,
@@ -240,9 +240,9 @@ ctrl_rem_0238,t_tiroir,ti_prop,ti_code,N,N,O,O,true,
 ctrl_rem_0239,t_tiroir,ti_rf_code,ti_code,N,N,O,O,true,
 ctrl_rem_0240,t_tiroir,ti_taille,ti_code,N,N,O,O,true,
 ctrl_rem_0241,t_tiroir,ti_type,ti_code,N,N,O,O,true,
-ctrl_rem_0242,t_tranchee,geom,tr_code,N,C,O,O,false,remplissage conditionnel
-ctrl_rem_0243,t_tranchee,tr_code,tr_code,N,C,O,O,false,remplissage conditionnel
-ctrl_rem_0244,t_tranchee,tr_compo,tr_code,N,C,O,O,false,remplissage conditionnel
+ctrl_rem_0242,t_tranchee,geom,tr_code,N,C,O,O,true,remplissage conditionnel | O->true
+ctrl_rem_0243,t_tranchee,tr_code,tr_code,N,C,O,O,true,remplissage conditionnel | O->true
+ctrl_rem_0244,t_tranchee,tr_compo,tr_code,N,C,O,O,true,remplissage conditionnel | O->true
 ctrl_rem_0245,t_tranchee,tr_couptyp,tr_code,N,C,C,C,false,remplissage conditionnel
 ctrl_rem_0246,t_tranchee,tr_dtclass,tr_code,N,N,O,O,true,
 ctrl_rem_0247,t_tranchee,tr_lgreel,tr_code,N,N,O,O,true,
@@ -264,7 +264,7 @@ ctrl_rem_0262,t_znro,zn_etat,zn_code,O,O,O,O,true,
 ctrl_rem_0263,t_znro,zn_lc_code,zn_code,O,O,O,O,true,
 ctrl_rem_0264,t_znro,zn_nd_code,zn_code,O,O,O,O,true,
 ctrl_rem_0265,t_znro,zn_nom,zn_code,O,O,N,N,true,
-ctrl_rem_0266,t_znro,zn_nroref,zn_code,C,O,O,O,false,remplissage conditionnel
+ctrl_rem_0266,t_znro,zn_nroref,zn_code,C,O,O,O,true,remplissage conditionnel | O->true
 ctrl_rem_0267,t_znro,zn_r1_code,zn_code,O,O,O,O,true,
 ctrl_rem_0268,t_znro,zn_r2_code,zn_code,O,O,O,O,true,
 ctrl_rem_0269,t_zsro,geom,zs_code,O,O,O,O,true,
@@ -279,6 +279,6 @@ ctrl_rem_0277,t_zsro,zs_nom,zs_code,O,O,N,N,true,
 ctrl_rem_0278,t_zsro,zs_r1_code,zs_code,O,O,O,O,true,
 ctrl_rem_0279,t_zsro,zs_r2_code,zs_code,O,O,O,O,true,
 ctrl_rem_0280,t_zsro,zs_r3_code,zs_code,N,O,O,O,true,
-ctrl_rem_0281,t_zsro,zs_refpm,zs_code,C,O,O,O,false,remplissage conditionnel
+ctrl_rem_0281,t_zsro,zs_refpm,zs_code,C,O,O,O,true,remplissage conditionnel | O->true
 ctrl_rem_0282,t_zsro,zs_zn_code,zs_code,O,O,O,O,true,
 ctrl_rem_0283,t_zsro,zs_znllong,zs_code,O,O,O,O,true,
