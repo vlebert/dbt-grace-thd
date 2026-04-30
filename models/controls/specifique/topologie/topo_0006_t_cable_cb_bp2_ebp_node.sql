@@ -4,7 +4,7 @@
     classe='t_cable',
     cle_primaire='cb_code',
     attribut='cb_bp2',
-    description='cb_bp2 ne correspond pas à un ebp situé sur cb_nd2',
+    description='cb_bp2 non sur cb_nd2 (via ebp/ptech)',
     requ_princ="SELECT "
                 ~ "    cb.cb_code, "
                 ~ "    cb.cb_nd2, "

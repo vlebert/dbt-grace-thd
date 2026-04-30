@@ -4,7 +4,7 @@
     classe='t_cable',
     cle_primaire='cb_code',
     attribut='cb_ba1',
-    description='cb_ba1 ne correspond pas à une baie située sur le noeud cb_nd1',
+    description='cb_ba1 non sur cb_nd1 (via baie/local/site)',
     requ_princ="SELECT "
                 ~ "    cb.cb_code, "
                 ~ "    cb.cb_nd1, "

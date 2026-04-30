@@ -4,7 +4,7 @@
     classe='t_cheminement',
     cle_primaire='cm_code',
     attribut='cm_ndcode1',
-    description='Distance supérieure à 0,01m entre cm_ndcode1 et extrémités du cheminement',
+    description='Distance cm_ndcode1/extr cheminement > 0.01m',
     requ_princ="SELECT "
                 ~ "    cm.cm_code, "
                 ~ "    cm.cm_ndcode1, "

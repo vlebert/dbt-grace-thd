@@ -4,7 +4,7 @@
     classe='t_cable',
     cle_primaire='cb_code',
     attribut='cb_code',
-    description="Ecart > 10 pourcent entre longueur cable et somme des longueurs des cheminements associes",
+    description='Ecart > 10 pour cent long cable/somme cheminements',
     requ_princ="SELECT "
                 ~ "    cl.cl_cb_code AS cb_code, "
                 ~ "    cb.cb_codeext, "

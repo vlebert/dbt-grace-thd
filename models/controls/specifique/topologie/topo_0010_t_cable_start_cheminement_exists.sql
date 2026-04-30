@@ -4,7 +4,7 @@
     classe='t_cable',
     cle_primaire='cb_code',
     attribut='cb_nd1',
-    description="Absence de cheminement de depart pour cable (hors RACCORDEMENT)",
+    description='Cheminement depart manquant (hors RA)',
     requ_princ="SELECT "
                 ~ "    cb.cb_code, "
                 ~ "    cb.cb_nd1, "

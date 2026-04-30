@@ -4,7 +4,7 @@
     classe='t_cable',
     cle_primaire='cb_code',
     attribut='cb_nd1',
-    description='Distance supérieure à 0,01m entre cb_nd1 et extrémités du câble',
+    description='Distance cb_nd1/extr cable > 0.01m',
     requ_princ="SELECT "
                 ~ "    cb.cb_code, "
                 ~ "    cb.cb_nd1, "

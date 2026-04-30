@@ -4,7 +4,7 @@
     classe='t_zsro',
     cle_primaire='zs_code',
     attribut='geom',
-    description="La géométrie de la ZSRO n'est pas intégralement comprise dans la géométrie de la ZNRO",
+    description='ZSRO non contenue dans ZNRO',
     requ_princ="SELECT "
                 ~ "    zs.zs_code, "
                 ~ "    ST_Within(zs.geom, ST_Buffer(zn.geom, 100)) AS is_within "
