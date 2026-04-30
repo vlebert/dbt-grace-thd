@@ -17,6 +17,6 @@
                 ~ "LEFT JOIN " ~ source('gracethd', 't_zsro') ~ " zs ON a.geom && zs.geom AND ST_Within(a.geom, zs.geom) "
                 ~ "GROUP BY a.ad_code",
     condition="src.nb_zone > 1",
-    detail_erreur="'L''adresse est presente dans les ZSRO suivantes : ' || src.zs_codes || ' - ' || src.zs_refpms",
+    detail_erreur="'L''adresse est présente dans les ZSRO suivantes : ' || src.zs_codes || ' - ' || src.zs_refpms",
     is_active=get_metier_config('metier_0009')
 ) }}

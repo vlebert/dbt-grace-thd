@@ -16,6 +16,6 @@
                 ~ "FROM " ~ source('gracethd', 't_local') ~ " lc, " ~ source('gracethd', 't_zsro') ~ " zs "
                 ~ "WHERE lc.lc_code = zs.zs_lc_code",
     condition="src.lc_codeext IS DISTINCT FROM src.zs_r3_code",
-    detail_erreur="'La zsro est liee au local ' || src.lc_code || ' mais zs_r3_code (' || COALESCE(src.zs_r3_code, 'NULL') || ') <> lc_codeext (' || COALESCE(src.lc_codeext, 'NULL') || ')'",
+    detail_erreur="'La zsro est liée au local ' || src.lc_code || ' mais zs_r3_code (' || COALESCE(src.zs_r3_code, 'NULL') || ') <> lc_codeext (' || COALESCE(src.lc_codeext, 'NULL') || ')'",
     is_active=get_metier_config('metier_0008')
 ) }}
