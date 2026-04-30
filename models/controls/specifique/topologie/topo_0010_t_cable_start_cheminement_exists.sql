@@ -4,7 +4,7 @@
     classe='t_cable',
     cle_primaire='cb_code',
     attribut='cb_nd1',
-    description="Absence de cheminement de départ pour câble (hors RACCORDEMENT)",
+    description="Absence de cheminement de depart pour cable (hors RACCORDEMENT)",
     requ_princ="SELECT "
                 ~ "    cb.cb_code, "
                 ~ "    cb.cb_nd1, "
@@ -16,6 +16,6 @@
                 ~ "FROM " ~ source('gracethd', 't_cable') ~ " cb "
                 ~ "WHERE cb.cb_typelog != 'RA'",
     condition="src.has_cheminement = false",
-    detail_erreur="'Pas de cheminement de départ pour câble ' || src.cb_code || ' (nd1: ' || src.cb_nd1 || ')'",
+    detail_erreur="'Pas de cheminement de depart pour cable ' || src.cb_code || ' (nd1: ' || src.cb_nd1 || ')'",
     is_active=get_topo_config('topo_0010')
 ) }}

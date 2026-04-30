@@ -4,7 +4,7 @@
     classe='t_cable',
     cle_primaire='cb_code',
     attribut='cb_nd2',
-    description="Absence de cheminement darrivee pour cable (hors RACCORDEMENT)",
+    description="Absence de cheminement d''arrivee pour cable (hors RACCORDEMENT)",
     requ_princ="SELECT "
                 ~ "    cb.cb_code, "
                 ~ "    cb.cb_nd2, "
@@ -16,6 +16,6 @@
                 ~ "FROM " ~ source('gracethd', 't_cable') ~ " cb "
                 ~ "WHERE cb.cb_typelog != 'RA'",
     condition="src.has_cheminement = false",
-    detail_erreur="'Pas de cheminement darrivee pour cable ' || src.cb_code || ' (nd2: ' || src.cb_nd2 || ')'",
+    detail_erreur="'Pas de cheminement d''arrivee pour cable ' || src.cb_code || ' (nd2: ' || src.cb_nd2 || ')'",
     is_active=get_topo_config('topo_0011')
 ) }}
