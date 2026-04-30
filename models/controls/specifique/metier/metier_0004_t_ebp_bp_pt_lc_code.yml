@@ -1,0 +1,9 @@
+version: 2
+
+models:
+  - name: metier_0004_t_ebp_bp_pt_lc_code
+    description: |
+      Controle que chaque EBP a soit un point technique (bp_pt_code) soit un local technique (bp_lc_code).
+      Un EBP doit etre geolocalise via un point ou un local technique.
+    config:
+      tags: ['control', 'métier']

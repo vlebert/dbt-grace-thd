@@ -1,0 +1,9 @@
+version: 2
+
+models:
+  - name: metier_0009_t_adresse_ad_prises_multi_zsro
+    description: |
+      Controle qu'une adresse avec des prises n'est pas situee sur plusieurs ZSRO.
+      Une adresse doit appartenir a une seule zone de service.
+    config:
+      tags: ['control', 'métier']

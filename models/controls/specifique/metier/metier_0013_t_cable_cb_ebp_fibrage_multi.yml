@@ -1,0 +1,9 @@
+version: 2
+
+models:
+  - name: metier_0013_t_cable_cb_ebp_fibrage_multi
+    description: |
+      Controle qu'un cable n'est pas connecte a plus de 2 EBP via fibrage.
+      Detecte les cables avec trop de connexions EBP.
+    config:
+      tags: ['control', 'métier']

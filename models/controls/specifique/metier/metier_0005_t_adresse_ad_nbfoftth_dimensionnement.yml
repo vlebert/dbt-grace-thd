@@ -1,0 +1,9 @@
+version: 2
+
+models:
+  - name: metier_0005_t_adresse_ad_nbfoftth_dimensionnement
+    description: |
+      Controle la coherence entre ad_nbfoftth et la somme des champs ad_nblres + ad_nblpro + ad_nblent + ad_nblpub.
+      Verifie que le nombre total de prises FTTH declare correspond au calcul.
+    config:
+      tags: ['control', 'métier']

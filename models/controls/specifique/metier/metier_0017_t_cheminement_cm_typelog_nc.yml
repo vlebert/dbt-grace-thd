@@ -1,0 +1,9 @@
+version: 2
+
+models:
+  - name: metier_0017_t_cheminement_cm_typelog_nc
+    description: |
+      Controle que le champ cm_typelog n'a pas la valeur NC (Non Communique).
+      Tous les cheminements doivent avoir un type logique connu.
+    config:
+      tags: ['control', 'métier']

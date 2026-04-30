@@ -1,0 +1,9 @@
+version: 2
+
+models:
+  - name: metier_0016_t_local_lc_nro_sans_znro
+    description: |
+      Controle qu'un local de type NRO est associe a une zone NRO (t_znro).
+      Tous les locaux NRO doivent avoir une zone NRO.
+    config:
+      tags: ['control', 'métier']

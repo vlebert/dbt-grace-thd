@@ -92,6 +92,26 @@ vars:
     - topo_0010_t_cable_start_cheminement_exists
     - topo_0011_t_cable_end_cheminement_exists
     - topo_0012_t_cable_length_mismatch
+    # Contrôles métier
+    - metier_0001_t_fibre_fo_numtub_nintub
+    - metier_0002_t_ebp_bp_code_bpe_pbo
+    - metier_0003_t_cable_cb_geom_distribution
+    - metier_0004_t_ebp_bp_pt_lc_code
+    - metier_0005_t_adresse_ad_nbfoftth_dimensionnement
+    - metier_0006_t_adresse_ad_nbloc_calcule
+    - metier_0007_t_cable_cb_typelog_nc
+    - metier_0008_t_zsro_zs_r3_lc_codeext
+    - metier_0009_t_adresse_ad_prises_multi_zsro
+    - metier_0010_t_position_ps_1_multi_fibre
+    - metier_0011_t_position_ps_2_multi_fibre
+    - metier_0012_t_cable_cb_sans_geom_nd_diff
+    - metier_0013_t_cable_cb_ebp_fibrage_multi
+    - metier_0014_t_cheminement_cm_prop_incoherence
+    - metier_0015_t_local_lc_nro_multi_noeud
+    - metier_0016_t_local_lc_nro_sans_znro
+    - metier_0017_t_cheminement_cm_typelog_nc
+    - metier_0018_t_cable_cb_longueur_sans_cheminement
+    - metier_0019_t_ptech_pt_appui_doublon
 
   # Extensions utilisateur : ajouter ici les contrôles personnalisés
   grace_ctrl_models_ext: []
@@ -163,6 +183,18 @@ seeds:
           conteneur_c4: varchar(1)
           actif: boolean
       param_ctrl_topo:
+        +column_types:
+          id_test: varchar(50)
+          classe: varchar(50)
+          attribut: varchar(50)
+          cle_primaire: varchar(50)
+          conteneur_c1: varchar(1)
+          conteneur_c2: varchar(1)
+          conteneur_c3: varchar(1)
+          conteneur_c4: varchar(1)
+          actif: boolean
+          description: varchar(254)
+      param_ctrl_metier:
         +column_types:
           id_test: varchar(50)
           classe: varchar(50)
