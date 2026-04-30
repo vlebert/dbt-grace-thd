@@ -103,4 +103,12 @@ for TABLE in "${CSV_TABLES[@]}"; do
     -overwrite -progress
 done
 
+# --- Création des index ------------------------------------------------------
+echo "Création des index sur $DB_SCHEMA"
+
+PGPASSWORD="$DB_PASSWORD" psql \
+  -h "$DB_HOST" -p "$DB_PORT" -U "$DB_USER" -d "$DB_NAME" \
+  -v ON_ERROR_STOP=1 \
+  -f "$SCRIPT_DIR/gracethd_indexes.sql"
+
 echo "Import terminé."
