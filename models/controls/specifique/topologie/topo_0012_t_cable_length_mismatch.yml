@@ -1,0 +1,11 @@
+version: 2
+
+models:
+  - name: topo_0012_t_cable_length_mismatch
+    description: |
+      Vérifie que l'écart entre la longueur du câble (via t_cableline.geom) et
+      la somme des longueurs des cheminements associés (via t_cab_chem) ne dépasse
+      pas 10% de la longueur du câble. Un écart supérieur peut indiquer une incohérence
+      topologique ou des données manquantes.
+    config:
+      tags: ['control', 'topologie']

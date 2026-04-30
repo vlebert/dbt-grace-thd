@@ -79,6 +79,19 @@ vars:
     - rc_0812_t_site_st_statut
     - rc_0814_t_site_st_numero
     - rc_0815_t_site_st_design
+    # Contrôles topologie
+    - topo_0001_t_cheminement_cm_ndcode1_distance
+    - topo_0002_t_cheminement_cm_ndcode2_distance
+    - topo_0003_t_cable_cb_nd1_distance
+    - topo_0004_t_cable_cb_nd2_distance
+    - topo_0005_t_cable_cb_bp1_ebp_node
+    - topo_0006_t_cable_cb_bp2_ebp_node
+    - topo_0007_t_zsro_within_znro
+    - topo_0008_t_cable_cb_ba1_local_node
+    - topo_0009_t_cable_cb_ba2_local_node
+    - topo_0010_t_cable_start_cheminement_exists
+    - topo_0011_t_cable_end_cheminement_exists
+    - topo_0012_t_cable_length_mismatch
 
   # Extensions utilisateur : ajouter ici les contrôles personnalisés
   grace_ctrl_models_ext: []
@@ -149,3 +162,15 @@ seeds:
           conteneur_c3: varchar(1)
           conteneur_c4: varchar(1)
           actif: boolean
+      param_ctrl_topo:
+        +column_types:
+          id_test: varchar(50)
+          classe: varchar(50)
+          attribut: varchar(50)
+          cle_primaire: varchar(50)
+          conteneur_c1: varchar(1)
+          conteneur_c2: varchar(1)
+          conteneur_c3: varchar(1)
+          conteneur_c4: varchar(1)
+          actif: boolean
+          description: varchar(254)

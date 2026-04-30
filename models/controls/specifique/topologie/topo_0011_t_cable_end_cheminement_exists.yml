@@ -1,0 +1,10 @@
+version: 2
+
+models:
+  - name: topo_0011_t_cable_end_cheminement_exists
+    description: |
+      Vérifie l'existence d'au moins un cheminement connecté au noeud d'arrivée
+      (cb_nd2) pour chaque câble dont le type logique n'est pas RACCORDEMENT.
+      Un cheminement est considéré connecté si cb_nd2 = cm_ndcode1 ou cm_ndcode2.
+    config:
+      tags: ['control', 'topologie']

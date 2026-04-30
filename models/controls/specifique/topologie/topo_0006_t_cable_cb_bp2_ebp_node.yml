@@ -1,0 +1,9 @@
+version: 2
+
+models:
+  - name: topo_0006_t_cable_cb_bp2_ebp_node
+    description: |
+      Vérifie que le point de branchement cb_bp2 est bien situé sur le noeud cb_nd2
+      via la relation : cb_bp2 -> t_ebp -> t_ptech.pt_nd_code doit correspondre à cb_nd2.
+    config:
+      tags: ['control', 'topologie']

@@ -1,0 +1,10 @@
+version: 2
+
+models:
+  - name: topo_0004_t_cable_cb_nd2_distance
+    description: |
+      Contrôle que la distance entre le noeud cb_nd2 et les extrémités de la géométrie
+      du câble (via t_cableline) est inférieure ou égale à 0,01m (1cm).
+      Vérifie la cohérence entre la déclaration du noeud et la géométrie.
+    config:
+      tags: ['control', 'topologie']
