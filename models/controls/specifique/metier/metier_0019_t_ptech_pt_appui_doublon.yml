@@ -1,0 +1,9 @@
+version: 2
+
+models:
+  - name: metier_0019_t_ptech_pt_appui_doublon
+    description: |
+      Controle les doublons potentiels d'appui avec meme identifiant FT et distance < 50m.
+      Detecte les appuis FT dupliques geographiquement proches.
+    config:
+      tags: ['control', 'métier']

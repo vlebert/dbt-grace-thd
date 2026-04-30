@@ -1,0 +1,9 @@
+version: 2
+
+models:
+  - name: metier_0012_t_cable_cb_sans_geom_nd_diff
+    description: |
+      Controle les cables sans geometrie mais dont les noeuds amont et aval sont different.
+      Un cable avec cb_nd1 != cb_nd2 doit avoir une geometrie.
+    config:
+      tags: ['control', 'métier']

@@ -1,0 +1,9 @@
+version: 2
+
+models:
+  - name: metier_0008_t_zsro_zs_r3_lc_codeext
+    description: |
+      Controle que pour un local et sa ZSRO liee (lc_code = zs_lc_code), on a lc_codeext = zs_r3_code.
+      Verifie la coherence entre le code externe du local et le code R3 de la zone.
+    config:
+      tags: ['control', 'métier']

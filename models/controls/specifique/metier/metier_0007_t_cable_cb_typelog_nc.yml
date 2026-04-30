@@ -1,0 +1,9 @@
+version: 2
+
+models:
+  - name: metier_0007_t_cable_cb_typelog_nc
+    description: |
+      Controle que le champ cb_typelog n'a pas la valeur NC (Non Communique).
+      Tous les cables doivent avoir un type logique connu.
+    config:
+      tags: ['control', 'métier']

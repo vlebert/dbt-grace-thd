@@ -1,0 +1,20 @@
+id_test,classe,attribut,cle_primaire,conteneur_c1,conteneur_c2,conteneur_c3,conteneur_c4,actif,description
+metier_0001,t_fibre,fo_numtub_fo_nintub,fo_code,O,O,O,O,true,Duplicat num tube/fibre dans cable
+metier_0002,t_ebp,bp_code_bpe_pbo,bp_code,O,O,O,O,true,EBP BPE/PBO non reference en aval
+metier_0003,t_cable,cb_geom_distribution,cb_code,O,O,O,O,true,Cable distribution sans geometrie
+metier_0004,t_ebp,bp_pt_lc_code,bp_code,O,O,O,O,true,EBP sans point/local technique
+metier_0005,t_adresse,ad_nbfoftth_dimensionnement,ad_code,O,O,O,O,true,Incoherence ad_nbfoftth vs somme
+metier_0006,t_adresse,ad_nbloc_calcule,ad_code,O,O,O,O,true,Nb locaux diff calcul ad_nb*
+metier_0007,t_cable,cb_typelog_nc,cb_code,O,O,O,O,true,Cable cb_typelog = NC
+metier_0008,t_zsro,zs_r3_lc_codeext,zs_code,O,O,O,O,true,local/zsro lc_codeext != zs_r3
+metier_0009,t_adresse,ad_prises_multi_zsro,ad_code,O,O,O,O,true,Adresse avec prises sur multi ZSRO
+metier_0010,t_position,ps_1_multi_fibre,ps_code,O,O,O,O,true,Fibre multi positions ps_1
+metier_0011,t_position,ps_2_multi_fibre,ps_code,O,O,O,O,true,Fibre multi positions ps_2
+metier_0012,t_cable,cb_sans_geom_nd_diff,cb_code,O,O,O,O,true,Cable sans geom mais nd1 != nd2
+metier_0013,t_cable,cb_ebp_fibrage_multi,cb_code,O,O,O,O,true,Cable connecte >2 EBP via fibrage
+metier_0014,t_cheminement,cm_prop_incoherence,cm_code,O,O,O,O,true,Incoherence proprio cheminement/chambres
+metier_0015,t_local,lc_nro_multi_noeud,lc_code,O,O,O,O,true,Plusieurs NRO sur meme noeud
+metier_0016,t_local,lc_nro_sans_znro,lc_code,O,O,O,O,true,NRO non associe a zone NRO
+metier_0017,t_cheminement,cm_typelog_nc,cm_code,O,O,O,O,true,Cheminement cm_typelog = NC
+metier_0018,t_cable,cb_longueur_sans_cheminement,cb_code,O,O,O,O,true,Cable long>0 sans cheminement
+metier_0019,t_ptech,pt_appui_doublon,pt_code,O,O,O,O,true,Doublon appui FT <50m

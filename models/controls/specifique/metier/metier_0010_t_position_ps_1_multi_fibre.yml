@@ -1,0 +1,9 @@
+version: 2
+
+models:
+  - name: metier_0010_t_position_ps_1_multi_fibre
+    description: |
+      Controle qu'une fibre n'est pas presente en amont dans plusieurs positions (ps_1).
+      Detecte les erreurs de route optique sur t_position.ps_1.
+    config:
+      tags: ['control', 'métier']

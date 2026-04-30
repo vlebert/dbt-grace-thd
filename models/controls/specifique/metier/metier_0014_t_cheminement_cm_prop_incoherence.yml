@@ -1,0 +1,9 @@
+version: 2
+
+models:
+  - name: metier_0014_t_cheminement_cm_prop_incoherence
+    description: |
+      Controle la coherence du proprietaires entre le cheminement et les chambres conectees.
+      Le propretaire du cheminement doit correspondre a celui des chambres.
+    config:
+      tags: ['control', 'métier']

@@ -1,0 +1,9 @@
+version: 2
+
+models:
+  - name: metier_0003_t_cable_cb_geom_distribution
+    description: |
+      Controle que les cables de type DI (Distribution) ont une geometrie.
+      Un cable de distribution doit avoir une geometrie si amont != aval.
+    config:
+      tags: ['control', 'métier']

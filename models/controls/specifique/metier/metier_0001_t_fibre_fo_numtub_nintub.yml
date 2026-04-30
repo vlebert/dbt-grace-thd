@@ -1,0 +1,9 @@
+version: 2
+
+models:
+  - name: metier_0001_t_fibre_fo_numtub_nintub
+    description: |
+      Controle que la combinaison num de tube / num de fibre est unique dans un cable.
+      Detecte les doublons de combinaisons Txxx - Fyyy dans un meme cable.
+    config:
+      tags: ['control', 'métier']

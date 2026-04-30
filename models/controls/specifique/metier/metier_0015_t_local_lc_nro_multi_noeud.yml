@@ -1,0 +1,9 @@
+version: 2
+
+models:
+  - name: metier_0015_t_local_lc_nro_multi_noeud
+    description: |
+      Controle qu'il n'y a pas plusieurs locaux de type NRO sur un meme noeud.
+      Un seul NRO est autorise par noeud.
+    config:
+      tags: ['control', 'métier']

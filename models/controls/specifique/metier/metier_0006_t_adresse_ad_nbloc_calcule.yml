@@ -1,0 +1,9 @@
+version: 2
+
+models:
+  - name: metier_0006_t_adresse_ad_nbloc_calcule
+    description: |
+      Controle que le nombre de locaux associes a une adresse correspond a la somme des champs de dimensionnement.
+      Verifie nb locaux = ad_nblres + ad_nblpro + ad_nblent + ad_nblpub.
+    config:
+      tags: ['control', 'métier']

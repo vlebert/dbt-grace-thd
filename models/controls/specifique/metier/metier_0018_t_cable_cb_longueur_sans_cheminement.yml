@@ -1,0 +1,9 @@
+version: 2
+
+models:
+  - name: metier_0018_t_cable_cb_longueur_sans_cheminement
+    description: |
+      Controle les cables avec longueur geometrique > 0 mais sans association a un cheminement.
+      Hors cables de type RA (raccordement).
+    config:
+      tags: ['control', 'métier']

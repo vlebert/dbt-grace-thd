@@ -21,8 +21,8 @@ Ce document définit les conventions d'architecture pour l'implémentation des c
 | Clé étrangère | **Générique** | `ctrl_fk` |
 | Liste de valeurs | **Générique** | `ctrl_liste_valeur` |
 | Remplissage conditionnel | **Spécifique** | `ctrl_rc_<id>` |
-| Contrôle géométrique / topologique | **Spécifique** | `ctrl_topo_<id>` |
-| Règle métier | **Spécifique** | `ctrl_m_<id>` |
+| Contrôle géométrique / topologique | **Spécifique** | `topo_<id>` |
+| Règle métier | **Spécifique** | `metier_<id>` |
 
 ## Structure de fichiers
 
@@ -36,11 +36,11 @@ models/controls/
     ctrl_liste_valeur.sql       # conformité aux listes de valeurs l_*
   specifique/
     remplissage_cond/
-      ctrl_rc_<id>.sql
+      rc_<id>.sql
     topologie/
-      ctrl_topo_<id>.sql
+      topo_<id>.sql
     metier/
-      ctrl_m_<id>.sql
+      metier_<id>.sql
   rapport_controles.sql         # UNION ALL via vars grace_ctrl_models (sans geom)
   rapport_controles_geo.sql     # rapport_controles + geom résolue par classe
 
@@ -51,6 +51,8 @@ seeds/
     param_ctrl_unicite.csv
     param_ctrl_fk.csv
     param_ctrl_liste_valeur.csv
+    param_ctrl_topo.csv
+    param_ctrl_metier.csv
   listes/
     l_<nom>.csv                 # listes de valeurs GRACE THD (44 tables)
 
@@ -113,9 +115,9 @@ Format : `ctrl_<prefixe>_<numero>` (4 chiffres avec zéros).
 | `lv` | liste de valeurs |
 | `rc` | remplissage conditionnel |
 | `topo` | topologie / géométrie |
-| `m` | règle métier |
+| `metier` | règle métier |
 
-Exemples : `ctrl_uc_0001`, `ctrl_lv_0042`, `ctrl_topo_017`.
+Exemples : `ctrl_uc_0001`, `ctrl_lv_0042`, `topo_0001`, `metier_0001`.
 
 ## Contrôles spécifiques
 
@@ -200,6 +202,19 @@ Fonctionnement :
 - Vérifie si `actif = true` ET si `conteneur_{grace_container_level} = 'O'`
 - Retourne un booléen pour `is_active` dans `ctrl_specifique`
 
+### Macro `get_metier_config`
+
+Définie dans `macros/controls/get_metier_config.sql`. Centralise l'activation des contrôles **métier**.
+
+| Paramètre | Obligatoire | Description |
+|---|---|---|
+| `id_test` | oui | Identifiant du test, ex. `metier_0001` |
+
+Fonctionnement :
+- Lit le seed `param_ctrl_metier` via `run_query`
+- Vérifie si `actif = true` ET si `conteneur_{grace_container_level} = 'O'`
+- Retourne un booléen pour `is_active` dans `ctrl_specifique`
+
 ### Contrôles topologiques
 
 Les contrôles de la catégorie `topologie` vérifient les règles de cohérence géométrique et topologique entre les entités du modèle GRACE THD.
@@ -218,6 +233,21 @@ Les contrôles de la catégorie `topologie` vérifient les règles de cohérence
 - **Tolérance** : Seuil standard de **0.01m** pour les contrôles de distance
 - **Unité** : Les distances sont calculées en **mètres** (SCR projeté en EPSG:2154)
 
+### Contrôles métier
+
+Les contrôles de la catégorie `métier` vérifient les règles de cohérence fonctionnelle et de dimensionnement du modèle GRACE THD.
+
+**Seed de paramétrage** : `seeds/controls/param_ctrl_metier.csv`
+- Colonnes : `id_test`, `classe`, `attribut`, `cle_primaire`, `conteneur_c1..c4`, `actif`, `description`
+- Activation : contrôle actif si `actif = true` ET `conteneur_cX = 'O'` (Obligatoire) pour le niveau de conteneur courant
+- Tous les contrôles sont activés par défaut sur tous les niveaux de conteneur (`conteneur_c1..c4 = 'O'`)
+
+**Conventions** :
+- Préfixe des `id_test` : `metier_`
+- Préfixe des fichiers : `metier_<4 chiffres>_<table>_<attribut>[_description].sql`
+- `type_controle` : `métier`
+- Utilisation de `get_metier_config(id_test)` pour l'activation dynamique
+
 ### Convention de nommage des fichiers
 
 Format : `<prefixe>_<digit>_<table>_<attribut>[_<description-courte>].sql`
@@ -228,11 +258,11 @@ Le `<digit>` est un numéro séquentiel sur 4 chiffres, indépendant du numérot
 |---|---|---|
 | `rc` | Remplissage conditionnel | `remplissage_conditionnel` |
 | `topo` | Topologie / géométrie | `topologie` |
-| `m` | Règle métier | `regle_metier` |
+| `metier` | Règle métier | `métier` |
 
 Exemples :
 - `rc_0001_t_cable_cb_r3_code.sql`
-- `m_0001_t_site_st_typelog_coherence_local.sql`
+- `metier_0001_t_fibre_fo_numtub_nintub.sql`
 - `topo_0001_t_cable_geom_continuite.sql`
 
 Le suffixe `<description-courte>` est optionnel pour les cas simples (classe + attribut suffisent) et recommandé quand plusieurs contrôles portent sur le même attribut ou quand la condition mérite d'être explicitée dans le nom.
