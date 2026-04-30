@@ -9,8 +9,8 @@
                 ~ "    cm.cm_code, "
                 ~ "    cm.cm_ndcode1, "
                 ~ "    nd.geom AS nd_geom, "
-                ~ "    ROUND(CAST(LEAST(ST_Distance(ST_StartPoint(cm.geom), nd.geom), "
-                ~ "                 ST_Distance(ST_EndPoint(cm.geom), nd.geom)) AS numeric), 3) AS distance "
+                ~ "    ROUND(CAST(LEAST(ST_Distance(ST_StartPoint(ST_LineMerge(cm.geom)), nd.geom), "
+                ~ "                 ST_Distance(ST_EndPoint(ST_LineMerge(cm.geom)), nd.geom)) AS numeric), 3) AS distance "
                 ~ "FROM " ~ source('gracethd', 't_cheminement') ~ " cm "
                 ~ "LEFT JOIN " ~ source('gracethd', 't_noeud') ~ " nd ON nd.nd_code = cm.cm_ndcode1",
     condition="src.distance > 0.01",
