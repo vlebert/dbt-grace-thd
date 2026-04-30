@@ -1,0 +1,11 @@
+version: 2
+
+models:
+  - name: topo_0012_t_cable_length_mismatch
+    description: |
+      Verifie que l'ecart entre la longueur du cable (via t_cableline.geom) et
+      la somme des longueurs des cheminements associes (via t_cab_chem) ne depasse
+      pas 10 pour cent de la longueur du cable. Un ecart superieur peut indiquer une incoherence
+      topologique ou des donnees manquantes.
+    config:
+      tags: ["control", "topologie"]

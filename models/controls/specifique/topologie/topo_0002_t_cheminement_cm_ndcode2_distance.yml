@@ -1,0 +1,10 @@
+version: 2
+
+models:
+  - name: topo_0002_t_cheminement_cm_ndcode2_distance
+    description: |
+      Contrôle que la distance entre le noeud cm_ndcode2 et les extrémités du cheminement
+      est inférieure ou égale à 0,01m (1cm). Vérifie la cohérence topologique entre
+      la déclaration du noeud d'arrivée et la géométrie du cheminement.
+    config:
+      tags: ['control', 'topologie']

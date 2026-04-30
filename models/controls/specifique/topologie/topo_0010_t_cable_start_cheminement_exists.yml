@@ -1,0 +1,10 @@
+version: 2
+
+models:
+  - name: topo_0010_t_cable_start_cheminement_exists
+    description: |
+      Verifie l'existence d'au moins un cheminement connecte au noeud de depart
+      (cb_nd1) pour chaque cable dont le type logique n'est pas RACCORDEMENT.
+      Un cheminement est considere connecte si cb_nd1 = cm_ndcode1 ou cm_ndcode2.
+    config:
+      tags: ["control", "topologie"]

@@ -1,0 +1,13 @@
+id_test,classe,attribut,cle_primaire,conteneur_c1,conteneur_c2,conteneur_c3,conteneur_c4,actif,description
+topo_0001,t_cheminement,cm_ndcode1,cm_code,O,O,O,O,true,"Distance cm_ndcode1/extr cheminement > 0.01m"
+topo_0002,t_cheminement,cm_ndcode2,cm_code,O,O,O,O,true,"Distance cm_ndcode2/extr cheminement > 0.01m"
+topo_0003,t_cable,cb_nd1,cb_code,O,O,O,O,true,"Distance cb_nd1/extr cable > 0.01m"
+topo_0004,t_cable,cb_nd2,cb_code,O,O,O,O,true,"Distance cb_nd2/extr cable > 0.01m"
+topo_0005,t_cable,cb_bp1,cb_code,O,O,O,O,true,"cb_bp1 non sur cb_nd1 (via ebp/ptech)"
+topo_0006,t_cable,cb_bp2,cb_code,O,O,O,O,true,"cb_bp2 non sur cb_nd2 (via ebp/ptech)"
+topo_0007,t_zsro,geom,zs_code,O,O,O,O,true,"ZSRO non contenue dans ZNRO"
+topo_0008,t_cable,cb_ba1,cb_code,O,O,O,O,true,"cb_ba1 non sur cb_nd1 (via baie/local/site)"
+topo_0009,t_cable,cb_ba2,cb_code,O,O,O,O,true,"cb_ba2 non sur cb_nd2 (via baie/local/site)"
+topo_0010,t_cable,cb_nd1,cb_code,O,O,O,O,true,"Cheminement depart manquant (hors RA)"
+topo_0011,t_cable,cb_nd2,cb_code,O,O,O,O,true,"Cheminement arrivee manquant (hors RA)"
+topo_0012,t_cable,cb_code,cb_code,O,O,O,O,true,"Ecart > 10 pour cent long cable/somme cheminements"

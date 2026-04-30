@@ -187,6 +187,37 @@ Fonctionnement :
 - Vérifie si `actif = true` ET si `conteneur_{grace_container_level} = 'C'`
 - Retourne un booléen pour `is_active` dans `ctrl_specifique`
 
+### Macro `get_topo_config`
+
+Définie dans `macros/controls/get_topo_config.sql`. Centralise l'activation des contrôles **topologiques**.
+
+| Paramètre | Obligatoire | Description |
+|---|---|---|
+| `id_test` | oui | Identifiant du test, ex. `topo_0001` |
+
+Fonctionnement :
+- Lit le seed `param_ctrl_topo` via `run_query`
+- Vérifie si `actif = true` ET si `conteneur_{grace_container_level} = 'O'`
+- Retourne un booléen pour `is_active` dans `ctrl_specifique`
+
+### Contrôles topologiques
+
+Les contrôles de la catégorie `topologie` vérifient les règles de cohérence géométrique et topologique entre les entités du modèle GRACE THD.
+
+**Seed de paramétrage** : `seeds/controls/param_ctrl_topo.csv`
+- Colonnes : `id_test`, `classe`, `attribut`, `cle_primaire`, `conteneur_c1..c4`, `actif`, `description`
+- Activation : contrôle actif si `actif = true` ET `conteneur_cX = 'O'` (Obligatoire) pour le niveau de conteneur courant
+- Tous les contrôles sont activés par défaut sur tous les niveaux de conteneur (`conteneur_c1..c4 = 'O'`)
+
+**Conventions** :
+- Préfixe des `id_test` : `topo_`
+- Préfixe des fichiers : `topo_<4 chiffres>_<table>_<attribut>[_description].sql`
+- `type_controle` : `topologie`
+- Utilisation de `get_topo_config(id_test)` pour l'activation dynamique
+- **Gestion des MULTILINESTRING** : `ST_LineMerge(geom)` avant `ST_StartPoint`/`ST_EndPoint` pour les contrôles de distance sur les géométries multi-lignes
+- **Tolérance** : Seuil standard de **0.01m** pour les contrôles de distance
+- **Unité** : Les distances sont calculées en **mètres** (SCR projeté en EPSG:2154)
+
 ### Convention de nommage des fichiers
 
 Format : `<prefixe>_<digit>_<table>_<attribut>[_<description-courte>].sql`
