@@ -13,16 +13,18 @@
                 ~ "    sub.nb_ebp_fibrage, "
                 ~ "    sub.liste_ebp "
                 ~ "FROM " ~ source('gracethd', 't_cable') ~ " c "
-                ~ "LEFT JOIN LATERAL ( "
+                ~ "JOIN ( "
                 ~ "    SELECT "
+                ~ "        f.fo_cb_code, "
                 ~ "        COUNT(DISTINCT e.bp_code) AS nb_ebp_fibrage, "
                 ~ "        STRING_AGG(DISTINCT e.bp_code, ', ') AS liste_ebp "
                 ~ "    FROM " ~ source('gracethd', 't_fibre') ~ " f "
                 ~ "    JOIN " ~ source('gracethd', 't_position') ~ " p ON p.ps_1 = f.fo_code OR p.ps_2 = f.fo_code "
                 ~ "    JOIN " ~ source('gracethd', 't_cassette') ~ " cs ON cs.cs_code = p.ps_cs_code "
                 ~ "    JOIN " ~ source('gracethd', 't_ebp') ~ " e ON e.bp_code = cs.cs_bp_code "
-                ~ "    WHERE f.fo_cb_code = c.cb_code "
-                ~ ") sub ON true",
+                ~ "    GROUP BY f.fo_cb_code "
+                ~ "    HAVING COUNT(DISTINCT e.bp_code) > 2 "
+                ~ ") sub ON sub.fo_cb_code = c.cb_code",
     condition="src.nb_ebp_fibrage > 2",
     detail_erreur="'Le cable est connecte a ' || CAST(src.nb_ebp_fibrage AS text) || ' t_ebp via fibrage (' || COALESCE(src.liste_ebp, '') || ')'",
     is_active=get_metier_config('metier_0013')

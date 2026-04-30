@@ -14,7 +14,7 @@
                 ~ "    STRING_AGG(zs.zs_code, ', ') AS zs_codes, "
                 ~ "    STRING_AGG(zs.zs_refpm, ', ') AS zs_refpms "
                 ~ "FROM " ~ source('gracethd', 't_adresse') ~ " a "
-                ~ "LEFT JOIN " ~ source('gracethd', 't_zsro') ~ " zs ON ST_Within(a.geom, zs.geom) "
+                ~ "LEFT JOIN " ~ source('gracethd', 't_zsro') ~ " zs ON a.geom && zs.geom AND ST_Within(a.geom, zs.geom) "
                 ~ "GROUP BY a.ad_code",
     condition="src.nb_zone > 1",
     detail_erreur="'L''adresse est presente dans les ZSRO suivantes : ' || src.zs_codes || ' - ' || src.zs_refpms",

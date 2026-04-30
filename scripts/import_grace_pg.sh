@@ -108,7 +108,7 @@ echo "Création des index sur $DB_SCHEMA"
 
 PGPASSWORD="$DB_PASSWORD" psql \
   -h "$DB_HOST" -p "$DB_PORT" -U "$DB_USER" -d "$DB_NAME" \
-  -v ON_ERROR_STOP=1 \
-  -f "$SCRIPT_DIR/gracethd_indexes.sql"
+  -v ON_ERROR_STOP=0 \
+  -f "$SCRIPT_DIR/gracethd_indexes.sql" 2>&1 | grep -v "does not exist"
 
 echo "Import terminé."

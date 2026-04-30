@@ -1,3 +1,35 @@
+-- Index sur les clés primaires
+DROP INDEX IF EXISTS t_organisme_pk_idx; CREATE INDEX t_organisme_pk_idx ON gracethd_source.t_organisme(or_code);
+DROP INDEX IF EXISTS t_document_pk_idx; CREATE INDEX t_document_pk_idx ON gracethd_source.t_document(do_code);
+DROP INDEX IF EXISTS t_docobj_pk_idx; CREATE INDEX t_docobj_pk_idx ON gracethd_source.t_docobj(od_id);
+DROP INDEX IF EXISTS t_empreinte_pk_idx; CREATE INDEX t_empreinte_pk_idx ON gracethd_source.t_empreinte(em_code);
+DROP INDEX IF EXISTS t_reference_pk_idx; CREATE INDEX t_reference_pk_idx ON gracethd_source.t_reference(rf_code);
+DROP INDEX IF EXISTS t_adresse_pk_idx; CREATE INDEX t_adresse_pk_idx ON gracethd_source.t_adresse(ad_code);
+DROP INDEX IF EXISTS t_noeud_pk_idx; CREATE INDEX t_noeud_pk_idx ON gracethd_source.t_noeud(nd_code);
+DROP INDEX IF EXISTS t_ptech_pk_idx; CREATE INDEX t_ptech_pk_idx ON gracethd_source.t_ptech(pt_code);
+DROP INDEX IF EXISTS t_ebp_pk_idx; CREATE INDEX t_ebp_pk_idx ON gracethd_source.t_ebp(bp_code);
+DROP INDEX IF EXISTS t_cheminement_pk_idx; CREATE INDEX t_cheminement_pk_idx ON gracethd_source.t_cheminement(cm_code);
+DROP INDEX IF EXISTS t_site_pk_idx; CREATE INDEX t_site_pk_idx ON gracethd_source.t_site(st_code);
+DROP INDEX IF EXISTS t_local_pk_idx; CREATE INDEX t_local_pk_idx ON gracethd_source.t_local(lc_code);
+DROP INDEX IF EXISTS t_baie_pk_idx; CREATE INDEX t_baie_pk_idx ON gracethd_source.t_baie(ba_code);
+DROP INDEX IF EXISTS t_cable_pk_idx; CREATE INDEX t_cable_pk_idx ON gracethd_source.t_cable(cb_code);
+DROP INDEX IF EXISTS t_cableline_pk_idx; CREATE INDEX t_cableline_pk_idx ON gracethd_source.t_cableline(cl_code);
+DROP INDEX IF EXISTS t_cab_chem_pk_idx; CREATE INDEX t_cab_chem_pk_idx ON gracethd_source.t_cab_chem(cc_cb_code,cc_cm_code);
+DROP INDEX IF EXISTS t_love_pk_idx; CREATE INDEX t_love_pk_idx ON gracethd_source.t_love(lv_id);
+DROP INDEX IF EXISTS t_tiroir_pk_idx; CREATE INDEX t_tiroir_pk_idx ON gracethd_source.t_tiroir(ti_code);
+DROP INDEX IF EXISTS t_cassette_pk_idx; CREATE INDEX t_cassette_pk_idx ON gracethd_source.t_cassette(cs_code);
+DROP INDEX IF EXISTS t_fibre_pk_idx; CREATE INDEX t_fibre_pk_idx ON gracethd_source.t_fibre(fo_code);
+DROP INDEX IF EXISTS t_position_pk_idx; CREATE INDEX t_position_pk_idx ON gracethd_source.t_position(ps_code);
+DROP INDEX IF EXISTS t_znro_pk_idx; CREATE INDEX t_znro_pk_idx ON gracethd_source.t_znro(zn_code);
+DROP INDEX IF EXISTS t_zsro_pk_idx; CREATE INDEX t_zsro_pk_idx ON gracethd_source.t_zsro(zs_code);
+DROP INDEX IF EXISTS t_zdep_pk_idx; CREATE INDEX t_zdep_pk_idx ON gracethd_source.t_zdep(zd_code);
+DROP INDEX IF EXISTS t_zpbo_pk_idx; CREATE INDEX t_zpbo_pk_idx ON gracethd_source.t_zpbo(zp_code);
+DROP INDEX IF EXISTS t_zcoax_pk_idx; CREATE INDEX t_zcoax_pk_idx ON gracethd_source.t_zcoax(zc_code);
+DROP INDEX IF EXISTS t_ropt_pk_idx; CREATE INDEX t_ropt_pk_idx ON gracethd_source.t_ropt(rt_code);
+DROP INDEX IF EXISTS t_pointaccueil_pk_idx; CREATE INDEX t_pointaccueil_pk_idx ON gracethd_source.t_pointaccueil(pa_code);
+DROP INDEX IF EXISTS t_tranchee_pk_idx; CREATE INDEX t_tranchee_pk_idx ON gracethd_source.t_tranchee(tr_code);
+DROP INDEX IF EXISTS t_point_leve_pk_idx; CREATE INDEX t_point_leve_pk_idx ON gracethd_source.t_point_leve(pl_code);
+
 DROP INDEX IF EXISTS ad_ban_id_idx; CREATE INDEX ad_ban_id_idx ON gracethd_source.t_adresse(ad_ban_id);
 DROP INDEX IF EXISTS ad_x_ban_idx; CREATE INDEX ad_x_ban_idx ON gracethd_source.t_adresse(ad_x_ban);
 DROP INDEX IF EXISTS ad_y_ban_idx; CREATE INDEX ad_y_ban_idx ON gracethd_source.t_adresse(ad_y_ban);
