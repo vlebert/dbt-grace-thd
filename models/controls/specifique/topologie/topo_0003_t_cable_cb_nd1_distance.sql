@@ -9,8 +9,8 @@
                 ~ "    cb.cb_code, "
                 ~ "    cb.cb_nd1, "
                 ~ "    nd.geom AS nd_geom, "
-                ~ "    ROUND(MIN(ST_Distance(ST_StartPoint(cl.geom), nd.geom), "
-                ~ "                 ST_Distance(ST_EndPoint(cl.geom), nd.geom)), 6) AS distance "
+                ~ "    ROUND(CAST(LEAST(ST_Distance(ST_StartPoint(cl.geom), nd.geom), "
+                ~ "                 ST_Distance(ST_EndPoint(cl.geom), nd.geom)) AS numeric), 6) AS distance "
                 ~ "FROM " ~ source('gracethd', 't_cable') ~ " cb "
                 ~ "INNER JOIN " ~ source('gracethd', 't_cableline') ~ " cl ON cb.cb_code = cl.cl_cb_code "
                 ~ "LEFT JOIN " ~ source('gracethd', 't_noeud') ~ " nd ON nd.nd_code = cb.cb_nd1",

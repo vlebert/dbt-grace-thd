@@ -4,7 +4,7 @@
     classe='t_cable',
     cle_primaire='cb_code',
     attribut='cb_code',
-    description="Écart > 10% entre longueur câble et somme des longueurs des cheminements associés",
+    description="Ecart > 10% entre longueur cable et somme des longueurs des cheminements associes",
     requ_princ="SELECT "
                 ~ "    cl.cl_cb_code AS cb_code, "
                 ~ "    cb.cb_codeext, "
@@ -21,11 +21,11 @@
              ~ "AND src.longueur_cable > 0 "
              ~ "AND src.somme_longueur_cheminements > 0 "
              ~ "AND ABS(src.longueur_cable - src.somme_longueur_cheminements) > (src.longueur_cable * 0.1)",
-    detail_erreur="'Câble: ' || COALESCE(src.cb_codeext, 'N/A') || 
-                 ' / Longueur: ' || ROUND(src.longueur_cable, 2) || 
-                 ' / Somme cheminements: ' || ROUND(src.somme_longueur_cheminements, 2) || 
-                 ' / Écart: ' || ROUND(ABS(src.longueur_cable - src.somme_longueur_cheminements), 2) || 
-                 ' (' || ROUND((ABS(src.longueur_cable - src.somme_longueur_cheminements) / src.longueur_cable * 100), 1) || '%) / Cheminements: ' || 
+    detail_erreur="'Cable: ' || COALESCE(src.cb_codeext, 'N/A') || 
+                 ' / Longueur: ' || ROUND(CAST(src.longueur_cable AS numeric), 2) || 
+                 ' / Somme cheminements: ' || ROUND(CAST(src.somme_longueur_cheminements AS numeric), 2) || 
+                 ' / Ecart: ' || ROUND(CAST(ABS(src.longueur_cable - src.somme_longueur_cheminements) AS numeric), 2) || 
+                 ' (' || ROUND(CAST((ABS(src.longueur_cable - src.somme_longueur_cheminements) / src.longueur_cable * 100) AS numeric), 1) || '%) / Cheminements: ' || 
                  COALESCE(src.liste_cm_codes, 'Aucun')",
     is_active=get_topo_config('topo_0012')
 ) }}
