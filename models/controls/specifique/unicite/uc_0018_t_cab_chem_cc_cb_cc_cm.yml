@@ -1,0 +1,10 @@
+version: 2
+
+models:
+  - name: uc_0018_t_cab_chem_cc_cb_cc_cm
+    description: |
+      Contrôle d'unicité spécifique sur la clé composite (cc_cb_code, cc_cm_code)
+      de la table t_cab_chem (table de jonction sans PK mono-colonne).
+      Détecte les doublons où la même combinaison câble/cheminement apparaît plusieurs fois.
+    config:
+      tags: ["control", "unicite"]
