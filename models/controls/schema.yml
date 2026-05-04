@@ -29,6 +29,22 @@ models:
       - name: detail_erreur
       - name: geom
 
+  - name: synthese_erreurs_par_controle
+    description: Synthèse du nombre d'erreurs par point de contrôle
+    columns:
+      - name: id_test
+        description: Identifiant unique du contrôle
+      - name: type_controle
+        description: Type de contrôle
+      - name: description
+        description: Libellé du contrôle
+      - name: classe
+        description: Table GRACE THD concernée
+      - name: attribut
+        description: Attribut contrôlé
+      - name: nombre_erreurs
+        description: Nombre total d'erreurs pour ce contrôle
+
 seeds:
   - name: param_ctrl_presence_table
     description: >
