@@ -1,0 +1,31 @@
+version: 2
+
+models:
+  - name: elem_fo_cb_cl
+    description: Projette t_fibre avec géométrie de t_cableline via fo_cb_code → cb_code → cl_cb_code = cb_code
+    config:
+      materialized: table
+      tags: ["elem"]
+      schema: transformations
+    columns:
+      - name: id
+        description: Clé primaire technique pour QGIS
+        tests:
+          - not_null
+          - unique
+
+      - name: fo_code
+        description: "Identifiant unique de la fibre"
+      - name: fo_cb_code
+        description: "Identifiant unique du câble auquel la fibre appartient"
+      - name: fo_nincab
+        description: "Numéro de fibre dans le câble"
+      - name: fo_numtub
+        description: "Numéro du tube auquel appartient la fibre"
+      - name: fo_nintub
+        description: "Numéro de la fibre dans le tube (1 à 12, …)"
+      - name: fo_etat
+        description: "Etat de fonctionnement de la fibre."
+
+      - name: geom
+        description: "Géométrie de la cableline associée (LINESTRING/MULTILINESTRING)"

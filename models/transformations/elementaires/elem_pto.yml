@@ -1,0 +1,55 @@
+version: 2
+
+models:
+  - name: elem_pto
+    description: Projette t_ebp (PTO) avec géométrie de t_adresse. Filtrage sur bp_typelog = 'PTO' AND st_typelog = 'CLIENT'. Inclut ad_code et ad_batcode.
+    config:
+      materialized: table
+      tags: ["elem"]
+      schema: transformations
+    columns:
+      - name: id
+        description: Clé primaire technique pour QGIS
+        tests:
+          - not_null
+          - unique
+
+      - name: bp_code
+        description: "Code de la BPE, etc."
+      - name: bp_pt_code
+        description: "Code point technique"
+      - name: bp_perirec
+        description: "Identifiant du périmètre récolé livré à un instant t"
+      - name: bp_etiquet
+        description: "Etiquette sur le terrain"
+      - name: bp_codeext
+        description: "Code chez un tiers ou dans une autre base de données."
+      - name: bp_abandon
+        description: "Défini si l'entité est abandonnée ou non dans un SI"
+      - name: bp_lc_code
+        description: "Identifiant unique du local dans lequel est installé l'ebp."
+      - name: bp_prop
+        description: "Propriétaire de l'élément"
+      - name: bp_gest
+        description: "Gestionnaire de l'élément"
+      - name: bp_proptyp
+        description: "Type de propriété"
+      - name: bp_statut
+        description: "Statut de déploiement."
+      - name: bp_dateins
+        description: "Date d'installation"
+      - name: bp_avct
+        description: "Attribut synthétisant l'avancement. Utile pour distinguer en phase d'étude ce qui est existant et à créer."
+      - name: bp_typephy
+        description: "Type physique d'élément de branchement passif. Capacité de soudure."
+      - name: bp_typelog
+        description: "Type de l'élément (PTO)"
+      - name: bp_rf_code
+        description: "Référence."
+      - name: ad_code
+        description: "Code unique de l'adresse"
+      - name: ad_batcode
+        description: "Identifiant du bâtiment dans une base de données externe."
+
+      - name: geom
+        description: "Géométrie de l'adresse associée (POINT)"

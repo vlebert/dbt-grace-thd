@@ -127,6 +127,13 @@ models:
       specifique:
         +materialized: table
         +tags: ["control"]
+    transformations:
+      +schema: transformations
+      elementaires:
+        +materialized: table
+        +tags: ["elem"]
+      thematiques:
+        +schema: transformations
 
 seeds:
   grace_thd:

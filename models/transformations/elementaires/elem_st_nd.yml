@@ -1,0 +1,65 @@
+version: 2
+
+models:
+  - name: elem_st_nd
+    description: Projette t_site avec géométrie de t_noeud via st_nd_code = nd_code
+    config:
+      materialized: table
+      tags: ["elem"]
+      schema: transformations
+    columns:
+      - name: id
+        description: Clé primaire technique pour QGIS
+        tests:
+          - not_null
+          - unique
+
+      - name: st_code
+        description: "Code du site"
+      - name: st_perirec
+        description: "Identifiant du périmètre récolé livré à un instant t"
+      - name: st_nd_code
+        description: "Identifiant unique contenu dans la table Noeud"
+      - name: st_codeext
+        description: "Code chez un tiers ou dans une autre base de données."
+      - name: st_abandon
+        description: "Défini si l'entité est abandonnée ou non dans un SI"
+      - name: st_nra
+        description: "Site NRA (1) ou non (0)."
+      - name: st_prop
+        description: "Identifiant du propriétaire du site."
+      - name: st_gest
+        description: "Identifiant du gestionnaire du site."
+      - name: st_proptyp
+        description: "Type de propriété"
+      - name: st_statut
+        description: "Statut de déploiement."
+      - name: st_dateins
+        description: "Date d'installation"
+      - name: st_avct
+        description: "Attribut synthétisant l'avancement. Utile pour distinguer en phase d'étude ce qui est existant et à créer."
+      - name: st_typephy
+        description: "Type physique du site (shelter, armoire de rue, bâti…etc.)."
+      - name: st_typelog
+        description: "Type logique du site (Réseau ou Client)"
+      - name: st_rf_code
+        description: ""
+      - name: st_ad_code
+        description: "Identifiant unique contenu dans la table ADRESSE"
+      - name: st_postal
+        description: "Code postal du bureau de distribution de la voie"
+      - name: st_insee
+        description: "Code INSEE de la commune."
+      - name: st_commune
+        description: "Nom officiel de la commune."
+      - name: st_nomvoie
+        description: "Nom de la voie."
+      - name: st_numero
+        description: "Numéro de plaque adresse."
+      - name: st_rep
+        description: "Indice de répétition associé au numéro (par exemple Bis, A, 1…)."
+      - name: st_nombat
+        description: "Nom du bâtiment."
+
+      - name: geom
+        description: "Géométrie du noeud associé (POINT)"

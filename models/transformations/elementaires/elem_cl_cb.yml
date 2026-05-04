@@ -1,0 +1,79 @@
+version: 2
+
+models:
+  - name: elem_cl_cb
+    description: Projette t_cable avec géométrie de t_cableline via cl_cb_code = cb_code
+    config:
+      materialized: table
+      tags: ["elem"]
+      schema: transformations
+    columns:
+      - name: id
+        description: Clé primaire technique pour QGIS
+        tests:
+          - not_null
+          - unique
+
+      - name: cb_code
+        description: "Code câble"
+      - name: cb_codeext
+        description: "Code chez un tiers ou dans une autre base de données."
+      - name: cb_abandon
+        description: "Défini si l'entité est abandonnée ou non dans un SI"
+      - name: cb_perirec
+        description: "Identifiant du périmètre récolé livré à un instant t"
+      - name: cb_etiquet
+        description: "Etiquette sur le terrain"
+      - name: cb_nd1
+        description: "Code du nœud à l'extrémité amont (sens NRO vers PTO) du câble."
+      - name: cb_nd2
+        description: "Code du nœud à l'extrémité aval (sens NRO vers PTO) du câble."
+      - name: cb_bp1
+        description: "Code de l'élément de branchement passif à l'extrémité amont"
+      - name: cb_ba1
+        description: "Code de la baie à l'extrémité amont"
+      - name: cb_bp2
+        description: "Code de l'élément de branchement passif à l'extrémité aval"
+      - name: cb_ba2
+        description: "Code de la baie à l'extrémité aval"
+      - name: cb_r1_code
+        description: "Code d'un référencement du réseau 1 (plaque, dsp, BM, etc.)"
+      - name: cb_r2_code
+        description: "Code d'un référencement du réseau 2 (poche, tronçon, etc.)"
+      - name: cb_r3_code
+        description: "Code d'un référencement du réseau 3 (secteur, etc.)"
+      - name: cb_fo_type
+        description: "Type de fibre (G652, G655, G657, etc.)"
+      - name: cb_prop
+        description: "Propriétaire du câble"
+      - name: cb_gest
+        description: "Gestionnaire du câble"
+      - name: cb_proptyp
+        description: "Type de propriété"
+      - name: cb_statut
+        description: "Statut de déploiement."
+      - name: cb_dateins
+        description: "Date de pose du câble"
+      - name: cb_avct
+        description: "Attribut synthétisant l'avancement."
+      - name: cb_typephy
+        description: "Type physique du câble."
+      - name: cb_typelog
+        description: "Type logique du câble (collecte, transport, distribution, etc.)."
+      - name: cb_rf_code
+        description: "Identifiant de la référence du câble dans la table référence."
+      - name: cb_capafo
+        description: "Capacité du câble (Nombre total de fibres présentes)."
+      - name: cb_fo_disp
+        description: "Nombre de fibres présentes dans le câble et encore disponibles"
+      - name: cb_fo_util
+        description: "Nombre de fibres utiles sur le segment d'infrastructure"
+      - name: cb_modulo
+        description: "Nombre de fibres par tube (6, 12)"
+      - name: cb_cabphy
+        description: "Identifiant unique qui permet de reconstituer le câble physique"
+      - name: cb_lgreel
+        description: "Longueur réelle du câble en mètres"
+
+      - name: geom
+        description: "Géométrie de la cableline associée (LINESTRING/MULTILINESTRING)"
