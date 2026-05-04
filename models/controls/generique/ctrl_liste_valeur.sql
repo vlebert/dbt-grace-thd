@@ -49,9 +49,10 @@ select
   '{{ test['classe'] }}'::text                    as classe,
   '{{ test['attribut'] }}'::text                  as attribut,
   src."{{ test['cle_primaire'] }}"::text          as id_entite,
-  src."{{ test['attribut'] }}"::text              as detail_erreur
+  '{{ test['attribut'] }}: ' || src."{{ test['attribut'] }}"::text as detail_erreur
 from {{ source('gracethd', test['classe']) }} as src
 where src."{{ test['attribut'] }}" is not null
+  and src."{{ test['attribut'] }}" <> ''
   and not exists (
     select 1
     from {{ listes_schema }}.{{ test['table_liste'] }} as ref_lv

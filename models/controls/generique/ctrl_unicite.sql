@@ -66,9 +66,11 @@ join (
     count(*)                       as nb_occ
   from {{ source('gracethd', test['classe']) }}
   where "{{ test['attribut'] }}" is not null
+    and "{{ test['attribut'] }}" <> ''
   group by "{{ test['attribut'] }}"
   having count(*) > 1
 ) as doublons
   on src."{{ test['attribut'] }}"::text = doublons.code_unic
 where src."{{ test['attribut'] }}" is not null
+  and src."{{ test['attribut'] }}" <> ''
 {% endfor %}
