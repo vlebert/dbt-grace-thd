@@ -34,10 +34,10 @@ sources:
             description: "Type physique du site (shelter, armoire de rue, bâti…etc.)."
           - name: st_typelog
             description: "Type logique du site (Réseau ou Client)"
-          - name: st_rf_code
-            description: ""
           - name: st_ad_code
             description: "Identifiant unique contenu dans la table ADRESSE"
+          - name: st_design
+            description: ""
           - name: st_postal
             description: "Code postal du bureau de distribution de la voie"
           - name: st_insee
