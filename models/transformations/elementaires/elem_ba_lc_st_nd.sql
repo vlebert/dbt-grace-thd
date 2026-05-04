@@ -1,18 +1,31 @@
 {{
   config(
     materialized = 'table',
-    tags = ['elem']
+    tags = ['elem'],
+    post_hook = ["ALTER TABLE {{ this }} ADD PRIMARY KEY (id);"]
   )
 }}
 
 SELECT
   row_number() OVER (ORDER BY ba.ba_code) AS id,
-  ba.*,
+  ba.ba_code,
+  ba.ba_codeext,
+  ba.ba_perirec,
+  ba.ba_abandon,
+  ba.ba_etiquet,
+  ba.ba_lc_code,
+  ba.ba_prop,
+  ba.ba_gest,
+  ba.ba_proptyp,
+  ba.ba_statut,
+  ba.ba_rf_code,
+  ba.ba_type,
+  ba.ba_nb_u,
   nd.geom AS geom
 FROM {{ source('gracethd', 't_baie') }} AS ba
-LEFT JOIN {{ source('gracethd', 't_local') }} AS lc 
+LEFT JOIN {{ source('gracethd', 't_local') }} AS lc
   ON ba.ba_lc_code = lc.lc_code
-LEFT JOIN {{ source('gracethd', 't_site') }} AS st 
+LEFT JOIN {{ source('gracethd', 't_site') }} AS st
   ON lc.lc_st_code = st.st_code
-LEFT JOIN {{ source('gracethd', 't_noeud') }} AS nd 
+LEFT JOIN {{ source('gracethd', 't_noeud') }} AS nd
   ON st.st_nd_code = nd.nd_code
