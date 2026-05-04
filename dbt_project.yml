@@ -33,6 +33,7 @@ vars:
     - ctrl_presence_table
     - ctrl_remplissage
     - ctrl_unicite
+    - uc_0018_t_cab_chem_cc_cb_cc_cm
     # t_adresse
     - rc_0101_t_adresse_ad_codtemp
     - rc_0102_t_adresse_ad_distinf
