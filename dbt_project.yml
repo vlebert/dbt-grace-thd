@@ -32,6 +32,7 @@ vars:
     - ctrl_liste_valeur
     - ctrl_presence_table
     - ctrl_remplissage
+    - ctrl_type
     - ctrl_unicite
     - uc_0018_t_cab_chem_cc_cb_cc_cm
     # t_adresse
@@ -190,6 +191,15 @@ seeds:
           conteneur_c3: varchar(1)
           conteneur_c4: varchar(1)
           actif: boolean
+      param_ctrl_type:
+        +column_types:
+          id_test: varchar(50)
+          classe: varchar(50)
+          attribut: varchar(50)
+          type_cible: varchar(50)
+          cle_primaire: varchar(50)
+          actif: boolean
+          description: varchar(254)
       param_ctrl_topo:
         +column_types:
           id_test: varchar(50)
