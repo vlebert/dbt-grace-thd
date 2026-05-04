@@ -20,6 +20,7 @@ Ce document définit les conventions d'architecture pour l'implémentation des c
 | Unicité | **Générique** | `ctrl_unicite` |
 | Clé étrangère | **Générique** | `ctrl_fk` |
 | Liste de valeurs | **Générique** | `ctrl_liste_valeur` |
+| Vérification de type | **Générique** | `ctrl_type` |
 | Remplissage conditionnel | **Spécifique** | `ctrl_rc_<id>` |
 | Contrôle géométrique / topologique | **Spécifique** | `topo_<id>` |
 | Règle métier | **Spécifique** | `metier_<id>` |
@@ -34,6 +35,7 @@ models/controls/
     ctrl_unicite.sql            # doublons sur un attribut
     ctrl_fk.sql                 # intégrité référentielle
     ctrl_liste_valeur.sql       # conformité aux listes de valeurs l_*
+    ctrl_type.sql               # vérification des types d'attributs
   specifique/
     remplissage_cond/
       rc_<id>.sql
@@ -51,6 +53,7 @@ seeds/
     param_ctrl_unicite.csv
     param_ctrl_fk.csv
     param_ctrl_liste_valeur.csv
+    param_ctrl_type.csv
     param_ctrl_topo.csv
     param_ctrl_metier.csv
   listes/
@@ -93,6 +96,7 @@ Colonnes communes : `id_test`, `classe`, `cle_primaire`, `actif` (booléen).
 | `param_ctrl_unicite.csv` | `attribut` |
 | `param_ctrl_fk.csv` | `attribut`, `classe_cible`, `attribut_cible` |
 | `param_ctrl_liste_valeur.csv` | `attribut`, `table_liste` (ex. `l_bool`, `l_etat_avancement`) |
+| `param_ctrl_type.csv` | `attribut`, `type_cible` (ex. `varchar`, `numeric`, `date`) |
 
 ### Niveau de conteneur
 
@@ -113,6 +117,7 @@ Format : `ctrl_<prefixe>_<numero>` (4 chiffres avec zéros).
 | `uc` | unicité |
 | `fk` | clé étrangère |
 | `lv` | liste de valeurs |
+| `type` | vérification de type |
 | `rc` | remplissage conditionnel |
 | `topo` | topologie / géométrie |
 | `metier` | règle métier |
