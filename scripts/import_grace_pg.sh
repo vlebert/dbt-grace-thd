@@ -4,7 +4,7 @@
 # Cible : schéma `gracethd_source` (celui référencé par les sources dbt).
 #
 # Usage :
-#   ./import_grace_pg.sh [chemin/vers/dossier]
+#   ./import_grace_pg.sh [chemin/vers/dossier_ou_fichier.gpkg]
 # Par défaut : ./NA-16025-BGNR (relatif au script)
 
 set -euo pipefail
@@ -20,10 +20,10 @@ export DB_SCHEMA=gracethd_source
 
 # --- Source ------------------------------------------------------------------
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-SRC_DIR="${1:-$SCRIPT_DIR/NA-16025-BGNR}"
+SRC="${1:-$SCRIPT_DIR/NA-16025-BGNR}"
 
-if [[ ! -d "$SRC_DIR" ]]; then
-  echo "Dossier source introuvable : $SRC_DIR" >&2
+if [[ ! -f "$SRC" && ! -d "$SRC" ]]; then
+  echo "Source introuvable : $SRC" >&2
   exit 1
 fi
 
@@ -62,6 +62,8 @@ CSV_TABLES=(
   "t_tiroir"
 )
 
+ALL_TABLES=("${SHP_TABLES[@]}" "${CSV_TABLES[@]}")
+
 # --- Pré-requis : créer le schéma cible --------------------------------------
 echo "Création du schéma $DB_SCHEMA si absent"
 PGPASSWORD="$DB_PASSWORD" psql \
@@ -69,39 +71,49 @@ PGPASSWORD="$DB_PASSWORD" psql \
   -v ON_ERROR_STOP=1 \
   -c "CREATE SCHEMA IF NOT EXISTS $DB_SCHEMA;"
 
-# --- Import shapefiles -------------------------------------------------------
-for TABLE in "${SHP_TABLES[@]}"; do
-  SHP="$SRC_DIR/$TABLE.shp"
-  if [[ ! -f "$SHP" ]]; then
-    echo "Shapefile manquant, ignoré : $SHP"
-    continue
-  fi
-  echo "Import shapefile → $DB_SCHEMA.$TABLE"
-  ogr2ogr -f "PostgreSQL" "$DEST_DB" "$SHP" \
-    -nln "$TABLE" \
-    -lco GEOMETRY_NAME=geom \
-    -lco FID=ogc_fid \
-    -lco PRECISION=NO \
-    -nlt PROMOTE_TO_MULTI \
-    --config PG_USE_COPY YES \
-    -overwrite -progress
-done
+# --- Import selon type de source -----------------------------------------------
+if [[ -f "$SRC" && "$SRC" == *.gpkg ]]; then
+  for TABLE in "${ALL_TABLES[@]}"; do
+    echo "Import GPKG couche → $DB_SCHEMA.$TABLE"
+    ogr2ogr -f "PostgreSQL" "$DEST_DB" "$SRC" \
+      -nln "$TABLE" \
+      -lco GEOMETRY_NAME=geom \
+      -lco FID=ogc_fid \
+      -lco PRECISION=NO \
+      -nlt PROMOTE_TO_MULTI \
+      --config PG_USE_COPY YES \
+      -sql "SELECT * FROM \"$TABLE\"" \
+      -overwrite -progress
+  done
+else
+  # Import shapefiles
+  for TABLE in "${SHP_TABLES[@]}"; do
+    SHP="$SRC/$TABLE.shp"
+    [[ ! -f "$SHP" ]] && echo "Shapefile manquant, ignoré : $SHP" && continue
+    echo "Import shapefile → $DB_SCHEMA.$TABLE"
+    ogr2ogr -f "PostgreSQL" "$DEST_DB" "$SHP" \
+      -nln "$TABLE" \
+      -lco GEOMETRY_NAME=geom \
+      -lco FID=ogc_fid \
+      -lco PRECISION=NO \
+      -nlt PROMOTE_TO_MULTI \
+      --config PG_USE_COPY YES \
+      -overwrite -progress
+  done
 
-# --- Import CSV --------------------------------------------------------------
-for TABLE in "${CSV_TABLES[@]}"; do
-  CSV="$SRC_DIR/$TABLE.csv"
-  if [[ ! -f "$CSV" ]]; then
-    echo "CSV manquant, ignoré : $CSV"
-    continue
-  fi
-  echo "Import CSV → $DB_SCHEMA.$TABLE"
-  ogr2ogr -f "PostgreSQL" "$DEST_DB" "$CSV" \
-    -nln "$TABLE" \
-    -oo AUTODETECT_TYPE=YES \
-    -oo EMPTY_STRING_AS_NULL=YES \
-    --config PG_USE_COPY YES \
-    -overwrite -progress
-done
+  # Import CSV
+  for TABLE in "${CSV_TABLES[@]}"; do
+    CSV="$SRC/$TABLE.csv"
+    [[ ! -f "$CSV" ]] && echo "CSV manquant, ignoré : $CSV" && continue
+    echo "Import CSV → $DB_SCHEMA.$TABLE"
+    ogr2ogr -f "PostgreSQL" "$DEST_DB" "$CSV" \
+      -nln "$TABLE" \
+      -oo AUTODETECT_TYPE=YES \
+      -oo EMPTY_STRING_AS_NULL=YES \
+      --config PG_USE_COPY YES \
+      -overwrite -progress
+  done
+fi
 
 # --- Création des index ------------------------------------------------------
 echo "Création des index sur $DB_SCHEMA"
