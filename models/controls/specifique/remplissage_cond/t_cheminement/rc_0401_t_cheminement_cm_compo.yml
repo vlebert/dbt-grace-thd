@@ -1,7 +1,7 @@
 version: 2
 
 models:
-  - name: rc_0002_t_cheminement_cm_compo
+  - name: rc_0401_t_cheminement_cm_compo
     description: >
       Le champ [cm_compo] est vide alors que le tronçon de cheminement est de
       type GC à construire (cm_avct = 'C').
