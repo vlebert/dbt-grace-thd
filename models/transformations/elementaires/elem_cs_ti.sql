@@ -21,4 +21,4 @@ INNER JOIN {{ source('gracethd', 't_position') }} AS ps
   AND ps.ps_ti_code IS NOT NULL
 INNER JOIN {{ ref('elem_ti_ba_lc_st_nd') }} AS ti
   ON ti.ti_code = ps.ps_ti_code
-WHERE cs.cs_bp_code IS NULL
+WHERE cs.cs_bp_code IS NULL OR cs.cs_bp_code <> ''
