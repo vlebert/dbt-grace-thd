@@ -46,8 +46,6 @@ models:
         description: "Simple, Moisé, Haubané, Couple, …"
       - name: pt_a_haut
         description: "Hauteur en mètre entre le sol et la base de l'infrastructure (réseau en façade ou aérien)"
-      - name: pt_section
-        description: "Si un point technique en propriété propre n'est pas en domaine public, possibilité de saisir le numéro de section cadastrale."
 
       - name: geom
         description: "Géométrie du noeud associé (POINT)"

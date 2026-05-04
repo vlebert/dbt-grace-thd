@@ -22,7 +22,7 @@ SELECT
   st.st_avct,
   st.st_typephy,
   st.st_typelog,
-  st.st_rf_code,
+  st.st_design,
   st.st_ad_code,
   st.st_postal,
   st.st_insee,
