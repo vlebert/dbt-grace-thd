@@ -52,7 +52,7 @@ select
   '{{ test['attribut'] }}: ' || src."{{ test['attribut'] }}"::text as detail_erreur
 from {{ source('gracethd', test['classe']) }} as src
 where src."{{ test['attribut'] }}" is not null
-  and src."{{ test['attribut'] }}" <> ''
+  and src."{{ test['attribut'] }}"::text <> ''
   and not exists (
     select 1
     from {{ listes_schema }}.{{ test['table_liste'] }} as ref_lv

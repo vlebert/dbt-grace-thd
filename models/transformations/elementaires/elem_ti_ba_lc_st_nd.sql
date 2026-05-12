@@ -20,12 +20,12 @@ SELECT
   ti.ti_taille,
   ti.ti_placemt,
   nd.geom AS geom
-FROM {{ source('gracethd', 't_tiroir') }} AS ti
-LEFT JOIN {{ source('gracethd', 't_baie') }} AS ba
+FROM {{ ref('t_tiroir') }} AS ti
+LEFT JOIN {{ ref('t_baie') }} AS ba
   ON ti.ti_ba_code = ba.ba_code
-LEFT JOIN {{ source('gracethd', 't_local') }} AS lc
+LEFT JOIN {{ ref('t_local') }} AS lc
   ON ba.ba_lc_code = lc.lc_code
-LEFT JOIN {{ source('gracethd', 't_site') }} AS st
+LEFT JOIN {{ ref('t_site') }} AS st
   ON lc.lc_st_code = st.st_code
-LEFT JOIN {{ source('gracethd', 't_noeud') }} AS nd
+LEFT JOIN {{ ref('t_noeud') }} AS nd
   ON st.st_nd_code = nd.nd_code

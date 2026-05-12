@@ -18,6 +18,6 @@ SELECT
   ps.ps_preaff,
   ps.ps_ti_code,
   cs.geom AS geom
-FROM {{ source('gracethd', 't_position') }} AS ps
+FROM {{ ref('t_position') }} AS ps
 INNER JOIN {{ ref('elem_cs') }} AS cs
   ON ps.ps_cs_code = cs.cs_code

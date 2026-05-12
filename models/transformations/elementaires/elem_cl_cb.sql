@@ -39,6 +39,6 @@ SELECT
   cb.cb_cabphy,
   cb.cb_lgreel,
   cl.geom AS geom
-FROM {{ source('gracethd', 't_cable') }} AS cb
-JOIN {{ source('gracethd', 't_cableline') }} AS cl
+FROM {{ ref('t_cable') }} AS cb
+JOIN {{ ref('t_cableline') }} AS cl
   ON cl.cl_cb_code = cb.cb_code

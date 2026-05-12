@@ -25,8 +25,8 @@ SELECT
   bp.bp_typelog,
   bp.bp_rf_code,
   nd.geom AS geom
-FROM {{ source('gracethd', 't_ebp') }} AS bp
-INNER JOIN {{ source('gracethd', 't_ptech') }} AS pt
+FROM {{ ref('t_ebp') }} AS bp
+INNER JOIN {{ ref('t_ptech') }} AS pt
   ON bp.bp_pt_code = pt.pt_code
-LEFT JOIN {{ source('gracethd', 't_noeud') }} AS nd
+LEFT JOIN {{ ref('t_noeud') }} AS nd
   ON pt.pt_nd_code = nd.nd_code

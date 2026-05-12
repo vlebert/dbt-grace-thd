@@ -25,6 +25,6 @@ SELECT
   pt.pt_a_struc,
   pt.pt_a_haut,
   nd.geom AS geom
-FROM {{ source('gracethd', 't_ptech') }} AS pt
-LEFT JOIN {{ source('gracethd', 't_noeud') }} AS nd
+FROM {{ ref('t_ptech') }} AS pt
+LEFT JOIN {{ ref('t_noeud') }} AS nd
   ON pt.pt_nd_code = nd.nd_code

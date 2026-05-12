@@ -15,8 +15,8 @@ SELECT
   fo.fo_nintub,
   fo.fo_etat,
   cl.geom AS geom
-FROM {{ source('gracethd', 't_fibre') }} AS fo
-JOIN {{ source('gracethd', 't_cable') }} AS cb
+FROM {{ ref('t_fibre') }} AS fo
+JOIN {{ ref('t_cable') }} AS cb
   ON fo.fo_cb_code = cb.cb_code
-JOIN {{ source('gracethd', 't_cableline') }} AS cl
+JOIN {{ ref('t_cableline') }} AS cl
   ON cl.cl_cb_code = cb.cb_code

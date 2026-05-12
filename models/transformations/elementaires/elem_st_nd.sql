@@ -32,6 +32,6 @@ SELECT
   st.st_rep,
   st.st_nombat,
   nd.geom AS geom
-FROM {{ source('gracethd', 't_site') }} AS st
-LEFT JOIN {{ source('gracethd', 't_noeud') }} AS nd 
+FROM {{ ref('t_site') }} AS st
+LEFT JOIN {{ ref('t_noeud') }} AS nd 
   ON st.st_nd_code = nd.nd_code

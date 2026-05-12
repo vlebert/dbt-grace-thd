@@ -40,8 +40,8 @@ WITH data AS (
     cb.cb_cabphy,
     cb.cb_lgreel,
     ST_LineMerge(cl.geom) AS geom
-  FROM {{ source('gracethd', 't_cable') }} AS cb
-  JOIN {{ source('gracethd', 't_cableline') }} AS cl
+  FROM {{ ref('t_cable') }} AS cb
+  JOIN {{ ref('t_cableline') }} AS cl
     ON cl.cl_cb_code = cb.cb_code
 
   UNION ALL
@@ -84,12 +84,12 @@ WITH data AS (
       THEN ST_MakeLine(ST_PointOnSurface(nd1.geom), ST_PointOnSurface(nd2.geom))
       ELSE NULL 
     END AS geom
-  FROM {{ source('gracethd', 't_cable') }} AS cb
-  LEFT JOIN {{ source('gracethd', 't_noeud') }} AS nd1
+  FROM {{ ref('t_cable') }} AS cb
+  LEFT JOIN {{ ref('t_noeud') }} AS nd1
     ON cb.cb_nd1 = nd1.nd_code
-  LEFT JOIN {{ source('gracethd', 't_noeud') }} AS nd2
+  LEFT JOIN {{ ref('t_noeud') }} AS nd2
     ON cb.cb_nd2 = nd2.nd_code
-  LEFT JOIN {{ source('gracethd', 't_cableline') }} AS cl
+  LEFT JOIN {{ ref('t_cableline') }} AS cl
     ON cl.cl_cb_code = cb.cb_code
   WHERE cl.cl_code IS NULL OR cl.cl_code <> ''
     AND nd1.geom IS NOT NULL 

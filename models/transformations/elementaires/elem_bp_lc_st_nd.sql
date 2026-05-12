@@ -25,12 +25,12 @@ SELECT
   bp.bp_typelog,
   bp.bp_rf_code,
   nd.geom AS geom
-FROM {{ source('gracethd', 't_ebp') }} AS bp
-INNER JOIN {{ source('gracethd', 't_local') }} AS lc
+FROM {{ ref('t_ebp') }} AS bp
+INNER JOIN {{ ref('t_local') }} AS lc
   ON bp.bp_lc_code = lc.lc_code
-LEFT JOIN {{ source('gracethd', 't_site') }} AS st
+LEFT JOIN {{ ref('t_site') }} AS st
   ON lc.lc_st_code = st.st_code
-LEFT JOIN {{ source('gracethd', 't_noeud') }} AS nd
+LEFT JOIN {{ ref('t_noeud') }} AS nd
   ON st.st_nd_code = nd.nd_code
-LEFT JOIN {{ source('gracethd', 't_reference') }} AS rf
+LEFT JOIN {{ ref('t_reference') }} AS rf
   ON bp.bp_rf_code = rf.rf_code

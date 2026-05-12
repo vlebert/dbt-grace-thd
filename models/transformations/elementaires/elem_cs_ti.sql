@@ -15,8 +15,8 @@ SELECT DISTINCT
   cs.cs_face,
   cs.cs_rf_code,
   ti.geom AS geom
-FROM {{ source('gracethd', 't_cassette') }} AS cs
-INNER JOIN {{ source('gracethd', 't_position') }} AS ps
+FROM {{ ref('t_cassette') }} AS cs
+INNER JOIN {{ ref('t_position') }} AS ps
   ON cs.cs_code = ps.ps_cs_code
   AND ps.ps_ti_code IS NOT NULL
 INNER JOIN {{ ref('elem_ti_ba_lc_st_nd') }} AS ti
