@@ -4,7 +4,6 @@ models:
   - name: elem_st_nd
     description: Projette t_site avec géométrie de t_noeud via st_nd_code = nd_code
     config:
-      materialized: table
       tags: ["elem"]
       schema: transformations
     columns:

@@ -4,7 +4,6 @@ models:
   - name: elem_ti_ba_lc_st_nd
     description: Projette t_tiroir avec géométrie de t_noeud via ti_ba_code → ba_lc_code → lc_st_code → st_nd_code = nd_code
     config:
-      materialized: table
       tags: ["elem"]
       schema: transformations
     columns:

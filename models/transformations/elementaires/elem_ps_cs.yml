@@ -4,7 +4,6 @@ models:
   - name: elem_ps_cs
     description: Projette t_position avec géométrie de elem_cs via ps_cs_code = cs_code. INNER JOIN sur elem_cs.
     config:
-      materialized: table
       tags: ["elem"]
       schema: transformations
     columns:

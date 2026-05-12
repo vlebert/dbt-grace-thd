@@ -4,7 +4,6 @@ models:
   - name: elem_cs_bp
     description: Projette t_cassette avec géométrie de elem_bp via cs_bp_code = bp_code. INNER JOIN sur elem_bp.
     config:
-      materialized: table
       tags: ["elem"]
       schema: transformations
     columns:

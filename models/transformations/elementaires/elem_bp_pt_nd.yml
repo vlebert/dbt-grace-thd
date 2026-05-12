@@ -4,7 +4,6 @@ models:
   - name: elem_bp_pt_nd
     description: Projette t_ebp avec géométrie de t_noeud via bp_pt_code → pt_nd_code = nd_code
     config:
-      materialized: table
       tags: ["elem"]
       schema: transformations
     columns:

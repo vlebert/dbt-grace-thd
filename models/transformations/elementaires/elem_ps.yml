@@ -4,7 +4,6 @@ models:
   - name: elem_ps
     description: UNION ALL de elem_ps_cs et elem_ps_ti. Regroupe toutes les positions avec leur géométrie (via cassette ou via tiroir).
     config:
-      materialized: table
       tags: ["elem"]
       schema: transformations
     columns:

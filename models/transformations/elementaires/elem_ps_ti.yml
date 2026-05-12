@@ -4,7 +4,6 @@ models:
   - name: elem_ps_ti
     description: Projette t_position avec géométrie de elem_ti_ba_lc_st_nd via ps_ti_code = ti_code. INNER JOIN sur elem_ti_ba_lc_st_nd.
     config:
-      materialized: table
       tags: ["elem"]
       schema: transformations
     columns:
