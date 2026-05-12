@@ -2,10 +2,26 @@
 
 ## Vue d'ensemble
 
-Les transformations GRACE THD sont organisées en deux grands ensembles :
+Les transformations GRACE THD sont organisées en trois grands ensembles :
 
-1. **Vues élémentaires** (`elementaires/`) — Les jointures de base du modèle GRACE THD qui projettent une géométrie sur des tables qui n'en ont pas, via les jointures nécessaires.
-2. **Thématiques** (`thematiques/`) — Transformations avancées par thème métier (à venir).
+1. **Vues de base** (`base/`) — Tables sources GRACE THD transformées avec casts non-bloquants.
+2. **Vues élémentaires** (`elementaires/`) — Jointures de base du modèle GRACE THD qui projettent une géométrie sur des tables qui n'en ont pas.
+3. **Thématiques** (`thematiques/`) — Transformations avancées par thème métier (à venir).
+
+## Vues de Base
+
+**Dossier** : `models/transformations/base/`
+
+**Rôle** : Répliquer les tables sources du schéma `gracethd` dans le schéma `transformations` avec :
+- **Casts non-bloquants** via `pg_input_is_valid(NULLIF(champ::text, ''), 'type')` pour éviter les erreurs de typage
+- **Nettoyage des valeurs vides** : les chaînes vides (`''`) sont converties en `NULL`
+- Conservation de la colonne `geom` pour les tables spatiales
+
+**Pattern appliqué** :
+```sql
+CASE WHEN pg_input_is_valid(NULLIF(champ::text, ''), 'type_postgres')
+     THEN champ::TYPE ELSE NULL END AS alias
+```
 
 ## Vues Élémentaires
 
