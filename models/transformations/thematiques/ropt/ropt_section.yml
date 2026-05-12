@@ -1,0 +1,89 @@
+version: 2
+
+models:
+  - name: ropt_section
+    description: |
+      Sections détaillées des routes optiques.
+
+      Enrichit chaque étape de la route (ropt) avec les informations détaillées des
+      équipements traversés : local, tiroir, baie, cassette, point de branchement,
+      position, point technique, câble et fibre.
+
+      **Dépendances** : ropt (modèle parent), toutes les tables base.
+    config:
+      tags: ['thematiques', 'ropt']
+    columns:
+      - name: ropt_id
+        description: Identifiant de la route optique
+
+      - name: ropt_ordr
+        description: Ordre dans la route (0 = départ)
+
+      - name: ropt_typelog
+        description: Type logique du câble (DI, TR, CT)
+
+      - name: lc_code
+        description: Code du local amont
+
+      - name: lc_codeext
+        description: Code externe du local amont
+
+      - name: lc_typelog
+        description: Type logique du local (NRO, PBO, etc.)
+
+      - name: lc_etage
+        description: Étage du local
+
+      - name: ti_codeext
+        description: Code externe du tiroir amont
+
+      - name: bp_code
+        description: Code du point de branchement amont
+
+      - name: bp_codeext
+        description: Code externe du point de branchement
+
+      - name: bp_typelog
+        description: Type logique du point de branchement (PTO, PBO, BPE)
+
+      - name: ps_numero
+        description: Numéro de la position
+
+      - name: ps_fonct
+        description: Fonction de la position
+
+      - name: ps_preaff
+        description: Pré-affectation de la position
+
+      - name: cs_num
+        description: Numéro de la cassette
+
+      - name: pt_code
+        description: Code du point technique
+
+      - name: pt_codeext
+        description: Code externe du point technique
+
+      - name: pt_typephy
+        description: Type physique du point technique
+
+      - name: pt_nature
+        description: Nature du point technique
+
+      - name: cb_codeext
+        description: Code externe du câble
+
+      - name: cb_typelog
+        description: Type logique du câble
+
+      - name: cb_lgreel
+        description: Longueur réelle du câble (en mètres)
+
+      - name: cb_capafo
+        description: Capacité en fibres du câble
+
+      - name: fo_numtub
+        description: Numéro du tube de la fibre
+
+      - name: fo_nintub
+        description: Numéro interne dans le tube

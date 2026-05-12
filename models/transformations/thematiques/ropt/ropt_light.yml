@@ -1,0 +1,89 @@
+version: 2
+
+models:
+  - name: ropt_light
+    description: "Vue pivot des 24 étapes du cheminement des fibres en colonnes. Version matérialisée de la vue legacy v_ropt_light."
+    config:
+      materialized: table
+      schema: transformations
+      tags: ['thematiques', 'ropt']
+    columns:
+      - name: sro_nro
+        description: "Code externe du SRO/NRO"
+        tests:
+          - not_null
+      - name: tiroir
+        description: "Code externe du tiroir"
+      - name: cs_num
+        description: "Numéro de cassette"
+      - name: ps_num
+        description: "Numéro de point de splicing"
+      - name: destination
+        description: "Destination finale du cheminement (coalescence des bp_codeext/lc_codeext des étapes 1-23)"
+      - name: ropt_id
+        description: "Identifiant unique du cheminement (format: R_{typelog}_{id})"
+        tests:
+          - not_null
+          - unique
+      - name: fonct
+        description: "Fonction du point de splicing de départ"
+      - name: cable
+        description: "Code externe du câble de départ"
+      - name: capafo
+        description: "Capacité en fibres optiques du câble"
+      - name: tube
+        description: "Numéro de tube"
+      - name: fo
+        description: "Numéro de fibre optique"
+      - name: preaff
+        description: "Pré-affectation"
+      - name: long
+        description: "Longueur réelle du câble en mètres"
+      - name: bpe_1
+        description: "Baie/Point de splicing de l'étape 1"
+      - name: fonct_1
+        description: "Fonction de l'étape 1"
+      - name: cable_1
+        description: "Câble de l'étape 1"
+      - name: capafo_1
+        description: "Capacité FO de l'étape 1"
+      - name: tube_1
+        description: "Tube de l'étape 1"
+      - name: fo_1
+        description: "Fibre optique de l'étape 1"
+      - name: preaff_1
+        description: "Pré-affectation de l'étape 1"
+      - name: long_1
+        description: "Longueur de l'étape 1"
+      - name: bpe_2
+        description: "Baie/Point de splicing de l'étape 2"
+      - name: fonct_2
+        description: "Fonction de l'étape 2"
+      - name: cable_2
+        description: "Câble de l'étape 2"
+      - name: capafo_2
+        description: "Capacité FO de l'étape 2"
+      - name: tube_2
+        description: "Tube de l'étape 2"
+      - name: fo_2
+        description: "Fibre optique de l'étape 2"
+      - name: preaff_2
+        description: "Pré-affectation de l'étape 2"
+      - name: long_2
+        description: "Longueur de l'étape 2"
+      - name: bpe_3
+        description: "Baie/Point de splicing de l'étape 3"
+      - name: fonct_3
+        description: "Fonction de l'étape 3"
+      - name: cable_3
+        description: "Câble de l'étape 3"
+      - name: capafo_3
+        description: "Capacité FO de l'étape 3"
+      - name: tube_3
+        description: "Tube de l'étape 3"
+      - name: fo_3
+        description: "Fibre optique de l'étape 3"
+      - name: preaff_3
+        description: "Pré-affectation de l'étape 3"
+      - name: long_3
+        description: "Longueur de l'étape 3"

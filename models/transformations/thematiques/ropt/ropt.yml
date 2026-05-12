@@ -1,0 +1,39 @@
+version: 2
+
+models:
+  - name: ropt
+    description: |
+      Routes optiques (ROPT) - cheminement des fibres à travers les positions.
+
+      Ce modèle matérialise les routes optiques en suivant récursivement la connectivité
+      entre les positions (ps_1/ps_2) et les fibres (fo_code).
+
+      **Logique** :
+      - Point de départ : positions dans tiroirs avec câbles DI ou TR/CT en locaux NRO
+      - Récursif : suit le chemin jusqu'à 22 niveaux de profondeur
+      - Chaque étape : identifie la prochaine fibre et position en amont
+
+      **Sources** : t_position, t_fibre, t_cable, t_cassette, t_tiroir, t_baie, t_local
+    config:
+      tags: ['thematiques', 'ropt']
+    columns:
+      - name: id
+        description: Clé primaire technique générée automatiquement
+        tests:
+          - unique
+          - not_null
+
+      - name: ropt_id
+        description: Identifiant unique de la route optique
+
+      - name: ropt_ordr
+        description: Ordre dans la route (0 = point de départ)
+
+      - name: fo_code
+        description: Code de la fibre (position courante)
+
+      - name: ps_amont
+        description: Code de la position en amont
+
+      - name: ropt_typelog
+        description: Type logique du câble (DI, TR, CT)
