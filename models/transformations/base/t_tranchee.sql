@@ -1,11 +1,14 @@
 {{
     config(
         materialized = 'table',
-        schema = 'transformations'
+        schema = 'transformations',
+        tags = ['base'],
+        post_hook = ["ALTER TABLE {{ this }} ADD PRIMARY KEY (id);"]
     )
 }}
 
 SELECT
+    row_number() OVER (ORDER BY tr_code) AS id,
     geom AS geom,
     CASE WHEN pg_input_is_valid(NULLIF(tr_code::text, ''), 'varchar(254)') THEN tr_code::VARCHAR(254) ELSE NULL END AS tr_code,
     CASE WHEN pg_input_is_valid(NULLIF(tr_compo::text, ''), 'varchar(254)') THEN tr_compo::VARCHAR(254) ELSE NULL END AS tr_compo,

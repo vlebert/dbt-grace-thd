@@ -131,7 +131,7 @@ models:
     transformations:
       +schema: transformations
       elementaires:
-        +materialized: table
+        +materialized: view
         +tags: ["elem"]
       thematiques:
         +schema: transformations

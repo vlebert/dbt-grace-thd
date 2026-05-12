@@ -1,14 +1,13 @@
 {{
   config(
-    materialized = 'table',
-    tags = ['elem'],
-    post_hook = ["ALTER TABLE {{ this }} ADD PRIMARY KEY (id);"]
+    tags = ['elem']
   )
 }}
 
 WITH data AS (
   -- Câbles avec géométrie dans cableline (MULTILINESTRING possible)
   SELECT
+    cb.id,
     cb.cb_code,
     cb.cb_codeext,
     cb.cb_abandon,
@@ -49,6 +48,7 @@ WITH data AS (
   -- Câbles sans cableline : construction géométrie depuis nd1/nd2
   -- t_noeud.geom est MULTIPOINT, on extrait un POINT avec ST_PointOnSurface
   SELECT
+    cb.id,
     cb.cb_code,
     cb.cb_codeext,
     cb.cb_abandon,
@@ -97,7 +97,7 @@ WITH data AS (
 )
 
 SELECT
-  row_number() OVER (ORDER BY cb_code) AS id,
+  id,
   cb_code,
   cb_codeext,
   cb_abandon,

@@ -1,13 +1,11 @@
 {{
   config(
-    materialized = 'table',
-    tags = ['elem'],
-    post_hook = ["ALTER TABLE {{ this }} ADD PRIMARY KEY (id);"]
+    tags = ['elem']
   )
 }}
 
 SELECT
-  row_number() OVER (ORDER BY pt.pt_code) AS id,
+  pt.id,
   pt.pt_code,
   pt.pt_codeext,
   pt.pt_abandon,

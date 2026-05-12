@@ -1,13 +1,12 @@
 {{
   config(
-    materialized = 'table',
-    tags = ['elem'],
-    post_hook = ["ALTER TABLE {{ this }} ADD PRIMARY KEY (id);"]
+    tags = ['elem']
   )
 }}
 
 WITH combined AS (
   SELECT
+    id,
     ps_code,
     ps_1,
     ps_2,
@@ -21,6 +20,7 @@ WITH combined AS (
   FROM {{ ref('elem_ps_cs') }}
   UNION ALL
   SELECT
+    id,
     ps_code,
     ps_1,
     ps_2,
@@ -34,7 +34,7 @@ WITH combined AS (
   FROM {{ ref('elem_ps_ti') }}
 )
 SELECT
-  row_number() OVER (ORDER BY ps_code) AS id,
+  id,
   ps_code,
   ps_1,
   ps_2,

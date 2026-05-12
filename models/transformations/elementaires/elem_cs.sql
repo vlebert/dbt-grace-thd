@@ -1,13 +1,12 @@
 {{
   config(
-    materialized = 'table',
-    tags = ['elem'],
-    post_hook = ["ALTER TABLE {{ this }} ADD PRIMARY KEY (id);"]
+    tags = ['elem']
   )
 }}
 
 WITH combined AS (
   SELECT
+    id,
     cs_code,
     cs_bp_code,
     cs_num,
@@ -18,6 +17,7 @@ WITH combined AS (
   FROM {{ ref('elem_cs_bp') }}
   UNION ALL
   SELECT
+    id,
     cs_code,
     cs_bp_code,
     cs_num,
@@ -28,7 +28,7 @@ WITH combined AS (
   FROM {{ ref('elem_cs_ti') }}
 )
 SELECT
-  row_number() OVER (ORDER BY cs_code) AS id,
+  id,
   cs_code,
   cs_bp_code,
   cs_num,

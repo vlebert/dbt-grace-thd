@@ -1,11 +1,14 @@
 {{
     config(
         materialized = 'table',
-        schema = 'transformations'
+        schema = 'transformations',
+        tags = ['base'],
+        post_hook = ["ALTER TABLE {{ this }} ADD PRIMARY KEY (id);"]
     )
 }}
 
 SELECT
+    row_number() OVER (ORDER BY bp_code) AS id,
     CASE WHEN pg_input_is_valid(NULLIF(bp_abandon::text, ''), 'varchar(1)') THEN bp_abandon::VARCHAR(1) ELSE NULL END AS bp_abandon,
     CASE WHEN pg_input_is_valid(NULLIF(bp_avct::text, ''), 'varchar(1)') THEN bp_avct::VARCHAR(1) ELSE NULL END AS bp_avct,
     CASE WHEN pg_input_is_valid(NULLIF(bp_code::text, ''), 'varchar(254)') THEN bp_code::VARCHAR(254) ELSE NULL END AS bp_code,
