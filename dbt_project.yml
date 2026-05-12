@@ -130,6 +130,9 @@ models:
         +tags: ["control"]
     transformations:
       +schema: transformations
+      base:
+        +materialized: table
+        +tags: ["base"]
       elementaires:
         +materialized: view
         +tags: ["elem"]
