@@ -3,7 +3,17 @@
         materialized = 'table',
         schema = 'transformations',
         tags = ['base'],
-        post_hook = ["ALTER TABLE {{ this }} ADD PRIMARY KEY (id);"]
+        post_hook = ["ALTER TABLE {{ this }} ADD PRIMARY KEY (id);"],
+        indexes = [
+            {'columns': ['bp_code'], 'type': 'btree'},
+            {'columns': ['bp_pt_code'], 'type': 'btree'},
+            {'columns': ['bp_prop'], 'type': 'btree'},
+            {'columns': ['bp_gest'], 'type': 'btree'},
+            {'columns': ['bp_proptyp'], 'type': 'btree'},
+            {'columns': ['bp_statut'], 'type': 'btree'},
+            {'columns': ['bp_avct'], 'type': 'btree'},
+            {'columns': ['bp_rf_code'], 'type': 'btree'}
+        ]
     )
 }}
 
