@@ -1,0 +1,58 @@
+{{
+    config(
+        materialized = 'table',
+        schema = 'transformations',
+        tags = ['base'],
+        post_hook = ["ALTER TABLE {{ this }} ADD PRIMARY KEY (id);"],
+        indexes = [
+            {'columns': ['ad_code'], 'type': 'btree'},
+            {'columns': ['geom'], 'type': 'gist'},
+            {'columns': ['ad_nblres'], 'type': 'btree'},
+            {'columns': ['ad_nblpro'], 'type': 'btree'},
+            {'columns': ['ad_nblent'], 'type': 'btree'},
+            {'columns': ['ad_nblpub'], 'type': 'btree'},
+            {'columns': ['ad_hexacle'], 'type': 'btree'},
+            {'columns': ['ad_racc'], 'type': 'btree'},
+            {'columns': ['ad_ietat'], 'type': 'btree'},
+        ]
+    )
+}}
+
+SELECT
+    row_number() OVER (ORDER BY ad_code) AS id,
+    CASE WHEN pg_input_is_valid(NULLIF(ad_batcode::text, ''), 'varchar(100)') THEN ad_batcode::VARCHAR(100) ELSE NULL END AS ad_batcode,
+    CASE WHEN pg_input_is_valid(NULLIF(ad_code::text, ''), 'varchar(254)') THEN ad_code::VARCHAR(254) ELSE NULL END AS ad_code,
+    CASE WHEN pg_input_is_valid(NULLIF(ad_codtemp::text, ''), 'varchar(254)') THEN ad_codtemp::VARCHAR(254) ELSE NULL END AS ad_codtemp,
+    CASE WHEN pg_input_is_valid(NULLIF(ad_commune::text, ''), 'varchar(254)') THEN ad_commune::VARCHAR(254) ELSE NULL END AS ad_commune,
+    CASE WHEN pg_input_is_valid(NULLIF(ad_datmodi::text, ''), 'date') THEN ad_datmodi::DATE ELSE NULL END AS ad_datmodi,
+    CASE WHEN pg_input_is_valid(NULLIF(ad_distinf::text, ''), 'numeric(6,2)') THEN ad_distinf::NUMERIC(6,2) ELSE NULL END AS ad_distinf,
+    CASE WHEN pg_input_is_valid(NULLIF(ad_dta::text, ''), 'varchar(1)') THEN ad_dta::VARCHAR(1) ELSE NULL END AS ad_dta,
+    CASE WHEN pg_input_is_valid(NULLIF(ad_gest::text, ''), 'varchar(254)') THEN ad_gest::VARCHAR(254) ELSE NULL END AS ad_gest,
+    CASE WHEN pg_input_is_valid(NULLIF(ad_hexacle::text, ''), 'varchar(254)') THEN ad_hexacle::VARCHAR(254) ELSE NULL END AS ad_hexacle,
+    CASE WHEN pg_input_is_valid(NULLIF(ad_iaccgst::text, ''), 'varchar(1)') THEN ad_iaccgst::VARCHAR(1) ELSE NULL END AS ad_iaccgst,
+    CASE WHEN pg_input_is_valid(NULLIF(ad_idatsgn::text, ''), 'date') THEN ad_idatsgn::DATE ELSE NULL END AS ad_idatsgn,
+    CASE WHEN pg_input_is_valid(NULLIF(ad_ietat::text, ''), 'varchar(2)') THEN ad_ietat::VARCHAR(2) ELSE NULL END AS ad_ietat,
+    CASE WHEN pg_input_is_valid(NULLIF(ad_imneuf::text, ''), 'varchar(1)') THEN ad_imneuf::VARCHAR(1) ELSE NULL END AS ad_imneuf,
+    CASE WHEN pg_input_is_valid(NULLIF(ad_insee::text, ''), 'varchar(6)') THEN ad_insee::VARCHAR(6) ELSE NULL END AS ad_insee,
+    CASE WHEN pg_input_is_valid(NULLIF(ad_isole::text, ''), 'varchar(1)') THEN ad_isole::VARCHAR(1) ELSE NULL END AS ad_isole,
+    CASE WHEN pg_input_is_valid(NULLIF(ad_nbfofon::text, ''), 'integer') THEN ad_nbfofon::INTEGER ELSE NULL END AS ad_nbfofon,
+    CASE WHEN pg_input_is_valid(NULLIF(ad_nbfogfu::text, ''), 'integer') THEN ad_nbfogfu::INTEGER ELSE NULL END AS ad_nbfogfu,
+    CASE WHEN pg_input_is_valid(NULLIF(ad_nbfotte::text, ''), 'integer') THEN ad_nbfotte::INTEGER ELSE NULL END AS ad_nbfotte,
+    CASE WHEN pg_input_is_valid(NULLIF(ad_nbfotth::text, ''), 'integer') THEN ad_nbfotth::INTEGER ELSE NULL END AS ad_nbfotth,
+    CASE WHEN pg_input_is_valid(NULLIF(ad_nbfotto::text, ''), 'integer') THEN ad_nbfotto::INTEGER ELSE NULL END AS ad_nbfotto,
+    CASE WHEN pg_input_is_valid(NULLIF(ad_nblent::text, ''), 'integer') THEN ad_nblent::INTEGER ELSE NULL END AS ad_nblent,
+    CASE WHEN pg_input_is_valid(NULLIF(ad_nblobj::text, ''), 'integer') THEN ad_nblobj::INTEGER ELSE NULL END AS ad_nblobj,
+    CASE WHEN pg_input_is_valid(NULLIF(ad_nblope::text, ''), 'integer') THEN ad_nblope::INTEGER ELSE NULL END AS ad_nblope,
+    CASE WHEN pg_input_is_valid(NULLIF(ad_nblpro::text, ''), 'integer') THEN ad_nblpro::INTEGER ELSE NULL END AS ad_nblpro,
+    CASE WHEN pg_input_is_valid(NULLIF(ad_nblpub::text, ''), 'integer') THEN ad_nblpub::INTEGER ELSE NULL END AS ad_nblpub,
+    CASE WHEN pg_input_is_valid(NULLIF(ad_nblres::text, ''), 'integer') THEN ad_nblres::INTEGER ELSE NULL END AS ad_nblres,
+    CASE WHEN pg_input_is_valid(NULLIF(ad_nombat::text, ''), 'varchar(254)') THEN ad_nombat::VARCHAR(254) ELSE NULL END AS ad_nombat,
+    CASE WHEN pg_input_is_valid(NULLIF(ad_nomvoie::text, ''), 'varchar(254)') THEN ad_nomvoie::VARCHAR(254) ELSE NULL END AS ad_nomvoie,
+    CASE WHEN pg_input_is_valid(NULLIF(ad_numero::text, ''), 'integer') THEN ad_numero::INTEGER ELSE NULL END AS ad_numero,
+    CASE WHEN pg_input_is_valid(NULLIF(ad_postal::text, ''), 'varchar(20)') THEN ad_postal::VARCHAR(20) ELSE NULL END AS ad_postal,
+    CASE WHEN pg_input_is_valid(NULLIF(ad_prio::text, ''), 'varchar(1)') THEN ad_prio::VARCHAR(1) ELSE NULL END AS ad_prio,
+    CASE WHEN pg_input_is_valid(NULLIF(ad_racc::text, ''), 'varchar(2)') THEN ad_racc::VARCHAR(2) ELSE NULL END AS ad_racc,
+    CASE WHEN pg_input_is_valid(NULLIF(ad_raclong::text, ''), 'varchar(1)') THEN ad_raclong::VARCHAR(1) ELSE NULL END AS ad_raclong,
+    CASE WHEN pg_input_is_valid(NULLIF(ad_rep::text, ''), 'varchar(20)') THEN ad_rep::VARCHAR(20) ELSE NULL END AS ad_rep,
+    geom AS geom
+FROM {{ source('gracethd', 't_adresse') }}

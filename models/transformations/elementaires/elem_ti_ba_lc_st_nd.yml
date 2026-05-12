@@ -1,0 +1,40 @@
+version: 2
+
+models:
+  - name: elem_ti_ba_lc_st_nd
+    description: Projette t_tiroir avec géométrie de t_noeud via ti_ba_code → ba_lc_code → lc_st_code → st_nd_code = nd_code
+    config:
+      tags: ["elem"]
+      schema: transformations
+    columns:
+      - name: id
+        description: Clé primaire technique pour QGIS
+        tests:
+          - not_null
+          - unique
+
+      - name: ti_code
+        description: "Code du tiroir optique"
+      - name: ti_codeext
+        description: "Code chez un tiers ou dans une autre base de données."
+      - name: ti_perirec
+        description: "Identifiant de perimetre récolé à un instant t"
+      - name: ti_abandon
+        description: "Défini si l'entité est abandonnée ou non dans un SI"
+      - name: ti_etiquet
+        description: "Etiquette sur le terrain"
+      - name: ti_ba_code
+        description: "Identifiant unique contenu dans la table t_baie"
+      - name: ti_prop
+        description: "Propriétaire du tiroir"
+      - name: ti_type
+        description: "Type du contenant selon qu'il s'agisse d'un TIROIR ou d'une TETE DE CABLE."
+      - name: ti_rf_code
+        description: "Identifiant de la référence du tiroir dans la table référence."
+      - name: ti_taille
+        description: "Taille du tiroir en nombre de U"
+      - name: ti_placemt
+        description: "Position du tiroir en \"nombre de U\""
+
+      - name: geom
+        description: "Géométrie du noeud associé (POINT)"

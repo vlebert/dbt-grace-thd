@@ -1,0 +1,36 @@
+version: 2
+
+models:
+  - name: elem_ps
+    description: UNION ALL de elem_ps_cs et elem_ps_ti. Regroupe toutes les positions avec leur géométrie (via cassette ou via tiroir).
+    config:
+      tags: ["elem"]
+      schema: transformations
+    columns:
+      - name: id
+        description: Clé primaire technique pour QGIS
+        tests:
+          - not_null
+          - unique
+
+      - name: ps_code
+        description: "Code unique."
+      - name: ps_1
+        description: "Code unique de la fibre en entrée de la cassette (pour continuité route optique)"
+      - name: ps_2
+        description: "Code unique de la fibre en sortie de la cassette (pour continuité route optique)"
+      - name: ps_numero
+        description: "Position (numéro de compartiment) du smoove ou du connecteur"
+      - name: ps_cs_code
+        description: "Identifiant unique de la CASSETTE à laquelle appartient la position"
+      - name: ps_type
+        description: "Type de connecteur / soudure."
+      - name: ps_fonct
+        description: "Type de connectorisation (Connecteur, epissure, pigtail, ….)"
+      - name: ps_preaff
+        description: "Pré-affectation de la route optique au local client de l'IP, ou de l'IPE ou à l'Infrastructure d'Imbrication."
+      - name: ps_ti_code
+        description: "Identifiant unique du TIROIR / de la TCOP à laquelle appartient la position"
+
+      - name: geom
+        description: "Géométrie de la cassette ou du tiroir associé (POINT)"

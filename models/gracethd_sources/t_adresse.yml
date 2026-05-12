@@ -75,7 +75,5 @@ sources:
             description: "Nombre de fibres noires."
           - name: ad_dta
             description: "1 si un Diagnostic Technique Amiante (DTA) est obligatoire, 0 si ce n'est pas le cas."
-          - name: ad_geolqlt
-            description: "Qualité de la géolocalisation"
           - name: geom
             description: "Point abstrait (Geometry(Point,SRID))"

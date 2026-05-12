@@ -1,0 +1,44 @@
+version: 2
+
+models:
+  - name: elem_ba_lc_st_nd
+    description: Projette t_baie avec géométrie de t_noeud via ba_lc_code → lc_st_code → st_nd_code = nd_code
+    config:
+      tags: ["elem"]
+      schema: transformations
+    columns:
+      - name: id
+        description: Clé primaire technique pour QGIS
+        tests:
+          - not_null
+          - unique
+
+      - name: ba_code
+        description: "Code baie ou ferme"
+      - name: ba_codeext
+        description: "Code chez un tiers ou dans une autre base de données."
+      - name: ba_perirec
+        description: "Identifiant du périmètre récolé livré à un instant t"
+      - name: ba_abandon
+        description: "Défini si l'entité est abandonnée ou non dans un SI"
+      - name: ba_etiquet
+        description: "Etiquette sur le terrain"
+      - name: ba_lc_code
+        description: "Code du local dans lequel se trouve la baie/ferme"
+      - name: ba_prop
+        description: "Propriétaire de la baie/ferme"
+      - name: ba_gest
+        description: "Gestionnaire de la baie/ferme"
+      - name: ba_proptyp
+        description: "Type de propriété"
+      - name: ba_statut
+        description: "Statut de déploiement."
+      - name: ba_rf_code
+        description: "Identifiant de la référence de la baie/ferme dans la table référence."
+      - name: ba_type
+        description: "Type du contenant selon qu'il s'agisse d'une BAIE ou d'une FERME."
+      - name: ba_nb_u
+        description: "Taille de la baie en nombre de U"
+
+      - name: geom
+        description: "Géométrie du noeud associé (POINT)"
