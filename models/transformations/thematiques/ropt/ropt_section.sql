@@ -3,9 +3,10 @@
         materialized = 'table',
         schema = 'transformations',
         tags = ['thematiques', 'ropt'],
-        post_hook = [
-            "CREATE INDEX IF NOT EXISTS idx_ropt_section_ropt_id_ordr ON {{ this }} (ropt_id, ropt_ordr);"
-        ]
+        indexes = [
+                    {'columns': ['ropt_id'], 'type': 'btree'},
+                    {'columns': ['ropt_ordr'], 'type': 'btree'}
+                ]
     )
 }}
 

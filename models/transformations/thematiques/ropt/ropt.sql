@@ -3,7 +3,9 @@
         materialized = 'table',
         schema = 'transformations',
         tags = ['thematiques', 'ropt'],
-        post_hook = ["ALTER TABLE {{ this }} ADD PRIMARY KEY (id);"]
+        indexes = [
+            {'columns': ['ropt_id'], 'type': 'btree'}
+        ]
     )
 }}
 
@@ -42,13 +44,18 @@ WITH RECURSIVE ropt AS (
         p.ps_code AS ps_amont,
         r.ropt_typelog
     FROM ropt r
-    JOIN {{ ref('t_position') }} p ON (p.ps_1 = r.fo_code OR p.ps_2 = r.fo_code)
-      AND p.ps_code <> r.ps_amont
+    CROSS JOIN LATERAL (
+        SELECT ps_1, ps_2, ps_code
+        FROM {{ ref('t_position') }} p
+        WHERE (p.ps_1 = r.fo_code OR p.ps_2 = r.fo_code)
+          AND p.ps_code <> r.ps_amont
+        LIMIT 1
+    ) p
     WHERE r.ropt_ordr < 22
 )
 
 SELECT
-    ROW_NUMBER() OVER () AS id,
+    -- ROW_NUMBER() OVER () AS id,
     ropt_id,
     ropt_ordr,
     fo_code,
