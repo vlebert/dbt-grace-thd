@@ -33,12 +33,12 @@ def load_yaml(path: str) -> dict:
 
 
 def dbt_project_root() -> Path:
-    """Locate dbt_project.yml by walking up from the script directory."""
-    here = Path(__file__).resolve().parent
+    """Locate dbt_project.yml by walking up from the current directory."""
+    here = Path.cwd()
     for d in [here, *here.parents]:
         if (d / "dbt_project.yml").exists():
             return d
-    sys.exit("dbt_project.yml not found (looked upward from script dir)")
+    sys.exit("dbt_project.yml not found (looked upward from current dir)")
 
 
 def read_project_config(project_root: Path):
@@ -259,7 +259,7 @@ def main():
 
     # Resolve paths
     project_root = dbt_project_root()
-    script_dir = (project_root / "scripts").resolve()
+    script_dir = Path(__file__).resolve().parent  # indexes are next to this script
 
     src = args.src
     if not os.path.exists(src):
