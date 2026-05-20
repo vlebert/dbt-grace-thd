@@ -1,10 +1,13 @@
-# Architecture des contrôles GRACE THD
+# Architecture des contrôles - Package DBT pour GRACE THD
 
-Ce document définit les conventions d'architecture pour l'implémentation des contrôles de qualité de données. Il complète `SPECS_CONTROLES.md` qui décrit le format de résultat unifié.
+**Documentation technique des contrôles de qualité de données**
+
+> **Pour une présentation générale du projet** : [Retour au README](../README.md)
+
 
 ## Principes directeurs
 
-1. **Schéma de sortie unifié** — tout contrôle produit les 7 colonnes définies dans `SPECS_CONTROLES.md` (`id_test`, `type_controle`, `description`, `classe`, `attribut`, `id_entite`, `detail_erreur`). La géométrie n'est pas portée par les contrôles : elle est résolue en aval dans `rapport_controles_geo` à partir de (`classe`, `id_entite`).
+1. **Schéma de sortie unifié** — tout contrôle produit les 7 colonnes suivantes : `id_test`, `type_controle`, `description`, `classe`, `attribut`, `id_entite`, `detail_erreur`. La géométrie n'est pas portée par les contrôles : elle est résolue en aval dans `rapport_controles_geo` à partir de (`classe`, `id_entite`).
 2. **Séparation générique / spécifique**
    - *Générique* : un contrôle reproduit N fois sur des couples (classe, attribut) avec une structure SQL uniforme. Paramétré par seed.
    - *Spécifique* : un contrôle avec une logique SQL propre (jointures, conditions complexes, topologie, règle métier). Un fichier par règle.

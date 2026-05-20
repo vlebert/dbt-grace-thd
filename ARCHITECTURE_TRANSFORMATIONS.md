@@ -1,4 +1,10 @@
-# Architecture des Transformations GRACE THD
+# Architecture des transformations - Package DBT pour GRACE THD
+
+**Documentation technique des transformations de données**
+
+> **Pour une présentation générale du projet** : [Retour au README](../README.md)
+
+---
 
 ## Vue d'ensemble
 

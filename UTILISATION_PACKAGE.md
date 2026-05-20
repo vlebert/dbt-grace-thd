@@ -1,4 +1,10 @@
-# Utilisation du package GRACE THD
+# Utilisation du package DBT pour GRACE THD
+
+**Guide pratique pour l'installation, la configuration et l'utilisation du package**
+
+> **Pour une présentation générale** : [Retour au README](../README.md)
+
+---
 
 ## Installation
 

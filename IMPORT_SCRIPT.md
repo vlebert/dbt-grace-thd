@@ -1,18 +1,26 @@
-# Import des données GRACE THD
+# Import des données - Package DBT pour GRACE THD
 
-Ce script importe un jeu de données GRACE THD (fichiers shapefiles, CSV ou GeoPackage) dans une base PostgreSQL.
+**Script d'import des données sources vers PostgreSQL/PostGIS**
+
+> **Pour une présentation générale** : [Retour au README](../README.md)
+
+---
+
 
 ## Prérequis
 
 - Python 3 installé
 - `ogr2ogr` (GDAL) et `psql` (PostgreSQL) disponibles dans le terminal
 - Un fichier `~/.dbt/profiles.yml` correctement configuré
+- Extension PostGIS activée sur votre base de données
+- 
+---
 
 ## Utilisation
 
 ```bash
-# Dans le dossier du projet
-python scripts/import_grace_pg.py CHEMIN_SOURCE [CIBLE_DBT]
+# Depuis la racine de votre projet DBT
+python dbt_packages/grace_thd/scripts/import_grace_pg.py CHEMIN_SOURCE [CIBLE_DBT]
 ```
 
 **Arguments :**
@@ -21,6 +29,8 @@ python scripts/import_grace_pg.py CHEMIN_SOURCE [CIBLE_DBT]
 |----------|-------------|-------------|
 | `CHEMIN_SOURCE` | oui | Dossier de shapefiles/CSV ou fichier `.gpkg` |
 | `CIBLE_DBT` | non | Nom de la cible dans `profiles.yml` (défaut : la cible par défaut du profil) |
+
+---
 
 ## Exemples
 
@@ -31,6 +41,8 @@ python scripts/import_grace_pg.py /chemin/donnees.gpkg
 # Importer un dossier vers la base de production
 python scripts/import_grace_pg.py ./NA-16025-BGNR prod
 ```
+
+---
 
 ## Fonctionnement
 
