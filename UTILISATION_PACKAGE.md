@@ -2,7 +2,7 @@
 
 **Guide pratique pour l'installation, la configuration et l'utilisation du package**
 
-> **Pour une présentation générale** : [Retour au README](../README.md)
+> **Pour une présentation générale** : [Retour au README](README.md)
 
 ---
 

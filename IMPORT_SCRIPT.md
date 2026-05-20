@@ -2,7 +2,7 @@
 
 **Script d'import des données sources vers PostgreSQL/PostGIS**
 
-> **Pour une présentation générale** : [Retour au README](../README.md)
+> **Pour une présentation générale** : [Retour au README](README.md)
 
 ---
 

@@ -2,7 +2,7 @@
 
 **Documentation technique des transformations de données**
 
-> **Pour une présentation générale du projet** : [Retour au README](../README.md)
+> **Pour une présentation générale du projet** : [Retour au README](README.md)
 
 ---
 
