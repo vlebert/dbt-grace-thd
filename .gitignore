@@ -8,3 +8,4 @@ dev_data
 .DS_Store
 
 NOTES.md
+scripts/__pycache__/
