@@ -3,6 +3,18 @@
         materialized = 'table',
         schema = 'transformations',
         tags = ['thematiques', 'ropt'],
+        pre_hook = [
+            "ANALYZE {{ ref('t_position') }};",
+            "ANALYZE {{ ref('t_fibre') }};",
+            "ANALYZE {{ ref('t_cable') }};",
+            "ANALYZE {{ ref('t_cassette') }};",
+            "ANALYZE {{ ref('t_tiroir') }};",
+            "ANALYZE {{ ref('t_baie') }};",
+            "ANALYZE {{ ref('t_local') }};",
+            "ANALYZE {{ ref('t_ebp') }};",
+            "ANALYZE {{ ref('t_site') }};",
+            "ANALYZE {{ ref('t_ptech') }};"
+        ],
         indexes = [
             {'columns': ['ropt_id'], 'type': 'btree'}
         ]
