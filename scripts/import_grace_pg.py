@@ -133,7 +133,7 @@ def shell(cmd):
 
 def import_data(creds: dict, src: str, script_dir: Path):
     db = creds
-    schema = db["db_schema"]
+    schema = "gracethd_source"
 
     dest_db = (
         f"PG:dbname={db['db_name']} user={db['db_user']} "
