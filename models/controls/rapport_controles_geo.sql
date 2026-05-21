@@ -1,4 +1,4 @@
-{{ config(materialized='table', tags=['rapport']) }}
+{{ config(materialized='table', tags=['control', 'rapport']) }}
 
 {#
   Rapport consolidé géolocalisé.

@@ -1,4 +1,4 @@
-{{ config(materialized='table', tags=['rapport']) }}
+{{ config(materialized='table', tags=['control', 'rapport']) }}
 
 {#
   Consolidation de tous les contrôles déclarés dans la var `grace_ctrl_models`.
