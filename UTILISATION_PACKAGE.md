@@ -38,6 +38,13 @@ Le package est cloné dans :
       ...
 ```
 
+### Mise à jour du package
+
+Pour mettre à jour le package vers la dernière version (ou un tag spécifique après modification de `packages.yml`) :
+```bash
+dbt deps --upgrade
+```
+
 ---
 
 ## Utilisation des scripts
