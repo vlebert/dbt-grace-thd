@@ -7,4 +7,4 @@ models:
       est intégralement contenue dans la géométrie de sa ZNRO (Zone de NRO) associée,
       avec une tolérance de 100m (buffer appliqué sur la ZNRO).
     config:
-      tags: ['control', 'topologie']
+      tags: ['grace_control', 'grace_topologie']

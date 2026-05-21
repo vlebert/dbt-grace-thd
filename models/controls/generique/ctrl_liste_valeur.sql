@@ -1,4 +1,4 @@
-{{ config(materialized='table', tags=['control']) }}
+{{ config(materialized='table', tags=['grace_control']) }}
 
 {#
   Contrôle générique de conformité aux listes de valeurs.

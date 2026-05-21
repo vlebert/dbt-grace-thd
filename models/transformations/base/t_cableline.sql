@@ -2,7 +2,7 @@
     config(
         materialized = 'table',
         schema = 'transformations',
-        tags = ['base'],
+        tags = ['grace_base'],
         post_hook = ["ALTER TABLE {{ this }} ADD PRIMARY KEY (id);"],
         indexes = [
             {'columns': ['cl_code'], 'type': 'btree'},

@@ -6,4 +6,4 @@ models:
       Controle les cables avec longueur geometrique > 0 mais sans association a un cheminement.
       Hors cables de type RA (raccordement).
     config:
-      tags: ['control', 'métier']
+      tags: ['grace_control', 'grace_métier']

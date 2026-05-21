@@ -1,4 +1,4 @@
-{{ config(materialized='table', tags=['control']) }}
+{{ config(materialized='table', tags=['grace_control']) }}
 
 {#
   Contrôle de présence et de remplissage des tables obligatoires GRACE THD.

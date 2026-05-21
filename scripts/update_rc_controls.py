@@ -116,7 +116,7 @@ for filepath in rc_files:
     # Trouver la ligne config et insérer après
     insert_idx = None
     for i, line in enumerate(lines):
-        if "{{ config(materialized=" in line and "tags=['control']" in line:
+        if "{{ config(materialized=" in line and "tags=['grace_control']" in line:
             insert_idx = i + 1
             break
 

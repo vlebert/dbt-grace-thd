@@ -4,7 +4,7 @@ models:
   - name: elem_cb
     description: Projette t_cable avec géométrie de t_cableline OU construction depuis nd1/nd2. UNION ALL des câbles avec cableline et des câbles sans cableline (géométrie construite avec ST_MakeLine).
     config:
-      tags: ["elem"]
+      tags: ["grace_elem"]
       schema: transformations
     columns:
       - name: id

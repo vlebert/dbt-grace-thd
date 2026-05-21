@@ -6,4 +6,4 @@ models:
       Controle la coherence entre ad_nbfoftth et la somme des champs ad_nblres + ad_nblpro + ad_nblent + ad_nblpub.
       Verifie que le nombre total de prises FTTH declare correspond au calcul.
     config:
-      tags: ['control', 'métier']
+      tags: ['grace_control', 'grace_métier']

@@ -6,4 +6,4 @@ models:
       Controle que le champ cm_typelog n'a pas la valeur NC (Non Communique).
       Tous les cheminements doivent avoir un type logique connu.
     config:
-      tags: ['control', 'métier']
+      tags: ['grace_control', 'grace_métier']

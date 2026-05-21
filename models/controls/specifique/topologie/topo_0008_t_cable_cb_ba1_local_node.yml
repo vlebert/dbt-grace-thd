@@ -7,4 +7,4 @@ models:
       La relation est : cb_ba1 -> t_baie -> t_local -> t_site.st_nd_code
       doit correspondre à cb_nd1.
     config:
-      tags: ['control', 'topologie']
+      tags: ['grace_control', 'grace_topologie']

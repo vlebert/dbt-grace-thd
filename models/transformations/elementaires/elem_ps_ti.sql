@@ -1,6 +1,6 @@
 {{
   config(
-    tags = ['elem']
+    tags = ['grace_elem']
   )
 }}
 

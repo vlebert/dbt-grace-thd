@@ -6,4 +6,4 @@ models:
       Controle qu'une adresse avec des prises n'est pas situee sur plusieurs ZSRO.
       Une adresse doit appartenir a une seule zone de service.
     config:
-      tags: ['control', 'métier']
+      tags: ['grace_control', 'grace_métier']

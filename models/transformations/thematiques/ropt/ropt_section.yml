@@ -11,7 +11,7 @@ models:
 
       **Dépendances** : ropt (modèle parent), toutes les tables base.
     config:
-      tags: ['thematiques', 'ropt']
+      tags: ['grace_thematiques', 'grace_ropt']
     columns:
       - name: ropt_id
         description: Identifiant de la route optique

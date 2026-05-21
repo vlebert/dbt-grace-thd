@@ -4,7 +4,7 @@ models:
   - name: elem_bp
     description: Projette t_ebp (PBO/BPE) avec COALESCE géométrie de pt ou st. Filtrage sur bp_typelog IN ('PBO', 'BPE').
     config:
-      tags: ["elem"]
+      tags: ["grace_elem"]
       schema: transformations
     columns:
       - name: id

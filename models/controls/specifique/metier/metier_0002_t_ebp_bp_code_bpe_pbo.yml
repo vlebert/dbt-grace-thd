@@ -6,4 +6,4 @@ models:
       Controle que les EBP de type BPE ou PBO sont references en aval d'un cable.
       Un EBP de type BPE/PBO doit etre connecte comme point d'arrivee (cb_bp2).
     config:
-      tags: ['control', 'métier']
+      tags: ['grace_control', 'grace_métier']

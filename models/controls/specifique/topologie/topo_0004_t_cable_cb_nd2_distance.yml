@@ -7,4 +7,4 @@ models:
       du câble (via t_cableline) est inférieure ou égale à 0,01m (1cm).
       Vérifie la cohérence entre la déclaration du noeud et la géométrie.
     config:
-      tags: ['control', 'topologie']
+      tags: ['grace_control', 'grace_topologie']

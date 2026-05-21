@@ -4,7 +4,7 @@ models:
   - name: elem_fo_cb_cl
     description: Projette t_fibre avec géométrie de t_cableline via fo_cb_code → cb_code → cl_cb_code = cb_code
     config:
-      tags: ["elem"]
+      tags: ["grace_elem"]
       schema: transformations
     columns:
       - name: id

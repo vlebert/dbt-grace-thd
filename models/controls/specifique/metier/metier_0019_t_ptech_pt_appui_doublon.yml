@@ -6,4 +6,4 @@ models:
       Controle les doublons potentiels d'appui avec meme identifiant FT et distance < 50m.
       Detecte les appuis FT dupliques geographiquement proches.
     config:
-      tags: ['control', 'métier']
+      tags: ['grace_control', 'grace_métier']

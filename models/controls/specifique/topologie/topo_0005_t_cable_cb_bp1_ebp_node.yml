@@ -6,4 +6,4 @@ models:
       Vérifie que le point de branchement cb_bp1 est bien situé sur le noeud cb_nd1
       via la relation : cb_bp1 -> t_ebp -> t_ptech.pt_nd_code doit correspondre à cb_nd1.
     config:
-      tags: ['control', 'topologie']
+      tags: ['grace_control', 'grace_topologie']

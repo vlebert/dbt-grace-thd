@@ -8,4 +8,4 @@ models:
       pas 10 pour cent de la longueur du cable. Un ecart superieur peut indiquer une incoherence
       topologique ou des donnees manquantes.
     config:
-      tags: ["control", "topologie"]
+      tags: ["grace_control", "topologie"]

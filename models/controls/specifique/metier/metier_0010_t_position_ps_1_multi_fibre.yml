@@ -6,4 +6,4 @@ models:
       Controle qu'une fibre n'est pas presente en amont dans plusieurs positions (ps_1).
       Detecte les erreurs de route optique sur t_position.ps_1.
     config:
-      tags: ['control', 'métier']
+      tags: ['grace_control', 'grace_métier']

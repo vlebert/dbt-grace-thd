@@ -124,18 +124,18 @@ models:
       +schema: controles
       generique:
         +materialized: table
-        +tags: ["control"]
+        +tags: ["grace_control"]
       specifique:
         +materialized: table
-        +tags: ["control"]
+        +tags: ["grace_control"]
     transformations:
       +schema: transformations
       base:
         +materialized: table
-        +tags: ["base"]
+        +tags: ["grace_base"]
       elementaires:
         +materialized: view
-        +tags: ["elem"]
+        +tags: ["grace_elem"]
       thematiques:
         +schema: transformations
 

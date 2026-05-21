@@ -4,7 +4,7 @@ models:
   - name: elem_ba_lc_st_nd
     description: Projette t_baie avec géométrie de t_noeud via ba_lc_code → lc_st_code → st_nd_code = nd_code
     config:
-      tags: ["elem"]
+      tags: ["grace_elem"]
       schema: transformations
     columns:
       - name: id

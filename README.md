@@ -118,19 +118,19 @@ python dbt_packages/grace_thd/scripts/import_grace_pg.py /chemin/vers/vos/donnee
 dbt seed
 
 # Exécuter tous les contrôles et générer les rapports
-dbt run --select tag:control
+dbt run --select tag:grace_control
 ```
 
-> **Note** : Les rapports consolidés (`rapport_controles` et `rapport_controles_geo`) sont inclus dans le tag `control`.
+> **Note** : Les rapports consolidés (`rapport_controles` et `rapport_controles_geo`) sont inclus dans le tag `grace_control`.
 
 ### 4. Exécution des transformations
 
 ```bash
 # Générer les tables base
-dbt run --select tag:base
+dbt run --select tag:grace_base
 
 # Générer les vues élémentaires
-dbt run --select tag:elem
+dbt run --select tag:grace_elem
 ```
 
 ---

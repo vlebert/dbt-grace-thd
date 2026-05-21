@@ -6,4 +6,4 @@ models:
       Controle qu'un cable n'est pas connecte a plus de 2 EBP via fibrage.
       Detecte les cables avec trop de connexions EBP.
     config:
-      tags: ['control', 'métier']
+      tags: ['grace_control', 'grace_métier']

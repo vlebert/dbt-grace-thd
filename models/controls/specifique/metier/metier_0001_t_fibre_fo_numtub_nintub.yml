@@ -6,4 +6,4 @@ models:
       Controle que la combinaison num de tube / num de fibre est unique dans un cable.
       Detecte les doublons de combinaisons Txxx - Fyyy dans un meme cable.
     config:
-      tags: ['control', 'métier']
+      tags: ['grace_control', 'grace_métier']

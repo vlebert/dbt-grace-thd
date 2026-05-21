@@ -6,4 +6,4 @@ models:
       Controle que le nombre de locaux associes a une adresse correspond a la somme des champs de dimensionnement.
       Verifie nb locaux = ad_nblres + ad_nblpro + ad_nblent + ad_nblpub.
     config:
-      tags: ['control', 'métier']
+      tags: ['grace_control', 'grace_métier']

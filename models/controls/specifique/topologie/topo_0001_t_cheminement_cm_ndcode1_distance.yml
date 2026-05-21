@@ -7,4 +7,4 @@ models:
       est inférieure ou égale à 0,01m (1cm). Vérifie la cohérence topologique entre
       la déclaration du noeud de départ et la géométrie du cheminement.
     config:
-      tags: ['control', 'topologie']
+      tags: ['grace_control', 'grace_topologie']

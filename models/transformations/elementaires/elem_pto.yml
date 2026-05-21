@@ -4,7 +4,7 @@ models:
   - name: elem_pto
     description: Projette t_ebp (PTO) avec géométrie de t_adresse. Filtrage sur bp_typelog = 'PTO' AND st_typelog = 'CLIENT'. Inclut ad_code et ad_batcode.
     config:
-      tags: ["elem"]
+      tags: ["grace_elem"]
       schema: transformations
     columns:
       - name: id

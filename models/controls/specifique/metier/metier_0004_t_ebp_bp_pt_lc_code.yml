@@ -6,4 +6,4 @@ models:
       Controle que chaque EBP a soit un point technique (bp_pt_code) soit un local technique (bp_lc_code).
       Un EBP doit etre geolocalise via un point ou un local technique.
     config:
-      tags: ['control', 'métier']
+      tags: ['grace_control', 'grace_métier']

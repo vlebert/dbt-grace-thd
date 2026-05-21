@@ -39,7 +39,7 @@ CASE WHEN pg_input_is_valid(NULLIF(champ::text, ''), 'type_postgres')
     config(
         materialized = 'table',
         schema = 'transformations',
-        tags = ['base'],
+        tags = ['grace_base'],
         post_hook = ["ALTER TABLE {{ this }} ADD PRIMARY KEY (id);"],
         indexes = [
             {'columns': ['colonne_1'], 'type': 'btree'},
@@ -73,7 +73,7 @@ t_adresse, t_baie, t_cable, t_cableline, t_cassette, t_cheminement, t_fibre, t_l
 |---|---|
 | **Préfixe** | `elem_` |
 | **Matérialisation** | `view` **par défaut**, override possible en `table` via `dbt_project.yml` |
-| **Tags** | `elem` sur tous les modèles |
+| **Tags** | `grace_elem` sur tous les modèles |
 | **Schéma** | `transformations` |
 | **Documentation** | 1 fichier `.yml` par modèle |
 | **Géométrie** | `geom AS geom` en dernière colonne |
@@ -144,10 +144,10 @@ models:
       +schema: transformations
       base:
         +materialized: table
-        +tags: ["base"]
+        +tags: ["grace_base"]
       elementaires:
         +materialized: view  # Par défaut : vues
-        +tags: ["elem"]
+        +tags: ["grace_elem"]
       thematiques:
         +schema: transformations
 ```

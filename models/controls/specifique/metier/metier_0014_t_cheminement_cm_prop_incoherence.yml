@@ -6,4 +6,4 @@ models:
       Controle la coherence du proprietaires entre le cheminement et les chambres conectees.
       Le propretaire du cheminement doit correspondre a celui des chambres.
     config:
-      tags: ['control', 'métier']
+      tags: ['grace_control', 'grace_métier']

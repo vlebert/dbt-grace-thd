@@ -7,4 +7,4 @@ models:
       (cb_nd2) pour chaque cable dont le type logique n'est pas RACCORDEMENT.
       Un cheminement est considere connecte si cb_nd2 = cm_ndcode1 ou cm_ndcode2.
     config:
-      tags: ["control", "topologie"]
+      tags: ["grace_control", "topologie"]

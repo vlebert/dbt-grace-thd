@@ -1,4 +1,4 @@
-{{ config(materialized='table', tags=['control', 'rapport']) }}
+{{ config(materialized='table', tags=['grace_control', 'grace_rapport']) }}
 
 {#
   Rapport consolidé géolocalisé.

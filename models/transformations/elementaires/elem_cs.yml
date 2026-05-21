@@ -4,7 +4,7 @@ models:
   - name: elem_cs
     description: UNION ALL de elem_cs_bp et elem_cs_ti. Regroupe toutes les cassettes avec leur géométrie (via EBP ou via Tiroir).
     config:
-      tags: ["elem"]
+      tags: ["grace_elem"]
       schema: transformations
     columns:
       - name: id

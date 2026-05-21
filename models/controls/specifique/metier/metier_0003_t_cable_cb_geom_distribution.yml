@@ -6,4 +6,4 @@ models:
       Controle que les cables de type DI (Distribution) ont une geometrie.
       Un cable de distribution doit avoir une geometrie si amont != aval.
     config:
-      tags: ['control', 'métier']
+      tags: ['grace_control', 'grace_métier']

@@ -6,4 +6,4 @@ models:
       Controle les cables sans geometrie mais dont les noeuds amont et aval sont different.
       Un cable avec cb_nd1 != cb_nd2 doit avoir une geometrie.
     config:
-      tags: ['control', 'métier']
+      tags: ['grace_control', 'grace_métier']

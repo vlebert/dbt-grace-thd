@@ -15,7 +15,7 @@ models:
 
       **Sources** : t_position, t_fibre, t_cable, t_cassette, t_tiroir, t_baie, t_local
     config:
-      tags: ['thematiques', 'ropt']
+      tags: ['grace_thematiques', 'grace_ropt']
     columns:
       - name: id
         description: Clé primaire technique générée automatiquement

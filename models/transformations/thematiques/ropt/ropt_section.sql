@@ -2,7 +2,7 @@
     config(
         materialized = 'table',
         schema = 'transformations',
-        tags = ['thematiques', 'ropt'],
+        tags = ['grace_thematiques', 'grace_ropt'],
         indexes = [
                     {'columns': ['ropt_id'], 'type': 'btree'},
                     {'columns': ['ropt_ordr'], 'type': 'btree'}

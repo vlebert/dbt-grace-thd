@@ -4,7 +4,7 @@ models:
   - name: elem_cl_cb
     description: Projette t_cable avec géométrie de t_cableline via cl_cb_code = cb_code
     config:
-      tags: ["elem"]
+      tags: ["grace_elem"]
       schema: transformations
     columns:
       - name: id

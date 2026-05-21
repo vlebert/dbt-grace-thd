@@ -2,7 +2,7 @@
     config(
         materialized = 'table',
         schema = 'transformations',
-        tags = ['thematiques', 'ropt']
+        tags = ['grace_thematiques', 'grace_ropt']
     )
 }}
 

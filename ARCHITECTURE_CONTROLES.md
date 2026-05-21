@@ -324,7 +324,7 @@ select * from {{ ref(m) }}
 
 ### Ajouter un contrôle (package)
 
-1. Créer `models/controls/generique/ctrl_xxx.sql` ou `specifique/.../ctrl_xxx.sql` avec `tags=['control']`
+1. Créer `models/controls/generique/ctrl_xxx.sql` ou `specifique/.../ctrl_xxx.sql` avec `tags=['grace_control']`
 2. Ajouter `- ctrl_xxx` dans `grace_ctrl_models` du `dbt_project.yml`
 
 ### Ajouter un contrôle (projet utilisateur)
