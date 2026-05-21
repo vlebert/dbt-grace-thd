@@ -111,16 +111,17 @@ python dbt_packages/grace_thd/scripts/import_grace_pg.py /chemin/vers/vos/donnee
 
 ### 3. Exécution des contrôles
 
+> **⚠️ Prérequis** : Exécutez d'abord `dbt seed` pour charger les paramètres de contrôle (seeds) dans votre base. **Sans cette étape, les contrôles ne fonctionneront pas.**
+
 ```bash
-# Exécuter tous les contrôles
+# Charger les paramètres de contrôle (obligatoire)
+dbt seed
+
+# Exécuter tous les contrôles et générer les rapports
 dbt run --select tag:control
-
-# Générer le rapport consolidé
-dbt run --select rapport_controles
-
-# Avec géolocalisation
-dbt run --select rapport_controles_geo
 ```
+
+> **Note** : Les rapports consolidés (`rapport_controles` et `rapport_controles_geo`) sont inclus dans le tag `control`.
 
 ### 4. Exécution des transformations
 
