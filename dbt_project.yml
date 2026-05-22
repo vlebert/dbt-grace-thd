@@ -142,13 +142,11 @@ models:
 seeds:
   grace_thd:
     listes:
-      +schema: listes
       +column_types:
         code: varchar(254)
         libelle: varchar(254)
         definition: varchar(254)
     controls:
-      +schema: seeds
       param_ctrl_fk:
         +column_types:
           id_test: varchar(50)
