@@ -10,7 +10,7 @@
     - Les attributs NULL ne sont pas signalés ici : voir `ctrl_remplissage`.
 
   Les seeds de listes de valeurs (l_*) sont chargés dans le schéma
-  `<target.schema>` (par défaut).
+  `<target.schema>_listes` via `+schema: listes` dans dbt_project.yml.
 #}
 
 {%- set seed_ref = ref('param_ctrl_liste_valeur') -%}
@@ -28,7 +28,7 @@
   {%- set tests = [] -%}
 {%- endif %}
 
-{%- set listes_schema = target.schema -%}
+{%- set listes_schema = target.schema ~ '_listes' -%}
 
 select
   null::text as id_test,

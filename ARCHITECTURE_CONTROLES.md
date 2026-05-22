@@ -107,7 +107,7 @@ Variable dbt `grace_container_level` (valeurs `C1`..`C4`, défaut `C3`). Les mod
 
 ### Listes de valeurs
 
-Les seeds `l_*` sont chargés dans le schéma `<target.schema>` (par défaut). Le modèle `ctrl_liste_valeur` y accède via `target.schema` — une référence directe au schéma, car les noms de tables sont dynamiques et ne peuvent pas utiliser `ref()`.
+Les seeds `l_*` sont chargés dans le schéma `<target.schema>_listes` (via `+schema: listes` dans `dbt_project.yml`). Le modèle `ctrl_liste_valeur` y accède via `target.schema ~ '_listes'` — une référence directe au schéma, car les noms de tables sont dynamiques et ne peuvent pas utiliser `ref()`.
 
 ### Conventions de nommage des `id_test`
 
