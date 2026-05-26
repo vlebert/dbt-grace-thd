@@ -1,4 +1,4 @@
-{{ config(materialized='table', tags=['grace_rapport', 'grace_synthese']) }}
+{{ config(tags=['grace_rapport', 'grace_synthese']) }}
 
 with entites_totales as (
   select 't_adresse' as classe, count(*) as total from {{ source('gracethd', 't_adresse') }} union all

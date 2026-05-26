@@ -1,4 +1,3 @@
-{{ config(materialized='table', tags=['grace_control']) }}
 
 {#
   Contrôle générique de remplissage des attributs obligatoires.

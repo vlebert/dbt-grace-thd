@@ -1,8 +1,5 @@
 {{
     config(
-        materialized = 'table',
-        schema = 'transformations',
-        tags = ['grace_base'],
         post_hook = ["ALTER TABLE {{ this }} ADD PRIMARY KEY (id);"],
         indexes = [
             {'columns': ['zs_code'], 'type': 'btree'},

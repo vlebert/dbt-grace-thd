@@ -2,7 +2,7 @@
 # and underscores. A good package name should reflect your organization's
 # name or the intended use of these models
 name: "grace_thd"
-version: "1.1.1"
+version: "1.1.2"
 
 # This setting configures which "profile" dbt uses for this project.
 profile: "grace_thd"
@@ -30,11 +30,10 @@ models:
   grace_thd:
     controls:
       +schema: controles
+      +materialized: table
       generique:
-        +materialized: table
         +tags: ["grace_control"]
       specifique:
-        +materialized: table
         +tags: ["grace_control"]
     transformations:
       +schema: transformations
@@ -45,7 +44,12 @@ models:
         +materialized: view
         +tags: ["grace_elem"]
       thematiques:
-        +schema: transformations
+        +materialized: table
+        +tags: ["grace_thematiques"]
+        capacite:
+          +tags: ["grace_capacite"]
+        ropt:
+          +tags: ["grace_ropt"]
 
 seeds:
   grace_thd:

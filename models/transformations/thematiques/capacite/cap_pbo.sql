@@ -1,8 +1,5 @@
 {{
     config(
-        materialized = 'table',
-        schema = 'transformations',
-        tags = ['grace_thematiques', 'grace_capacite'],
         pre_hook = [
             "ANALYZE {{ ref('ropt_section') }};",
             "ANALYZE {{ ref('t_local') }};"

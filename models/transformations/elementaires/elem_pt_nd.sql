@@ -1,9 +1,3 @@
-{{
-  config(
-    tags = ['grace_elem']
-  )
-}}
-
 SELECT
   pt.id,
   pt.pt_code,

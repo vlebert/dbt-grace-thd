@@ -1,9 +1,3 @@
-{{
-  config(
-    tags = ['grace_elem']
-  )
-}}
-
 SELECT DISTINCT
   cs.id,
   cs.cs_code,

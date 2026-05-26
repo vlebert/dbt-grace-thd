@@ -1,9 +1,3 @@
-{{
-  config(
-    tags = ['grace_elem']
-  )
-}}
-
 WITH data AS (
   -- Câbles avec géométrie dans cableline (MULTILINESTRING possible)
   SELECT

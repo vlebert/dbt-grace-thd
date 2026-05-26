@@ -6,6 +6,20 @@ Format : [Keep a Changelog](https://keepachangelog.com/fr/1.0.0/)
 
 ---
 
+## [1.1.2] - 2026-05-26
+
+### Changed
+
+- **Centralisation de la configuration dbt** : `schema`, `materialized` et tags de famille déplacés de chaque fichier SQL vers `dbt_project.yml`. Les blocs `{{ config() }}` inline ne contiennent plus que les spécificités du modèle (`post_hook`, `pre_hook`, `indexes`).
+  - `elementaires/` : blocs `{{ config() }}` supprimés entièrement (18 fichiers)
+  - `base/` : `materialized`, `schema`, `tags` supprimés des config inline (24 fichiers)
+  - `thematiques/capacite/` et `thematiques/ropt/` : idem (7 fichiers)
+  - `controls/generique/` : ligne config supprimée entièrement (6 fichiers)
+  - `controls/` rapports : `materialized` supprimé, `tags` conservés (3 fichiers)
+- `dbt_project.yml` : ajout de `+materialized: table` au niveau `controls:` et `thematiques:` ; ajout de `+tags: ["grace_thematiques"]` au niveau `thematiques:` ; sous-répertoires `capacite:` et `ropt:` avec leurs tags additifs (`grace_capacite`, `grace_ropt`)
+
+---
+
 ## [1.1.1] - 2026-05-26
 
 ### Added
