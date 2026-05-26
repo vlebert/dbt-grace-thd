@@ -1,9 +1,3 @@
-{{
-  config(
-    tags = ['grace_elem']
-  )
-}}
-
 SELECT
   st.id,
   st.st_code,

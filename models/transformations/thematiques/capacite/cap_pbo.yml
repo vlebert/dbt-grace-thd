@@ -1,0 +1,45 @@
+version: 2
+
+models:
+  - name: cap_pbo
+    description: |
+      Capacité des points de branchement optique (PBO) — fibres distribuées et locaux desservis.
+
+      Pour chaque PBO, calcule :
+      - **bp_nb_fo_distrib** : nombre de fibres distribuées (positions AT/MA ou câble RA)
+      - **bp_nb_fo_racco** : nombre de fibres raccordées (câbles de type RA)
+      - **bp_nb_loc** : nombre de locaux desservis (via ropt_section ou lc_bp_codf)
+      - **zs_code** : zone SRO amont (depuis ropt_section à ropt_ordr=0)
+
+      Hérite de toutes les colonnes de `elem_bp`.
+
+      **Dépendances** : elem_bp, ropt_section, t_zsro, t_local
+    config:
+      tags: ['grace_thematiques', 'grace_capacite']
+    columns:
+      - name: id
+        description: Clé primaire héritée de elem_bp
+
+      - name: bp_code
+        description: Code du point de branchement (PBO)
+        tests:
+          - unique
+          - not_null
+
+      - name: bp_typelog
+        description: Type logique (toujours PBO dans ce modèle)
+
+      - name: bp_nb_loc
+        description: Nombre de locaux desservis par ce PBO
+
+      - name: bp_nb_fo_distrib
+        description: Nombre de fibres distribuées (positions AT/MA ou câbles RA)
+
+      - name: bp_nb_fo_racco
+        description: Nombre de fibres raccordées (câbles RA uniquement)
+
+      - name: zs_code
+        description: Code de la zone SRO amont
+
+      - name: geom
+        description: Géométrie point héritée de elem_bp

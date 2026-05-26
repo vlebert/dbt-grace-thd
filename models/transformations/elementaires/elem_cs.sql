@@ -1,9 +1,3 @@
-{{
-  config(
-    tags = ['grace_elem']
-  )
-}}
-
 WITH combined AS (
   SELECT
     id,

@@ -1,0 +1,49 @@
+version: 2
+
+models:
+  - name: cap_cb
+    description: |
+      Capacité des câbles de distribution (cb_typelog='DI') — fibres distribuées par câble.
+
+      Agrège les données de `cap_cb_pbo` par câble pour obtenir les totaux
+      multi-PBO : nombre de locaux desservis, fibres distribuées, fibres raccordées,
+      liste des PBO destinations.
+
+      Hérite de toutes les colonnes de `elem_cb` + colonnes de capacité.
+
+      **Dépendances** : elem_cb, cap_cb_pbo
+    config:
+      tags: ['grace_thematiques', 'grace_capacite']
+    columns:
+      - name: id
+        description: Clé primaire héritée de elem_cb
+
+      - name: cb_code
+        description: Code du câble
+        tests:
+          - unique
+          - not_null
+
+      - name: cb_typelog
+        description: Type logique (toujours DI dans ce modèle)
+
+      - name: zs_code
+        description: Code de la zone SRO amont
+
+      - name: zs_refpm
+        description: Référence PM de la zone SRO
+
+      - name: cb_nb_loc
+        description: Nombre total de locaux desservis (somme sur tous les PBO)
+
+      - name: cb_nb_fo_distrib
+        description: Nombre total de fibres distribuées vers des PBO
+
+      - name: cb_nb_fo_racco
+        description: Nombre total de fibres raccordées
+
+      - name: destinations
+        description: Liste des codes PBO destinations séparés par des virgules
+
+      - name: geom
+        description: Géométrie linéaire héritée de elem_cb

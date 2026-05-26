@@ -1,8 +1,5 @@
 {{
     config(
-        materialized = 'table',
-        schema = 'transformations',
-        tags = ['grace_thematiques', 'grace_ropt'],
         pre_hook = [
             "ANALYZE {{ ref('t_position') }};",
             "ANALYZE {{ ref('t_fibre') }};",

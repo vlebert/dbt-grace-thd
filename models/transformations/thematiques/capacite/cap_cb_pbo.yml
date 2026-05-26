@@ -1,0 +1,42 @@
+version: 2
+
+models:
+  - name: cap_cb_pbo
+    description: |
+      Table intermédiaire : capacité par couple câble DI × PBO destination.
+
+      Pour chaque câble de distribution (cb_typelog='DI'), identifie les PBO destinations
+      via les routes optiques (ropt) et compte les fibres acheminées vers chaque PBO.
+
+      **Granularité** : une ligne par couple (cb_code, bp_code).
+
+      **Dépendances** : t_cable, t_fibre, ropt, ropt_section, t_zsro, cap_pbo
+    config:
+      tags: ['grace_thematiques', 'grace_capacite']
+    columns:
+      - name: cb_code
+        description: Code du câble de distribution
+
+      - name: cb_capafo
+        description: Capacité totale en fibres du câble
+
+      - name: bp_code
+        description: Code du PBO destination
+
+      - name: bp_nb_loc
+        description: Nombre de locaux desservis par ce PBO (depuis cap_pbo)
+
+      - name: bp_nb_fo_distrib
+        description: Nombre de fibres distribuées au PBO (depuis cap_pbo)
+
+      - name: bp_nb_fo_racco
+        description: Nombre de fibres raccordées au PBO (depuis cap_pbo)
+
+      - name: cb_nb_fo_distrib
+        description: Nombre de fibres de ce câble acheminées vers ce PBO
+
+      - name: zs_code
+        description: Code de la zone SRO amont
+
+      - name: zs_refpm
+        description: Référence PM de la zone SRO

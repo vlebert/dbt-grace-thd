@@ -1,11 +1,3 @@
-{{
-    config(
-        materialized = 'table',
-        schema = 'transformations',
-        tags = ['grace_thematiques', 'grace_ropt']
-    )
-}}
-
 WITH seg AS (
     SELECT
         ropt_id,

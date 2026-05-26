@@ -1,9 +1,3 @@
-{{
-  config(
-    tags = ['grace_elem']
-  )
-}}
-
 SELECT
   cb.id,
   cb.cb_code,
