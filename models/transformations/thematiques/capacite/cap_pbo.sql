@@ -3,6 +3,10 @@
         materialized = 'table',
         schema = 'transformations',
         tags = ['grace_thematiques', 'grace_capacite'],
+        pre_hook = [
+            "ANALYZE {{ ref('ropt_section') }};",
+            "ANALYZE {{ ref('t_local') }};"
+        ],
         post_hook = ["ALTER TABLE {{ this }} ADD PRIMARY KEY (id);"],
         indexes = [
             {'columns': ['bp_code'], 'type': 'btree'}
@@ -10,37 +14,42 @@
     )
 }}
 
-WITH ropt_start AS (
-    SELECT ropt_id, lc_code AS lc_code_start
-    FROM {{ ref('ropt_section') }}
-    WHERE ropt_ordr = 0
-),
-
-ebp_fo_distrib AS (
+-- Fibres distribuées par PBO : FIRST_VALUE(lc_code) évite un second scan de ropt_section
+-- pour récupérer lc_code_start (était dans une CTE ropt_start séparée).
+WITH ebp_fo_distrib AS (
     SELECT
-        rs.bp_code,
+        bp_code,
         COUNT(*) AS bp_nb_fo_distrib,
-        SUM(CASE WHEN rs.cb_typelog = 'RA' THEN 1 ELSE 0 END) AS bp_nb_fo_racco,
-        MAX(zs.zs_code) AS zs_code
-    FROM {{ ref('ropt_section') }} rs
-    LEFT JOIN ropt_start r0 ON r0.ropt_id = rs.ropt_id
-    LEFT JOIN {{ ref('t_zsro') }} zs ON zs.zs_lc_code = r0.lc_code_start
-    WHERE (rs.ps_fonct IN ('AT', 'MA') OR rs.cb_typelog = 'RA')
-      AND rs.bp_code IS NOT NULL
-    GROUP BY rs.bp_code
+        SUM(CASE WHEN cb_typelog = 'RA' THEN 1 ELSE 0 END) AS bp_nb_fo_racco,
+        MAX(lc_code_start) AS lc_code_start
+    FROM (
+        SELECT
+            bp_code,
+            cb_typelog,
+            ps_fonct,
+            FIRST_VALUE(lc_code) OVER (PARTITION BY ropt_id ORDER BY ropt_ordr) AS lc_code_start
+        FROM {{ ref('ropt_section') }}
+    ) sub
+    WHERE (ps_fonct IN ('AT', 'MA') OR cb_typelog = 'RA')
+      AND bp_code IS NOT NULL
+    GROUP BY bp_code
 ),
 
+-- Locaux par PBO : LAG() évite l'auto-jointure ropt_section × ropt_section
+-- sur (ropt_id, ropt_ordr - 1).
 loc_par_pbo AS (
-    SELECT
-        COALESCE(rs_prev.bp_code, lc.lc_bp_codf) AS bp_code,
-        COUNT(*) AS bp_nb_loc
-    FROM {{ ref('t_local') }} lc
-    LEFT JOIN {{ ref('ropt_section') }} rs ON rs.lc_code = lc.lc_code
-    LEFT JOIN {{ ref('ropt_section') }} rs_prev
-        ON rs_prev.ropt_id = rs.ropt_id
-        AND rs_prev.ropt_ordr = rs.ropt_ordr - 1
-    WHERE COALESCE(rs_prev.bp_code, lc.lc_bp_codf) IS NOT NULL
-    GROUP BY COALESCE(rs_prev.bp_code, lc.lc_bp_codf)
+    SELECT bp_code, COUNT(*) AS bp_nb_loc
+    FROM (
+        SELECT
+            COALESCE(
+                LAG(rs.bp_code) OVER (PARTITION BY rs.ropt_id ORDER BY rs.ropt_ordr),
+                lc.lc_bp_codf
+            ) AS bp_code
+        FROM {{ ref('t_local') }} lc
+        LEFT JOIN {{ ref('ropt_section') }} rs ON rs.lc_code = lc.lc_code
+    ) sub
+    WHERE bp_code IS NOT NULL
+    GROUP BY bp_code
 )
 
 SELECT
@@ -64,9 +73,10 @@ SELECT
     COALESCE(loc.bp_nb_loc, 0) AS bp_nb_loc,
     COALESCE(efd.bp_nb_fo_distrib, 0) AS bp_nb_fo_distrib,
     COALESCE(efd.bp_nb_fo_racco, 0) AS bp_nb_fo_racco,
-    efd.zs_code,
+    zs.zs_code,
     bp.geom
 FROM {{ ref('elem_bp') }} bp
 LEFT JOIN ebp_fo_distrib efd ON efd.bp_code = bp.bp_code
+LEFT JOIN {{ ref('t_zsro') }} zs ON zs.zs_lc_code = efd.lc_code_start
 LEFT JOIN loc_par_pbo loc ON loc.bp_code = bp.bp_code
 WHERE bp.bp_typelog = 'PBO'

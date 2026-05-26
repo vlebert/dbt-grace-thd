@@ -3,6 +3,11 @@
         materialized = 'table',
         schema = 'transformations',
         tags = ['grace_thematiques', 'grace_capacite'],
+        pre_hook = [
+            "ANALYZE {{ ref('ropt_section') }};",
+            "ANALYZE {{ ref('ropt') }};",
+            "ANALYZE {{ ref('t_fibre') }};"
+        ],
         post_hook = ["ALTER TABLE {{ this }} ADD PRIMARY KEY (id);"],
         indexes = [
             {'columns': ['cb_code'], 'type': 'btree'},
@@ -11,16 +16,19 @@
     )
 }}
 
+-- Destination PBO de chaque ROPT : un seul GROUP BY sur ropt_section
+-- au lieu d'une auto-jointure sur (ropt_id, ropt_ordr = 0).
 WITH destination AS (
-    SELECT DISTINCT ON (rs.ropt_id)
-        rs.ropt_id,
-        rs.bp_code,
-        r0.lc_code AS lc_code_start
-    FROM {{ ref('ropt_section') }} rs
-    LEFT JOIN {{ ref('ropt_section') }} r0
-        ON r0.ropt_id = rs.ropt_id AND r0.ropt_ordr = 0
-    WHERE rs.bp_typelog = 'PBO'
-    ORDER BY rs.ropt_id, rs.ropt_ordr DESC
+    SELECT ropt_id, bp_code, lc_code_start
+    FROM (
+        SELECT
+            ropt_id,
+            MAX(CASE WHEN ropt_ordr = 0 THEN lc_code END) AS lc_code_start,
+            (ARRAY_AGG(bp_code ORDER BY ropt_ordr DESC) FILTER (WHERE bp_typelog = 'PBO'))[1] AS bp_code
+        FROM {{ ref('ropt_section') }}
+        GROUP BY ropt_id
+    ) sub
+    WHERE bp_code IS NOT NULL
 )
 
 SELECT

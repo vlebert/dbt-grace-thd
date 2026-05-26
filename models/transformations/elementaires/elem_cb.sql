@@ -91,8 +91,8 @@ WITH data AS (
     ON cb.cb_nd2 = nd2.nd_code
   LEFT JOIN {{ ref('t_cableline') }} AS cl
     ON cl.cl_cb_code = cb.cb_code
-  WHERE cl.cl_code IS NULL OR cl.cl_code <> ''
-    AND nd1.geom IS NOT NULL 
+  WHERE cl.cl_code IS NULL
+    AND nd1.geom IS NOT NULL
     AND nd2.geom IS NOT NULL
 )
 
