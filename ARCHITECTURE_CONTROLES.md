@@ -11,8 +11,8 @@
 2. **Séparation générique / spécifique**
    - *Générique* : un contrôle reproduit N fois sur des couples (classe, attribut) avec une structure SQL uniforme. Paramétré par seed.
    - *Spécifique* : un contrôle avec une logique SQL propre (jointures, conditions complexes, topologie, règle métier). Un fichier par règle.
-3. **Configuration par seeds** — les paramètres des contrôles génériques sont stockés en seeds CSV préfixés `param_ctrl_*`. Un projet consommateur peut les surcharger via le mécanisme dbt standard (seed de même nom dans son propre répertoire).
-4. **Consolidation par vars** — le rapport final assemble les contrôles via deux variables dbt (`grace_ctrl_models` pour le package, `grace_ctrl_models_ext` pour les extensions utilisateur). Voir section Consolidation.
+3. **Configuration par seeds** — les paramètres des contrôles génériques sont stockés en seeds CSV préfixés `param_ctrl_*`.
+4. **Consolidation par tag** — le rapport final assemble automatiquement tout modèle portant le tag `grace_control` (hors rapports). Voir section Consolidation.
 
 ## Typologie des contrôles
 
@@ -46,7 +46,7 @@ models/controls/
       topo_<id>.sql
     metier/
       metier_<id>.sql
-  rapport_controles.sql         # UNION ALL via vars grace_ctrl_models (sans geom)
+  rapport_controles.sql         # UNION ALL de tous les modèles taguès grace_control (sans geom)
   rapport_controles_geo.sql     # rapport_controles + geom résolue par classe
 
 seeds/
@@ -131,11 +131,13 @@ Exemples : `ctrl_uc_0001`, `ctrl_lv_0042`, `topo_0001`, `metier_0001`.
 
 ### Principe
 
-Un fichier SQL par règle. Chaque modèle appelle la macro `ctrl_specifique` qui génère le schéma de sortie unifié. Pas de placeholder `WHERE false` : si la table source est absente la requête échoue (le contrôle doit être retiré de `grace_ctrl_models`).
+Un fichier SQL par règle. Chaque modèle appelle la macro `ctrl_specifique` qui génère le schéma de sortie unifié. Pas de placeholder `WHERE false` : si la table source est absente la requête échoue (désactiver le contrôle via `actif = false` dans son seed ou retirer le tag `grace_control`).
 
 ### Macro `ctrl_specifique`
 
 Définie dans `macros/controls/ctrl_specifique.sql`. Paramètres :
+
+> **Appel depuis un projet consommateur** : préfixer avec le namespace du package — `grace_thd.ctrl_specifique(...)` — sinon dbt ne résout pas la macro.
 
 | Paramètre | Obligatoire | Description |
 |---|---|---|
@@ -287,28 +289,21 @@ Pour les contrôles spécifiques **remplissage conditionnel** (`ctrl_rc_*`):
 - Chaque fichier `rc_*.sql` utilise : `is_active = get_rc_config('ctrl_rc_XXXX')`
 - Le contrôle est actif si **`actif = true` ET `conteneur_cX = 'C'`** où X = `grace_container_level`
 
-Pour les autres contrôles spécifiques (topologie, métier) : l'activation se fait en incluant ou non le modèle dans `grace_ctrl_models` (package) ou `grace_ctrl_models_ext` (projet utilisateur).
+Pour les autres contrôles spécifiques (topologie, métier) : l'activation se fait via le tag `grace_control` — retirer le tag ou le fichier pour exclure un contrôle.
 
 ## Consolidation : `rapport_controles.sql`
 
-Matérialisé en `table`. Assemble tous les contrôles via deux variables dbt :
-
-```yaml
-# dbt_project.yml du package
-vars:
-  grace_ctrl_models:          # modèles du package, à maintenir ici
-    - ctrl_fk
-    - ctrl_liste_valeur
-    - ctrl_presence_table
-    - ctrl_remplissage
-    - ctrl_unicite
-  grace_ctrl_models_ext: []   # extensions utilisateur, vide par défaut
-```
-
-Le modèle concatène les deux listes et génère des commentaires `-- depends_on` pour que dbt résout les dépendances (nécessaire car `ref()` est dans une boucle dynamique) :
+Matérialisé en `table`. Assemble automatiquement tout modèle du graphe dbt portant le tag `grace_control`, à l'exception des rapports eux-mêmes (identifiés par le tag `grace_rapport`).
 
 ```jinja
-{%- set ctrl_models = var('grace_ctrl_models', []) + var('grace_ctrl_models_ext', []) -%}
+{%- set ctrl_models = [] -%}
+{%- for node in graph.nodes.values() -%}
+  {%- if 'grace_control' in node.tags
+     and 'grace_rapport' not in node.tags
+     and node.resource_type == 'model' -%}
+    {%- do ctrl_models.append(node.name) -%}
+  {%- endif -%}
+{%- endfor -%}
 
 {% for m in ctrl_models %}
 -- depends_on: {{ ref(m) }}
@@ -322,20 +317,21 @@ select * from {{ ref(m) }}
 {% endfor %}
 ```
 
+Les commentaires `-- depends_on` garantissent que dbt résout les dépendances pour `--select +rapport_controles`.
+
 ### Ajouter un contrôle (package)
 
 1. Créer `models/controls/generique/ctrl_xxx.sql` ou `specifique/.../ctrl_xxx.sql` avec `tags=['grace_control']`
-2. Ajouter `- ctrl_xxx` dans `grace_ctrl_models` du `dbt_project.yml`
+
+Le modèle est automatiquement inclus dans `rapport_controles` — aucune déclaration supplémentaire.
 
 ### Ajouter un contrôle (projet utilisateur)
 
-Dans le `dbt_project.yml` du projet consommateur :
+Créer un modèle de contrôle dans le projet consommateur en respectant le schéma unifié à 7 colonnes et lui appliquer `tags=['grace_control']`.
 
-```yaml
-vars:
-  grace_ctrl_models_ext:
-    - ctrl_mon_controle
-    - ctrl_autre_controle
+```sql
+{{ config(materialized='table', tags=['grace_control']) }}
+{{ grace_thd.ctrl_specifique(...) }}
 ```
 
 Aucune modification des fichiers du package.

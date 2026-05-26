@@ -111,17 +111,18 @@ python dbt_packages/grace_thd/scripts/import_grace_pg.py /chemin/vers/vos/donnee
 
 ### 3. Exécution des contrôles
 
-> **⚠️ Prérequis** : Exécutez d'abord `dbt seed` pour charger les paramètres de contrôle (seeds) dans votre base. **Sans cette étape, les contrôles ne fonctionneront pas.**
-
 ```bash
-# Charger les paramètres de contrôle (obligatoire)
-dbt seed
-
-# Exécuter tous les contrôles et générer les rapports
-dbt run --select tag:grace_control
+# Commande complète (seed + contrôles + rapports)
+dbt seed && dbt run --select tag:grace_control && dbt run --select tag:grace_rapport
 ```
 
-> **Note** : Les rapports consolidés (`rapport_controles` et `rapport_controles_geo`) sont inclus dans le tag `grace_control`.
+Ou étape par étape :
+
+```bash
+dbt seed                                  # charger les paramètres de contrôle
+dbt run --select tag:grace_control        # exécuter les points de contrôle
+dbt run --select tag:grace_rapport        # générer les rapports consolidés
+```
 
 ### 4. Exécution des transformations
 
@@ -142,22 +143,17 @@ dbt run --select tag:grace_elem
 | Variable | Valeur par défaut | Description |
 |----------|-------------------|-------------|
 | `grace_container_level` | `C3` | Niveau de conteneur pour les contrôles (C1 à C4) |
-| `grace_ctrl_models_ext` | `[]` | Liste de modèles de contrôle personnalisés à ajouter |
 
 Exemple dans `dbt_project.yml` :
 ```yaml
 vars:
   grace_container_level: "C2"
-  grace_ctrl_models_ext:
-    - mon_controle_custom
-    - un_autre_controle
 ```
 
 ### Personnalisation
 
 Vous pouvez :
-- **Surcharger des seeds** : Copiez les fichiers CSV dans votre projet et modifiez-les
-- **Ajouter des contrôles** : Via la variable `grace_ctrl_models_ext`
+- **Ajouter des contrôles** : Créez un modèle avec `tags=['grace_control']` — il est automatiquement inclus dans `rapport_controles`
 - **Changer la matérialisation** : Passez des vues en tables via configuration DBT
 
 > **Plus d'infos** : [Guide d'utilisation du package](UTILISATION_PACKAGE.md)

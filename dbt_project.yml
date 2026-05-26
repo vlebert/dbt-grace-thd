@@ -2,7 +2,7 @@
 # and underscores. A good package name should reflect your organization's
 # name or the intended use of these models
 name: "grace_thd"
-version: "1.0.0"
+version: "1.1.0"
 
 # This setting configures which "profile" dbt uses for this project.
 profile: "grace_thd"
@@ -25,98 +25,6 @@ vars:
   # Niveau de conteneur GRACE THD appliqué aux contrôles de remplissage
   # (valeurs attendues : C1, C2, C3, C4)
   grace_container_level: "C3"
-
-  # Modèles de contrôle inclus dans rapport_controles (modèles du package)
-  grace_ctrl_models:
-    - ctrl_fk
-    - ctrl_liste_valeur
-    - ctrl_presence_table
-    - ctrl_remplissage
-    - ctrl_type
-    - ctrl_unicite
-    - uc_0018_t_cab_chem_cc_cb_cc_cm
-    # t_adresse
-    - rc_0101_t_adresse_ad_codtemp
-    - rc_0102_t_adresse_ad_distinf
-    # t_cable
-    - rc_0201_t_cable_cb_r3_code
-    - rc_0202_t_cable_cb_dateins
-    - rc_0203_t_cable_cb_lgreel
-    - rc_0204_t_cable_cb_r2_code
-    # t_cassette
-    - rc_0301_t_cassette_cs_bp_code
-    # t_cheminement
-    - rc_0401_t_cheminement_cm_compo
-    # t_ebp
-    - rc_0501_t_ebp_bp_dateins
-    # t_local
-    - rc_0601_t_local_lc_avct
-    - rc_0602_t_local_lc_bp_codf
-    - rc_0603_t_local_lc_bp_codp
-    - rc_0604_t_local_lc_codeext
-    - rc_0605_t_local_lc_dateins
-    - rc_0606_t_local_lc_elec
-    - rc_0607_t_local_lc_etiquet
-    - rc_0608_t_local_lc_gest
-    - rc_0609_t_local_lc_prop
-    - rc_0610_t_local_lc_proptyp
-    - rc_0611_t_local_lc_statut
-    # t_pointaccueil
-    - rc_0701_t_pointaccueil_pa_a_haut
-    - rc_0702_t_pointaccueil_pa_a_struc
-    - rc_0703_t_pointaccueil_pa_codtemp
-    - rc_0704_t_pointaccueil_pa_rotatio
-    # t_site
-    - rc_0801_t_site_st_ad_code
-    - rc_0802_t_site_st_avct
-    - rc_0803_t_site_st_codeext
-    - rc_0804_t_site_st_commune
-    - rc_0805_t_site_st_dateins
-    - rc_0806_t_site_st_gest
-    - rc_0807_t_site_st_insee
-    - rc_0808_t_site_st_nomvoie
-    - rc_0809_t_site_st_postal
-    - rc_0810_t_site_st_prop
-    - rc_0811_t_site_st_proptyp
-    - rc_0812_t_site_st_statut
-    - rc_0814_t_site_st_numero
-    - rc_0815_t_site_st_design
-    # Contrôles topologie
-    - topo_0001_t_cheminement_cm_ndcode1_distance
-    - topo_0002_t_cheminement_cm_ndcode2_distance
-    - topo_0003_t_cable_cb_nd1_distance
-    - topo_0004_t_cable_cb_nd2_distance
-    - topo_0005_t_cable_cb_bp1_ebp_node
-    - topo_0006_t_cable_cb_bp2_ebp_node
-    - topo_0007_t_zsro_within_znro
-    - topo_0008_t_cable_cb_ba1_local_node
-    - topo_0009_t_cable_cb_ba2_local_node
-    - topo_0010_t_cable_start_cheminement_exists
-    - topo_0011_t_cable_end_cheminement_exists
-    - topo_0012_t_cable_length_mismatch
-    # Contrôles métier
-    - metier_0001_t_fibre_fo_numtub_nintub
-    - metier_0002_t_ebp_bp_code_bpe_pbo
-    - metier_0003_t_cable_cb_geom_distribution
-    - metier_0004_t_ebp_bp_pt_lc_code
-    - metier_0005_t_adresse_ad_nbfoftth_dimensionnement
-    - metier_0006_t_adresse_ad_nbloc_calcule
-    - metier_0007_t_cable_cb_typelog_nc
-    - metier_0008_t_zsro_zs_r3_lc_codeext
-    - metier_0009_t_adresse_ad_prises_multi_zsro
-    - metier_0010_t_position_ps_1_multi_fibre
-    - metier_0011_t_position_ps_2_multi_fibre
-    - metier_0012_t_cable_cb_sans_geom_nd_diff
-    - metier_0013_t_cable_cb_ebp_fibrage_multi
-    - metier_0014_t_cheminement_cm_prop_incoherence
-    - metier_0015_t_local_lc_nro_multi_noeud
-    - metier_0016_t_local_lc_nro_sans_znro
-    - metier_0017_t_cheminement_cm_typelog_nc
-    - metier_0018_t_cable_cb_longueur_sans_cheminement
-    - metier_0019_t_ptech_pt_appui_doublon
-
-  # Extensions utilisateur : ajouter ici les contrôles personnalisés
-  grace_ctrl_models_ext: []
 
 models:
   grace_thd:

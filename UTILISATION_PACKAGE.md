@@ -82,32 +82,35 @@ models:
           +materialized: table
 ```
 
-### 2. Seeds
-
-| Action | Emplacement | Comportement |
-|---|---|---|
-| **Surcharger une seed** | `seeds/<nom>.csv` | Écrase celle du package |
-| **Ajouter une seed** | `seeds/...` | Nouvelle seed disponible |
-
-Exemple : surcharger `param_ctrl_remplissage.csv` avec vos propres paramètres :
-```bash
-cp dbt_packages/grace_thd/seeds/controls/param_ctrl_remplissage.csv seeds/controls/
-# Modifier seeds/controls/param_ctrl_remplissage.csv
-```
-
-### 3. Variables
+### 2. Variables
 
 | Variable | Default | Usage |
 |---|---|---|
 | `grace_container_level` | `C3` | Niveau de conteneur pour les contrôles |
-| `grace_ctrl_models_ext` | `[]` | Liste de modèles de contrôle à ajouter |
 
-Exemple : ajouter des contrôles personnalisés + changer le niveau :
+Exemple : changer le niveau de conteneur :
 ```yaml
 # dbt_project.yml du consommateur
 vars:
   grace_container_level: "C2"
-  grace_ctrl_models_ext:
-    - mon_controle_custom
-    - un_autre_controle
+```
+
+### Ajouter des contrôles personnalisés
+
+Créez un modèle de contrôle dans votre projet en respectant le schéma unifié à 7 colonnes et appliquez-lui le tag `grace_control`. Il sera automatiquement inclus dans `rapport_controles` sans aucune configuration supplémentaire.
+
+```sql
+-- models/mon_controle_custom.sql
+{{ config(materialized='table', tags=['grace_control']) }}
+
+{{ grace_thd.ctrl_specifique(
+    id_test       = 'metier_9001',
+    type_controle = 'regle_metier',
+    classe        = 'ma_table',
+    cle_primaire  = 'ma_pk',
+    attribut      = 'mon_attribut',
+    description   = 'Description du contrôle',
+    requ_princ    = 'SELECT ma_pk, mon_attribut FROM ' ~ source('gracethd', 'ma_table'),
+    condition     = 'src.mon_attribut IS NULL'
+) }}
 ```

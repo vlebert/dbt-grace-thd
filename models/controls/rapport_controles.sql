@@ -1,22 +1,21 @@
-{{ config(materialized='table', tags=['grace_control', 'grace_rapport']) }}
+{{ config(materialized='table', tags=['grace_rapport']) }}
 
 {#
-  Consolidation de tous les contrôles déclarés dans la var `grace_ctrl_models`.
-
-  Pour ajouter un contrôle personnalisé, étendre la var dans dbt_project.yml :
-    vars:
-      grace_ctrl_models:
-        - ctrl_mon_controle
-
-  Les modèles du package sont déclarés dans sa propre section vars.
-  dbt génère les depends_on depuis cette liste → `+rapport_controles` fonctionne.
+  Consolidation de tous les modèles de contrôle du graphe dbt.
+  Tout modèle tagué grace_control (sans grace_rapport) est automatiquement inclus —
+  qu'il appartienne au package ou au projet consommateur.
 #}
 
-{%- set ctrl_models = var('grace_ctrl_models', []) + var('grace_ctrl_models_ext', []) -%}
-
-{% for m in ctrl_models %}
--- depends_on: {{ ref(m) }}
-{% endfor %}
+{%- set ctrl_models = [] -%}
+{%- if execute -%}
+  {%- for node in graph.nodes.values() -%}
+    {%- if 'grace_control' in node.tags
+       and 'grace_rapport' not in node.tags
+       and node.resource_type == 'model' -%}
+      {%- do ctrl_models.append({'schema': node.schema, 'alias': node.alias}) -%}
+    {%- endif -%}
+  {%- endfor -%}
+{%- endif -%}
 
 select
   null::text as id_test,
@@ -30,5 +29,5 @@ where false
 
 {% for m in ctrl_models %}
 union all
-select * from {{ ref(m) }}
+select * from {{ m.schema }}.{{ m.alias }}
 {% endfor %}
