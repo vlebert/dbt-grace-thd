@@ -1,0 +1,34 @@
+version: 2
+
+models:
+  - name: cap_sro
+    description: |
+      Capacité des locaux SRO — fibres de transport acheminées.
+
+      Pour chaque local de type SRO (lc_typelog='SRO'), compte le nombre de fibres
+      de transport (ropt_typelog IN ('TR', 'CT')) qui passent par ce local dans
+      les routes optiques.
+
+      Hérite de toutes les colonnes de `elem_lc_st_nd`.
+
+      **Dépendances** : elem_lc_st_nd, ropt_section
+    config:
+      tags: ['grace_thematiques', 'grace_capacite']
+    columns:
+      - name: id
+        description: Clé primaire héritée de elem_lc_st_nd
+
+      - name: lc_code
+        description: Code du local SRO
+        tests:
+          - unique
+          - not_null
+
+      - name: lc_typelog
+        description: Type logique (toujours SRO dans ce modèle)
+
+      - name: nb_fo_transport
+        description: Nombre de fibres de transport (TR/CT) dans les routes optiques
+
+      - name: geom
+        description: Géométrie point héritée de elem_lc_st_nd
