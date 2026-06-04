@@ -32,6 +32,16 @@ WITH ebp_fo_distrib AS (
     GROUP BY bp_code
 ),
 
+-- Une seule zone SRO par lc_code : zs_lc_code n'est pas une clé unique dans t_zsro,
+-- plusieurs zones peuvent référencer le même local (anomalie de saisie).
+zsro_dedup AS (
+    SELECT DISTINCT ON (zs_lc_code)
+        zs_code,
+        zs_lc_code
+    FROM {{ ref('t_zsro') }}
+    ORDER BY zs_lc_code, zs_code
+),
+
 -- Locaux par PBO : LAG() évite l'auto-jointure ropt_section × ropt_section
 -- sur (ropt_id, ropt_ordr - 1).
 loc_par_pbo AS (
@@ -74,6 +84,6 @@ SELECT
     bp.geom
 FROM {{ ref('elem_bp') }} bp
 LEFT JOIN ebp_fo_distrib efd ON efd.bp_code = bp.bp_code
-LEFT JOIN {{ ref('t_zsro') }} zs ON zs.zs_lc_code = efd.lc_code_start
+LEFT JOIN zsro_dedup zs ON zs.zs_lc_code = efd.lc_code_start
 LEFT JOIN loc_par_pbo loc ON loc.bp_code = bp.bp_code
 WHERE bp.bp_typelog = 'PBO'

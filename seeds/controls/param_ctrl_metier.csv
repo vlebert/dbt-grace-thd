@@ -18,3 +18,4 @@ metier_0016,t_local,lc_nro_sans_znro,lc_code,O,O,O,O,true,NRO non associe a zone
 metier_0017,t_cheminement,cm_typelog_nc,cm_code,O,O,O,O,true,Cheminement cm_typelog = NC
 metier_0018,t_cable,cb_longueur_sans_cheminement,cb_code,O,O,O,O,true,Cable long>0 sans cheminement
 metier_0019,t_ptech,pt_appui_doublon,pt_code,O,O,O,O,true,Doublon appui FT <50m
+metier_0020,t_zsro,zs_lc_code,zs_code,O,O,O,O,true,Local technique associe a plusieurs ZSRO

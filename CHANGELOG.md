@@ -6,6 +6,18 @@ Format : [Keep a Changelog](https://keepachangelog.com/fr/1.0.0/)
 
 ---
 
+## [1.1.4] - 2026-06-04
+
+### Fixed
+
+- `cap_pbo` : correction d'un doublon sur la clé primaire `id` causé par plusieurs ZSRO partageant le même `zs_lc_code`. La jointure sur `t_zsro` utilise désormais une CTE `zsro_dedup` (`DISTINCT ON (zs_lc_code)`) pour garantir l'unicité.
+
+### Added
+
+- **Contrôle métier `metier_0020`** (`t_zsro` / `zs_lc_code`) : détecte les zones SRO qui référencent le même local technique (`zs_lc_code` dupliqué dans `t_zsro`). Le détail d'erreur expose le `lc_code`, `lc_codeext`, `lc_typelog` du local concerné ainsi que la liste de toutes les ZSRO en collision.
+
+---
+
 ## [1.1.3] - 2026-06-04
 
 ### Changed

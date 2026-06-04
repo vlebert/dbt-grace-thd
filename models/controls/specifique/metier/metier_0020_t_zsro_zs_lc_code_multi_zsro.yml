@@ -1,0 +1,10 @@
+version: 2
+
+models:
+  - name: metier_0020_t_zsro_zs_lc_code_multi_zsro
+    description: |
+      Controle que deux ZSRO ne référencent pas le même local technique (zs_lc_code).
+      Chaque local doit être associé à au plus une ZSRO. Une collision sur zs_lc_code
+      indique une anomalie de saisie dans la définition des zones SRO.
+    config:
+      tags: ['grace_control', 'grace_métier']
