@@ -6,6 +6,14 @@ Format : [Keep a Changelog](https://keepachangelog.com/fr/1.0.0/)
 
 ---
 
+## [1.1.3] - 2026-06-04
+
+### Changed
+
+- Amélioration des descriptions de 14 contrôles spécifiques métier et topologie (`metier_0002` à `metier_0014`, `topo_0005` à `topo_0011`)
+
+---
+
 ## [1.1.2] - 2026-05-26
 
 ### Changed
