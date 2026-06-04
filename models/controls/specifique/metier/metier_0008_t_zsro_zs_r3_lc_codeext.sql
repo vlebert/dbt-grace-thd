@@ -7,7 +7,7 @@
     classe='t_zsro',
     cle_primaire='zs_code',
     attribut='zs_r3_code',
-    description='local/zsro lc_codeext != zs_r3',
+    description='local/zsro lc_codeext != zs_r3_code',
     requ_princ="SELECT "
                 ~ "    lc.lc_code, "
                 ~ "    lc.lc_codeext, "

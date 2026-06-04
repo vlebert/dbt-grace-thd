@@ -7,7 +7,7 @@
     classe='t_adresse',
     cle_primaire='ad_code',
     attribut='ad_nbfoftth',
-    description='Incoherence ad_nbfoftth vs somme',
+    description='Incoherence ad_nbfoftth vs somme (ad_nblres + ad_nblpro + ad_nblent + ad_nblpub)',
     requ_princ="SELECT "
                 ~ "    a.ad_code, "
                 ~ "    a.ad_nbfotth, "

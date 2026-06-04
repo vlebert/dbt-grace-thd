@@ -7,7 +7,7 @@
     classe='t_cable',
     cle_primaire='cb_code',
     attribut='cb_code',
-    description='Cable distribution sans geometrie',
+    description="Cable distribution sans geometrie alors que l'origine et la destination sont différentes",
     requ_princ="SELECT "
                 ~ "    cb.cb_code, "
                 ~ "    cb.cb_bp1, "

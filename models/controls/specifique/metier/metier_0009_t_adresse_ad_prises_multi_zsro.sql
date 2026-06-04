@@ -7,7 +7,7 @@
     classe='t_adresse',
     cle_primaire='ad_code',
     attribut='ad_code',
-    description='Adresse avec prises sur multi ZSRO',
+    description='Adresse présente sur plusieurs ZSRO (superposition)',
     requ_princ="SELECT "
                 ~ "    a.ad_code, "
                 ~ "    COUNT(zs.zs_code) AS nb_zone, "

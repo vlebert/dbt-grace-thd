@@ -7,7 +7,7 @@
     classe='t_cheminement',
     cle_primaire='cm_code',
     attribut='cm_prop',
-    description='Incoherence proprio cheminement/chambres',
+    description='Incoherence propriétaire cheminement et chambres aux extrémités',
     requ_princ="SELECT "
                 ~ "    cm.cm_code, "
                 ~ "    cm.cm_prop AS cm_prop_code, "

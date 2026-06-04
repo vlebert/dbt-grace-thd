@@ -7,7 +7,7 @@
     classe='t_ebp',
     cle_primaire='bp_code',
     attribut='bp_code',
-    description='EBP BPE/PBO non reference en aval',
+    description="EBP reference en aval d'un câble (cb_bp2)",
     requ_princ="SELECT "
                 ~ "    e.bp_code, "
                 ~ "    e.bp_typelog, "
@@ -16,6 +16,6 @@
                 ~ "LEFT JOIN " ~ source('gracethd', 't_cable') ~ " c ON c.cb_bp2 = e.bp_code "
                 ~ "WHERE e.bp_typelog IN ('BPE', 'PBO')",
     condition="src.cb_bp2 IS NULL",
-    detail_erreur="'Pas de detail pour cette erreur'",
+    detail_erreur="'EBP orphelin (pas de câble entrant) ou inversion de la logique cb_bp1/cb_bp2'",
     is_active=get_metier_config('metier_0002')
 ) }}

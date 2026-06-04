@@ -7,7 +7,7 @@
     classe='t_cable',
     cle_primaire='cb_code',
     attribut='cb_code',
-    description='Cable connecte >2 EBP via fibrage',
+    description='Cable connecté à plus de 2 EBP dans la route optique (t_fibre, t_position, t_cassette, t_ebp)',
     requ_princ="SELECT "
                 ~ "    c.cb_code, "
                 ~ "    sub.nb_ebp_fibrage, "

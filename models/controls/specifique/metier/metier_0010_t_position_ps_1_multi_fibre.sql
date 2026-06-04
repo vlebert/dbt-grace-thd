@@ -7,7 +7,7 @@
     classe='t_position',
     cle_primaire='ps_code',
     attribut='ps_1',
-    description='Fibre multi positions ps_1',
+    description='Fibre référencée plusieurs fois en amont (ps_1). Erreur de fibrage ou inversion de la logique ps_1 / ps_2',
     requ_princ="SELECT "
                 ~ "    p.ps_code, "
                 ~ "    tb.code_unic, "

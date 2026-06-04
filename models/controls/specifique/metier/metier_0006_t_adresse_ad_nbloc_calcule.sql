@@ -7,7 +7,7 @@
     classe='t_adresse',
     cle_primaire='ad_code',
     attribut='ad_code',
-    description='Nb locaux diff calcul ad_nb*',
+    description='Nombre de locaux différent du calcul ad_nblres + ad_nblpro + ad_nblent + ad_nblpub',
     requ_princ="SELECT "
                 ~ "    a.ad_code, "
                 ~ "    a.ad_nblres, "
