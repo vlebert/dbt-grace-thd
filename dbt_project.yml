@@ -21,6 +21,13 @@ clean-targets: # directories to be removed by `dbt clean`
   - "target"
   - "dbt_packages"
 
+# Crée les index sur les tables sources une seule fois en début de run, en série.
+# Placé ici (et non en +pre-hook par modèle) pour éviter une race condition entre
+# threads sur `CREATE INDEX IF NOT EXISTS` (non atomique sous concurrence).
+# Non-bloquant (tables/colonnes absentes ignorées) et idempotent.
+on-run-start:
+  - "{{ create_source_indexes() }}"
+
 vars:
   # Niveau de conteneur GRACE THD appliqué aux contrôles de remplissage
   # (valeurs attendues : C1, C2, C3, C4)
@@ -31,10 +38,6 @@ models:
     controls:
       +schema: controles
       +materialized: table
-      # Crée les index sur les tables sources avant chaque modèle de contrôle.
-      # Non-bloquant (tables/colonnes absentes ignorées) et idempotent.
-      +pre-hook:
-        - "{{ create_source_indexes() }}"
       generique:
         +tags: ["grace_control"]
       specifique:
