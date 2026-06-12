@@ -6,6 +6,18 @@ Format : [Keep a Changelog](https://keepachangelog.com/fr/1.0.0/)
 
 ---
 
+## [1.1.5] - 2026-06-12
+
+### Added
+
+- **Création automatique des index sources** : nouvelle macro `create_source_indexes` (`macros/controls/create_source_indexes.sql`) déclenchée en `pre-hook` sur tous les modèles de contrôle (`models/controls/`). Crée les index sur les tables sources GRACE THD avant l'exécution des contrôles.
+  - Schéma source résolu dynamiquement via le graph dbt (source `gracethd`).
+  - **Non-bloquant** : table et colonnes vérifiées dans `information_schema` avant chaque `CREATE` ; les tables/colonnes absentes sont ignorées silencieusement.
+  - **Idempotent** : index déjà présents filtrés via `pg_indexes` + `CREATE INDEX IF NOT EXISTS` ; les appels répétés (1 par modèle de contrôle) sont quasi gratuits.
+- **Script `scripts/generate_index_macro.py`** : génère la macro depuis `scripts/gracethd_indexes.sql` (qui reste la source de vérité, utilisable directement via `psql`).
+
+---
+
 ## [1.1.4] - 2026-06-04
 
 ### Fixed

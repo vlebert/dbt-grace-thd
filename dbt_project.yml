@@ -2,7 +2,7 @@
 # and underscores. A good package name should reflect your organization's
 # name or the intended use of these models
 name: "grace_thd"
-version: "1.1.4"
+version: "1.1.5"
 
 # This setting configures which "profile" dbt uses for this project.
 profile: "grace_thd"
@@ -31,6 +31,10 @@ models:
     controls:
       +schema: controles
       +materialized: table
+      # Crée les index sur les tables sources avant chaque modèle de contrôle.
+      # Non-bloquant (tables/colonnes absentes ignorées) et idempotent.
+      +pre-hook:
+        - "{{ create_source_indexes() }}"
       generique:
         +tags: ["grace_control"]
       specifique:
