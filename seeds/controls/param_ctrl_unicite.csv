@@ -12,6 +12,5 @@ ctrl_uc_0011,t_site,st_codeext,st_code,true
 ctrl_uc_0012,t_tiroir,ti_codeext,ti_code,true
 ctrl_uc_0013,t_zcoax,zc_nd_code,zc_code,true
 ctrl_uc_0014,t_zdep,zd_nd_code,zd_code,true
-ctrl_uc_0015,t_zpbo,zp_bp_code,zp_code,true
 ctrl_uc_0016,t_position,ps_1,ps_code,true
 ctrl_uc_0017,t_position,ps_2,ps_code,true
