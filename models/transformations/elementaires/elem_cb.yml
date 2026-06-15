@@ -2,13 +2,14 @@ version: 2
 
 models:
   - name: elem_cb
-    description: Projette t_cable avec géométrie de t_cableline OU construction depuis nd1/nd2. UNION ALL des câbles avec cableline et des câbles sans cableline (géométrie construite avec ST_MakeLine).
+    description: Projette t_cable avec géométrie de t_cableline OU construction depuis nd1/nd2. UNION ALL des câbles avec cableline et des câbles sans cableline (géométrie construite avec ST_MakeLine). Matérialisé en table avec PK et index (repris de t_cable).
     config:
       tags: ["grace_elem"]
       schema: transformations
+      materialized: table
     columns:
       - name: id
-        description: Clé primaire technique pour QGIS
+        description: Clé primaire technique régénérée via row_number() (un câble peut avoir plusieurs cablelines, donc l'id issu de t_cable peut se dupliquer).
         tests:
           - not_null
           - unique

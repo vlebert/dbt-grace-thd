@@ -1,5 +1,27 @@
+{{
+    config(
+        materialized = 'table',
+        post_hook = ["ALTER TABLE {{ this }} ADD PRIMARY KEY (id);"],
+        indexes = [
+            {'columns': ['bp_code'], 'type': 'btree'},
+            {'columns': ['bp_pt_code'], 'type': 'btree'},
+            {'columns': ['bp_prop'], 'type': 'btree'},
+            {'columns': ['bp_gest'], 'type': 'btree'},
+            {'columns': ['bp_proptyp'], 'type': 'btree'},
+            {'columns': ['bp_statut'], 'type': 'btree'},
+            {'columns': ['bp_avct'], 'type': 'btree'},
+            {'columns': ['bp_rf_code'], 'type': 'btree'},
+            {'columns': ['geom'], 'type': 'gist'}
+        ]
+    )
+}}
+
+-- Matérialisé en table : les LEFT JOIN sur des codes non contraints en base
+-- peuvent provoquer un fan-out et dupliquer l'`id` issu de t_ebp. L'`id` est
+-- régénéré via row_number() pour garantir une clé primaire unique non bloquante.
+-- Les index reproduisent ceux de la table base t_ebp (+ gist sur geom).
 SELECT
-  bp.id,
+  row_number() OVER (ORDER BY bp.bp_code) AS id,
   bp.bp_code,
   bp.bp_pt_code,
   bp.bp_perirec,

@@ -72,7 +72,7 @@ t_adresse, t_baie, t_cable, t_cableline, t_cassette, t_cheminement, t_fibre, t_l
 | Élément | Règle |
 |---|---|
 | **Préfixe** | `elem_` |
-| **Matérialisation** | `view` **par défaut**, override possible en `table` via `dbt_project.yml` |
+| **Matérialisation** | `view` **par défaut**, override possible en `table` via `dbt_project.yml`. Exceptions matérialisées en `table` dans le modèle : `elem_cb`, `elem_bp`, `elem_cs`, `elem_ps` (voir ci-dessous) |
 | **Tags** | `grace_elem` sur tous les modèles |
 | **Schéma** | `transformations` |
 | **Documentation** | 1 fichier `.yml` par modèle |
@@ -121,6 +121,18 @@ t_adresse, t_baie, t_cable, t_cableline, t_cassette, t_cheminement, t_fibre, t_l
 - **COALESCE** : Pour gérer plusieurs sources de géométrie possibles (ex: elem_bp : pt OU st)
 - **ST_MakeLine** : Pour construire une géométrie à partir de points (elem_cb : nd1 → nd2)
 - **UNION ALL** : Pour combiner plusieurs sources (elem_cb, elem_cs, elem_ps)
+
+### Modèles matérialisés en `table` (performance)
+
+`elem_cb`, `elem_bp`, `elem_cs` et `elem_ps` sont **matérialisés en `table`** (override dans le `config()` du modèle) plutôt qu'en vue, car ce sont des transformations plus lourdes qu'une simple jointure (`UNION ALL`, `COALESCE`/multi-jointures, construction de géométrie) dont la matérialisation accélère les usages SIG en aval.
+
+Ces tables recréent, via la clé `indexes` du `config()`, **les index de leur table base source** :
+- `elem_cb` ← index de `t_cable` (`cb_code`, `cb_nd1`, `cb_nd2`, `cb_prop`, `cb_gest`, `cb_proptyp`, `cb_statut`, `cb_avct`, `cb_typephy`, `cb_typelog`) + `gist` sur `geom`
+- `elem_bp` ← index de `t_ebp` (`bp_code`, `bp_pt_code`, `bp_prop`, `bp_gest`, `bp_proptyp`, `bp_statut`, `bp_avct`, `bp_rf_code`) + `gist` sur `geom`
+- `elem_cs` ← index de `t_cassette` (`cs_code`, `cs_bp_code`, `cs_rf_code`, `cs_type`) + `gist` sur `geom`
+- `elem_ps` ← index de `t_position` (`ps_code`, `ps_numero`, `ps_1`, `ps_2`, `ps_cs_code`, `ps_ti_code`, `ps_type`, `ps_fonct`) + `gist` sur `geom`
+
+> **PK régénérée** : sur ces quatre modèles, l'`id` hérité de la table base **n'est pas garanti unique** (recouvrement entre branches d'`UNION ALL` pour `elem_cb`/`elem_cs`/`elem_ps` ; fan-out des jointures sur codes non contraints pour `elem_bp`). L'`id` est donc **régénéré via `row_number()`** dans le SELECT final, garantissant une `PRIMARY KEY` (ajoutée en `post_hook`) toujours unique et non bloquante. C'est la seule exception à la note « id sourcé depuis base » ci-dessus.
 
 ---
 

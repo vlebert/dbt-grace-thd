@@ -2,13 +2,14 @@ version: 2
 
 models:
   - name: elem_ps
-    description: UNION ALL de elem_ps_cs et elem_ps_ti. Regroupe toutes les positions avec leur géométrie (via cassette ou via tiroir).
+    description: UNION ALL de elem_ps_cs et elem_ps_ti. Regroupe toutes les positions avec leur géométrie (via cassette ou via tiroir). Matérialisé en table avec PK et index (repris de t_position).
     config:
       tags: ["grace_elem"]
       schema: transformations
+      materialized: table
     columns:
       - name: id
-        description: Clé primaire technique pour QGIS
+        description: Clé primaire technique régénérée via row_number() (les id issus de t_position peuvent se recouvrir entre les deux branches de l'UNION).
         tests:
           - not_null
           - unique
