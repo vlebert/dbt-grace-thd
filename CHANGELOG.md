@@ -6,6 +6,14 @@ Format : [Keep a Changelog](https://keepachangelog.com/fr/1.0.0/)
 
 ---
 
+## [1.1.6] - 2026-06-15
+
+### Performance
+
+- Optimisation de la requête `metier_0013` pour améliorer les performances.
+
+---
+
 ## [1.1.5] - 2026-06-12
 
 ### Added
