@@ -1,3 +1,9 @@
+{{
+    config(
+        post_hook = ["ALTER TABLE {{ this }} ADD PRIMARY KEY (id);"]
+    )
+}}
+
 WITH seg AS (
     SELECT
         ropt_id,
@@ -31,6 +37,7 @@ WITH seg AS (
     GROUP BY ropt_id
 )
 SELECT
+    seg.ropt_id::int4 AS id,
     sro_nro,
     tiroir,
     cs_num,

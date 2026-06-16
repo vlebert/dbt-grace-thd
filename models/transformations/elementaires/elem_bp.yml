@@ -2,13 +2,14 @@ version: 2
 
 models:
   - name: elem_bp
-    description: Projette t_ebp (PBO/BPE) avec COALESCE géométrie de pt ou st. Filtrage sur bp_typelog IN ('PBO', 'BPE').
+    description: Projette t_ebp (PBO/BPE) avec COALESCE géométrie de pt ou st. Filtrage sur bp_typelog IN ('PBO', 'BPE'). Matérialisé en table avec PK et index (repris de t_ebp).
     config:
       tags: ["grace_elem"]
       schema: transformations
+      materialized: table
     columns:
       - name: id
-        description: Clé primaire technique pour QGIS
+        description: Clé primaire technique régénérée via row_number() (les LEFT JOIN sur des codes non contraints peuvent dupliquer l'id issu de t_ebp).
         tests:
           - not_null
           - unique

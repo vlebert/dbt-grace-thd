@@ -12,7 +12,7 @@
 }}
 
 SELECT
-    row_number() OVER (ORDER BY ti_code) AS id,
+    row_number() OVER (ORDER BY ti_code)::int4 AS id,
     CASE WHEN pg_input_is_valid(NULLIF(ti_abandon::text, ''), 'varchar(1)') THEN ti_abandon::VARCHAR(1) ELSE NULL END AS ti_abandon,
     CASE WHEN pg_input_is_valid(NULLIF(ti_ba_code::text, ''), 'varchar(254)') THEN ti_ba_code::VARCHAR(254) ELSE NULL END AS ti_ba_code,
     CASE WHEN pg_input_is_valid(NULLIF(ti_code::text, ''), 'varchar(254)') THEN ti_code::VARCHAR(254) ELSE NULL END AS ti_code,

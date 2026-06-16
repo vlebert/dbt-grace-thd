@@ -1,7 +1,30 @@
+{{
+    config(
+        materialized = 'table',
+        post_hook = ["ALTER TABLE {{ this }} ADD PRIMARY KEY (id);"],
+        indexes = [
+            {'columns': ['cb_code'], 'type': 'btree'},
+            {'columns': ['cb_nd1'], 'type': 'btree'},
+            {'columns': ['cb_nd2'], 'type': 'btree'},
+            {'columns': ['cb_prop'], 'type': 'btree'},
+            {'columns': ['cb_gest'], 'type': 'btree'},
+            {'columns': ['cb_proptyp'], 'type': 'btree'},
+            {'columns': ['cb_statut'], 'type': 'btree'},
+            {'columns': ['cb_avct'], 'type': 'btree'},
+            {'columns': ['cb_typephy'], 'type': 'btree'},
+            {'columns': ['cb_typelog'], 'type': 'btree'},
+            {'columns': ['geom'], 'type': 'gist'}
+        ]
+    )
+}}
+
+-- Matérialisé en table : UNION ALL de deux branches et un câble peut avoir
+-- plusieurs cablelines, donc l'`id` issu de t_cable peut se dupliquer. L'`id`
+-- est régénéré via row_number() pour garantir une clé primaire unique non
+-- bloquante. Les index reproduisent ceux de la table base t_cable (+ gist sur geom).
 WITH data AS (
   -- Câbles avec géométrie dans cableline (MULTILINESTRING possible)
   SELECT
-    cb.id,
     cb.cb_code,
     cb.cb_codeext,
     cb.cb_abandon,
@@ -42,7 +65,6 @@ WITH data AS (
   -- Câbles sans cableline : construction géométrie depuis nd1/nd2
   -- t_noeud.geom est MULTIPOINT, on extrait un POINT avec ST_PointOnSurface
   SELECT
-    cb.id,
     cb.cb_code,
     cb.cb_codeext,
     cb.cb_abandon,
@@ -91,7 +113,7 @@ WITH data AS (
 )
 
 SELECT
-  id,
+  row_number() OVER (ORDER BY cb_code)::int4 AS id,
   cb_code,
   cb_codeext,
   cb_abandon,

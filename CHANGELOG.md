@@ -6,6 +6,26 @@ Format : [Keep a Changelog](https://keepachangelog.com/fr/1.0.0/)
 
 ---
 
+## [1.1.7] - 2026-06-16
+
+### Performance
+
+- **Matérialisation en tables** des modèles élémentaires `elem_cb`, `elem_bp`, `elem_cs` et `elem_ps` pour accélérer les modèles en aval qui les référencent fréquemment.
+
+### Fixed
+
+- **Compatibilité QGIS** : cast `::int4` sur tous les `row_number()` générés comme clé primaire `id` dans les modèles de transformation (`base/`, `elementaires/`, `thematiques/capacite/`). QGIS requiert `integer` (`int4`) et non `bigint` (`int8`).
+
+### Added
+
+- **Clé primaire sur `ropt_light`** : ajout de `ropt_id::int4 AS id` et du `post_hook` `ALTER TABLE ... ADD PRIMARY KEY (id)` pour exposer la table dans QGIS avec une clé primaire reconnue.
+
+### Documentation
+
+- Ajout de la documentation des vues thématiques dans `ARCHITECTURE_TRANSFORMATIONS.md` et `README.md`.
+
+---
+
 ## [1.1.6] - 2026-06-15
 
 ### Performance

@@ -15,7 +15,7 @@
 }}
 
 SELECT
-    row_number() OVER (ORDER BY ba_code) AS id,
+    row_number() OVER (ORDER BY ba_code)::int4 AS id,
     CASE WHEN pg_input_is_valid(NULLIF(ba_abandon::text, ''), 'varchar(1)') THEN ba_abandon::VARCHAR(1) ELSE NULL END AS ba_abandon,
     CASE WHEN pg_input_is_valid(NULLIF(ba_code::text, ''), 'varchar(254)') THEN ba_code::VARCHAR(254) ELSE NULL END AS ba_code,
     CASE WHEN pg_input_is_valid(NULLIF(ba_codeext::text, ''), 'varchar(254)') THEN ba_codeext::VARCHAR(254) ELSE NULL END AS ba_codeext,

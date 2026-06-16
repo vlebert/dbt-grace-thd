@@ -22,7 +22,7 @@ WITH cb_stats AS (
 )
 
 SELECT
-    ROW_NUMBER() OVER (ORDER BY cb.cb_code) AS id,
+    ROW_NUMBER() OVER (ORDER BY cb.cb_code)::int4 AS id,
     cb.cb_code,
     cb.cb_codeext,
     cb.cb_abandon,

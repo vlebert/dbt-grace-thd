@@ -8,7 +8,7 @@
 }}
 
 SELECT
-    row_number() OVER (ORDER BY lc_code) AS id,
+    row_number() OVER (ORDER BY lc_code)::int4 AS id,
     CASE WHEN pg_input_is_valid(NULLIF(lc_abandon::text, ''), 'varchar(1)') THEN lc_abandon::VARCHAR(1) ELSE NULL END AS lc_abandon,
     CASE WHEN pg_input_is_valid(NULLIF(lc_avct::text, ''), 'varchar(1)') THEN lc_avct::VARCHAR(1) ELSE NULL END AS lc_avct,
     CASE WHEN pg_input_is_valid(NULLIF(lc_bat::text, ''), 'varchar(100)') THEN lc_bat::VARCHAR(100) ELSE NULL END AS lc_bat,

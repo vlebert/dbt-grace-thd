@@ -2,13 +2,14 @@ version: 2
 
 models:
   - name: elem_cs
-    description: UNION ALL de elem_cs_bp et elem_cs_ti. Regroupe toutes les cassettes avec leur géométrie (via EBP ou via Tiroir).
+    description: UNION ALL de elem_cs_bp et elem_cs_ti. Regroupe toutes les cassettes avec leur géométrie (via EBP ou via Tiroir). Matérialisé en table avec PK et index (repris de t_cassette).
     config:
       tags: ["grace_elem"]
       schema: transformations
+      materialized: table
     columns:
       - name: id
-        description: Clé primaire technique pour QGIS
+        description: Clé primaire technique régénérée via row_number() (les id issus de t_cassette peuvent se recouvrir entre les deux branches de l'UNION).
         tests:
           - not_null
           - unique
