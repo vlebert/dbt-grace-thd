@@ -132,6 +132,13 @@ dbt run --select tag:grace_base
 
 # Générer les vues élémentaires
 dbt run --select tag:grace_elem
+
+# Générer les vues thématiques (routes optiques, capacité, ...)
+dbt run --select tag:grace_thematiques
+
+# Commande unique
+dbt run --select tag:grace_base tag:grace_elem tag:grace_thematiques
+
 ```
 
 ---
