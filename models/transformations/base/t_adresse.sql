@@ -16,7 +16,7 @@
 }}
 
 SELECT
-    row_number() OVER (ORDER BY ad_code) AS id,
+    row_number() OVER (ORDER BY ad_code)::int4 AS id,
     CASE WHEN pg_input_is_valid(NULLIF(ad_batcode::text, ''), 'varchar(100)') THEN ad_batcode::VARCHAR(100) ELSE NULL END AS ad_batcode,
     CASE WHEN pg_input_is_valid(NULLIF(ad_code::text, ''), 'varchar(254)') THEN ad_code::VARCHAR(254) ELSE NULL END AS ad_code,
     CASE WHEN pg_input_is_valid(NULLIF(ad_codtemp::text, ''), 'varchar(254)') THEN ad_codtemp::VARCHAR(254) ELSE NULL END AS ad_codtemp,

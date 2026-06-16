@@ -48,7 +48,7 @@ WITH combined AS (
   FROM {{ ref('elem_ps_ti') }}
 )
 SELECT
-  row_number() OVER (ORDER BY ps_code) AS id,
+  row_number() OVER (ORDER BY ps_code)::int4 AS id,
   ps_code,
   ps_1,
   ps_2,

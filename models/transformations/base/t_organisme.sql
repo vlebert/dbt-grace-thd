@@ -10,7 +10,7 @@
 }}
 
 SELECT
-    row_number() OVER (ORDER BY or_code) AS id,
+    row_number() OVER (ORDER BY or_code)::int4 AS id,
     CASE WHEN pg_input_is_valid(NULLIF(or_code::text, ''), 'varchar(20)') THEN or_code::VARCHAR(20) ELSE NULL END AS or_code,
     CASE WHEN pg_input_is_valid(NULLIF(or_commune::text, ''), 'varchar(254)') THEN or_commune::VARCHAR(254) ELSE NULL END AS or_commune,
     CASE WHEN pg_input_is_valid(NULLIF(or_local::text, ''), 'varchar(254)') THEN or_local::VARCHAR(254) ELSE NULL END AS or_local,

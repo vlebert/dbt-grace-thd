@@ -38,7 +38,7 @@ WITH combined AS (
   FROM {{ ref('elem_cs_ti') }}
 )
 SELECT
-  row_number() OVER (ORDER BY cs_code) AS id,
+  row_number() OVER (ORDER BY cs_code)::int4 AS id,
   cs_code,
   cs_bp_code,
   cs_num,

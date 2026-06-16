@@ -113,7 +113,7 @@ WITH data AS (
 )
 
 SELECT
-  row_number() OVER (ORDER BY cb_code) AS id,
+  row_number() OVER (ORDER BY cb_code)::int4 AS id,
   cb_code,
   cb_codeext,
   cb_abandon,

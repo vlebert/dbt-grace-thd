@@ -17,7 +17,7 @@
 }}
 
 SELECT
-    row_number() OVER (ORDER BY cm_code) AS id,
+    row_number() OVER (ORDER BY cm_code)::int4 AS id,
     CASE WHEN pg_input_is_valid(NULLIF(cm_avct::text, ''), 'varchar(1)') THEN cm_avct::VARCHAR(1) ELSE NULL END AS cm_avct,
     CASE WHEN pg_input_is_valid(NULLIF(cm_code::text, ''), 'varchar(254)') THEN cm_code::VARCHAR(254) ELSE NULL END AS cm_code,
     CASE WHEN pg_input_is_valid(NULLIF(cm_compo::text, ''), 'varchar(254)') THEN cm_compo::VARCHAR(254) ELSE NULL END AS cm_compo,

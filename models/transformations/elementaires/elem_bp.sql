@@ -21,7 +21,7 @@
 -- régénéré via row_number() pour garantir une clé primaire unique non bloquante.
 -- Les index reproduisent ceux de la table base t_ebp (+ gist sur geom).
 SELECT
-  row_number() OVER (ORDER BY bp.bp_code) AS id,
+  row_number() OVER (ORDER BY bp.bp_code)::int4 AS id,
   bp.bp_code,
   bp.bp_pt_code,
   bp.bp_perirec,
