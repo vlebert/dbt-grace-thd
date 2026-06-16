@@ -29,7 +29,7 @@ WITH destination AS (
 )
 
 SELECT
-    ROW_NUMBER() OVER (ORDER BY cb.cb_code, ds.bp_code) AS id,
+    ROW_NUMBER() OVER (ORDER BY cb.cb_code, ds.bp_code)::int4 AS id,
     cb.cb_code,
     cb.cb_capafo,
     ds.bp_code,
