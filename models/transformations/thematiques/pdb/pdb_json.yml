@@ -1,0 +1,50 @@
+version: 2
+
+models:
+  - name: pdb_json
+    description: |
+      Fiche JSON par point de branchement optique (PBO).
+
+      Pour chaque PBO, agrège dans une colonne `json_data` (tableau JSONB) le
+      détail de toutes ses cassettes et positions, avec les deux fibres/câbles
+      raccordés sur chaque position (couples ps_1/ps_2). Chaque élément du
+      tableau décrit une position : références cassette, position, fibres
+      (fo1/fo2) et câbles (cb1/cb2).
+
+      Adapté du legacy `v_json_pdb` (SQLite) vers PostgreSQL :
+      `json_group_array(json_object(...))` → `jsonb_agg(jsonb_build_object(...))`.
+
+      Filtré sur `bp_typelog IN ('PBO', 'BPE')`.
+
+      **Dépendances** : elem_bp, elem_cs, elem_ps, t_fibre, t_cable
+    config:
+      tags: ['grace_thematiques', 'grace_pdb']
+    columns:
+      - name: id
+        description: Clé primaire technique régénérée via row_number()
+        data_type: int4
+
+      - name: bp_code
+        description: Code du point de branchement (PBO)
+        data_type: varchar(254)
+
+      - name: bp_codeext
+        description: Code externe du PBO
+        data_type: varchar(254)
+
+      - name: bp_typelog
+        description: Type logique du point de branchement (PBO ou BPE)
+        data_type: varchar(3)
+
+      - name: json_data
+        description: |
+          Tableau JSONB des positions du PBO. Chaque objet contient :
+          ps_code, ps_fonct, ps_numero, ps_1, ps_2,
+          fo1_fo_nintub, fo1_fo_numtub, cb1_code, cb1_codeext, cb1_capafo,
+          fo2_fo_nintub, fo2_fo_numtub, cb2_code, cb2_codeext, cb2_capafo,
+          cs_code, cs_bp_code, cs_num, bp_code, bp_codeext, bp_typelog.
+        data_type: jsonb
+
+      - name: geom
+        description: Géométrie point héritée de elem_bp
+        data_type: geometry

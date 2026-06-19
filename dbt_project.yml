@@ -57,6 +57,8 @@ models:
           +tags: ["grace_capacite"]
         ropt:
           +tags: ["grace_ropt"]
+        pdb:
+          +tags: ["grace_pdb"]
 
 seeds:
   grace_thd:
