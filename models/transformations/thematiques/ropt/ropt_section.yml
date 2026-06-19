@@ -70,6 +70,9 @@ models:
       - name: pt_nature
         description: Nature du point technique
 
+      - name: cb_code
+        description: Code du câble
+
       - name: cb_codeext
         description: Code externe du câble
 
