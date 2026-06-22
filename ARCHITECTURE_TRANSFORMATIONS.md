@@ -23,7 +23,7 @@ Les transformations GRACE THD sont organisées en **trois couches** avec une cha
 **Rôle** : Répliquer les tables sources du schéma `gracethd_source` dans le schéma `transformations` avec :
 - **Typage non-bloquant** via `pg_input_is_valid(NULLIF(champ::text, ''), 'type_postgres')`
 - **Nettoyage des valeurs vides** : les chaînes vides (`''`) sont converties en `NULL` avant validation
-- **Clé primaire technique** : colonne `id` (integer) générée via `row_number() OVER (ORDER BY pk_naturelle)`
+- **Clé primaire technique** : colonne `id` générée via `row_number() OVER (ORDER BY pk_naturelle)::int4`. Le cast `::int4` est **obligatoire** : par défaut `row_number()` renvoie un `bigint` (`int8`), or **QGIS exige une clé primaire de type `int4`** pour gérer une couche en édition.
 - **Index** : index btree sur toutes les colonnes pertinentes + index gist sur `geom` pour les tables spatiales
 - Conservation intacte de la colonne `geom` pour les 10 tables spatiales
 
@@ -79,7 +79,7 @@ t_adresse, t_baie, t_cable, t_cableline, t_cassette, t_cheminement, t_fibre, t_l
 | **Géométrie** | `geom AS geom` en dernière colonne |
 | **Clé primaire** | `id` héritée de la table base source |
 
-> **Note QGIS** : La colonne `id` (integer) est **sourcée depuis les tables base** via `{alias}.id`, offrant une clé primaire stable sans régénération.
+> **Note QGIS** : La colonne `id` (type `int4`) est **sourcée depuis les tables base** via `{alias}.id`, offrant une clé primaire stable sans régénération. Le type `int4` est conservé tel quel depuis la base (cast appliqué à la source), car **QGIS exige une clé primaire `int4`** pour éditer une couche.
 
 ### Typologie
 
@@ -132,7 +132,7 @@ Ces tables recréent, via la clé `indexes` du `config()`, **les index de leur t
 - `elem_cs` ← index de `t_cassette` (`cs_code`, `cs_bp_code`, `cs_rf_code`, `cs_type`) + `gist` sur `geom`
 - `elem_ps` ← index de `t_position` (`ps_code`, `ps_numero`, `ps_1`, `ps_2`, `ps_cs_code`, `ps_ti_code`, `ps_type`, `ps_fonct`) + `gist` sur `geom`
 
-> **PK régénérée** : sur ces quatre modèles, l'`id` hérité de la table base **n'est pas garanti unique** (recouvrement entre branches d'`UNION ALL` pour `elem_cb`/`elem_cs`/`elem_ps` ; fan-out des jointures sur codes non contraints pour `elem_bp`). L'`id` est donc **régénéré via `row_number()`** dans le SELECT final, garantissant une `PRIMARY KEY` (ajoutée en `post_hook`) toujours unique et non bloquante. C'est la seule exception à la note « id sourcé depuis base » ci-dessus.
+> **PK régénérée** : sur ces quatre modèles, l'`id` hérité de la table base **n'est pas garanti unique** (recouvrement entre branches d'`UNION ALL` pour `elem_cb`/`elem_cs`/`elem_ps` ; fan-out des jointures sur codes non contraints pour `elem_bp`). L'`id` est donc **régénéré via `row_number() ... ::int4`** dans le SELECT final, garantissant une `PRIMARY KEY` (ajoutée en `post_hook`) toujours unique et non bloquante. Le cast `::int4` reste obligatoire (`row_number()` renvoie un `int8` par défaut, incompatible avec l'édition QGIS). C'est la seule exception à la note « id sourcé depuis base » ci-dessus.
 
 ---
 

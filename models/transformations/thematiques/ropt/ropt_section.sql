@@ -27,6 +27,7 @@ SELECT
     pt_amont.pt_codeext,
     pt_amont.pt_typephy,
     pt_amont.pt_nature,
+    cb.cb_code,
     cb.cb_codeext,
     cb.cb_typelog,
     cb.cb_lgreel,

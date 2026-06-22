@@ -1,4 +1,4 @@
-"code","libelle","definition"
-"1","ZTD HAUTE DENSITE","(Interop:TypeZone)"
-"2","ZTD BASSE DENSITE","(Interop:TypeZone)"
-"3","ZMD","(Interop:TypeZone)"
+"id","code","libelle","definition"
+"1","1","ZTD HAUTE DENSITE","(Interop:TypeZone)"
+"2","2","ZTD BASSE DENSITE","(Interop:TypeZone)"
+"3","3","ZMD","(Interop:TypeZone)"

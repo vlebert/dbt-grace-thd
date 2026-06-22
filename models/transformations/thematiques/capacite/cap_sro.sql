@@ -10,9 +10,10 @@
 WITH fo_tr_par_lc AS (
     SELECT
         lc_code,
-        COUNT(*) AS nb_fo_transport
+        COUNT(*) FILTER (WHERE ropt_typelog IN ('TR', 'CT')) AS nb_fo_transport,
+        COUNT(DISTINCT cb_code) FILTER (WHERE ropt_typelog = 'DI') AS nb_cb_distribution
     FROM {{ ref('ropt_section') }}
-    WHERE ropt_typelog IN ('TR', 'CT')
+    WHERE ropt_typelog IN ('TR', 'CT', 'DI')
       AND lc_code IS NOT NULL
     GROUP BY lc_code
 )
@@ -39,6 +40,7 @@ SELECT
     lc.lc_typelog,
     lc.lc_proptyp,
     COALESCE(fo.nb_fo_transport, 0) AS nb_fo_transport,
+    COALESCE(fo.nb_cb_distribution, 0) AS nb_cb_distribution,
     lc.geom
 FROM {{ ref('elem_lc_st_nd') }} lc
 LEFT JOIN fo_tr_par_lc fo ON fo.lc_code = lc.lc_code

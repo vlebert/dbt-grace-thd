@@ -2,7 +2,7 @@
 # and underscores. A good package name should reflect your organization's
 # name or the intended use of these models
 name: "grace_thd"
-version: "1.1.7"
+version: "1.2.0"
 
 # This setting configures which "profile" dbt uses for this project.
 profile: "grace_thd"
@@ -57,12 +57,18 @@ models:
           +tags: ["grace_capacite"]
         ropt:
           +tags: ["grace_ropt"]
+        pdb:
+          +tags: ["grace_pdb"]
 
 seeds:
   grace_thd:
     listes:
       +schema: listes
+      +post-hook:
+        - "ALTER TABLE {{ this }} DROP CONSTRAINT IF EXISTS {{ this.identifier }}_pkey"
+        - "ALTER TABLE {{ this }} ADD CONSTRAINT {{ this.identifier }}_pkey PRIMARY KEY (id)"
       +column_types:
+        id: int4
         code: varchar(254)
         libelle: varchar(254)
         definition: varchar(254)
