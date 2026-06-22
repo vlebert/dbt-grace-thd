@@ -64,6 +64,9 @@ seeds:
   grace_thd:
     listes:
       +schema: listes
+      +post-hook:
+        - "ALTER TABLE {{ this }} DROP CONSTRAINT IF EXISTS {{ this.identifier }}_pkey"
+        - "ALTER TABLE {{ this }} ADD CONSTRAINT {{ this.identifier }}_pkey PRIMARY KEY (id)"
       +column_types:
         id: int4
         code: varchar(254)
