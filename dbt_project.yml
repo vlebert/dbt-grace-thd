@@ -65,6 +65,7 @@ seeds:
     listes:
       +schema: listes
       +column_types:
+        id: int4
         code: varchar(254)
         libelle: varchar(254)
         definition: varchar(254)

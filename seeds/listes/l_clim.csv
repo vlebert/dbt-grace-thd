@@ -1,4 +1,4 @@
-"code","libelle","definition"
-"SANS","SANS",""
-"VENTIL","VENTILLATION",""
-"CLIM","CLIMATISATION",""
+"id","code","libelle","definition"
+"1","SANS","SANS",""
+"2","VENTIL","VENTILLATION",""
+"3","CLIM","CLIMATISATION",""
