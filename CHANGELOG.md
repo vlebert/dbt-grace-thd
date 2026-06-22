@@ -6,6 +6,20 @@ Format : [Keep a Changelog](https://keepachangelog.com/fr/1.0.0/)
 
 ---
 
+## [1.2.0] - 2026-06-22
+
+### Added
+
+- **Clé primaire sur les tables de référence (`seeds/listes/`)** : ajout d'une colonne `id` (`int4`) à séquence unique dans chacun des 44 seeds, typée via `+column_types` et exposée comme `PRIMARY KEY` via un `post-hook` idempotent (`DROP CONSTRAINT IF EXISTS` + `ADD CONSTRAINT … PRIMARY KEY (id)`). Permet l'affichage des listes dans QGIS, qui requiert une clé primaire reconnue.
+- **Modèle thématique PDB** : nouveau modèle de transformation `pdb` avec agrégation JSON.
+- **Modèle capacité SRO** : ajout des métriques liées aux câbles de distribution.
+
+### Documentation
+
+- Clarification des exigences de compatibilité QGIS concernant les clés primaires dans `ARCHITECTURE_TRANSFORMATIONS.md`.
+
+---
+
 ## [1.1.7] - 2026-06-16
 
 ### Performance
