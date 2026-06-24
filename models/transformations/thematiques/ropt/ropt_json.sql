@@ -13,66 +13,36 @@
 --      route agrège l'ensemble de ses sections (ropt_section) pour un ropt_id,
 --      enrichi de la synthèse PTO/PBO (adapté du legacy v_ropt_json, SQLite ->
 --      PostgreSQL : json_group_array(json_object(...)) -> jsonb_agg(jsonb_build_object(...))).
+--
+-- La route (départ + synthèses PTO/PBO + sections) se calcule en une seule
+-- passe groupée par ropt_id via l'agrégation conditionnelle (FILTER), évitant
+-- de rebalayer/joindre ropt_section pour chaque synthèse.
 WITH section AS (
-    SELECT * FROM {{ ref('ropt_section') }}
-),
-
--- Local technique de départ (ropt_ordr = 0) pour chaque route
-depart AS (
     SELECT
-        ropt_id,
-        lc_code,
-        lc_codeext,
-        lc_typelog,
-        lc_etage
-    FROM section
-    WHERE ropt_ordr = 0
+        *,
+        -- Prédicat point de distribution (PBO) pré-calculé
+        ((ps_fonct IN ('AT', 'MA') OR cb_typelog = 'RA') AND bp_typelog = 'PBO') AS is_pbo
+    FROM {{ ref('ropt_section') }}
 ),
 
--- Synthèse PTO par route
-pto_info AS (
-    SELECT
-        ropt_id,
-        MAX(bp_code) AS pto_bp_code,
-        MAX(bp_codeext) AS pto_bp_codeext
-    FROM section
-    WHERE bp_typelog = 'PTO'
-    GROUP BY ropt_id
-),
-
--- Synthèse point de distribution (PBO) par route
-pbo_info AS (
-    SELECT
-        ropt_id,
-        MAX(bp_code) AS pbo_bp_code,
-        MAX(bp_codeext) AS pbo_bp_codeext,
-        MAX(cs_num) AS pbo_cs_num,
-        MAX(ps_fonct) AS pbo_ps_fonct,
-        MAX(ps_numero) AS pbo_ps_numero,
-        MAX(ps_preaff) AS pbo_ps_preaff
-    FROM section
-    WHERE (ps_fonct IN ('AT', 'MA') OR cb_typelog = 'RA') AND bp_typelog = 'PBO'
-    GROUP BY ropt_id
-),
-
--- Une route optique = agrégation de ses sections + synthèse PTO/PBO
+-- Une route optique = agrégation de ses sections + synthèse PTO/PBO (1 ligne / ropt_id)
 route AS (
     SELECT
         s.ropt_id,
-        d.lc_code,
-        d.lc_codeext,
-        d.lc_typelog,
-        d.lc_etage,
+        MAX(s.lc_code)    FILTER (WHERE s.ropt_ordr = 0) AS lc_code,
+        MAX(s.lc_codeext) FILTER (WHERE s.ropt_ordr = 0) AS lc_codeext,
+        MAX(s.lc_typelog) FILTER (WHERE s.ropt_ordr = 0) AS lc_typelog,
+        MAX(s.lc_etage)   FILTER (WHERE s.ropt_ordr = 0) AS lc_etage,
         jsonb_build_object(
             'ropt_id',             s.ropt_id,
-            'ropt_pto_bp_code',    MAX(p.pto_bp_code),
-            'ropt_pto_bp_codeext', MAX(p.pto_bp_codeext),
-            'ropt_pbo_bp_code',    MAX(e.pbo_bp_code),
-            'ropt_pbo_bp_codeext', MAX(e.pbo_bp_codeext),
-            'ropt_pbo_cs_num',     MAX(e.pbo_cs_num),
-            'ropt_pbo_ps_fonct',   MAX(e.pbo_ps_fonct),
-            'ropt_pbo_ps_numero',  MAX(e.pbo_ps_numero),
-            'ropt_pbo_ps_preaff',  MAX(e.pbo_ps_preaff),
+            'ropt_pto_bp_code',    MAX(s.bp_code)    FILTER (WHERE s.bp_typelog = 'PTO'),
+            'ropt_pto_bp_codeext', MAX(s.bp_codeext) FILTER (WHERE s.bp_typelog = 'PTO'),
+            'ropt_pbo_bp_code',    MAX(s.bp_code)    FILTER (WHERE s.is_pbo),
+            'ropt_pbo_bp_codeext', MAX(s.bp_codeext) FILTER (WHERE s.is_pbo),
+            'ropt_pbo_cs_num',     MAX(s.cs_num)     FILTER (WHERE s.is_pbo),
+            'ropt_pbo_ps_fonct',   MAX(s.ps_fonct)   FILTER (WHERE s.is_pbo),
+            'ropt_pbo_ps_numero',  MAX(s.ps_numero)  FILTER (WHERE s.is_pbo),
+            'ropt_pbo_ps_preaff',  MAX(s.ps_preaff)  FILTER (WHERE s.is_pbo),
             'sections', jsonb_agg(
                 jsonb_build_object(
                     'ropt_ordr',  s.ropt_ordr,
@@ -105,10 +75,7 @@ route AS (
             )
         ) AS route_json
     FROM section s
-    LEFT JOIN depart d ON s.ropt_id = d.ropt_id
-    LEFT JOIN pto_info p ON s.ropt_id = p.ropt_id
-    LEFT JOIN pbo_info e ON s.ropt_id = e.ropt_id
-    GROUP BY s.ropt_id, d.lc_code, d.lc_codeext, d.lc_typelog, d.lc_etage
+    GROUP BY s.ropt_id
 )
 
 SELECT

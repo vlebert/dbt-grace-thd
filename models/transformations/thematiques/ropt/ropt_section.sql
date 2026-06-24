@@ -1,8 +1,7 @@
 {{
     config(
         indexes = [
-                    {'columns': ['ropt_id'], 'type': 'btree'},
-                    {'columns': ['ropt_ordr'], 'type': 'btree'}
+                    {'columns': ['ropt_id', 'ropt_ordr'], 'type': 'btree'}
                 ]
     )
 }}
