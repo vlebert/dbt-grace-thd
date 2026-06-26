@@ -1,0 +1,42 @@
+version: 2
+
+models:
+  - name: cap_zpbo
+    description: |
+      Zone d'influence d'un PBO — locaux desservis et étoile géométrique.
+
+      Pour chaque PBO, agrège l'ensemble des locaux qu'il dessert. Un local est
+      rattaché à **un seul** PBO : son PBO de **raccordement** (étape précédente
+      dans la route optique `ropt_section`) s'il existe, sinon son PBO de
+      **pré-affectation** (`lc_bp_codf`).
+
+      La géométrie est une **étoile** (multiline) reliant le point du PBO à
+      chacun de ses locaux : utile pour auditer visuellement les rattachements
+      (une branche anormalement longue trahit une saisie incohérente).
+
+      **Dépendances** : ropt_section, elem_lc_st_nd, elem_bp
+    config:
+      tags: ['grace_thematiques', 'grace_capacite']
+    columns:
+      - name: id
+        description: Clé primaire générée
+        tests:
+          - unique
+          - not_null
+
+      - name: bp_code
+        description: Code du point de branchement (PBO de rattachement)
+        tests:
+          - unique
+          - not_null
+
+      - name: bp_nb_loc
+        description: Nombre de locaux distincts desservis par ce PBO
+
+      - name: lc_codes
+        description: Liste des codes locaux desservis, séparés par des virgules
+
+      - name: geom
+        description: |
+          Étoile (MultiLineString) reliant le PBO à ses locaux. NULL si aucun
+          local desservi ne dispose d'une géométrie exploitable.

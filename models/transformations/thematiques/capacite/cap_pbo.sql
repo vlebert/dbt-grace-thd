@@ -1,8 +1,7 @@
 {{
     config(
         pre_hook = [
-            "ANALYZE {{ ref('ropt_section') }};",
-            "ANALYZE {{ ref('t_local') }};"
+            "ANALYZE {{ ref('ropt_section') }};"
         ],
         post_hook = ["ALTER TABLE {{ this }} ADD PRIMARY KEY (id);"],
         indexes = [
@@ -40,23 +39,6 @@ zsro_dedup AS (
         zs_lc_code
     FROM {{ ref('t_zsro') }}
     ORDER BY zs_lc_code, zs_code
-),
-
--- Locaux par PBO : LAG() évite l'auto-jointure ropt_section × ropt_section
--- sur (ropt_id, ropt_ordr - 1).
-loc_par_pbo AS (
-    SELECT bp_code, COUNT(*) AS bp_nb_loc
-    FROM (
-        SELECT
-            COALESCE(
-                LAG(rs.bp_code) OVER (PARTITION BY rs.ropt_id ORDER BY rs.ropt_ordr),
-                lc.lc_bp_codf
-            ) AS bp_code
-        FROM {{ ref('t_local') }} lc
-        LEFT JOIN {{ ref('ropt_section') }} rs ON rs.lc_code = lc.lc_code
-    ) sub
-    WHERE bp_code IS NOT NULL
-    GROUP BY bp_code
 )
 
 SELECT
@@ -77,7 +59,7 @@ SELECT
     bp.bp_typephy,
     bp.bp_typelog,
     bp.bp_rf_code,
-    COALESCE(loc.bp_nb_loc, 0) AS bp_nb_loc,
+    COALESCE(z.bp_nb_loc, 0) AS bp_nb_loc,
     COALESCE(efd.bp_nb_fo_distrib, 0) AS bp_nb_fo_distrib,
     COALESCE(efd.bp_nb_fo_racco, 0) AS bp_nb_fo_racco,
     zs.zs_code,
@@ -85,5 +67,5 @@ SELECT
 FROM {{ ref('elem_bp') }} bp
 LEFT JOIN ebp_fo_distrib efd ON efd.bp_code = bp.bp_code
 LEFT JOIN zsro_dedup zs ON zs.zs_lc_code = efd.lc_code_start
-LEFT JOIN loc_par_pbo loc ON loc.bp_code = bp.bp_code
+LEFT JOIN {{ ref('cap_zpbo') }} z ON z.bp_code = bp.bp_code
 WHERE bp.bp_typelog = 'PBO'

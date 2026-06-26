@@ -8,12 +8,12 @@ models:
       Pour chaque PBO, calcule :
       - **bp_nb_fo_distrib** : nombre de fibres distribuées (positions AT/MA ou câble RA)
       - **bp_nb_fo_racco** : nombre de fibres raccordées (câbles de type RA)
-      - **bp_nb_loc** : nombre de locaux desservis (via ropt_section ou lc_bp_codf)
+      - **bp_nb_loc** : nombre de locaux desservis (issu de `cap_zpbo`)
       - **zs_code** : zone SRO amont (depuis ropt_section à ropt_ordr=0)
 
       Hérite de toutes les colonnes de `elem_bp`.
 
-      **Dépendances** : elem_bp, ropt_section, t_zsro, t_local
+      **Dépendances** : elem_bp, ropt_section, t_zsro, cap_zpbo
     config:
       tags: ['grace_thematiques', 'grace_capacite']
     columns:
@@ -30,7 +30,7 @@ models:
         description: Type logique (toujours PBO dans ce modèle)
 
       - name: bp_nb_loc
-        description: Nombre de locaux desservis par ce PBO
+        description: Nombre de locaux desservis par ce PBO (issu de cap_zpbo)
 
       - name: bp_nb_fo_distrib
         description: Nombre de fibres distribuées (positions AT/MA ou câbles RA)
