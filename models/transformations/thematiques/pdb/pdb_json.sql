@@ -18,6 +18,7 @@ WITH detail AS (
     SELECT
         bp.bp_code,
         bp.bp_codeext,
+        bp.bp_etiquet,
         bp.bp_typelog,
         bp.geom,
         jsonb_build_object(
@@ -30,17 +31,20 @@ WITH detail AS (
             'fo1_fo_numtub', fo1.fo_numtub,
             'cb1_code',      cb1.cb_code,
             'cb1_codeext',   cb1.cb_codeext,
+            'cb1_etiquet',   cb1.cb_etiquet,
             'cb1_capafo',    cb1.cb_capafo,
             'fo2_fo_nintub', fo2.fo_nintub,
             'fo2_fo_numtub', fo2.fo_numtub,
             'cb2_code',      cb2.cb_code,
             'cb2_codeext',   cb2.cb_codeext,
+            'cb2_etiquet',   cb2.cb_etiquet,
             'cb2_capafo',    cb2.cb_capafo,
             'cs_code',       cs.cs_code,
             'cs_bp_code',    cs.cs_bp_code,
             'cs_num',        cs.cs_num,
             'bp_code',       bp.bp_code,
             'bp_codeext',    bp.bp_codeext,
+            'bp_etiquet',    bp.bp_etiquet,
             'bp_typelog',    bp.bp_typelog
         ) AS position_json,
         cs.cs_num,
@@ -65,8 +69,9 @@ SELECT
     row_number() OVER (ORDER BY bp_code)::int4 AS id,
     bp_code,
     bp_codeext,
+    bp_etiquet,
     bp_typelog,
     jsonb_agg(position_json ORDER BY cs_num, ps_numero) AS json_data,
     geom
 FROM detail
-GROUP BY bp_code, bp_codeext, bp_typelog, geom
+GROUP BY bp_code, bp_codeext, bp_etiquet, bp_typelog, geom

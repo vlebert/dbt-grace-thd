@@ -32,6 +32,10 @@ models:
         description: Code externe du local technique de départ
         data_type: varchar(254)
 
+      - name: lc_etiquet
+        description: Étiquette du local technique de départ
+        data_type: varchar(20)
+
       - name: lc_typelog
         description: Type logique du local (NRO, etc.)
         data_type: varchar(254)
@@ -44,10 +48,11 @@ models:
         description: |
           Tableau JSONB des routes optiques issues du local technique. Chaque
           objet route contient :
-          ropt_id, ropt_pto_bp_code, ropt_pto_bp_codeext, ropt_pbo_bp_code,
-          ropt_pbo_bp_codeext, ropt_pbo_cs_num, ropt_pbo_ps_fonct,
-          ropt_pbo_ps_numero, ropt_pbo_ps_preaff,
+          ropt_id, ropt_pto_bp_code, ropt_pto_bp_codeext, ropt_pto_bp_etiquet,
+          ropt_pbo_bp_code, ropt_pbo_bp_codeext, ropt_pbo_bp_etiquet,
+          ropt_pbo_cs_num, ropt_pbo_ps_fonct, ropt_pbo_ps_numero,
+          ropt_pbo_ps_preaff,
           et un sous-tableau `sections` (une entrée par étape de la route, triée
-          par `ropt_ordr`) décrivant noeud (lc_*, bp_*, pt_*, ti_codeext, cs_num,
+          par `ropt_ordr`) décrivant noeud (lc_*, bp_*, pt_*, ti_*, cs_num,
           ps_*) et lien (cb_*, fo_*).
         data_type: jsonb

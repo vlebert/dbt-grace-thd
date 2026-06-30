@@ -32,6 +32,10 @@ models:
         description: Code externe du PBO
         data_type: varchar(254)
 
+      - name: bp_etiquet
+        description: Étiquette du PBO
+        data_type: varchar(254)
+
       - name: bp_typelog
         description: Type logique du point de branchement (PBO ou BPE)
         data_type: varchar(3)
@@ -40,9 +44,9 @@ models:
         description: |
           Tableau JSONB des positions du PBO. Chaque objet contient :
           ps_code, ps_fonct, ps_numero, ps_1, ps_2,
-          fo1_fo_nintub, fo1_fo_numtub, cb1_code, cb1_codeext, cb1_capafo,
-          fo2_fo_nintub, fo2_fo_numtub, cb2_code, cb2_codeext, cb2_capafo,
-          cs_code, cs_bp_code, cs_num, bp_code, bp_codeext, bp_typelog.
+          fo1_fo_nintub, fo1_fo_numtub, cb1_code, cb1_codeext, cb1_etiquet, cb1_capafo,
+          fo2_fo_nintub, fo2_fo_numtub, cb2_code, cb2_codeext, cb2_etiquet, cb2_capafo,
+          cs_code, cs_bp_code, cs_num, bp_code, bp_codeext, bp_etiquet, bp_typelog.
         data_type: jsonb
 
       - name: geom
