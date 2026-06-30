@@ -28,6 +28,9 @@ models:
       - name: lc_codeext
         description: Code externe du local amont
 
+      - name: lc_etiquet
+        description: Étiquette du local amont
+
       - name: lc_typelog
         description: Type logique du local (NRO, PBO, etc.)
 
@@ -37,11 +40,17 @@ models:
       - name: ti_codeext
         description: Code externe du tiroir amont
 
+      - name: ti_etiquet
+        description: Étiquette du tiroir amont
+
       - name: bp_code
         description: Code du point de branchement amont
 
       - name: bp_codeext
         description: Code externe du point de branchement
+
+      - name: bp_etiquet
+        description: Étiquette du point de branchement
 
       - name: bp_typelog
         description: Type logique du point de branchement (PTO, PBO, BPE)
@@ -64,6 +73,9 @@ models:
       - name: pt_codeext
         description: Code externe du point technique
 
+      - name: pt_etiquet
+        description: Étiquette du point technique
+
       - name: pt_typephy
         description: Type physique du point technique
 
@@ -75,6 +87,9 @@ models:
 
       - name: cb_codeext
         description: Code externe du câble
+
+      - name: cb_etiquet
+        description: Étiquette du câble
 
       - name: cb_typelog
         description: Type logique du câble

@@ -1,8 +1,7 @@
 {{
     config(
         indexes = [
-                    {'columns': ['ropt_id'], 'type': 'btree'},
-                    {'columns': ['ropt_ordr'], 'type': 'btree'}
+                    {'columns': ['ropt_id', 'ropt_ordr'], 'type': 'btree'}
                 ]
     )
 }}
@@ -13,11 +12,14 @@ SELECT
     ropt.ropt_typelog,
     lc_amont.lc_code,
     lc_amont.lc_codeext,
+    lc_amont.lc_etiquet,
     lc_amont.lc_typelog,
     lc_amont.lc_etage,
     ti_amont.ti_codeext,
+    ti_amont.ti_etiquet,
     bp_amont.bp_code,
     bp_amont.bp_codeext,
+    bp_amont.bp_etiquet,
     bp_amont.bp_typelog,
     ps_amont.ps_numero,
     ps_amont.ps_fonct,
@@ -25,10 +27,12 @@ SELECT
     cs_amont.cs_num,
     pt_amont.pt_code,
     pt_amont.pt_codeext,
+    pt_amont.pt_etiquet,
     pt_amont.pt_typephy,
     pt_amont.pt_nature,
     cb.cb_code,
     cb.cb_codeext,
+    cb.cb_etiquet,
     cb.cb_typelog,
     cb.cb_lgreel,
     cb.cb_capafo,
