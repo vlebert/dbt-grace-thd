@@ -89,10 +89,10 @@ route AS (
 SELECT
     row_number() OVER (ORDER BY lc_code)::int4 AS id,
     lc_code,
-    lc_codeext,
-    lc_etiquet,
-    lc_typelog,
-    lc_etage,
+    MAX(lc_codeext) AS lc_codeext,
+    MAX(lc_etiquet) AS lc_etiquet,
+    MAX(lc_typelog) AS lc_typelog,
+    MAX(lc_etage)   AS lc_etage,
     jsonb_agg(route_json ORDER BY ropt_id) AS json_data
 FROM route
-GROUP BY lc_code, lc_codeext, lc_etiquet, lc_typelog, lc_etage
+GROUP BY lc_code
