@@ -181,8 +181,26 @@ def import_data(creds: dict, src: str, script_dir: Path):
         "-progress",
     ]
 
+    # --- Détection auto de la source ----------------------------------
+    # On accepte :
+    #   - un fichier .gpkg (toutes les couches dans un seul conteneur), ou
+    #   - un dossier contenant soit un .gpkg, soit des shapefiles + CSV.
+    # Si un dossier contient un .gpkg, on privilégie ce dernier ; sinon on
+    # bascule sur le mode shapefiles/CSV. Ainsi un utilisateur remplace le
+    # contenu de `input_data/` par ses propres données sans changer la commande.
     src_path = Path(src)
+    gpkg_file = None
     if src_path.is_file() and src_path.suffix == ".gpkg":
+        gpkg_file = src_path
+    elif src_path.is_dir():
+        gpkgs = sorted(src_path.glob("*.gpkg"))
+        if gpkgs:
+            gpkg_file = gpkgs[0]
+            print(f"Source détectée : GeoPackage {gpkg_file.name}")
+        else:
+            print("Source détectée : shapefiles + CSV")
+
+    if gpkg_file is not None:
         for table in ALL_TABLES:
             print(f"Import GPKG layer → {schema}.{table}")
             cmd = base_ogr + [
@@ -190,7 +208,7 @@ def import_data(creds: dict, src: str, script_dir: Path):
                 table,
                 "-sql",
                 f'SELECT * FROM "{table}"',
-                str(src_path),
+                str(gpkg_file),
             ]
             run(cmd)
     else:

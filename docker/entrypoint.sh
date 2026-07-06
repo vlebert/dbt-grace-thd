@@ -12,8 +12,8 @@ until pg_isready -h db -p 5432 -U grace >/dev/null 2>&1; do
 done
 echo "==> PostgreSQL prêt."
 
-echo "==> Import de l'échantillon GRACE THD (ANCT) → schéma gracethd_source…"
-python scripts/import_grace_pg.py sample_data/gracethd_v3_anct docker
+echo "==> Import des données GRACE THD (input_data/) → schéma gracethd_source…"
+python scripts/import_grace_pg.py input_data docker
 
 # packages.yml est vide aujourd'hui ; sans effet, mais robuste si des deps sont ajoutées.
 echo "==> dbt deps…"
