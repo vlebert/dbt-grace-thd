@@ -1,0 +1,10 @@
+.venv/
+target/
+dbt_packages/
+logs/
+dev_data/
+dev_specs/
+.git/
+.DS_Store
+**/__pycache__/
+*.pyc

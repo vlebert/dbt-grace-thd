@@ -142,33 +142,42 @@ def import_data(creds: dict, src: str, script_dir: Path):
         f"active_schema={schema}"
     )
 
-    # --- Create schema -------------------------------------------------
-    print(f"Creating schema {schema} if absent")
+    # --- Pré-chargement du schéma des sources --------------------------
+    # Les tables gracethd_source sont (re)créées en `text` + geom, sans contrainte,
+    # AVANT l'import (schéma généré depuis le seed param_ctrl_remplissage.csv).
+    # ogr2ogr -append ne remplit alors que les colonnes présentes dans le jeu de
+    # données ; les colonnes absentes restent NULL et sont signalées par les contrôles
+    # de remplissage — au lieu de faire échouer les modèles sur "column does not exist".
+    schema_sql = script_dir / "gracethd_source_schema.sql"
+    if not schema_sql.exists():
+        sys.exit(
+            f"Schéma source introuvable : {schema_sql}\n"
+            f"Générez-le d'abord : python scripts/generate_source_schema.py"
+        )
+    print(f"Pré-chargement du schéma des sources ({schema})")
     shell(
         f'PGPASSWORD="{db["db_password"]}" psql '
         f"-h {db['db_host']} -p {db['db_port']} -U {db['db_user']} "
         f"-d {db['db_name']} -v ON_ERROR_STOP=1 "
-        f'-c "CREATE SCHEMA IF NOT EXISTS {schema};"'
+        f'-f "{schema_sql}"'
     )
 
     # --- Import --------------------------------------------------------
+    # -append : on insère dans les tables pré-créées (pas de -overwrite qui les
+    # recréerait selon les types du fichier source). -unsetFid : ne pas propager le
+    # FID source (les modèles base génèrent leur propre clé).
     base_ogr = [
         "ogr2ogr",
         "-f",
         "PostgreSQL",
         dest_db,
-        "-lco",
-        "GEOMETRY_NAME=geom",
-        "-lco",
-        "FID=ogc_fid",
-        "-lco",
-        "PRECISION=NO",
         "-nlt",
         "PROMOTE_TO_MULTI",
+        "-unsetFid",
         "--config",
         "PG_USE_COPY",
         "YES",
-        "-overwrite",
+        "-append",
         "-progress",
     ]
 
@@ -213,10 +222,11 @@ def import_data(creds: dict, src: str, script_dir: Path):
                 "AUTODETECT_TYPE=YES",
                 "-oo",
                 "EMPTY_STRING_AS_NULL=YES",
+                "-unsetFid",
                 "--config",
                 "PG_USE_COPY",
                 "YES",
-                "-overwrite",
+                "-append",
                 "-progress",
                 str(csv),
             ]

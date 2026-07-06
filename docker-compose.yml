@@ -1,0 +1,31 @@
+# Démonstration GRACE THD clé en main :
+#   docker compose up --build
+# Monte PostGIS, importe l'échantillon public ANCT, exécute tout le pipeline dbt,
+# puis laisse la base en ligne sur localhost:5433 (branchement QGIS possible).
+services:
+  db:
+    image: postgis/postgis:16-3.4
+    environment:
+      POSTGRES_DB: grace
+      POSTGRES_USER: grace
+      POSTGRES_PASSWORD: grace
+    ports:
+      - "5433:5432"
+    volumes:
+      - grace_pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U grace -d grace"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+  dbt:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    depends_on:
+      db:
+        condition: service_healthy
+
+volumes:
+  grace_pgdata:
