@@ -78,7 +78,7 @@ cable_data AS (
     WHERE cb.zs_code IS NOT NULL
 ),
 
--- Noeuds : boîtier d'extrémité 1 (PBO/BPE), boîtier d'extrémité 2, et local technique (SRO).
+-- Noeuds : boîtier d'extrémité 1 (PBO/BPE/BPI), boîtier d'extrémité 2, et local technique (SRO).
 -- (zs_code, node_id, data) : node_id porté à part pour dédoublonner sur l'identifiant.
 node_rows AS (
     SELECT
