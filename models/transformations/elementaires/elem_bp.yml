@@ -2,7 +2,7 @@ version: 2
 
 models:
   - name: elem_bp
-    description: Projette t_ebp (PBO/BPE) avec COALESCE géométrie de pt ou st. Filtrage sur bp_typelog IN ('PBO', 'BPE'). Matérialisé en table avec PK et index (repris de t_ebp).
+    description: Projette t_ebp (PBO/BPE/BPI) avec COALESCE géométrie de pt ou st. Filtrage sur bp_typelog IN ('PBO', 'BPE', 'BPI'). Matérialisé en table avec PK et index (repris de t_ebp).
     config:
       tags: ["grace_elem"]
       schema: transformations
@@ -43,7 +43,7 @@ models:
       - name: bp_typephy
         description: "Type physique d'élément de branchement passif. Capacité de soudure."
       - name: bp_typelog
-        description: "Type de l'élément (PBO, BPE)"
+        description: "Type de l'élément (PBO, BPE, BPI)"
       - name: bp_rf_code
         description: "Référence."
 
