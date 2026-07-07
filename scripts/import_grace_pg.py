@@ -7,7 +7,7 @@ dbt_project.yml and the target name given on the command line.
 
 Usage:
   python import_grace_pg.py [src_path] [dbt_target]
-  python import_grace_pg.py ./NA-16025-BGNR dev
+  python import_grace_pg.py input_data dev
 """
 
 import argparse
