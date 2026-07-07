@@ -50,4 +50,4 @@ LEFT JOIN {{ ref('t_site') }} AS st
   ON lc.lc_st_code = st.st_code
 LEFT JOIN {{ ref('t_noeud') }} AS nd2
   ON st.st_nd_code = nd2.nd_code
-WHERE bp.bp_typelog IN ('PBO', 'BPE')
+WHERE bp.bp_typelog IN ('PBO', 'BPE', 'BPI')
