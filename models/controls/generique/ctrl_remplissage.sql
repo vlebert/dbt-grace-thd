@@ -5,7 +5,7 @@
   Paramétré par le seed `ctrl_remplissage` :
     - Chaque ligne active (actif = true) produit une branche de l'UNION ALL.
     - La branche est générée uniquement si l'attribut est obligatoire ('O') au
-      niveau de conteneur courant (var `grace_container_level`, ex. 'C3').
+      niveau de conteneur courant (var `grace_container_level`, ex. 'C4').
 
   Une ligne de résultat est produite par entité en défaut (valeur NULL ou
   chaîne vide). Le modèle ne porte PAS de géométrie : la géolocalisation est
@@ -14,7 +14,7 @@
 
 {%- set seed_ref = ref('param_ctrl_remplissage') -%}
 
-{%- set container_level = var('grace_container_level', 'C3') | lower -%}
+{%- set container_level = var('grace_container_level', 'C4') | lower -%}
 {%- set container_col = 'conteneur_' ~ container_level -%}
 
 {%- if execute -%}

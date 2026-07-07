@@ -84,7 +84,7 @@ models:
 
 | Variable | Default | Usage |
 |---|---|---|
-| `grace_container_level` | `C3` | Niveau de conteneur pour les contrôles |
+| `grace_container_level` | `C4` | Conteneur ciblé par les contrôles (phase du cycle de vie C1–C4) |
 
 Exemple : changer le niveau de conteneur :
 ```yaml

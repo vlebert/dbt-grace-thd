@@ -31,7 +31,7 @@ on-run-start:
 vars:
   # Niveau de conteneur GRACE THD appliqué aux contrôles de remplissage
   # (valeurs attendues : C1, C2, C3, C4)
-  grace_container_level: "C3"
+  grace_container_level: "C4"
 
 models:
   grace_thd:

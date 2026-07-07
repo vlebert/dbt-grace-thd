@@ -173,7 +173,7 @@ GRACE THD (dbt)
 
 | Variable | Défaut | Description |
 |----------|--------|-------------|
-| `grace_container_level` | `C3` | Conteneur ciblé par les contrôles — phase du cycle de vie (C1 à C4, voir [Concepts clés](#conteneurs-c1-à-c4)) |
+| `grace_container_level` | `C4` | Conteneur ciblé par les contrôles — phase du cycle de vie (C1 à C4, voir [Concepts clés](#conteneurs-c1-à-c4)) |
 
 ```yaml
 # dbt_project.yml
@@ -224,7 +224,7 @@ du réseau BLOM (les tables et champs retenus varient selon la phase) :
 | `C3` | Passage du déploiement à l'exploitation / commercialisation |
 | `C4` | Maintien en condition opérationnelle |
 
-Les contrôles s'activent selon le conteneur ciblé (`grace_container_level`, **`C3` par défaut**) :
+Les contrôles s'activent selon le conteneur ciblé (`grace_container_level`, **`C4` par défaut**) :
 chaque contrôle est paramétrable pour s'appliquer à un ou plusieurs conteneurs.
 
 ### Typage non bloquant

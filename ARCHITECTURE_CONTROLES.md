@@ -103,7 +103,7 @@ Colonnes communes : `id_test`, `classe`, `cle_primaire`, `actif` (booléen).
 
 ### Niveau de conteneur
 
-Variable dbt `grace_container_level` (valeurs `C1`..`C4`, défaut `C3`). Les modèles `ctrl_presence_table` et `ctrl_remplissage` filtrent sur la colonne `conteneur_cX` correspondante et ne déclenchent le contrôle que sur les attributs/tables marqués `O` à ce niveau.
+Variable dbt `grace_container_level` (valeurs `C1`..`C4`, défaut `C4`). Les modèles `ctrl_presence_table` et `ctrl_remplissage` filtrent sur la colonne `conteneur_cX` correspondante et ne déclenchent le contrôle que sur les attributs/tables marqués `O` à ce niveau.
 
 ### Listes de valeurs
 
