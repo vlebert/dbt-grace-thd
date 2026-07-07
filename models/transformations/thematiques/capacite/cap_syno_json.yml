@@ -1,0 +1,63 @@
+version: 2
+
+models:
+  - name: cap_syno_json
+    description: |
+      Synoptique JSON par zone SRO (`zs_code`), au format graphe directement
+      consommable par Cytoscape.
+
+      Pour chaque zone, une unique colonne JSONB `json_data` décrit le graphe de
+      distribution, de la forme `{"nodes": [...], "edges": [...]}` :
+        * `nodes` : les points de branchement (PBO) et le local technique (SRO) ;
+        * `edges` : les câbles de distribution reliant ces éléments.
+      Chaque élément est encapsulé dans une clé `data` (convention Cytoscape), si
+      bien que `json_data` se passe tel quel à l'option `elements` de Cytoscape.
+
+      Adapté du legacy `v_syno_cytoscape` (SQLite) vers PostgreSQL :
+      `json_object(...)` → `jsonb_build_object(...)`,
+      `GROUP_CONCAT(DISTINCT json_object(...))` → `jsonb_agg(...)` sur des noeuds
+      dédoublonnés par identifiant (`DISTINCT ON (id)`), ce qui garantit des `id`
+      uniques côté Cytoscape.
+
+      Chaque noeud/arête porte, en plus des codes internes/externes, l'étiquette
+      (`*_etiquet`) et les compteurs de capacité (locaux, fibres distribuées,
+      fibres raccordées) issus de `cap_pbo` et `cap_cb`.
+
+      **Dépendances** : cap_cb, cap_pbo, t_baie, t_local, t_site, t_zsro
+    config:
+      tags: ['grace_thematiques', 'grace_capacite']
+    columns:
+      - name: id
+        description: Clé primaire technique régénérée via row_number()
+        data_type: int4
+        tests:
+          - unique
+          - not_null
+
+      - name: zs_code
+        description: Code de la zone SRO (une ligne = un synoptique de zone)
+        data_type: varchar(254)
+        tests:
+          - unique
+          - not_null
+
+      - name: json_data
+        description: |
+          Graphe de la zone au format Cytoscape `{"nodes": [...], "edges": [...]}`.
+
+          `nodes` — tableau des noeuds (PBO et local technique), chacun de la forme
+          `{"data": {"id", "label", "properties"}}`.
+          Propriétés d'un noeud PBO : bp_code, bp_codeext, bp_etiquet, bp_typelog,
+          bp_nb_fo_racco, bp_nb_fo_distrib, bp_nb_loc.
+          Propriétés d'un noeud local technique : lt_code, lt_codeext, lt_etiquet,
+          st_code, st_codeext.
+
+          `edges` — tableau des arêtes (câbles de distribution), chacune de la forme
+          `{"data": {"source", "target", "label", "properties"}}`.
+          Propriétés : cb_code, cb_codeext, cb_etiquet, cb_capafo, cb_nb_loc,
+          cb_nb_fo_distrib, cb_nb_fo_racco.
+        data_type: jsonb
+
+      - name: geom
+        description: Géométrie MultiPolygon de la zone SRO, héritée de t_zsro
+        data_type: geometry
