@@ -18,7 +18,26 @@
 --   { "nodes": [ {"data": {...}}, ... ], "edges": [ {"data": {...}}, ... ] }
 --   * nodes : points de branchement (PBO) et local technique (SRO) ;
 --   * edges : câbles de distribution reliant ces éléments.
-WITH cable_data AS (
+--
+-- Les extrémités boîtier sont résolues sur TOUS les boîtiers (`elem_bp`), pas
+-- seulement les PBO : un câble abouti sur un BPE (ou un boîtier PM) reste ainsi
+-- une extrémité connue (sinon source/target basculent à tort sur NULL). Les
+-- compteurs de capacité sont rattachés en LEFT JOIN via `cap_pbo` (nuls hors PBO).
+-- Reproduit la CTE `ebp` du legacy (vs_elem_bp + t_ebp_fo_distrib).
+WITH ebp AS (
+    SELECT
+        bp.bp_code,
+        bp.bp_codeext,
+        bp.bp_etiquet,
+        bp.bp_typelog,
+        cap.bp_nb_loc,
+        cap.bp_nb_fo_distrib,
+        cap.bp_nb_fo_racco
+    FROM {{ ref('elem_bp') }} bp
+    LEFT JOIN {{ ref('cap_pbo') }} cap ON cap.bp_code = bp.bp_code
+),
+
+cable_data AS (
     SELECT
         cb.cb_code,
         cb.cb_codeext,
@@ -48,8 +67,8 @@ WITH cable_data AS (
         COALESCE(st1.st_code, st2.st_code)       AS st_code,
         COALESCE(st1.st_codeext, st2.st_codeext) AS st_codeext
     FROM {{ ref('cap_cb') }} cb
-    LEFT JOIN {{ ref('cap_pbo') }} bp1 ON cb.cb_bp1 = bp1.bp_code
-    LEFT JOIN {{ ref('cap_pbo') }} bp2 ON cb.cb_bp2 = bp2.bp_code
+    LEFT JOIN ebp bp1 ON cb.cb_bp1 = bp1.bp_code
+    LEFT JOIN ebp bp2 ON cb.cb_bp2 = bp2.bp_code
     LEFT JOIN {{ ref('t_baie') }} ba1  ON cb.cb_ba1 = ba1.ba_code
     LEFT JOIN {{ ref('t_baie') }} ba2  ON cb.cb_ba2 = ba2.ba_code
     LEFT JOIN {{ ref('t_local') }} lt1 ON ba1.ba_lc_code = lt1.lc_code
@@ -59,7 +78,7 @@ WITH cable_data AS (
     WHERE cb.zs_code IS NOT NULL
 ),
 
--- Noeuds : PBO d'extrémité 1, PBO d'extrémité 2, et local technique (SRO).
+-- Noeuds : boîtier d'extrémité 1 (PBO/BPE), boîtier d'extrémité 2, et local technique (SRO).
 -- (zs_code, node_id, data) : node_id porté à part pour dédoublonner sur l'identifiant.
 node_rows AS (
     SELECT

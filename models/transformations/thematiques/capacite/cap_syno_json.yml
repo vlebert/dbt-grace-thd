@@ -45,10 +45,11 @@ models:
         description: |
           Graphe de la zone au format Cytoscape `{"nodes": [...], "edges": [...]}`.
 
-          `nodes` — tableau des noeuds (PBO et local technique), chacun de la forme
-          `{"data": {"id", "label", "properties"}}`.
-          Propriétés d'un noeud PBO : bp_code, bp_codeext, bp_etiquet, bp_typelog,
-          bp_nb_fo_racco, bp_nb_fo_distrib, bp_nb_loc.
+          `nodes` — tableau des noeuds (boîtiers PBO/BPE et local technique), chacun
+          de la forme `{"data": {"id", "label", "properties"}}`.
+          Propriétés d'un noeud boîtier : bp_code, bp_codeext, bp_etiquet, bp_typelog,
+          bp_nb_fo_racco, bp_nb_fo_distrib, bp_nb_loc (compteurs de capacité nuls
+          hors PBO).
           Propriétés d'un noeud local technique : lt_code, lt_codeext, lt_etiquet,
           st_code, st_codeext.
 

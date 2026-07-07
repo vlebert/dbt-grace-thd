@@ -99,7 +99,7 @@ Conserve la géométrie du local (`elem_lc_st_nd`).
 Modèle de **restitution** (et non de comptage) : reproduit le legacy `v_syno_cytoscape`. Il assemble, **pour chaque zone SRO (`zs_code`)**, le graphe de distribution au format Cytoscape.
 
 À partir de chaque **câble de distribution** (`cap_cb`), on reconstitue une arête reliant ses deux extrémités :
-- les **PBO** aux extrémités (`cb_bp1` / `cb_bp2`), enrichis de leur capacité via `cap_pbo` ;
+- les **boîtiers** aux extrémités (`cb_bp1` / `cb_bp2`), résolus sur **tous les boîtiers** (`elem_bp`, PBO **et** BPE/PM) et enrichis de leur capacité via `cap_pbo` en `LEFT JOIN` (compteurs nuls hors PBO). Résoudre uniquement sur les PBO ferait basculer à tort les extrémités BPE en `source`/`target` `null`.
 - le **local technique / SRO**, atteint via les baies (`cb_ba1` / `cb_ba2` → `t_baie` → `t_local` → `t_site`).
 
 **Sorties** (une ligne par zone) :
