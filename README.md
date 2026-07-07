@@ -4,8 +4,27 @@
 
 Vous avez des données GRACE THD (GeoPackage, shapefiles ou CSV) et vous voulez :
 vérifier leur conformité au modèle, obtenir un **rapport d'erreurs géolocalisé** exploitable
-dans QGIS, et produire des tables propres et typées prêtes pour le SIG — **sans qu'une donnée
-imparfaite ne bloque tout le traitement**. C'est exactement ce que fait ce projet.
+dans QGIS, et produire des **vues métier** prêtes pour le SIG — **plans de boîtes**, **routes
+optiques**, **calcul de capacité du réseau** — le tout **sans qu'une donnée imparfaite ne
+bloque le traitement**. C'est exactement ce que fait ce projet.
+
+---
+
+## À propos
+
+
+Ce projet a été développé par **[digi-studio](https://digi-stud.io)** dans le cadre d'un projet
+financé par **[Gironde Numérique](https://www.gironde-numerique.fr)**, et mis à disposition en
+**open source**.
+
+Besoin d'un accompagnement ou d'une mise en place sur votre territoire ?
+[Contactez digi-studio](https://airtable.com/appjaB6cZweJiwzCm/pagEEKksx1XU6yPCe/form).
+
+<p align="center">
+  <a href="https://digi-stud.io"><img src="assets/logo-digi-icon-neutral.svg" alt="digi-studio" height="64"></a>
+  &nbsp;&nbsp;&nbsp;&nbsp;
+  <a href="https://www.gironde-numerique.fr"><img src="assets/logo-gironde-numerique.png" alt="Gironde Numérique" height="64"></a>
+</p>
 
 ---
 
@@ -160,7 +179,7 @@ GRACE THD (dbt)
 └── Transformations
     ├── Base (23 tables)      → typage non bloquant + clés primaires + index
     ├── Élémentaires (18 vues) → jointures et projections géométriques
-    └── Thématiques            → routes optiques, capacité, …
+    └── Thématiques            → plans de boîtes, routes optiques, capacité réseau
 ```
 
 > **Pour aller plus loin** :
@@ -286,18 +305,5 @@ grace_thd/
 
 Ce projet est distribué sous licence **MIT** — voir le fichier [`LICENSE`](LICENSE).
 
-L'échantillon de `input_data/` provient de l'ANCT sous **Licence Ouverte / Etalab**
-(voir [`input_data/README.md`](input_data/README.md)).
 
----
-
-## Crédits
-
-Développé par **[digi-studio](https://digi-stud.io)**, avec le soutien financier de
-**Gironde Numérique**.
-
-<p align="center">
-  <a href="https://digi-stud.io"><img src="assets/logo-digi-icon-neutral.svg" alt="digi-studio" height="64"></a>
-  &nbsp;&nbsp;&nbsp;&nbsp;
-  <a href="https://www.gironde-numerique.fr"><img src="assets/logo-gironde-numerique.png" alt="Gironde Numérique" height="64"></a>
-</p>
+Contexte du projet et accompagnement : voir [À propos](#à-propos).
