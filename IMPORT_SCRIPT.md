@@ -35,11 +35,14 @@ python dbt_packages/grace_thd/scripts/import_grace_pg.py CHEMIN_SOURCE [CIBLE_DB
 ## Exemples
 
 ```bash
-# Importer un GeoPackage vers la base de dev
-python scripts/import_grace_pg.py /chemin/donnees.gpkg
+# Importer l'échantillon fourni vers la cible par défaut du profil
+python scripts/import_grace_pg.py input_data
 
-# Importer un dossier vers la base de production
-python scripts/import_grace_pg.py ./NA-16025-BGNR prod
+# Importer un GeoPackage vers la base de dev
+python scripts/import_grace_pg.py /chemin/donnees.gpkg dev
+
+# Importer un dossier de shapefiles/CSV vers la base de production
+python scripts/import_grace_pg.py /chemin/mes_donnees prod
 ```
 
 ---
@@ -52,7 +55,11 @@ python scripts/import_grace_pg.py ./NA-16025-BGNR prod
 4. Il importe les tables (géométriques et attributaires)
 5. Il crée les index pour optimiser les requêtes
 
-## Formats acceptés
+## Formats acceptés (détection automatique)
 
-- **GeoPackage** (`.gpkg`) : toutes les couches sont importées automatiquement
-- **Dossier** : les shapefiles (`.shp`) et CSV (`.csv`) sont importés table par table
+- **GeoPackage** (`.gpkg`) : toutes les couches sont importées automatiquement.
+- **Dossier** : les shapefiles (`.shp`) et CSV (`.csv`) sont importés table par table.
+  Si le dossier contient un `.gpkg`, celui-ci est utilisé en priorité.
+
+Cette détection permet de pointer un simple dossier (ex. `input_data/`) et d'y déposer soit
+un GeoPackage, soit des shapefiles + CSV, sans changer la commande.

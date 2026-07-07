@@ -13,17 +13,15 @@ Dans le projet consommateur, ajouter le dépôt comme dépendance :
 **`packages.yml`**
 ```yaml
 packages:
-  - git: "git@gitlab.com:<org>/grace_thd.git"
+  - git: "<URL_DU_DEPOT>"
     revision: main  # ou un tag (recommandé : v1.0.0)
 ```
 
 Puis installer :
 ```bash
-dbt deps
+dbt deps --upgrade
 ```
 
-> **Authentification GitLab privé** : utiliser une clé SSH ou un token HTTPS.
-> Exemple HTTPS : `git: "https://oauth2:<token>@gitlab.com/<org>/grace_thd.git"`
 
 Le package est cloné dans :
 ```
@@ -55,10 +53,10 @@ Les scripts du package (`scripts/`) sont accessibles dans `dbt_packages/grace_th
 
 ```bash
 # Depuis la racine du projet consommateur
-python dbt_packages/grace_thd/scripts/import_grace_pg.py /chemin/vers/NA-16025-BGNR dev
+python dbt_packages/grace_thd/scripts/import_grace_pg.py "/chemin/vers/mes_donnees" dev
 ```
 
-Le script lit automatiquement les identifiants de connexion depuis `~/.dbt/profiles.yml` (cible `dev` dans cet exemple).
+Le script lit automatiquement les identifiants de connexion depuis `~/.dbt/profiles.yml` (cible `dev` dans cet exemple) et détecte le format de la source (`.gpkg`, ou dossier de shapefiles/CSV). Un échantillon public prêt à l'emploi est fourni dans `input_data/` (voir le [README dédié](input_data/README.md)).
 
 ---
 
