@@ -10,6 +10,6 @@
 
 SELECT
     row_number() OVER (ORDER BY nd_code)::int4 AS id,
-    geom AS geom,
+    {{ safe_geom('MultiPoint') }} AS geom,
     CASE WHEN pg_input_is_valid(NULLIF(nd_code::text, ''), 'varchar(254)') THEN nd_code::VARCHAR(254) ELSE NULL END AS nd_code
 FROM {{ source('gracethd', 't_noeud') }}

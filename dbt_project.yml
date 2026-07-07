@@ -33,6 +33,12 @@ vars:
   # (valeurs attendues : C1, C2, C3, C4)
   grace_container_level: "C4"
 
+  # SRID (système de coordonnées) des géométries. Source de vérité unique :
+  # utilisé par le typage geom des modèles base/elem (macro safe_geom) ET par
+  # scripts/generate_source_schema.py pour le DDL des sources.
+  # 2154 = RGF93 / Lambert-93.
+  grace_srid: 2154
+
 models:
   grace_thd:
     controls:

@@ -174,6 +174,7 @@ GRACE THD (dbt)
 | Variable | Défaut | Description |
 |----------|--------|-------------|
 | `grace_container_level` | `C4` | Conteneur ciblé par les contrôles — phase du cycle de vie (C1 à C4, voir [Concepts clés](#conteneurs-c1-à-c4)) |
+| `grace_srid` | `2154` | SRID des géométries (RGF93 / Lambert-93). Source de vérité unique : typage geom des modèles **et** DDL des sources (`scripts/generate_source_schema.py`) |
 
 ```yaml
 # dbt_project.yml

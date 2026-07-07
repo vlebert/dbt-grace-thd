@@ -10,7 +10,7 @@
 
 SELECT
     row_number() OVER (ORDER BY pl_code)::int4 AS id,
-    geom AS geom,
+    {{ safe_geom('MultiPoint') }} AS geom,
     CASE WHEN pg_input_is_valid(NULLIF(pl_charge::text, ''), 'numeric(6,2)') THEN pl_charge::NUMERIC(6,2) ELSE NULL END AS pl_charge,
     CASE WHEN pg_input_is_valid(NULLIF(pl_code::text, ''), 'varchar(254)') THEN pl_code::VARCHAR(254) ELSE NULL END AS pl_code,
     CASE WHEN pg_input_is_valid(NULLIF(pl_x::text, ''), 'numeric') THEN pl_x::NUMERIC ELSE NULL END AS pl_x,

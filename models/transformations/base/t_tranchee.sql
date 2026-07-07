@@ -10,7 +10,7 @@
 
 SELECT
     row_number() OVER (ORDER BY tr_code)::int4 AS id,
-    geom AS geom,
+    {{ safe_geom('MultiLineString') }} AS geom,
     CASE WHEN pg_input_is_valid(NULLIF(tr_code::text, ''), 'varchar(254)') THEN tr_code::VARCHAR(254) ELSE NULL END AS tr_code,
     CASE WHEN pg_input_is_valid(NULLIF(tr_compo::text, ''), 'varchar(254)') THEN tr_compo::VARCHAR(254) ELSE NULL END AS tr_compo,
     CASE WHEN pg_input_is_valid(NULLIF(tr_couptyp::text, ''), 'varchar(254)') THEN tr_couptyp::VARCHAR(254) ELSE NULL END AS tr_couptyp,

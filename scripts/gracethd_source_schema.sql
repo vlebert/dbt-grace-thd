@@ -3,7 +3,8 @@
 -- seeds/controls/param_ctrl_remplissage.csv — NE PAS éditer à la main.
 --
 -- Toutes les colonnes sont en `text` (import brut non bloquant) ; `geom` est
--- une géométrie générique. Aucune contrainte, pour ne jamais bloquer l'import.
+-- contrainte au SRID 2154. Aucune contrainte de clé/nullité, pour ne jamais
+-- bloquer l'import (utilisez le même SRID à l'import via GRACE_SRID).
 
 CREATE SCHEMA IF NOT EXISTS gracethd_source;
 
@@ -43,7 +44,7 @@ CREATE TABLE gracethd_source.t_adresse (
     ad_racc text,
     ad_raclong text,
     ad_rep text,
-    geom geometry
+    geom geometry(Geometry, 2154)
 );
 
 DROP TABLE IF EXISTS gracethd_source.t_baie;
@@ -107,7 +108,7 @@ DROP TABLE IF EXISTS gracethd_source.t_cableline;
 CREATE TABLE gracethd_source.t_cableline (
     cl_cb_code text,
     cl_code text,
-    geom geometry
+    geom geometry(Geometry, 2154)
 );
 
 DROP TABLE IF EXISTS gracethd_source.t_cassette;
@@ -133,7 +134,7 @@ CREATE TABLE gracethd_source.t_cheminement (
     cm_statut text,
     cm_typ_imp text,
     cm_typelog text,
-    geom geometry
+    geom geometry(Geometry, 2154)
 );
 
 DROP TABLE IF EXISTS gracethd_source.t_ebp;
@@ -199,7 +200,7 @@ CREATE TABLE gracethd_source.t_love (
 
 DROP TABLE IF EXISTS gracethd_source.t_noeud;
 CREATE TABLE gracethd_source.t_noeud (
-    geom geometry,
+    geom geometry(Geometry, 2154),
     nd_code text
 );
 
@@ -219,7 +220,7 @@ CREATE TABLE gracethd_source.t_organisme (
 
 DROP TABLE IF EXISTS gracethd_source.t_point_leve;
 CREATE TABLE gracethd_source.t_point_leve (
-    geom geometry,
+    geom geometry(Geometry, 2154),
     pl_charge text,
     pl_code text,
     pl_x text,
@@ -229,7 +230,7 @@ CREATE TABLE gracethd_source.t_point_leve (
 
 DROP TABLE IF EXISTS gracethd_source.t_pointaccueil;
 CREATE TABLE gracethd_source.t_pointaccueil (
-    geom geometry,
+    geom geometry(Geometry, 2154),
     pa_a_haut text,
     pa_a_struc text,
     pa_code text,
@@ -330,7 +331,7 @@ CREATE TABLE gracethd_source.t_tiroir (
 
 DROP TABLE IF EXISTS gracethd_source.t_tranchee;
 CREATE TABLE gracethd_source.t_tranchee (
-    geom geometry,
+    geom geometry(Geometry, 2154),
     tr_code text,
     tr_compo text,
     tr_couptyp text,
@@ -343,7 +344,7 @@ CREATE TABLE gracethd_source.t_tranchee (
 
 DROP TABLE IF EXISTS gracethd_source.t_zdep;
 CREATE TABLE gracethd_source.t_zdep (
-    geom geometry,
+    geom geometry(Geometry, 2154),
     zd_code text,
     zd_nd_code text,
     zd_r1_code text,
@@ -356,7 +357,7 @@ CREATE TABLE gracethd_source.t_zdep (
 
 DROP TABLE IF EXISTS gracethd_source.t_znro;
 CREATE TABLE gracethd_source.t_znro (
-    geom geometry,
+    geom geometry(Geometry, 2154),
     zn_code text,
     zn_etat text,
     zn_lc_code text,
@@ -369,7 +370,7 @@ CREATE TABLE gracethd_source.t_znro (
 
 DROP TABLE IF EXISTS gracethd_source.t_zsro;
 CREATE TABLE gracethd_source.t_zsro (
-    geom geometry,
+    geom geometry(Geometry, 2154),
     zs_actif text,
     zs_capamax text,
     zs_code text,

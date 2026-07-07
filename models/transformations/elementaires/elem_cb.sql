@@ -144,5 +144,5 @@ SELECT
   cb_modulo,
   cb_cabphy,
   cb_lgreel,
-  geom
+  {{ safe_geom('MultiLineString') }} AS geom
 FROM data
