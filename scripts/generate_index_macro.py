@@ -20,9 +20,10 @@ ROOT = Path(__file__).resolve().parent.parent
 SRC = ROOT / "scripts" / "gracethd_indexes.sql"
 DST = ROOT / "macros" / "controls" / "create_source_indexes.sql"
 
-# CREATE [UNIQUE] INDEX <name> ON <schema>.<table> ( <cols> )
+# CREATE [UNIQUE] INDEX <name> ON <schema>.<table> [USING <method>] ( <cols> )
 CREATE_RE = re.compile(
-    r"CREATE\s+(UNIQUE\s+)?INDEX\s+(\w+)\s+ON\s+\w+\.(\w+)\s*\(([^)]+)\)",
+    r"CREATE\s+(UNIQUE\s+)?INDEX\s+(\w+)\s+ON\s+\w+\.(\w+)\s*"
+    r"(?:USING\s+(\w+)\s*)?\(([^)]+)\)",
     re.IGNORECASE,
 )
 
@@ -34,12 +35,19 @@ def parse_indexes(sql_text: str) -> list[dict]:
         is_unique = bool(m.group(1))
         name = m.group(2)
         table = m.group(3)
-        cols = [c.strip() for c in m.group(4).split(",") if c.strip()]
+        method = m.group(4).lower() if m.group(4) else None
+        cols = [c.strip() for c in m.group(5).split(",") if c.strip()]
         if name in seen:
             continue  # le .sql contient quelques doublons (ex. cm_ndcode1/2)
         seen.add(name)
         indexes.append(
-            {"name": name, "table": table, "cols": cols, "unique": is_unique}
+            {
+                "name": name,
+                "table": table,
+                "cols": cols,
+                "unique": is_unique,
+                "method": method,
+            }
         )
     return indexes
 
@@ -49,9 +57,10 @@ def render_macro(indexes: list[dict]) -> str:
     for ix in indexes:
         cols = ", ".join(f'"{c}"' for c in ix["cols"])
         unique = "true" if ix["unique"] else "false"
+        method = f'"{ix["method"]}"' if ix["method"] else "none"
         lines.append(
             f'    {{"name": "{ix["name"]}", "table": "{ix["table"]}", '
-            f'"cols": [{cols}], "unique": {unique}}},'
+            f'"cols": [{cols}], "unique": {unique}, "method": {method}}},'
         )
     index_block = "\n".join(lines)
 
@@ -101,6 +110,7 @@ def render_macro(indexes: list[dict]) -> str:
         {{%- set ddl = "create " ~ ("unique " if ix.unique else "")
               ~ "index if not exists " ~ ix.name
               ~ " on " ~ src_schema ~ "." ~ ix.table
+              ~ (" using " ~ ix.method if ix.method else "")
               ~ " (" ~ (ix.cols | join(", ")) ~ ")" -%}}
         {{%- do run_query(ddl) -%}}
         {{%- do log("Index créé : " ~ ix.name, info=true) -%}}

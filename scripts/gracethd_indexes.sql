@@ -173,3 +173,17 @@ DROP INDEX IF EXISTS do_url1_idx; CREATE INDEX do_url1_idx ON gracethd_source.t_
 DROP INDEX IF EXISTS do_url2_idx; CREATE INDEX do_url2_idx ON gracethd_source.t_document(do_url2);
 DROP INDEX IF EXISTS od_do_code_idx; CREATE INDEX od_do_code_idx ON gracethd_source.t_docobj(od_do_code);
 DROP INDEX IF EXISTS em_do_code_idx; CREATE INDEX em_do_code_idx ON gracethd_source.t_empreinte(em_do_code);
+
+-- Index spatiaux (GiST) sur les colonnes géométriques
+-- Nécessaires aux contrôles topologiques et métier qui filtrent via l'opérateur
+-- bounding-box (&&) / ST_Within / ST_Intersects sur les tables sources.
+DROP INDEX IF EXISTS t_adresse_geom_idx; CREATE INDEX t_adresse_geom_idx ON gracethd_source.t_adresse USING gist (geom);
+DROP INDEX IF EXISTS t_cableline_geom_idx; CREATE INDEX t_cableline_geom_idx ON gracethd_source.t_cableline USING gist (geom);
+DROP INDEX IF EXISTS t_cheminement_geom_idx; CREATE INDEX t_cheminement_geom_idx ON gracethd_source.t_cheminement USING gist (geom);
+DROP INDEX IF EXISTS t_noeud_geom_idx; CREATE INDEX t_noeud_geom_idx ON gracethd_source.t_noeud USING gist (geom);
+DROP INDEX IF EXISTS t_point_leve_geom_idx; CREATE INDEX t_point_leve_geom_idx ON gracethd_source.t_point_leve USING gist (geom);
+DROP INDEX IF EXISTS t_pointaccueil_geom_idx; CREATE INDEX t_pointaccueil_geom_idx ON gracethd_source.t_pointaccueil USING gist (geom);
+DROP INDEX IF EXISTS t_tranchee_geom_idx; CREATE INDEX t_tranchee_geom_idx ON gracethd_source.t_tranchee USING gist (geom);
+DROP INDEX IF EXISTS t_zdep_geom_idx; CREATE INDEX t_zdep_geom_idx ON gracethd_source.t_zdep USING gist (geom);
+DROP INDEX IF EXISTS t_znro_geom_idx; CREATE INDEX t_znro_geom_idx ON gracethd_source.t_znro USING gist (geom);
+DROP INDEX IF EXISTS t_zsro_geom_idx; CREATE INDEX t_zsro_geom_idx ON gracethd_source.t_zsro USING gist (geom);
