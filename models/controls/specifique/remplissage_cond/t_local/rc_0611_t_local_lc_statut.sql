@@ -10,7 +10,7 @@
         attribut     = 'lc_statut',
         description  = "Le champ [lc_statut] est vide alors que [lc_typelog] = SRO ou NRO",
         requ_princ   = "SELECT lc_code, lc_statut, lc_typelog FROM " ~ source('gracethd', 't_local'),
-        condition    = "src.lc_statut IS NULL AND src.lc_typelog IN ('SRO','NRO')",
+        condition    = "(src.lc_statut IS NULL OR trim(src.lc_statut::text) = '') AND src.lc_typelog IN ('SRO','NRO')",
         detail_erreur = "'lc_statut IS NULL AND lc_typelog = ' || src.lc_typelog",
         is_active      = get_rc_config('ctrl_rc_0611')
     )

@@ -13,7 +13,7 @@
                 ~ "    bp_pt_code, "
                 ~ "    bp_lc_code "
                 ~ "FROM " ~ source('gracethd', 't_ebp'),
-    condition="src.bp_pt_code IS NULL AND src.bp_lc_code IS NULL",
+    condition="(src.bp_pt_code IS NULL OR trim(src.bp_pt_code::text) = '') AND (src.bp_lc_code IS NULL OR trim(src.bp_lc_code::text) = '')",
     detail_erreur="'Pas de detail pour cette erreur'",
     is_active=get_metier_config('metier_0004')
 ) }}
