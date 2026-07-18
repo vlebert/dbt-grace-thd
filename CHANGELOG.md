@@ -6,6 +6,32 @@ Format : [Keep a Changelog](https://keepachangelog.com/fr/1.0.0/)
 
 ---
 
+## [1.3.0] - 2026-07-18
+
+### Added
+
+- **Thématique `ropt` — modèle `ropt_json`** : nouveau modèle de transformation agrégeant les attributs de route optique en sortie JSON (`ropt_json.sql` / `.yml`).
+- **Thématique `capacite` — modèle `cap_zpbo`** : calcul des zones de desserte PBO avec les locaux raccordés. `cap_pbo` s'appuie désormais sur `cap_zpbo` pour le comptage des locaux (au lieu d'un calcul direct).
+- **Thématique `capacite` — modèle `cap_syno_json`** : génération d'un graphe synoptique (source/target par boîtier) pour l'analyse de capacité.
+- **Champs étiquette** (`bp_etiquet`, `lc_etiquet`, `pt_etiquet`, `ti_etiquet`, `cb_etiquet`) exposés dans les modèles thématiques `pdb_json`, `ropt_json` et `ropt_section`.
+- **Prise en charge du type BPI** dans `elem_bp` et le modèle de capacité `cap_syno_json` (filtrage, documentation et génération de graphe).
+
+### Changed
+
+- **`ropt_json`** : requête optimisée en agrégation conditionnelle single-pass (suppression des CTE intermédiaires).
+- **`topo_0012`** (`t_cable` / incohérence de longueur) : requête de détection optimisée.
+
+### Fixed
+
+- **Contrôles de remplissage conditionnel robustes aux chaînes vides** : les 38 contrôles `rc_*` ainsi que `metier_0004` testaient uniquement `IS NULL`, ce qui manquait les valeurs `''` (chaîne vide) présentes lorsque les sources sont chargées en `text` brut plutôt que typées. Le test devient `IS NULL OR trim(<col>::text) = ''`, garantissant une détection fiable quel que soit le mode d'import.
+- **`cap_syno_json`** : résolution des extrémités de boîtier sur tous les types (PBO/BPE/PM) et non plus seulement PBO ; ajout d'un `LEFT JOIN` via `cap_pbo` pour préserver les compteurs `NULL` des boîtiers non-PBO et éviter que `source`/`target` deviennent `NULL` à tort.
+
+### Performance
+
+- **`ropt_section`** : consolidation des index en un index composite unique et ajout d'un index sur `bp_code`.
+
+---
+
 ## [1.2.0] - 2026-06-22
 
 ### Added
