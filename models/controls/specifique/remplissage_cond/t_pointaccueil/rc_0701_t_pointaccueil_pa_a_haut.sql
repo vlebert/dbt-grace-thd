@@ -10,7 +10,7 @@
         attribut       = 'pa_a_haut',
         description    = "Le champ [pa_a_haut] est vide alors que [pa_typephy] = APP",
         requ_princ     = "SELECT pa_code, pa_a_haut, pa_typephy FROM " ~ source('gracethd', 't_pointaccueil'),
-        condition      = "src.pa_a_haut IS NULL AND src.pa_typephy = 'APP'",
+        condition      = "(src.pa_a_haut IS NULL OR trim(src.pa_a_haut::text) = '') AND src.pa_typephy = 'APP'",
         is_active      = get_rc_config('ctrl_rc_0701')
     )
 }}

@@ -10,7 +10,7 @@
         attribut       = 'st_design',
         description    = "Le champ [st_design] est vide alors que le site est de type ADR ou SHE",
         requ_princ     = "SELECT st_code, st_design, st_typephy FROM " ~ source('gracethd', 't_site'),
-        condition      = "src.st_design IS NULL AND src.st_typephy IN ('ADR', 'SHE')",
+        condition      = "(src.st_design IS NULL OR trim(src.st_design::text) = '') AND src.st_typephy IN ('ADR', 'SHE')",
         is_active      = get_rc_config('ctrl_rc_0815')
     )
 }}

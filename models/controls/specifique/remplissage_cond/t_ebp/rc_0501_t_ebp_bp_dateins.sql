@@ -10,7 +10,7 @@
         attribut       = 'bp_dateins',
         description    = "Le champ [bp_dateins] est vide alors que [bp_statut] IN ('REC','MCO')",
         requ_princ     = "SELECT bp_code, bp_dateins, bp_statut FROM " ~ source('gracethd', 't_ebp'),
-        condition      = "src.bp_dateins IS NULL AND src.bp_statut IN ('REC','MCO')",
+        condition      = "(src.bp_dateins IS NULL OR trim(src.bp_dateins::text) = '') AND src.bp_statut IN ('REC','MCO')",
         is_active      = get_rc_config('ctrl_rc_0501')
     )
 }}

@@ -10,7 +10,7 @@
         attribut       = 'pa_rotatio',
         description    = "Le champ [pa_rotatio] est vide alors que [pa_typephy] = CHB",
         requ_princ     = "SELECT pa_code, pa_rotatio, pa_typephy FROM " ~ source('gracethd', 't_pointaccueil'),
-        condition      = "src.pa_rotatio IS NULL AND src.pa_typephy = 'CHB'",
+        condition      = "(src.pa_rotatio IS NULL OR trim(src.pa_rotatio::text) = '') AND src.pa_typephy = 'CHB'",
         is_active      = get_rc_config('ctrl_rc_0704')
     )
 }}

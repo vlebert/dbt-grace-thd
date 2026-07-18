@@ -10,7 +10,7 @@
         attribut       = 'st_nomvoie',
         description    = "Le champ [st_nomvoie] est vide alors que [st_typelog] = RESEAU",
         requ_princ     = "SELECT st_code, st_nomvoie, st_typelog FROM " ~ source('gracethd', 't_site'),
-        condition      = "src.st_nomvoie IS NULL AND src.st_typelog = 'RESEAU'",
+        condition      = "(src.st_nomvoie IS NULL OR trim(src.st_nomvoie::text) = '') AND src.st_typelog = 'RESEAU'",
         is_active      = get_rc_config('ctrl_rc_0808')
     )
 }}
