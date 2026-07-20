@@ -33,6 +33,10 @@ vars:
   # (valeurs attendues : C1, C2, C3, C4)
   grace_container_level: "C3"
 
+  # Demi-longueur (en unités du CRS, mètres pour GRACE THD) du segment
+  # généré à partir d'un point dans rapport_controles_geo_as_line.
+  grace_rapport_point_line_offset: 1.0
+
 models:
   grace_thd:
     controls:
