@@ -44,6 +44,7 @@ models:
         +tags: ["grace_control"]
     transformations:
       +schema: transformations
+      +tags: ["grace_transfo"]
       base:
         +materialized: table
         +tags: ["grace_base"]
