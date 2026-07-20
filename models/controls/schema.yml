@@ -48,6 +48,8 @@ models:
   - name: synthese_erreurs_par_controle
     description: Synthèse du nombre d'erreurs par point de contrôle avec pourcentage
     columns:
+      - name: id
+        description: Clé primaire entière unique
       - name: id_test
         description: Identifiant unique du contrôle
       - name: type_controle

@@ -1,4 +1,9 @@
-{{ config(tags=['grace_rapport', 'grace_synthese']) }}
+{{
+  config(
+    tags=['grace_rapport', 'grace_synthese'],
+    post_hook = ["ALTER TABLE {{ this }} ADD PRIMARY KEY (id);"]
+  )
+}}
 
 with entites_totales as (
   select 't_adresse' as classe, count(*) as total from {{ source('gracethd', 't_adresse') }} union all
@@ -28,6 +33,7 @@ with entites_totales as (
 )
 
 select
+  row_number() over (order by round(count(*) * 100.0 / nullif(e.total, 0), 2) desc nulls last, r.id_test)::int4 as id,
   r.id_test,
   r.type_controle,
   r.description,
