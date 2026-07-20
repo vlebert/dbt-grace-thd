@@ -1,7 +1,10 @@
 {{
   config(
     tags=['grace_rapport'],
-    post_hook = ["ALTER TABLE {{ this }} ADD PRIMARY KEY (id);"]
+    post_hook = ["ALTER TABLE {{ this }} ADD PRIMARY KEY (id);"],
+    indexes = [
+      {'columns': ['type_controle'], 'type': 'btree'}
+    ]
   )
 }}
 

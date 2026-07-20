@@ -3,7 +3,8 @@
     tags=['grace_rapport'],
     post_hook = ["ALTER TABLE {{ this }} ADD PRIMARY KEY (id);"],
     indexes = [
-      {'columns': ['geom'], 'type': 'gist'}
+      {'columns': ['geom'], 'type': 'gist'},
+      {'columns': ['type_controle'], 'type': 'btree'}
     ]
   )
 }}
