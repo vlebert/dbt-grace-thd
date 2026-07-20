@@ -73,7 +73,7 @@ t_adresse, t_baie, t_cable, t_cableline, t_cassette, t_cheminement, t_fibre, t_l
 |---|---|
 | **Préfixe** | `elem_` |
 | **Matérialisation** | `view` **par défaut**, override possible en `table` via `dbt_project.yml`. Exceptions matérialisées en `table` dans le modèle : `elem_cb`, `elem_bp`, `elem_cs`, `elem_ps` (voir ci-dessous) |
-| **Tags** | `grace_elem` sur tous les modèles |
+| **Tags** | `grace_elem` sur tous les modèles (+ `grace_transfo`, tag global commun à toutes les transformations) |
 | **Schéma** | `transformations` |
 | **Documentation** | 1 fichier `.yml` par modèle |
 | **Géométrie** | `geom AS geom` en dernière colonne |
@@ -154,6 +154,7 @@ models:
   grace_thd:
     transformations:
       +schema: transformations
+      +tags: ["grace_transfo"]  # Tag global sur toutes les transformations
       base:
         +materialized: table
         +tags: ["grace_base"]

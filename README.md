@@ -139,6 +139,9 @@ dbt run --select tag:grace_thematiques
 # Commande unique
 dbt run --select tag:grace_base tag:grace_elem tag:grace_thematiques
 
+# Alternative : toutes les transformations via le tag global
+dbt run --select tag:grace_transfo
+
 ```
 
 ---
