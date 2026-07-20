@@ -1,4 +1,9 @@
-{{ config(tags=['grace_rapport']) }}
+{{
+  config(
+    tags=['grace_rapport'],
+    post_hook = ["ALTER TABLE {{ this }} ADD PRIMARY KEY (id);"]
+  )
+}}
 
 {#
   Consolidation de tous les modèles de contrôle du graphe dbt.
@@ -17,17 +22,25 @@
   {%- endfor -%}
 {%- endif -%}
 
-select
-  null::text as id_test,
-  null::text as type_controle,
-  null::text as description,
-  null::text as classe,
-  null::text as attribut,
-  null::text as id_entite,
-  null::text as detail_erreur
-where false
+with rapport as (
+  select
+    null::text as id_test,
+    null::text as type_controle,
+    null::text as description,
+    null::text as classe,
+    null::text as attribut,
+    null::text as id_entite,
+    null::text as detail_erreur
+  where false
 
-{% for m in ctrl_models %}
-union all
-select * from {{ m.schema }}.{{ m.alias }}
-{% endfor %}
+  {% for m in ctrl_models %}
+  union all
+  select * from {{ m.schema }}.{{ m.alias }}
+  {% endfor %}
+)
+
+-- Clé primaire integer unique pour QGIS
+select
+  row_number() over ()::int4 as id,
+  *
+from rapport
