@@ -46,8 +46,9 @@ models/controls/
       topo_<id>.sql
     metier/
       metier_<id>.sql
-  rapport_controles.sql         # UNION ALL de tous les modèles taguès grace_control (sans geom)
-  rapport_controles_geo.sql     # rapport_controles + geom résolue par classe
+  rapport_controles.sql            # UNION ALL de tous les modèles taguès grace_control (sans geom)
+  rapport_controles_geo.sql        # rapport_controles + geom résolue par classe
+  rapport_controles_geo_as_line.sql # rapport_controles_geo, géométries homogénéisées en lignes (couche QGIS unique)
 
 seeds/
   controls/
@@ -345,3 +346,42 @@ Stratégie : un `UNION ALL` dispatché par `classe`, chaque branche utilisant la
 - **Héritage noeud partagé** (`t_baie`, `t_ebp`…) : `LEFT JOIN t_noeud ON nd_code = id_entite`.
 - **Héritage noeud via FK** (`t_ptech`, `t_site`) : jointure double, source puis `t_noeud`.
 - **Fallback** : `geom = NULL` pour les classes non mappées.
+
+## Couche ligne homogène : `rapport_controles_geo_as_line.sql`
+
+### Pourquoi cette couche
+
+`rapport_controles_geo` porte une géométrie **hétérogène** : selon la `classe` de
+l'entité en erreur, `geom` est un point (nœuds, adresses…), une ligne (câbles,
+cheminements, tranchées…) ou un polygone (zones `t_znro`, `t_zsro`, `t_zdep`).
+Une colonne géométrique mixte est mal gérée comme **couche unique** dans QGIS :
+la symbologie, l'étiquetage et l'affichage supposent un type de géométrie unique.
+
+`rapport_controles_geo_as_line` résout ce problème en ramenant **toutes** les
+géométries à un type ligne homogène (`MULTILINESTRING`), pour disposer d'une
+**seule couche QGIS** restituant l'ensemble des erreurs, toutes classes
+confondues, avec une symbologie et un filtrage uniques.
+
+### Stratégie de conversion
+
+Transformation 1:1 de `rapport_controles_geo` (même `id`, même clé primaire) :
+
+- **Polygone / multipolygone** → contour (`ST_Boundary`), trous inclus.
+- **Ligne / multiligne** → conservée telle quelle.
+- **Point / multipoint** → petit segment centré sur le point.
+
+Une ligne de longueur nulle (départ = arrivée) **ne s'affiche pas** dans QGIS,
+d'où le petit segment pour les points. Sa demi-longueur est paramétrable via la
+variable `grace_rapport_point_line_offset` (en unités du CRS, mètres pour
+GRACE THD ; défaut `1.0`, soit un segment de 2 m).
+
+### Utilisation dans QGIS
+
+- Charger `rapport_controles_geo_as_line` comme une couche ligne classique.
+- Appliquer une **symbologie ligne unique** (l'ensemble des erreurs partage le
+  même type) ; catégoriser au besoin par `type_controle` ou `classe`.
+- Le champ `id` (entier) sert de clé primaire pour QGIS ; l'index spatial GiST
+  sur `geom` est déjà créé.
+- Ajuster `grace_rapport_point_line_offset` si le segment des points est trop
+  court/long à l'échelle de travail (sans impact sur le rendu à largeur de trait
+  fixe, mais utile pour la sélection et l'accrochage).
