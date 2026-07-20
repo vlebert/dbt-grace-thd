@@ -29,6 +29,22 @@ models:
       - name: detail_erreur
       - name: geom
 
+  - name: rapport_controles_geo_as_line
+    description: >
+      Variante de rapport_controles_geo où toutes les géométries sont
+      ramenées à un type ligne homogène (MULTILINESTRING) : contour pour les
+      polygones, ligne inchangée, petit segment pour les points. Permet une
+      couche QGIS unique pour restituer les erreurs, toutes classes confondues.
+    columns:
+      - name: id_test
+      - name: type_controle
+      - name: description
+      - name: classe
+      - name: attribut
+      - name: id_entite
+      - name: detail_erreur
+      - name: geom
+
   - name: synthese_erreurs_par_controle
     description: Synthèse du nombre d'erreurs par point de contrôle avec pourcentage
     columns:

@@ -302,11 +302,5 @@ select
   attribut,
   id_entite,
   detail_erreur,
-  -- Les géométries surfaciques (zones : t_znro, t_zsro, t_zdep) sont
-  -- ramenées à leur centroïde pour un rendu ponctuel homogène dans QGIS.
-  case
-    when geometrytype(geom) in ('POLYGON', 'MULTIPOLYGON')
-      then st_centroid(geom)
-    else geom
-  end as geom
+  geom
 from rapport_geo
