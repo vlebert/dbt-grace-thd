@@ -6,6 +6,23 @@ Format : [Keep a Changelog](https://keepachangelog.com/fr/1.0.0/)
 
 ---
 
+## [1.4.0] - 2026-07-20
+
+### Added
+
+- **Nouveau modèle `rapport_controles_geo_as_line`** : variante de `rapport_controles_geo` ramenant toutes les géométries à un type LIGNE homogène (`MULTILINESTRING`), pour disposer d'une couche QGIS unique restituant les erreurs quelle que soit la classe. Stratégie de conversion : polygones → contour (`ST_Boundary`), lignes conservées, points → petit segment centré sur le point.
+- **Variable `grace_rapport_point_line_offset`** (défaut `1.0`) : demi-longueur (en unités du CRS, mètres pour GRACE THD) du segment généré à partir d'un point dans `rapport_controles_geo_as_line`.
+- **Clés primaires QGIS sur les modèles de rapport** : ajout d'une colonne `id` (`int4`, `row_number()`) exposée en `PRIMARY KEY` via `post_hook` sur `rapport_controles`, `rapport_controles_geo` et `synthese_erreurs_par_controle`, pour permettre l'affichage des tables dans QGIS.
+- **Index sur les modèles de rapport** : index btree sur `type_controle` (`rapport_controles`, `rapport_controles_geo`) et index gist sur `geom` (`rapport_controles_geo`).
+- **Tag `grace_transfo`** sur le groupe de modèles `transformations`, permettant de sélectionner l'ensemble des transformations d'un seul tenant.
+
+### Changed
+
+- **`rapport_controles_geo_as_line`** : les points sont désormais convertis en petit segment centré (via `ST_Translate`) plutôt qu'en ligne de longueur nulle, qui ne s'affichait pas dans QGIS. La longueur est paramétrable via `grace_rapport_point_line_offset`.
+- **`rapport_controles_geo`** : l'`id` de clé primaire est régénéré après les jointures de résolution géométrique (celles-ci pouvant multiplier les lignes sur données non contrôlées), et non hérité de `rapport_controles`.
+
+---
+
 ## [1.3.0] - 2026-07-18
 
 ### Added

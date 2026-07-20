@@ -1,4 +1,13 @@
-{{ config(tags=['grace_rapport']) }}
+{{
+  config(
+    tags=['grace_rapport'],
+    post_hook = ["ALTER TABLE {{ this }} ADD PRIMARY KEY (id);"],
+    indexes = [
+      {'columns': ['geom'], 'type': 'gist'},
+      {'columns': ['type_controle'], 'type': 'btree'}
+    ]
+  )
+}}
 
 {#
   Rapport consolidé géolocalisé.
@@ -18,8 +27,12 @@
   stratégie adaptée.
 #}
 
+with rapport_geo as (
+
 -- Placeholder : schéma stable même si rapport_controles est vide
+-- (id::int4 pour aligner avec r.* qui porte désormais la clé de rapport_controles)
 select
+  null::int4     as id,
   null::text     as id_test,
   null::text     as type_controle,
   null::text     as description,
@@ -273,3 +286,21 @@ where r.classe not in (
   -- No geometry (explicit)
   't_cab_chem', 't_love', 't_organisme', 't_reference'
 )
+
+)
+
+-- Clé primaire integer unique pour QGIS.
+-- On régénère l'id : les jointures de résolution géométrique peuvent
+-- multiplier les lignes (codes non uniques sur données non contrôlées),
+-- donc l'id hérité de rapport_controles ne serait pas fiable comme PK.
+select
+  row_number() over ()::int4 as id,
+  id_test,
+  type_controle,
+  description,
+  classe,
+  attribut,
+  id_entite,
+  detail_erreur,
+  geom
+from rapport_geo

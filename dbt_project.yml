@@ -2,7 +2,7 @@
 # and underscores. A good package name should reflect your organization's
 # name or the intended use of these models
 name: "grace_thd"
-version: "1.3.0"
+version: "1.4.0"
 
 # This setting configures which "profile" dbt uses for this project.
 profile: "grace_thd"
@@ -39,6 +39,10 @@ vars:
   # 2154 = RGF93 / Lambert-93.
   grace_srid: 2154
 
+  # Demi-longueur (en unités du CRS, mètres pour GRACE THD) du segment
+  # généré à partir d'un point dans rapport_controles_geo_as_line.
+  grace_rapport_point_line_offset: 1.0
+
 models:
   grace_thd:
     controls:
@@ -50,6 +54,7 @@ models:
         +tags: ["grace_control"]
     transformations:
       +schema: transformations
+      +tags: ["grace_transfo"]
       base:
         +materialized: table
         +tags: ["grace_base"]
