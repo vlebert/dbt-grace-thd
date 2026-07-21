@@ -231,6 +231,7 @@ Tous les contrôles produisent un **schéma unifié** à 7 colonnes :
 - **`rapport_controles`** : table consolidant tous les résultats de contrôles.
 - **`rapport_controles_geo`** : le même rapport, **géolocalisé** (géométrie native : point, ligne ou polygone selon la classe ; chargeable dans QGIS).
 - **`rapport_controles_geo_as_line`** : le même rapport, toutes les géométries ramenées à un type ligne homogène pour une couche QGIS unique (voir [Architecture des contrôles](ARCHITECTURE_CONTROLES.md)).
+- **`rapport_controles_geo_as_point`** : le même rapport, toutes les géométries ramenées à un type point homogène pour une couche QGIS unique (voir [Architecture des contrôles](ARCHITECTURE_CONTROLES.md)).
 
 ---
 

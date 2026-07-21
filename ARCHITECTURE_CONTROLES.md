@@ -49,6 +49,7 @@ models/controls/
   rapport_controles.sql            # UNION ALL de tous les modèles taguès grace_control (sans geom)
   rapport_controles_geo.sql        # rapport_controles + geom résolue par classe
   rapport_controles_geo_as_line.sql # rapport_controles_geo, géométries homogénéisées en lignes (couche QGIS unique)
+  rapport_controles_geo_as_point.sql # rapport_controles_geo, géométries homogénéisées en points (couche QGIS unique)
 
 seeds/
   controls/
@@ -385,3 +386,23 @@ GRACE THD ; défaut `1.0`, soit un segment de 2 m).
 - Ajuster `grace_rapport_point_line_offset` si le segment des points est trop
   court/long à l'échelle de travail (sans impact sur le rendu à largeur de trait
   fixe, mais utile pour la sélection et l'accrochage).
+
+## Couche point homogène : `rapport_controles_geo_as_point.sql`
+
+Pendant ponctuel de `rapport_controles_geo_as_line`, pour les usages où une
+symbologie ponctuelle est préférable (agrégation en clusters, cartes de chaleur,
+étiquetage, cartographie à petite échelle). Transformation 1:1 de
+`rapport_controles_geo` (même `id`, même clé primaire), géométrie homogène
+`MULTIPOINT` :
+
+- **Point / multipoint** → conservé tel quel.
+- **Ligne / multiligne** → point au milieu de la ligne
+  (`ST_LineInterpolatePoint(…, 0.5)`). `ST_LineMerge` recolle au préalable les
+  tronçons contigus d'une multiligne ; si elle reste éclatée (tronçons
+  disjoints), le premier composant est utilisé.
+- **Polygone / multipolygone** → `ST_PointOnSurface`, qui garantit un point
+  **à l'intérieur** du polygone, contrairement à `ST_Centroid` qui peut tomber
+  hors d'une forme concave ou trouée.
+
+Utilisation QGIS identique à la couche ligne : symbologie ponctuelle unique,
+`id` comme clé primaire, index GiST déjà créé sur `geom`.
