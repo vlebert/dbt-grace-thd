@@ -191,6 +191,7 @@ Tous les contrôles produisent un **schéma unifié** avec 7 colonnes :
 - **`rapport_controles`** : Table consolidant tous les résultats de contrôles
 - **`rapport_controles_geo`** : Même rapport avec géolocalisation des erreurs (géométrie native : point, ligne ou polygone selon la classe)
 - **`rapport_controles_geo_as_line`** : Même rapport, toutes les géométries ramenées à un type ligne homogène pour une couche QGIS unique (voir `ARCHITECTURE_CONTROLES.md`)
+- **`rapport_controles_geo_as_point`** : Même rapport, toutes les géométries ramenées à un type point homogène pour une couche QGIS unique (voir `ARCHITECTURE_CONTROLES.md`)
 
 ---
 
@@ -213,7 +214,8 @@ grace_thd/
 │   │   │   └── metier/
 │   │   ├── rapport_controles.sql
 │   │   ├── rapport_controles_geo.sql
-│   │   └── rapport_controles_geo_as_line.sql
+│   │   ├── rapport_controles_geo_as_line.sql
+│   │   └── rapport_controles_geo_as_point.sql
 │   └── transformations/
 │       ├── base/              # Tables base (23)
 │       ├── elementaires/      # Vues élémentaires (18)
