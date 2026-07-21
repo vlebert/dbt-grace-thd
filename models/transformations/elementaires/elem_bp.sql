@@ -19,9 +19,11 @@
 -- Matérialisé en table : les LEFT JOIN sur des codes non contraints en base
 -- peuvent provoquer un fan-out et dupliquer l'`id` issu de t_ebp. L'`id` est
 -- régénéré via row_number() pour garantir une clé primaire unique non bloquante.
+-- Le row_number() est sans ORDER BY : l'imposer forcerait un tri global avec la
+-- géométrie en charge utile, pour un ordre sans portée fonctionnelle.
 -- Les index reproduisent ceux de la table base t_ebp (+ gist sur geom).
 SELECT
-  row_number() OVER (ORDER BY bp.bp_code)::int4 AS id,
+  row_number() OVER ()::int4 AS id,
   bp.bp_code,
   bp.bp_pt_code,
   bp.bp_perirec,
