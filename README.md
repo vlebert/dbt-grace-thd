@@ -111,6 +111,9 @@ uv run dbt run --select tag:grace_rapport
 
 # 4. Transformations
 uv run dbt run --select tag:grace_base tag:grace_elem tag:grace_thematiques
+
+# Alternative : toutes les transformations via le tag global
+uv run dbt run --select tag:grace_transfo
 ```
 
 > **Note** : `rapport_controles` agrège les contrôles via `graph.nodes` (sans `ref()`), il n'a
