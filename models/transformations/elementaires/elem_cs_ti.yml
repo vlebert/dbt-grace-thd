@@ -2,7 +2,7 @@ version: 2
 
 models:
   - name: elem_cs_ti
-    description: Projette t_cassette avec géométrie de elem_ti_ba_lc_st_nd via t_position. INNER JOIN sur ps_cs_code et ps_ti_code, filtrage WHERE cs_bp_code IS NULL OR cs_bp_code <> ''. DISTINCT pour éviter les doublons.
+    description: Projette t_cassette avec géométrie de elem_ti_ba_lc_st_nd via t_position. INNER JOIN sur ps_cs_code et ps_ti_code, filtrage WHERE cs_bp_code IS NULL OR cs_bp_code <> ''. Les positions sont dédoublonnées sur (ps_cs_code, ps_ti_code) en amont des jointures, t_position contenant une ligne par fibre.
     config:
       tags: ["grace_elem"]
       schema: transformations
