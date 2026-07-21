@@ -6,7 +6,7 @@ metier_0004,t_ebp,bp_pt_lc_code,bp_code,O,O,O,O,true,EBP sans point/local techni
 metier_0005,t_adresse,ad_nbfoftth_dimensionnement,ad_code,O,O,O,O,true,Incoherence ad_nbfoftth vs somme
 metier_0006,t_adresse,ad_nbloc_calcule,ad_code,O,O,O,O,true,Nb locaux diff calcul ad_nb*
 metier_0007,t_cable,cb_typelog_nc,cb_code,O,O,O,O,true,Cable cb_typelog = NC
-metier_0008,t_zsro,zs_r3_lc_codeext,zs_code,O,O,O,O,true,local/zsro lc_codeext != zs_r3
+metier_0008,t_zsro,zs_r3_lc_codeext,zs_code,O,O,O,O,false,local/zsro lc_codeext != zs_r3
 metier_0009,t_adresse,ad_prises_multi_zsro,ad_code,O,O,O,O,true,Adresse avec prises sur multi ZSRO
 metier_0010,t_position,ps_1_multi_fibre,ps_code,O,O,O,O,true,Fibre multi positions ps_1
 metier_0011,t_position,ps_2_multi_fibre,ps_code,O,O,O,O,true,Fibre multi positions ps_2
