@@ -11,3 +11,4 @@ topo_0009,t_cable,cb_ba2,cb_code,O,O,O,O,true,"cb_ba2 non sur cb_nd2 (via baie/l
 topo_0010,t_cable,cb_nd1,cb_code,O,O,O,O,true,"Cheminement depart manquant (hors RA)"
 topo_0011,t_cable,cb_nd2,cb_code,O,O,O,O,true,"Cheminement arrivee manquant (hors RA)"
 topo_0012,t_cable,cb_code,cb_code,O,O,O,O,true,"Ecart > 10 pour cent long cable/somme cheminements"
+topo_0013,t_cableline,geom,cl_code,O,O,O,O,true,"Geometrie de cableline invalide (OGC)"

@@ -1,0 +1,19 @@
+version: 2
+
+models:
+  - name: topo_0013_t_cableline_geom_invalide
+    description: |
+      Verifie la validite OGC de la geometrie des cablelines via ST_IsValidDetail
+      (motif et localisation du defaut restitues dans detail_erreur).
+
+      Pour des lignes, l'invalidite correspond essentiellement a un composant
+      degenere : troncon dont les extremites sont confondues, donc sans 2 points
+      distincts. Un tel composant empeche ST_LineMerge de produire une multiligne
+      (GEOS renvoie une GEOMETRYCOLLECTION heterogene, lignes + points) et fausse
+      les calculs de longueur.
+
+      Le package neutralise ces composants au chargement (macro safe_geom, via
+      ST_CollectionExtract) pour rester non bloquant : la donnee source reste a
+      corriger.
+    config:
+      tags: ["grace_control", "topologie"]
