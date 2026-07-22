@@ -1,0 +1,87 @@
+version: 2
+
+models:
+  - name: ropt_json_route
+    description: |
+      Fiche JSON à la maille route optique : une ligne par `ropt_id`.
+
+      Les attributs du local technique de départ (`ropt_ordr = 0`) et la synthèse
+      PTO/PBO de la route sont exposés en colonnes, directement exploitables en
+      SIG. La colonne `json_data` porte l'objet route complet (mêmes attributs +
+      sous-tableau `sections` trié par `ropt_ordr`).
+
+      Ce modèle est la base de `ropt_json`, qui n'a plus qu'à concaténer les
+      objets `json_data` déjà construits ici pour produire la fiche par local
+      technique.
+
+      **Dépendances** : ropt_section
+    config:
+      tags: ['grace_thematiques', 'grace_ropt']
+    columns:
+      - name: id
+        description: Clé primaire technique régénérée via row_number()
+        data_type: int4
+
+      - name: ropt_id
+        description: Identifiant de la route optique
+
+      - name: lc_code
+        description: Code du local technique de départ
+        data_type: varchar(254)
+
+      - name: lc_codeext
+        description: Code externe du local technique de départ
+        data_type: varchar(254)
+
+      - name: lc_etiquet
+        description: Étiquette du local technique de départ
+        data_type: varchar(20)
+
+      - name: lc_typelog
+        description: Type logique du local (NRO, etc.)
+        data_type: varchar(254)
+
+      - name: lc_etage
+        description: Étage du local technique de départ
+        data_type: varchar(254)
+
+      - name: ropt_pto_bp_code
+        description: Code du point de branchement PTO de la route
+
+      - name: ropt_pto_bp_codeext
+        description: Code externe du point de branchement PTO de la route
+
+      - name: ropt_pto_bp_etiquet
+        description: Étiquette du point de branchement PTO de la route
+
+      - name: ropt_pbo_bp_code
+        description: Code du point de branchement PBO (point de distribution) de la route
+
+      - name: ropt_pbo_bp_codeext
+        description: Code externe du point de branchement PBO de la route
+
+      - name: ropt_pbo_bp_etiquet
+        description: Étiquette du point de branchement PBO de la route
+
+      - name: ropt_pbo_cs_num
+        description: Numéro de cassette au PBO
+
+      - name: ropt_pbo_ps_fonct
+        description: Fonction de la position au PBO
+
+      - name: ropt_pbo_ps_numero
+        description: Numéro de la position au PBO
+
+      - name: ropt_pbo_ps_preaff
+        description: Pré-affectation de la position au PBO
+
+      - name: json_data
+        description: |
+          Objet JSONB de la route optique : ropt_id, ropt_pto_bp_code,
+          ropt_pto_bp_codeext, ropt_pto_bp_etiquet, ropt_pbo_bp_code,
+          ropt_pbo_bp_codeext, ropt_pbo_bp_etiquet, ropt_pbo_cs_num,
+          ropt_pbo_ps_fonct, ropt_pbo_ps_numero, ropt_pbo_ps_preaff,
+          et un sous-tableau `sections` (une entrée par étape de la route, triée
+          par `ropt_ordr`) décrivant noeud (lc_*, bp_*, pt_*, ti_*, cs_num,
+          ps_*) et lien (cb_*, fo_*).
+        data_type: jsonb
