@@ -16,12 +16,17 @@ models:
 
       Filtré sur `bp_typelog IN ('PBO', 'BPE')`.
 
+      Matérialisé en **vue** : une requête filtrée sur `bp_code` n'agrège que
+      les cassettes et positions du PBO concerné, via les index des tables
+      élémentaires amont. Un chargement complet de la couche est en revanche
+      plus coûteux qu'une table.
+
       **Dépendances** : elem_bp, elem_cs, elem_ps, t_fibre, t_cable
     config:
       tags: ['grace_thematiques', 'grace_pdb']
     columns:
       - name: id
-        description: Clé primaire technique régénérée via row_number()
+        description: Clé primaire technique reprise de `elem_bp` via MIN()
         data_type: int4
 
       - name: bp_code

@@ -86,6 +86,10 @@ models:
             +enabled: false
         pdb:
           +tags: ["grace_pdb"]
+          # Vue et non table : l'agrégation par point de branchement se fait à
+          # la volée, en exploitant les index des tables élémentaires amont.
+          pdb_json:
+            +materialized: view
 
 seeds:
   grace_thd:

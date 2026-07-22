@@ -1,21 +1,22 @@
-{{
-    config(
-        post_hook = ["ALTER TABLE {{ this }} ADD PRIMARY KEY (id);"],
-        indexes = [
-            {'columns': ['bp_code'], 'type': 'btree'},
-            {'columns': ['geom'], 'type': 'gist'}
-        ]
-    )
-}}
-
 -- Fiche JSON par PBO : agrège, pour chaque point de branchement, l'ensemble de
 -- ses cassettes, positions, et les deux fibres/câbles raccordés sur chaque
 -- position (ps_1 / ps_2). Adapté du legacy v_json_pdb (SQLite) :
 --   json_group_array(json_object(...)) -> jsonb_agg(jsonb_build_object(...)).
 -- Les fibres/câbles sont joints deux fois (couple 1 et 2 de chaque position),
 -- d'où les alias fo1/cb1 et fo2/cb2 sur t_fibre / t_cable.
+--
+-- Matérialisé en vue (cf. dbt_project.yml) : filtrée sur un point de
+-- branchement (`WHERE bp_code = '...'`), PostgreSQL pousse le prédicat sous le
+-- GROUP BY — bp_code étant clé de groupement — et n'agrège que les cassettes
+-- et positions de ce PBO via les index btree des tables amont (elem_bp.bp_code,
+-- elem_cs.cs_bp_code, elem_ps.ps_cs_code, t_fibre.fo_code, t_cable.cb_code).
+--
+-- L'identifiant est repris de `elem_bp` via MIN() : une window function
+-- (row_number) serait une barrière d'optimisation et forcerait le balayage
+-- complet à chaque requête.
 WITH detail AS (
     SELECT
+        bp.id AS bp_id,
         bp.bp_code,
         bp.bp_codeext,
         bp.bp_etiquet,
@@ -66,7 +67,7 @@ WITH detail AS (
 )
 
 SELECT
-    row_number() OVER (ORDER BY bp_code)::int4 AS id,
+    MIN(bp_id)::int4 AS id,
     bp_code,
     bp_codeext,
     bp_etiquet,
