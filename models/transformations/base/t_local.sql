@@ -2,7 +2,17 @@
     config(
         post_hook = ["ALTER TABLE {{ this }} ADD PRIMARY KEY (id);"],
         indexes = [
-            {'columns': ['lc_code'], 'type': 'btree'}
+            {'columns': ['lc_code'], 'type': 'btree'},
+            {'columns': ['lc_st_code'], 'type': 'btree'},
+            {'columns': ['lc_bp_codf'], 'type': 'btree'},
+            {'columns': ['lc_bp_codp'], 'type': 'btree'},
+            {'columns': ['lc_typelog'], 'type': 'btree'},
+            {'columns': ['lc_prop'], 'type': 'btree'},
+            {'columns': ['lc_gest'], 'type': 'btree'},
+            {'columns': ['lc_proptyp'], 'type': 'btree'},
+            {'columns': ['lc_statut'], 'type': 'btree'},
+            {'columns': ['lc_avct'], 'type': 'btree'},
+            {'columns': ['lc_etiquet'], 'type': 'btree'}
         ]
     )
 }}

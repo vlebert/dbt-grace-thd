@@ -14,6 +14,8 @@ Les transformations GRACE THD sont organisées en **trois couches** avec une cha
 2. **Élémentaires** (`elementaires/`) — 18 vues (par défaut) construites sur les tables base, avec possibilité d'override en `table`
 3. **Thématiques** (`thematiques/`) — Transformations avancées par thème métier (à venir)
 
+S'y ajoute une couche transverse **Métadonnées** (`metadata/`), sans dépendance aux données.
+
 ---
 
 ## Couche Base
@@ -25,13 +27,26 @@ Les transformations GRACE THD sont organisées en **trois couches** avec une cha
 - **Nettoyage des valeurs vides** : les chaînes vides (`''`) sont converties en `NULL` avant validation
 - **Clé primaire technique** : colonne `id` générée via `row_number() OVER (ORDER BY pk_naturelle)::int4`. Le cast `::int4` est **obligatoire** : par défaut `row_number()` renvoie un `bigint` (`int8`), or **QGIS exige une clé primaire de type `int4`** pour gérer une couche en édition.
 - **Index** : index btree sur toutes les colonnes pertinentes + index gist sur `geom` pour les tables spatiales
-- Conservation intacte de la colonne `geom` pour les 10 tables spatiales
+- **Typage géométrique non-bloquant** de la colonne `geom` (10 tables spatiales) via le macro `safe_geom` : normalisation `ST_Multi` + contrainte de type/SRID, `NULL` si non conforme
 
-**Pattern de typage non-bloquant** :
+**Pattern de typage non-bloquant (scalaires)** :
 ```sql
 CASE WHEN pg_input_is_valid(NULLIF(champ::text, ''), 'type_postgres')
      THEN champ::TYPE ELSE NULL END AS alias
 ```
+
+**Pattern de typage géométrique** (macro `safe_geom`) :
+```sql
+CAST(
+  CASE WHEN pg_input_is_valid(NULLIF(ST_AsEWKT(ST_Multi(geom)), ''), 'geometry(<Type>,<srid>)')
+       THEN ST_Multi(geom) ELSE NULL END
+  AS geometry(<Type>, <srid>)
+)
+```
+Le SRID provient de la variable projet **`grace_srid`** (défaut `2154`, RGF93 / Lambert-93) —
+source de vérité unique partagée avec le DDL des sources (`scripts/generate_source_schema.py`).
+Le **CAST externe** porte le typmod : sans lui, un `CASE` seul renverrait une géométrie
+générique (`GEOMETRY` / SRID `0`), le typmod étant perdu à la sortie du `CASE`.
 
 **Configuration standard** :
 ```sql
@@ -50,8 +65,10 @@ CASE WHEN pg_input_is_valid(NULLIF(champ::text, ''), 'type_postgres')
 }}
 ```
 
-**Tables avec colonne `geom`** (10/23) :
-t_adresse, t_cableline, t_cheminement, t_noeud, t_point_leve, t_pointaccueil, t_tranchee, t_zdep, t_znro, t_zsro
+**Tables spatiales et type géométrique** (10/23, SRID `grace_srid`) :
+- `MULTIPOINT` : t_adresse, t_noeud, t_pointaccueil, t_point_leve
+- `MULTILINESTRING` : t_cableline, t_cheminement, t_tranchee
+- `MULTIPOLYGON` : t_zdep, t_znro, t_zsro
 
 **Liste complète des 23 tables base** :
 t_adresse, t_baie, t_cable, t_cableline, t_cassette, t_cheminement, t_fibre, t_local, t_noeud, t_organisme, t_ebp, t_ptech, t_point_leve, t_pointaccueil, t_position, t_reference, t_site, t_tiroir, t_tranchee, t_zdep, t_znro, t_zsro, t_zpbo
@@ -76,7 +93,7 @@ t_adresse, t_baie, t_cable, t_cableline, t_cassette, t_cheminement, t_fibre, t_l
 | **Tags** | `grace_elem` sur tous les modèles (+ `grace_transfo`, tag global commun à toutes les transformations) |
 | **Schéma** | `transformations` |
 | **Documentation** | 1 fichier `.yml` par modèle |
-| **Géométrie** | `geom AS geom` en dernière colonne |
+| **Géométrie** | `geom` en dernière colonne, **typée** (SRID `grace_srid`) : héritée automatiquement des tables `base` typées, sauf `elem_cb` (reconstruction → `safe_geom`) |
 | **Clé primaire** | `id` héritée de la table base source |
 
 > **Note QGIS** : La colonne `id` (type `int4`) est **sourcée depuis les tables base** via `{alias}.id`, offrant une clé primaire stable sans régénération. Le type `int4` est conservé tel quel depuis la base (cast appliqué à la source), car **QGIS exige une clé primaire `int4`** pour éditer une couche.
@@ -121,6 +138,7 @@ t_adresse, t_baie, t_cable, t_cableline, t_cassette, t_cheminement, t_fibre, t_l
 - **COALESCE** : Pour gérer plusieurs sources de géométrie possibles (ex: elem_bp : pt OU st)
 - **ST_MakeLine** : Pour construire une géométrie à partir de points (elem_cb : nd1 → nd2)
 - **UNION ALL** : Pour combiner plusieurs sources (elem_cb, elem_cs, elem_ps)
+- **Typage geom** : hérité **automatiquement** des tables `base` typées — une simple référence de colonne (`nd.geom`) ou un `COALESCE` de géométries de même type conservent le typmod. Seul `elem_cb`, qui **reconstruit** la géométrie (`ST_LineMerge` / `ST_MakeLine` → géométrie générique), réapplique explicitement `safe_geom('MultiLineString')` sur le SELECT final.
 
 ### Modèles matérialisés en `table` (performance)
 
@@ -142,6 +160,32 @@ Ces tables recréent, via la clé `indexes` du `config()`, **les index de leur t
 
 Réservé pour les transformations avancées par thème métier (ex: dimensionnement, topologie, rapports).
 À développer ultérieurement.
+
+---
+
+## Couche Métadonnées
+
+**Dossier** : `models/transformations/metadata/`
+
+### `meta_execution`
+
+Table d'une seule ligne (`id = 1`, PK QGIS) traçant le contexte du run, sans dépendance aux tables sources.
+
+| Colonne | Type | Provenance |
+|---|---|---|
+| `id` | `int4` | Constante `1` |
+| `date_donnees` | `date` | Variable `grace_date_donnees` — `NULL` si non renseignée |
+| `date_execution` | `timestamptz` | `run_started_at` (démarrage du run dbt, UTC) |
+| `container_level` | `text` | Variable `grace_container_level` |
+| `srid` | `int4` | Variable `grace_srid` |
+
+GRACE THD ne portant pas de millésime au niveau du jeu, la date des données est saisie manuellement, au run ou dans le `dbt_project.yml` du consommateur :
+
+```bash
+dbt run --vars '{grace_date_donnees: 2026-07-01}'
+```
+
+Le format `YYYY-MM-DD` est validé en Jinja : un format invalide **arrête le run** (`exceptions.raise_compiler_error`). Exception assumée au principe non-bloquant du package, qui vise les données sources et non un paramètre saisi à la main.
 
 ---
 

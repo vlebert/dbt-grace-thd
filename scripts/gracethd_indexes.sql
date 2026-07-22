@@ -88,6 +88,16 @@ DROP INDEX IF EXISTS zc_r4_code_idx; CREATE INDEX zc_r4_code_idx ON gracethd_sou
 DROP INDEX IF EXISTS zc_prop_idx; CREATE INDEX zc_prop_idx ON gracethd_source.t_zcoax(zc_prop);
 DROP INDEX IF EXISTS zc_gest_idx; CREATE INDEX zc_gest_idx ON gracethd_source.t_zcoax(zc_gest);
 DROP INDEX IF EXISTS zc_statut_idx; CREATE INDEX zc_statut_idx ON gracethd_source.t_zcoax(zc_statut);
+DROP INDEX IF EXISTS lc_st_code_idx; CREATE INDEX lc_st_code_idx ON gracethd_source.t_local(lc_st_code);
+DROP INDEX IF EXISTS lc_bp_codf_idx; CREATE INDEX lc_bp_codf_idx ON gracethd_source.t_local(lc_bp_codf);
+DROP INDEX IF EXISTS lc_bp_codp_idx; CREATE INDEX lc_bp_codp_idx ON gracethd_source.t_local(lc_bp_codp);
+DROP INDEX IF EXISTS lc_typelog_idx; CREATE INDEX lc_typelog_idx ON gracethd_source.t_local(lc_typelog);
+DROP INDEX IF EXISTS lc_prop_idx; CREATE INDEX lc_prop_idx ON gracethd_source.t_local(lc_prop);
+DROP INDEX IF EXISTS lc_gest_idx; CREATE INDEX lc_gest_idx ON gracethd_source.t_local(lc_gest);
+DROP INDEX IF EXISTS lc_proptyp_idx; CREATE INDEX lc_proptyp_idx ON gracethd_source.t_local(lc_proptyp);
+DROP INDEX IF EXISTS lc_statut_idx; CREATE INDEX lc_statut_idx ON gracethd_source.t_local(lc_statut);
+DROP INDEX IF EXISTS lc_avct_idx; CREATE INDEX lc_avct_idx ON gracethd_source.t_local(lc_avct);
+DROP INDEX IF EXISTS lc_etiquet_idx; CREATE INDEX lc_etiquet_idx ON gracethd_source.t_local(lc_etiquet);
 DROP INDEX IF EXISTS ba_etiquet_idx; CREATE INDEX ba_etiquet_idx ON gracethd_source.t_baie(ba_etiquet);
 DROP INDEX IF EXISTS ba_prop_idx; CREATE INDEX ba_prop_idx ON gracethd_source.t_baie(ba_prop);
 DROP INDEX IF EXISTS ba_gest_idx; CREATE INDEX ba_gest_idx ON gracethd_source.t_baie(ba_gest);
@@ -173,3 +183,17 @@ DROP INDEX IF EXISTS do_url1_idx; CREATE INDEX do_url1_idx ON gracethd_source.t_
 DROP INDEX IF EXISTS do_url2_idx; CREATE INDEX do_url2_idx ON gracethd_source.t_document(do_url2);
 DROP INDEX IF EXISTS od_do_code_idx; CREATE INDEX od_do_code_idx ON gracethd_source.t_docobj(od_do_code);
 DROP INDEX IF EXISTS em_do_code_idx; CREATE INDEX em_do_code_idx ON gracethd_source.t_empreinte(em_do_code);
+
+-- Index spatiaux (GiST) sur les colonnes géométriques
+-- Nécessaires aux contrôles topologiques et métier qui filtrent via l'opérateur
+-- bounding-box (&&) / ST_Within / ST_Intersects sur les tables sources.
+DROP INDEX IF EXISTS t_adresse_geom_idx; CREATE INDEX t_adresse_geom_idx ON gracethd_source.t_adresse USING gist (geom);
+DROP INDEX IF EXISTS t_cableline_geom_idx; CREATE INDEX t_cableline_geom_idx ON gracethd_source.t_cableline USING gist (geom);
+DROP INDEX IF EXISTS t_cheminement_geom_idx; CREATE INDEX t_cheminement_geom_idx ON gracethd_source.t_cheminement USING gist (geom);
+DROP INDEX IF EXISTS t_noeud_geom_idx; CREATE INDEX t_noeud_geom_idx ON gracethd_source.t_noeud USING gist (geom);
+DROP INDEX IF EXISTS t_point_leve_geom_idx; CREATE INDEX t_point_leve_geom_idx ON gracethd_source.t_point_leve USING gist (geom);
+DROP INDEX IF EXISTS t_pointaccueil_geom_idx; CREATE INDEX t_pointaccueil_geom_idx ON gracethd_source.t_pointaccueil USING gist (geom);
+DROP INDEX IF EXISTS t_tranchee_geom_idx; CREATE INDEX t_tranchee_geom_idx ON gracethd_source.t_tranchee USING gist (geom);
+DROP INDEX IF EXISTS t_zdep_geom_idx; CREATE INDEX t_zdep_geom_idx ON gracethd_source.t_zdep USING gist (geom);
+DROP INDEX IF EXISTS t_znro_geom_idx; CREATE INDEX t_znro_geom_idx ON gracethd_source.t_znro USING gist (geom);
+DROP INDEX IF EXISTS t_zsro_geom_idx; CREATE INDEX t_zsro_geom_idx ON gracethd_source.t_zsro USING gist (geom);

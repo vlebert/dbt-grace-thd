@@ -13,7 +13,7 @@
 
 SELECT
     row_number() OVER (ORDER BY zs_code)::int4 AS id,
-    geom AS geom,
+    {{ safe_geom('MultiPolygon') }} AS geom,
     CASE WHEN pg_input_is_valid(NULLIF(zs_actif::text, ''), 'varchar(1)') THEN zs_actif::VARCHAR(1) ELSE NULL END AS zs_actif,
     CASE WHEN pg_input_is_valid(NULLIF(zs_capamax::text, ''), 'integer') THEN zs_capamax::INTEGER ELSE NULL END AS zs_capamax,
     CASE WHEN pg_input_is_valid(NULLIF(zs_code::text, ''), 'varchar(254)') THEN zs_code::VARCHAR(254) ELSE NULL END AS zs_code,

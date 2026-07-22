@@ -1,0 +1,15 @@
+# Profil dbt utilisé UNIQUEMENT dans le conteneur Docker de démonstration.
+# Il pointe vers le service PostGIS `db` du docker-compose.
+# Ne pas réutiliser ces identifiants ailleurs : ce sont des valeurs de démo.
+grace_thd:
+  target: docker
+  outputs:
+    docker:
+      type: postgres
+      host: db
+      port: 5432
+      user: grace
+      pass: grace
+      dbname: grace
+      schema: grace
+      threads: 4

@@ -29,5 +29,5 @@ SELECT
     CASE WHEN pg_input_is_valid(NULLIF(cm_statut::text, ''), 'varchar(3)') THEN cm_statut::VARCHAR(3) ELSE NULL END AS cm_statut,
     CASE WHEN pg_input_is_valid(NULLIF(cm_typ_imp::text, ''), 'varchar(2)') THEN cm_typ_imp::VARCHAR(2) ELSE NULL END AS cm_typ_imp,
     CASE WHEN pg_input_is_valid(NULLIF(cm_typelog::text, ''), 'varchar(2)') THEN cm_typelog::VARCHAR(2) ELSE NULL END AS cm_typelog,
-    geom AS geom
+    {{ safe_geom('MultiLineString') }} AS geom
 FROM {{ source('gracethd', 't_cheminement') }}

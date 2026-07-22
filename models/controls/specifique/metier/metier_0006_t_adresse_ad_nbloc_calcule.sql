@@ -14,7 +14,9 @@
                 ~ "    a.ad_nblpro, "
                 ~ "    a.ad_nblent, "
                 ~ "    a.ad_nblpub, "
-                ~ "    a.ad_nblres + a.ad_nblpro + a.ad_nblent + a.ad_nblpub as nb_ftth_calc, "
+                ~ "    " ~ safe_int('a.ad_nblres') ~ " + " ~ safe_int('a.ad_nblpro')
+                        ~ " + " ~ safe_int('a.ad_nblent') ~ " + " ~ safe_int('a.ad_nblpub')
+                        ~ " as nb_ftth_calc, "
                 ~ "    COUNT(l.lc_code) AS nb_loc_calc "
                 ~ "FROM " ~ source('gracethd', 't_adresse') ~ " a "
                 ~ "LEFT JOIN " ~ source('gracethd', 't_site') ~ " s ON s.st_ad_code = a.ad_code "

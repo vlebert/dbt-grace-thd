@@ -11,7 +11,7 @@
 #}
 
 {%- set seed_ref = ref('param_ctrl_presence_table') -%}
-{%- set container_level = var('grace_container_level', 'C3') | lower -%}
+{%- set container_level = var('grace_container_level', 'C4') | lower -%}
 {%- set container_col   = 'conteneur_' ~ container_level -%}
 
 {%- if execute -%}

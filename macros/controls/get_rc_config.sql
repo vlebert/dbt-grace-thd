@@ -1,5 +1,5 @@
 {% macro get_rc_config(id_test) %}
-  {%- set container_level = var('grace_container_level', 'C3') -%}
+  {%- set container_level = var('grace_container_level', 'C4') -%}
   {%- set target_table = ref('param_ctrl_remplissage_cond') -%}
   {%- set rc_config = run_query("
       SELECT

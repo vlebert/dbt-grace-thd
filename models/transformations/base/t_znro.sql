@@ -13,7 +13,7 @@
 
 SELECT
     row_number() OVER (ORDER BY zn_code)::int4 AS id,
-    geom AS geom,
+    {{ safe_geom('MultiPolygon') }} AS geom,
     CASE WHEN pg_input_is_valid(NULLIF(zn_code::text, ''), 'varchar(254)') THEN zn_code::VARCHAR(254) ELSE NULL END AS zn_code,
     CASE WHEN pg_input_is_valid(NULLIF(zn_etat::text, ''), 'varchar(2)') THEN zn_etat::VARCHAR(2) ELSE NULL END AS zn_etat,
     CASE WHEN pg_input_is_valid(NULLIF(zn_lc_code::text, ''), 'varchar(254)') THEN zn_lc_code::VARCHAR(254) ELSE NULL END AS zn_lc_code,

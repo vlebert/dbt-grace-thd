@@ -31,7 +31,19 @@ on-run-start:
 vars:
   # Niveau de conteneur GRACE THD appliqué aux contrôles de remplissage
   # (valeurs attendues : C1, C2, C3, C4)
-  grace_container_level: "C3"
+  grace_container_level: "C4"
+
+  # SRID (système de coordonnées) des géométries. Source de vérité unique :
+  # utilisé par le typage geom des modèles base/elem (macro safe_geom) ET par
+  # scripts/generate_source_schema.py pour le DDL des sources.
+  # 2154 = RGF93 / Lambert-93.
+  grace_srid: 2154
+
+  # Date du jeu de données source (format YYYY-MM-DD), exposée par le modèle
+  # `meta_execution`. Saisie manuelle : soit ici dans le projet consommateur,
+  # soit au run via `dbt run --vars '{grace_date_donnees: 2026-07-01}'`.
+  # Non renseignée par défaut -> colonne date_donnees à NULL.
+  grace_date_donnees: ~
 
   # Demi-longueur (en unités du CRS, mètres pour GRACE THD) du segment
   # généré à partir d'un point dans rapport_controles_geo_as_line.
@@ -49,6 +61,9 @@ models:
     transformations:
       +schema: transformations
       +tags: ["grace_transfo"]
+      metadata:
+        +materialized: table
+        +tags: ["grace_meta"]
       base:
         +materialized: table
         +tags: ["grace_base"]
@@ -71,6 +86,10 @@ models:
             +enabled: false
         pdb:
           +tags: ["grace_pdb"]
+          # Vue et non table : l'agrégation par point de branchement se fait à
+          # la volée, en exploitant les index des tables élémentaires amont.
+          pdb_json:
+            +materialized: view
 
 seeds:
   grace_thd:

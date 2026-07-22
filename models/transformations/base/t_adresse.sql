@@ -51,5 +51,5 @@ SELECT
     CASE WHEN pg_input_is_valid(NULLIF(ad_racc::text, ''), 'varchar(2)') THEN ad_racc::VARCHAR(2) ELSE NULL END AS ad_racc,
     CASE WHEN pg_input_is_valid(NULLIF(ad_raclong::text, ''), 'varchar(1)') THEN ad_raclong::VARCHAR(1) ELSE NULL END AS ad_raclong,
     CASE WHEN pg_input_is_valid(NULLIF(ad_rep::text, ''), 'varchar(20)') THEN ad_rep::VARCHAR(20) ELSE NULL END AS ad_rep,
-    geom AS geom
+    {{ safe_geom('MultiPoint') }} AS geom
 FROM {{ source('gracethd', 't_adresse') }}
