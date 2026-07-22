@@ -6,6 +6,48 @@ Format : [Keep a Changelog](https://keepachangelog.com/fr/1.0.0/)
 
 ---
 
+## [1.5.0] - 2026-07-22
+
+### Added
+
+- **Environnement de démonstration Docker** : pile complète PostGIS + dbt prête à l'emploi (`docker-compose.yml`, `docker/Dockerfile`, `docker/entrypoint.sh`, `docker/profiles.yml`, `.dockerignore`). L'image Python est construite avec `uv` pour des dépendances reproductibles.
+- **Jeu de données d'exemple** : répertoire `input_data/` (shapefiles + CSV couvrant les principales classes GRACE THD) et sa documentation `input_data/README.md`, permettant de faire tourner le package sans données réelles.
+- **Génération du schéma source** : script `scripts/generate_source_schema.py` et DDL généré `scripts/gracethd_source_schema.sql`, avec SRID imposé sur les colonnes géométriques.
+- **Macros de cast non bloquant `safe_int` / `safe_numeric`** (`macros/safe_cast.sql`) : conversion numérique depuis des sources chargées en `text` brut, renvoyant `NULL` plutôt que d'échouer. Appliquées à `metier_0005` et `metier_0006`.
+- **Macro `safe_geom` et variable `grace_srid`** (défaut `2154`, RGF93 / Lambert-93) : typage géométrique non bloquant (`MultiPoint` / `MultiLineString` / `MultiPolygon`), appliqué aux 10 modèles `base` spatiaux et à `elem_cb`. `grace_srid` est la source de vérité unique, partagée avec `generate_source_schema.py`.
+- **Couche métadonnées** : nouveau modèle `meta_execution` (`date_donnees`, `date_execution`, `container_level`, `srid`), groupe de modèles `transformations/metadata` et tag `grace_meta`. La variable `grace_date_donnees` est une saisie manuelle validée au format `YYYY-MM-DD` : un format invalide arrête le run avec un message explicite.
+- **Nouveau modèle `rapport_controles_geo_as_point`** : variante ponctuelle du rapport géolocalisé (pendant de `rapport_controles_geo_as_line`), pour une couche QGIS unique de type POINT quelle que soit la classe en erreur.
+- **Nouveau modèle `ropt_json_route`** : construction du JSON au niveau route, extraite de `ropt_json`, avec index sur `lc_code` et `ropt_id`.
+- **Nouveau contrôle `topo_0013`** (`t_cableline` / `geom`) : validité OGC de la géométrie via `ST_IsValidDetail`, le motif et la localisation du défaut étant restitués dans `detail_erreur`. Détecte notamment les tronçons dégénérés (extrémités confondues), qui empêchent `ST_LineMerge` de produire une multiligne — GEOS renvoie alors une `GEOMETRYCOLLECTION` hétérogène.
+- **Licence, logos et refonte du README** : ajout du fichier `LICENSE`, des `assets/` (logos) et réécriture de la présentation du projet.
+
+### Changed
+
+- **⚠️ `grace_container_level` : défaut `C3` → `C4`** (`dbt_project.yml` et macros `get_topo_config` / `get_metier_config` / `get_rc_config`). Les projets consommateurs qui ne surchargent pas cette variable verront le périmètre des contrôles changer.
+- **`ropt_json` et `pdb_json` matérialisés en vues** (au lieu de tables) : l'agrégation se fait à la volée au-dessus des modèles amont indexés, ce qui rend le predicate pushdown possible sur les recherches unitaires (point de branchement, local technique).
+- **`pdb_json`** : `id` dérivé de `MIN(bp_id)` plutôt que d'un `row_number()`, compatible avec la matérialisation en vue.
+- **`ropt_light` désactivé** (`+enabled: false`) : aucun modèle en aval ne le référence.
+- **`elem_cs_ti`** : dédoublonnage des positions sur `(ps_cs_code, ps_ti_code)` dans une CTE **avant** les jointures — `t_position` contient une ligne par fibre, ce qui provoquait un fan-out coûteux avec la géométrie en charge utile.
+- **`row_number() OVER ()` sans `ORDER BY`** dans les modèles élémentaires (`elem_bp`, `elem_cs`, …) : l'ordre n'avait pas de portée fonctionnelle et forçait un tri global sur des lignes portant la géométrie.
+- **`rc_0401`** (`t_cheminement` / `cm_compo`) : le cas Orange est restreint aux conduites (`cm_typ_imp = '7'`) ; `cm_typ_imp` est exposé dans le détail d'erreur.
+- **`metier_0008`** (`t_zsro` / `zs_r3_lc_codeext`) désactivé dans `param_ctrl_metier`.
+- **Script d'import** : `scripts/import_grace_pg.sh` remplacé par `scripts/import_grace_pg.py`, avec prise en charge des GeoPackage (`.gpkg`) et auto-détection du format en entrée (GeoPackage, ou répertoire de shapefiles / CSV).
+
+### Fixed
+
+- **Macro `safe_geom`** : le typage géométrique échouait en erreur SQL bloquante (`Geometry type (GeometryCollection) does not match column type (MultiLineString)`) lorsque l'expression en entrée produisait une `GEOMETRYCOLLECTION` — cas rencontré sur `elem_cb` via `ST_LineMerge` d'une cableline contenant un tronçon de longueur nulle. `ST_Multi` laisse une collection inchangée, et le contrôle de typmod PostGIS lève une erreur *dure* que `pg_input_is_valid` n'intercepte pas. La macro s'appuie désormais sur `ST_CollectionExtract` (ne conserve que les composants de la dimension visée) avec contrôle explicite du SRID, et renvoie `NULL` si le résultat est vide.
+
+### Performance
+
+- **Index GiST sur les 10 tables sources géométriques** (`t_adresse`, `t_cableline`, `t_cheminement`, `t_noeud`, `t_point_leve`, `t_pointaccueil`, `t_tranchee`, `t_zdep`, `t_znro`, `t_zsro`) via `create_source_indexes`, au bénéfice des contrôles topologiques.
+- **`t_local`** : ajout de 10 index btree (`lc_st_code`, `lc_bp_codf`, `lc_bp_codp`, `lc_typelog`, `lc_prop`, `lc_gest`, `lc_proptyp`, `lc_statut`, `lc_avct`, `lc_etiquet`).
+
+### Documentation
+
+- Documentation de la couche métadonnées, du typage géométrique non bloquant, de la matérialisation en tables et des index (`ARCHITECTURE_TRANSFORMATIONS.md`, `UTILISATION_PACKAGE.md`), de la variante ponctuelle du rapport (`ARCHITECTURE_CONTROLES.md`) et du jeu de données d'exemple.
+
+---
+
 ## [1.4.0] - 2026-07-20
 
 ### Added
