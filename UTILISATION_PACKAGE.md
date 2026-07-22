@@ -85,6 +85,7 @@ models:
 | Variable | Default | Usage |
 |---|---|---|
 | `grace_container_level` | `C4` | Conteneur ciblé par les contrôles (phase du cycle de vie C1–C4) |
+| `grace_date_donnees` | *(non renseignée)* | Date du jeu de données source (`YYYY-MM-DD`), exposée par `meta_execution` |
 
 Exemple : changer le niveau de conteneur :
 ```yaml
@@ -92,6 +93,14 @@ Exemple : changer le niveau de conteneur :
 vars:
   grace_container_level: "C2"
 ```
+
+Une variable peut aussi être fournie **au moment du run**, ce qui est le mode d'emploi
+attendu pour `grace_date_donnees` (valeur propre à chaque livraison) :
+```bash
+dbt run --vars '{grace_date_donnees: 2026-07-01}'
+```
+Le format `YYYY-MM-DD` est obligatoire : toute autre écriture (`01/07/2026`, …) arrête
+le run avec un message explicite, plutôt que d'enregistrer une date mal interprétée.
 
 ### Ajouter des contrôles personnalisés
 

@@ -1,0 +1,30 @@
+version: 2
+
+models:
+  - name: meta_execution
+    description: >
+      Table à une seule ligne décrivant le contexte du run : date du jeu de
+      données (saisie manuellement via la variable `grace_date_donnees`), date
+      d'exécution dbt et paramètres du package appliqués.
+    config:
+      tags: ["grace_meta"]
+      schema: transformations
+    columns:
+      - name: id
+        description: "Clé primaire technique pour QGIS (toujours 1)"
+        tests:
+          - not_null
+          - unique
+      - name: date_donnees
+        description: >
+          Date du jeu de données source, issue de la variable
+          `grace_date_donnees` (format YYYY-MM-DD). NULL si la variable n'est
+          pas fournie ; un format invalide arrête le run.
+      - name: date_execution
+        description: "Horodatage de démarrage du run dbt (`run_started_at`, UTC)"
+        tests:
+          - not_null
+      - name: container_level
+        description: "Niveau de conteneur GRACE THD appliqué aux contrôles (`grace_container_level`)"
+      - name: srid
+        description: "SRID des géométries appliqué aux transformations (`grace_srid`)"

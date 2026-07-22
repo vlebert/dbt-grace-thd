@@ -14,6 +14,8 @@ Les transformations GRACE THD sont organisées en **trois couches** avec une cha
 2. **Élémentaires** (`elementaires/`) — 18 vues (par défaut) construites sur les tables base, avec possibilité d'override en `table`
 3. **Thématiques** (`thematiques/`) — Transformations avancées par thème métier (à venir)
 
+S'y ajoute une couche transverse **Métadonnées** (`metadata/`), sans dépendance aux données.
+
 ---
 
 ## Couche Base
@@ -158,6 +160,32 @@ Ces tables recréent, via la clé `indexes` du `config()`, **les index de leur t
 
 Réservé pour les transformations avancées par thème métier (ex: dimensionnement, topologie, rapports).
 À développer ultérieurement.
+
+---
+
+## Couche Métadonnées
+
+**Dossier** : `models/transformations/metadata/`
+
+### `meta_execution`
+
+Table d'une seule ligne (`id = 1`, PK QGIS) traçant le contexte du run, sans dépendance aux tables sources.
+
+| Colonne | Type | Provenance |
+|---|---|---|
+| `id` | `int4` | Constante `1` |
+| `date_donnees` | `date` | Variable `grace_date_donnees` — `NULL` si non renseignée |
+| `date_execution` | `timestamptz` | `run_started_at` (démarrage du run dbt, UTC) |
+| `container_level` | `text` | Variable `grace_container_level` |
+| `srid` | `int4` | Variable `grace_srid` |
+
+GRACE THD ne portant pas de millésime au niveau du jeu, la date des données est saisie manuellement, au run ou dans le `dbt_project.yml` du consommateur :
+
+```bash
+dbt run --vars '{grace_date_donnees: 2026-07-01}'
+```
+
+Le format `YYYY-MM-DD` est validé en Jinja : un format invalide **arrête le run** (`exceptions.raise_compiler_error`). Exception assumée au principe non-bloquant du package, qui vise les données sources et non un paramètre saisi à la main.
 
 ---
 
