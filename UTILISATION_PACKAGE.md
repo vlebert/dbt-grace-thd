@@ -80,6 +80,54 @@ models:
           +materialized: table
 ```
 
+#### Index et clé primaire sur un modèle matérialisé en table
+
+Les modèles élémentaires sont livrés en vue : le planificateur PostgreSQL les
+« inline » et exploite directement les index des tables `t_*` sous-jacentes. En
+basculant un modèle en table, ce bénéfice disparaît — il faut redéclarer les index
+utiles, et une clé primaire pour QGIS (sans elle, QGIS retombe sur le `ctid`,
+instable dès le premier `UPDATE` ou `VACUUM`).
+
+Les deux réglages se posent au même niveau que `+materialized` :
+```yaml
+# dbt_project.yml du consommateur
+models:
+  grace_thd:
+    transformations:
+      elementaires:
+        +materialized: table
+        # Tous les modèles élémentaires exposent une colonne `id`.
+        +post-hook: "ALTER TABLE {{ this }} ADD PRIMARY KEY (id);"
+        elem_ps_cs:
+          +indexes:
+            - columns: ['ps_code']
+              type: btree
+            - columns: ['geom']
+              type: gist
+```
+
+Points d'attention :
+
+- **`+indexes` remplace, ne fusionne pas.** Contrairement aux hooks et aux tags qui
+  s'accumulent entre niveaux, une liste d'index déclarée écrase intégralement celle
+  du niveau inférieur.
+- **Les colonnes indexées doivent être projetées par le modèle.** Un index sur une
+  colonne d'une table amont non reprise dans le `SELECT` final fait échouer le run.
+- **La clé primaire échoue si `id` contient des doublons ou des `NULL`.** Plusieurs
+  élémentaires construisent leur `id` via une jointure : un défaut d'unicité dans les
+  données d'entrée transforme alors un problème qualité en échec de run. Lancez
+  `dbt test --select <modèle>` (les tests `unique` / `not_null` sur `id` sont déjà
+  déclarés) avant d'activer le post-hook. En cas de doute, remplacez-le par un index
+  non unique :
+  ```yaml
+  +indexes:
+    - columns: ['id']
+      type: btree
+  ```
+- **Ces déclarations sont inertes tant que le modèle reste en vue** : la config
+  `+indexes` est ignorée par la matérialisation `view`. Le `+post-hook`, en revanche,
+  échoue sur une vue — ne le posez qu'aux niveaux effectivement basculés en table.
+
 ### 2. Variables
 
 | Variable | Default | Usage |
