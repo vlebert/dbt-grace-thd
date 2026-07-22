@@ -88,6 +88,16 @@ DROP INDEX IF EXISTS zc_r4_code_idx; CREATE INDEX zc_r4_code_idx ON gracethd_sou
 DROP INDEX IF EXISTS zc_prop_idx; CREATE INDEX zc_prop_idx ON gracethd_source.t_zcoax(zc_prop);
 DROP INDEX IF EXISTS zc_gest_idx; CREATE INDEX zc_gest_idx ON gracethd_source.t_zcoax(zc_gest);
 DROP INDEX IF EXISTS zc_statut_idx; CREATE INDEX zc_statut_idx ON gracethd_source.t_zcoax(zc_statut);
+DROP INDEX IF EXISTS lc_st_code_idx; CREATE INDEX lc_st_code_idx ON gracethd_source.t_local(lc_st_code);
+DROP INDEX IF EXISTS lc_bp_codf_idx; CREATE INDEX lc_bp_codf_idx ON gracethd_source.t_local(lc_bp_codf);
+DROP INDEX IF EXISTS lc_bp_codp_idx; CREATE INDEX lc_bp_codp_idx ON gracethd_source.t_local(lc_bp_codp);
+DROP INDEX IF EXISTS lc_typelog_idx; CREATE INDEX lc_typelog_idx ON gracethd_source.t_local(lc_typelog);
+DROP INDEX IF EXISTS lc_prop_idx; CREATE INDEX lc_prop_idx ON gracethd_source.t_local(lc_prop);
+DROP INDEX IF EXISTS lc_gest_idx; CREATE INDEX lc_gest_idx ON gracethd_source.t_local(lc_gest);
+DROP INDEX IF EXISTS lc_proptyp_idx; CREATE INDEX lc_proptyp_idx ON gracethd_source.t_local(lc_proptyp);
+DROP INDEX IF EXISTS lc_statut_idx; CREATE INDEX lc_statut_idx ON gracethd_source.t_local(lc_statut);
+DROP INDEX IF EXISTS lc_avct_idx; CREATE INDEX lc_avct_idx ON gracethd_source.t_local(lc_avct);
+DROP INDEX IF EXISTS lc_etiquet_idx; CREATE INDEX lc_etiquet_idx ON gracethd_source.t_local(lc_etiquet);
 DROP INDEX IF EXISTS ba_etiquet_idx; CREATE INDEX ba_etiquet_idx ON gracethd_source.t_baie(ba_etiquet);
 DROP INDEX IF EXISTS ba_prop_idx; CREATE INDEX ba_prop_idx ON gracethd_source.t_baie(ba_prop);
 DROP INDEX IF EXISTS ba_gest_idx; CREATE INDEX ba_gest_idx ON gracethd_source.t_baie(ba_gest);
