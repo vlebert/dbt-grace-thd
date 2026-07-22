@@ -5,23 +5,26 @@ models:
     description: |
       Fiche JSON par local technique de départ des routes optiques.
 
-      Double niveau d'agrégation :
-        1. Une ligne par local technique amont (section de départ, `ropt_ordr = 0`).
-        2. Pour chaque ligne, une colonne `json_data` (tableau JSONB) listant les
-           routes optiques issues de ce local. Chaque route agrège l'ensemble de
-           ses sections (`ropt_section`) pour un `ropt_id` dans un sous-tableau
-           `sections`, et porte la synthèse PTO/PBO de la route.
+      Une ligne par local technique amont (section de départ, `ropt_ordr = 0`),
+      avec une colonne `json_data` (tableau JSONB) listant les routes optiques
+      issues de ce local. Chaque route porte la synthèse PTO/PBO et un
+      sous-tableau `sections` couvrant l'ensemble de ses étapes.
+
+      Matérialisé en **vue** au-dessus de `ropt_json_route`, qui porte déjà les
+      routes construites une à une. Une requête filtrée sur un local technique
+      (`WHERE lc_code = '...'`) reste rapide : le prédicat est poussé sous le
+      GROUP BY et seules les routes du local concerné sont agrégées.
 
       Adapté du legacy `v_ropt_json` (SQLite) vers PostgreSQL :
       `json_group_array(json_object(...))` → `jsonb_agg(jsonb_build_object(...))`.
       Ajoute le regroupement par local technique de départ, absent du legacy.
 
-      **Dépendances** : ropt_section
+      **Dépendances** : ropt_json_route
     config:
       tags: ['grace_thematiques', 'grace_ropt']
     columns:
       - name: id
-        description: Clé primaire technique régénérée via row_number()
+        description: Identifiant technique repris de `ropt_json_route` (MIN par local)
         data_type: int4
 
       - name: lc_code

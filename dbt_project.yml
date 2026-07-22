@@ -77,6 +77,13 @@ models:
           +tags: ["grace_capacite"]
         ropt:
           +tags: ["grace_ropt"]
+          # Vue et non table : l'agrégation par local technique se fait à la
+          # volée au-dessus de ropt_json_route, en exploitant son index lc_code.
+          ropt_json:
+            +materialized: view
+          # Désactivé : aucun modèle en aval ne le référence.
+          ropt_light:
+            +enabled: false
         pdb:
           +tags: ["grace_pdb"]
 
