@@ -4,7 +4,8 @@ models:
   - name: rc_0401_t_cheminement_cm_compo
     description: >
       Le champ [cm_compo] est vide alors que le tronçon de cheminement est de
-      type GC à construire (cm_avct = 'C').
+      type GC à construire (cm_avct = 'C') ou appartient à Orange
+      (or_nom = 'ORANGE') avec une implantation en conduite (cm_typ_imp = '7').
     columns:
       - name: id_test
       - name: type_controle
