@@ -97,7 +97,8 @@ models:
       elementaires:
         +materialized: table
         # Tous les modèles élémentaires exposent une colonne `id`.
-        +post-hook: "ALTER TABLE {{ this }} ADD PRIMARY KEY (id);"
+        +post-hook:
+          - "ALTER TABLE {{ this }} ADD PRIMARY KEY (id);"
         elem_ps_cs:
           +indexes:
             - columns: ['ps_code']
