@@ -66,6 +66,9 @@ models:
           # volée au-dessus de ropt_json_route, en exploitant son index lc_code.
           ropt_json:
             +materialized: view
+          # Désactivé : aucun modèle en aval ne le référence.
+          ropt_light:
+            +enabled: false
         pdb:
           +tags: ["grace_pdb"]
 
