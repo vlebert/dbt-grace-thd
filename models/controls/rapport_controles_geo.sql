@@ -4,7 +4,8 @@
     post_hook = ["ALTER TABLE {{ this }} ADD PRIMARY KEY (id);"],
     indexes = [
       {'columns': ['geom'], 'type': 'gist'},
-      {'columns': ['type_controle'], 'type': 'btree'}
+      {'columns': ['type_controle'], 'type': 'btree'},
+      {'columns': ['criticite'], 'type': 'btree'}
     ]
   )
 }}
@@ -40,6 +41,7 @@ select
   null::text     as attribut,
   null::text     as id_entite,
   null::text     as detail_erreur,
+  null::text     as criticite,
   null::geometry as geom
 where false
 
@@ -302,5 +304,6 @@ select
   attribut,
   id_entite,
   detail_erreur,
+  criticite,
   geom
 from rapport_geo

@@ -49,6 +49,23 @@ vars:
   # généré à partir d'un point dans rapport_controles_geo_as_line.
   grace_rapport_point_line_offset: 1.0
 
+  # Criticité des contrôles, restituée par la colonne `criticite` des rapports.
+  # Ces deux déclarations sont la source de vérité unique : la macro
+  # `get_criticite_expr` les lit sans valeur de repli, les supprimer casse la
+  # compilation.
+  #
+  # `grace_criticite` surcharge le défaut par liste d'id_test. Les libellés
+  # `majeure` / `bloquante` sont conventionnels, tout libellé libre est accepté.
+  # Aucun n'a d'effet sur le run (intégration non bloquante) :
+  #   grace_criticite:
+  #     majeure:
+  #       - ctrl_rem_0001
+  #       - ctrl_fk_0002
+  #     bloquante:
+  #       - topo_0001
+  grace_criticite_defaut: "mineure"
+  grace_criticite: {}
+
 models:
   grace_thd:
     controls:

@@ -39,12 +39,13 @@ select
   r.description,
   r.classe,
   r.attribut,
+  r.criticite,
   count(*) as nombre_erreurs,
   e.total as entites_total,
   round(count(*) * 100.0 / nullif(e.total, 0), 2) as pct_erreur
 from {{ ref('rapport_controles') }} r
 left join entites_totales e on r.classe = e.classe
 group by
-  r.id_test, r.type_controle, r.description, r.classe, r.attribut, e.total
+  r.id_test, r.type_controle, r.description, r.classe, r.attribut, r.criticite, e.total
 order by
   pct_erreur desc nulls last, id_test

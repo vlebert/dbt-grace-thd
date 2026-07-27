@@ -135,6 +135,8 @@ Points d'attention :
 |---|---|---|
 | `grace_container_level` | `C4` | Conteneur ciblé par les contrôles (phase du cycle de vie C1–C4) |
 | `grace_date_donnees` | *(non renseignée)* | Date du jeu de données source (`YYYY-MM-DD`), exposée par `meta_execution` |
+| `grace_criticite_defaut` | `mineure` | Criticité appliquée à tout contrôle non cité dans `grace_criticite` |
+| `grace_criticite` | *(aucune)* | Surcharge de la criticité par liste d'`id_test` |
 
 Exemple : changer le niveau de conteneur :
 ```yaml
@@ -150,6 +152,41 @@ dbt run --vars '{grace_date_donnees: 2026-07-01}'
 ```
 Le format `YYYY-MM-DD` est obligatoire : toute autre écriture (`01/07/2026`, …) arrête
 le run avec un message explicite, plutôt que d'enregistrer une date mal interprétée.
+
+### 3. Criticité des contrôles
+
+Les rapports (`rapport_controles`, ses variantes géo et `synthese_erreurs_par_controle`)
+portent une colonne `criticite`, valant `mineure` pour tout contrôle non cité. La
+surcharge se fait par liste d'`id_test` :
+
+```yaml
+# dbt_project.yml du consommateur
+vars:
+  grace_criticite:
+    majeure:
+      - ctrl_rem_0001
+      - ctrl_fk_0002
+    bloquante:
+      - topo_0001
+      - metier_0004
+    "à valider MOE":      # libellé libre autorisé
+      - ctrl_lv_0012
+```
+
+- Les contrôles de votre propre projet peuvent être cités comme ceux du package.
+- `majeure` / `bloquante` sont conventionnels ; n'importe quel libellé est accepté.
+- Les `id_test` sont comparés sans tenir compte de la casse.
+- **Aucun libellé n'a d'effet sur le run** : `bloquante` sert à la restitution
+  (QGIS, tableaux de bord), il n'interrompt jamais un `dbt run`.
+- Affecter un même `id_test` à deux criticités arrête la compilation avec un message
+  explicite, plutôt que de laisser l'ordre du YAML trancher silencieusement.
+- L'existence des `id_test` cités n'est **pas** vérifiée : une faute de frappe est
+  silencieuse (le contrôle reste alors en `mineure`).
+
+> Si vous **redéfinissez** `rapport_controles` dans votre propre `models/`
+> (voir *Overrides → Modèles*), la résolution des variables bascule dans le scope de
+> votre projet : déclarez alors `grace_criticite_defaut` dans votre `dbt_project.yml`,
+> le package le lit sans valeur de repli.
 
 ### Ajouter des contrôles personnalisés
 

@@ -6,6 +6,16 @@ Format : [Keep a Changelog](https://keepachangelog.com/fr/1.0.0/)
 
 ---
 
+## [Non publié]
+
+### Added
+
+- **Criticité des contrôles** : nouvelle colonne `criticite` sur `rapport_controles`, ses variantes géolocalisées (`_geo`, `_geo_as_line`, `_geo_as_point`) et `synthese_erreurs_par_controle`, indexée (btree) sur chacune pour le filtrage et la catégorisation dans QGIS. Valeur `mineure` par défaut, surchargeable par liste d'`id_test` via la nouvelle variable `grace_criticite` — les libellés `majeure` et `bloquante` sont conventionnels, tout libellé libre est accepté. **Aucun libellé n'a d'effet sur le run** : conformément au principe d'intégration non bloquante, `bloquante` sert à la restitution et n'interrompt rien.
+- **Macro `get_criticite_expr`** (`macros/controls/get_criticite_expr.sql`) : seul point d'attribution de la criticité, appelé par `rapport_controles`. La criticité n'est donc portée ni par les modèles de contrôle ni par les seeds `param_ctrl_*` — même rationale que la géométrie, résolue en aval. La macro arrête la compilation avec un message explicite si `grace_criticite` est mal formée ou si un `id_test` est affecté à deux criticités différentes.
+- **Nouvelles variables `grace_criticite_defaut`** (défaut `mineure`) **et `grace_criticite`** (défaut `{}`). Elles sont lues **sans valeur de repli** : le `dbt_project.yml` du package est leur source de vérité unique, et les supprimer casse la compilation. Un projet consommateur qui redéfinit `rapport_controles` dans son propre `models/` doit déclarer `grace_criticite_defaut` de son côté.
+
+---
+
 ## [1.5.0] - 2026-07-22
 
 ### Added

@@ -7,7 +7,7 @@
 
 ## Principes directeurs
 
-1. **Schéma de sortie unifié** — tout contrôle produit les 7 colonnes suivantes : `id_test`, `type_controle`, `description`, `classe`, `attribut`, `id_entite`, `detail_erreur`. La géométrie n'est pas portée par les contrôles : elle est résolue en aval dans `rapport_controles_geo` à partir de (`classe`, `id_entite`).
+1. **Schéma de sortie unifié** — tout contrôle produit les 7 colonnes suivantes : `id_test`, `type_controle`, `description`, `classe`, `attribut`, `id_entite`, `detail_erreur`. Ni la géométrie ni la criticité ne sont portées par les contrôles : la première est résolue en aval dans `rapport_controles_geo` à partir de (`classe`, `id_entite`), la seconde est attribuée dans `rapport_controles` à partir de l'`id_test` (voir section Criticité).
 2. **Séparation générique / spécifique**
    - *Générique* : un contrôle reproduit N fois sur des couples (classe, attribut) avec une structure SQL uniforme. Paramétré par seed.
    - *Spécifique* : un contrôle avec une logique SQL propre (jointures, conditions complexes, topologie, règle métier). Un fichier par règle.
@@ -337,6 +337,49 @@ Créer un modèle de contrôle dans le projet consommateur en respectant le sch�
 ```
 
 Aucune modification des fichiers du package.
+
+## Criticité
+
+`rapport_controles` ajoute une colonne `criticite` restituant la gravité de chaque anomalie. Elle est propagée aux modèles aval : `rapport_controles_geo`, `rapport_controles_geo_as_line`, `rapport_controles_geo_as_point` et `synthese_erreurs_par_controle`, et indexée (btree) sur chacun d'eux pour permettre filtres et catégorisation dans QGIS.
+
+### Où la criticité est attribuée
+
+Dans `rapport_controles` uniquement, via la macro `get_criticite_expr` (`macros/controls/get_criticite_expr.sql`), et non dans les modèles de contrôle. Même rationale que la géométrie : la gravité d'une anomalie relève d'un arbitrage projet, pas de la définition du contrôle. Un même contrôle peut être mineur pour un exploitant et bloquant pour un autre — les ~80 modèles de contrôle et les 9 seeds `param_ctrl_*` restent donc inchangés.
+
+### Paramétrage
+
+Deux variables, déclarées dans le `dbt_project.yml` du package et surchargeables par le projet consommateur :
+
+```yaml
+vars:
+  grace_criticite_defaut: "mineure"
+  grace_criticite:
+    majeure:
+      - ctrl_rem_0001
+      - ctrl_fk_0002
+    bloquante:
+      - topo_0001
+      - metier_0004
+    "à valider MOE":      # libellé libre autorisé
+      - ctrl_lv_0012
+```
+
+- Tout contrôle non cité prend `grace_criticite_defaut` (`mineure`).
+- `mineure` / `majeure` / `bloquante` sont **conventionnels** : n'importe quel libellé est accepté comme clé.
+- Les `id_test` sont comparés sans tenir compte de la casse ; un id seul peut être écrit sans liste.
+- **Aucun libellé n'a d'effet sur le run.** `bloquante` est une information de restitution : conformément au principe d'intégration non bloquante, aucune anomalie n'interrompt jamais un `dbt run`.
+
+### Validations à la compilation
+
+`get_criticite_expr` arrête la compilation avec un message explicite si : `grace_criticite` n'est pas un dictionnaire, une valeur n'est pas une liste d'`id_test`, un libellé ou un `id_test` est vide, ou **un même `id_test` est affecté à deux criticités différentes** (l'ordre du YAML ne doit pas arbitrer silencieusement).
+
+En revanche, l'existence des `id_test` cités n'est pas vérifiée : les contrôles peuvent provenir du projet consommateur, une faute de frappe reste donc silencieuse.
+
+### Lecture sans valeur de repli
+
+Les deux variables sont lues via `var('grace_criticite_defaut')` **sans second argument** : le `dbt_project.yml` du package est leur source de vérité unique, `"mineure"` n'apparaît nulle part en dur dans le code. C'est un écart assumé à la convention des autres variables (`grace_container_level`, `grace_srid`), qui redoublent leur défaut sur chaque site d'appel — tenable ici car il n'existe qu'un seul site d'appel.
+
+Conséquence pour un projet consommateur qui **redéfinit** `rapport_controles` dans son propre `models/` : la résolution des variables bascule dans son scope, il doit donc déclarer `grace_criticite_defaut` dans son `dbt_project.yml`.
 
 ## Géolocalisation : `rapport_controles_geo.sql`
 

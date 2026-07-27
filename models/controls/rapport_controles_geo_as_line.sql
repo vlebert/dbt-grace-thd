@@ -3,7 +3,8 @@
     tags=['grace_rapport'],
     post_hook = ["ALTER TABLE {{ this }} ADD PRIMARY KEY (id);"],
     indexes = [
-      {'columns': ['geom'], 'type': 'gist'}
+      {'columns': ['geom'], 'type': 'gist'},
+      {'columns': ['criticite'], 'type': 'btree'}
     ]
   )
 }}
@@ -39,6 +40,7 @@ select
   attribut,
   id_entite,
   detail_erreur,
+  criticite,
   case
     when geom is null then null
     when geometrytype(geom) in ('POLYGON', 'MULTIPOLYGON')

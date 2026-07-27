@@ -197,11 +197,20 @@ GRACE THD (dbt)
 |----------|--------|-------------|
 | `grace_container_level` | `C4` | Conteneur ciblé par les contrôles — phase du cycle de vie (C1 à C4, voir [Concepts clés](#conteneurs-c1-à-c4)) |
 | `grace_srid` | `2154` | SRID des géométries (RGF93 / Lambert-93). Source de vérité unique : typage geom des modèles **et** DDL des sources (`scripts/generate_source_schema.py`) |
+| `grace_criticite_defaut` | `mineure` | Criticité appliquée à tout contrôle non cité dans `grace_criticite` |
+| `grace_criticite` | *(aucune)* | Surcharge de la criticité par liste d'`id_test`. Libellés libres, sans effet sur le run (voir [Résultats et rapports](#résultats-et-rapports)) |
 
 ```yaml
 # dbt_project.yml
 vars:
   grace_container_level: "C2"
+
+  grace_criticite:
+    majeure:
+      - ctrl_rem_0001
+      - ctrl_fk_0002
+    bloquante:
+      - topo_0001
 ```
 
 **Personnalisation** :
@@ -226,6 +235,27 @@ Tous les contrôles produisent un **schéma unifié** à 7 colonnes :
 | `attribut` | Attribut contrôlé |
 | `id_entite` | Identifiant de l'entité en erreur |
 | `detail_erreur` | Détails spécifiques sur l'erreur |
+
+Les rapports consolidés y ajoutent une colonne **`criticite`** (`mineure` par défaut).
+Elle est attribuée à partir de l'`id_test` et se paramètre par projet, un même contrôle
+n'ayant pas la même gravité pour tous les exploitants :
+
+```yaml
+# dbt_project.yml
+vars:
+  grace_criticite:
+    majeure:
+      - ctrl_rem_0001
+      - ctrl_fk_0002
+    bloquante:
+      - topo_0001
+    "à valider MOE":      # libellé libre autorisé
+      - ctrl_lv_0012
+```
+
+`majeure` et `bloquante` sont conventionnels, tout libellé est accepté. **Aucun n'a
+d'effet sur le run** : `bloquante` sert à la restitution, il n'interrompt rien
+(voir [Philosophie](#philosophie--intégration-non-bloquante)).
 
 **Rapports consolidés** :
 - **`rapport_controles`** : table consolidant tous les résultats de contrôles.

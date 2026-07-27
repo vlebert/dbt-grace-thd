@@ -3,7 +3,8 @@
     tags=['grace_rapport'],
     post_hook = ["ALTER TABLE {{ this }} ADD PRIMARY KEY (id);"],
     indexes = [
-      {'columns': ['type_controle'], 'type': 'btree'}
+      {'columns': ['type_controle'], 'type': 'btree'},
+      {'columns': ['criticite'], 'type': 'btree'}
     ]
   )
 }}
@@ -42,8 +43,10 @@ with rapport as (
   {% endfor %}
 )
 
--- Clé primaire integer unique pour QGIS
+-- Clé primaire integer unique pour QGIS, et criticité attribuée ici plutôt que
+-- portée par chaque contrôle (paramétrage projet, voir `get_criticite_expr`).
 select
   row_number() over ()::int4 as id,
-  *
+  *,
+  {{ get_criticite_expr('id_test') }} as criticite
 from rapport
