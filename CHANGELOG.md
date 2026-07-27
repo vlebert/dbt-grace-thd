@@ -6,6 +6,18 @@ Format : [Keep a Changelog](https://keepachangelog.com/fr/1.0.0/)
 
 ---
 
+## [1.7.0] - 2026-07-27
+
+### Added
+
+- **Contrôles d'unicité sur les étiquettes** : nouveaux tests (`ctrl_uc_0018` à `ctrl_uc_0024`) couvrant l'ensemble des attributs `*_etiquet` du modèle — `t_baie.ba_etiquet`, `t_cable.cb_etiquet`, `t_ebp.bp_etiquet`, `t_local.lc_etiquet`, `t_ptech.pt_etiquet`, `t_tiroir.ti_etiquet`. Comme pour les autres contrôles génériques, les tables absentes du schéma source sont ignorées et les valeurs nulles ou vides ne sont pas remontées ici.
+
+### Removed
+
+- **Classe `t_equipement`** : retirée du standard GRACE THD, sa déclaration de source (`models/gracethd_sources/t_equipement.yml`) et ses index (`eq_ba_code_idx`, `eq_prop_idx` dans `create_source_indexes` et `scripts/gracethd_indexes.sql`) sont supprimés. Le test `ctrl_uc_0021` est conservé en `actif=false` dans `param_ctrl_unicite.csv` pour ne pas décaler la numérotation des `id_test`.
+
+---
+
 ## [1.6.0] - 2026-07-27
 
 ### Added

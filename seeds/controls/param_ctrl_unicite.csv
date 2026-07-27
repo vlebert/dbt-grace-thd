@@ -14,3 +14,10 @@ ctrl_uc_0013,t_zcoax,zc_nd_code,zc_code,true
 ctrl_uc_0014,t_zdep,zd_nd_code,zd_code,true
 ctrl_uc_0016,t_position,ps_1,ps_code,true
 ctrl_uc_0017,t_position,ps_2,ps_code,true
+ctrl_uc_0018,t_baie,ba_etiquet,ba_code,true
+ctrl_uc_0019,t_cable,cb_etiquet,cb_code,true
+ctrl_uc_0020,t_ebp,bp_etiquet,bp_code,true
+ctrl_uc_0021,t_equipement,eq_etiquet,eq_code,false
+ctrl_uc_0022,t_local,lc_etiquet,lc_code,true
+ctrl_uc_0023,t_ptech,pt_etiquet,pt_code,true
+ctrl_uc_0024,t_tiroir,ti_etiquet,ti_code,true

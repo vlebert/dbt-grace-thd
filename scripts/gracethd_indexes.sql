@@ -111,8 +111,6 @@ DROP INDEX IF EXISTS ti_prop_idx; CREATE INDEX ti_prop_idx ON gracethd_source.t_
 DROP INDEX IF EXISTS ti_etat_idx; CREATE INDEX ti_etat_idx ON gracethd_source.t_tiroir(ti_etat);
 DROP INDEX IF EXISTS ti_type_idx; CREATE INDEX ti_type_idx ON gracethd_source.t_tiroir(ti_type);
 DROP INDEX IF EXISTS ti_rf_code_idx; CREATE INDEX ti_rf_code_idx ON gracethd_source.t_tiroir(ti_rf_code);
-DROP INDEX IF EXISTS eq_ba_code_idx; CREATE INDEX eq_ba_code_idx ON gracethd_source.t_equipement(eq_ba_code);
-DROP INDEX IF EXISTS eq_prop_idx; CREATE INDEX eq_prop_idx ON gracethd_source.t_equipement(eq_prop);
 DROP INDEX IF EXISTS pt_nd_code_idx; CREATE INDEX pt_nd_code_idx ON gracethd_source.t_ptech(pt_nd_code);
 DROP INDEX IF EXISTS pt_ad_code_idx; CREATE INDEX pt_ad_code_idx ON gracethd_source.t_ptech(pt_ad_code);
 DROP INDEX IF EXISTS pt_gest_do_idx; CREATE INDEX pt_gest_do_idx ON gracethd_source.t_ptech(pt_gest_do);

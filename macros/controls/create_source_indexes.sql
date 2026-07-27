@@ -129,8 +129,6 @@
     {"name": "ti_etat_idx", "table": "t_tiroir", "cols": ["ti_etat"], "unique": false, "method": none},
     {"name": "ti_type_idx", "table": "t_tiroir", "cols": ["ti_type"], "unique": false, "method": none},
     {"name": "ti_rf_code_idx", "table": "t_tiroir", "cols": ["ti_rf_code"], "unique": false, "method": none},
-    {"name": "eq_ba_code_idx", "table": "t_equipement", "cols": ["eq_ba_code"], "unique": false, "method": none},
-    {"name": "eq_prop_idx", "table": "t_equipement", "cols": ["eq_prop"], "unique": false, "method": none},
     {"name": "pt_nd_code_idx", "table": "t_ptech", "cols": ["pt_nd_code"], "unique": false, "method": none},
     {"name": "pt_ad_code_idx", "table": "t_ptech", "cols": ["pt_ad_code"], "unique": false, "method": none},
     {"name": "pt_gest_do_idx", "table": "t_ptech", "cols": ["pt_gest_do"], "unique": false, "method": none},
