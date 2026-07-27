@@ -355,25 +355,43 @@ vars:
   grace_criticite_defaut: "mineure"
   grace_criticite:
     majeure:
+      - ctrl_uc_*           # toute la famille unicité
       - ctrl_rem_0001
-      - ctrl_fk_0002
     bloquante:
+      - ctrl_fk_*
       - topo_0001
-      - metier_0004
-    "à valider MOE":      # libellé libre autorisé
+    "à valider MOE":        # libellé libre autorisé
       - ctrl_lv_0012
 ```
 
 - Tout contrôle non cité prend `grace_criticite_defaut` (`mineure`).
 - `mineure` / `majeure` / `bloquante` sont **conventionnels** : n'importe quel libellé est accepté comme clé.
 - Les `id_test` sont comparés sans tenir compte de la casse ; un id seul peut être écrit sans liste.
+
+### Ids exacts et motifs de famille
+
+Une entrée contenant `*` est un **motif** traduit en `LIKE` sur `id_test` ; sans `*`, c'est un id exact. Les conventions de nommage des `id_test` (voir section dédiée) rendent les familles directement adressables : `ctrl_uc_*`, `ctrl_fk_*`, `topo_*`, `metier_*`. Sans cela, passer une famille entière en majeure imposerait d'énumérer chaque id à la main, liste qui dériverait à chaque contrôle ajouté au package.
+
+Les caractères spéciaux `LIKE` présents dans un id (`_`, omniprésent) sont échappés à la génération : `ctrl_uc_*` produit `like 'ctrl\_uc\_%'` et ne peut pas déborder sur un id voisin.
+
+**Précédence** : les ids exacts sont évalués **avant** les motifs, dans le `CASE` généré. Une exception nominative l'emporte donc toujours sur la règle de famille qui la recouvre :
+
+```yaml
+grace_criticite:
+  majeure:
+    - ctrl_uc_*
+  mineure:
+    - ctrl_uc_0009    # exception : reste mineure malgré ctrl_uc_*
+```
+
+En revanche, entre deux **motifs** qui se recouvrent, c'est l'ordre du YAML qui tranche — la détection de conflit ne porte que sur les entrées strictement identiques.
 - **Aucun libellé n'a d'effet sur le run.** `bloquante` est une information de restitution : conformément au principe d'intégration non bloquante, aucune anomalie n'interrompt jamais un `dbt run`.
 
 ### Validations à la compilation
 
-`get_criticite_expr` arrête la compilation avec un message explicite si : `grace_criticite` n'est pas un dictionnaire, une valeur n'est pas une liste d'`id_test`, un libellé ou un `id_test` est vide, ou **un même `id_test` est affecté à deux criticités différentes** (l'ordre du YAML ne doit pas arbitrer silencieusement).
+`get_criticite_expr` arrête la compilation avec un message explicite si : `grace_criticite` n'est pas un dictionnaire, une valeur n'est pas une liste d'`id_test`, un libellé ou un `id_test` est vide, ou **une même entrée est affectée à deux criticités différentes** (l'ordre du YAML ne doit pas arbitrer silencieusement).
 
-En revanche, l'existence des `id_test` cités n'est pas vérifiée : les contrôles peuvent provenir du projet consommateur, une faute de frappe reste donc silencieuse.
+En revanche, l'existence des `id_test` cités n'est pas vérifiée : les contrôles peuvent provenir du projet consommateur, une faute de frappe reste donc silencieuse. De même, un motif ne remontant aucun contrôle ne produit aucun avertissement.
 
 ### Lecture sans valeur de repli
 

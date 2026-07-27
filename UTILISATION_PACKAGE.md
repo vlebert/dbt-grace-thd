@@ -164,24 +164,31 @@ surcharge se fait par liste d'`id_test` :
 vars:
   grace_criticite:
     majeure:
+      - ctrl_uc_*           # toute la famille unicité
       - ctrl_rem_0001
-      - ctrl_fk_0002
     bloquante:
+      - ctrl_fk_*
       - topo_0001
-      - metier_0004
-    "à valider MOE":      # libellé libre autorisé
+    "à valider MOE":        # libellé libre autorisé
       - ctrl_lv_0012
 ```
 
+- Une entrée contenant `*` désigne une **famille** (`LIKE` sur `id_test`) ; sans `*`,
+  c'est un id exact. Les préfixes utiles : `ctrl_uc_*` (unicité), `ctrl_fk_*` (clés
+  étrangères), `ctrl_rem_*` (remplissage), `ctrl_lv_*` (listes de valeurs),
+  `ctrl_type_*`, `ctrl_rc_*`, `topo_*`, `metier_*`.
+- Les ids exacts l'emportent sur les motifs : `mineure: [ctrl_uc_0009]` en face de
+  `majeure: [ctrl_uc_*]` laisse bien `ctrl_uc_0009` en mineure.
 - Les contrôles de votre propre projet peuvent être cités comme ceux du package.
 - `majeure` / `bloquante` sont conventionnels ; n'importe quel libellé est accepté.
 - Les `id_test` sont comparés sans tenir compte de la casse.
 - **Aucun libellé n'a d'effet sur le run** : `bloquante` sert à la restitution
   (QGIS, tableaux de bord), il n'interrompt jamais un `dbt run`.
-- Affecter un même `id_test` à deux criticités arrête la compilation avec un message
+- Affecter une même entrée à deux criticités arrête la compilation avec un message
   explicite, plutôt que de laisser l'ordre du YAML trancher silencieusement.
 - L'existence des `id_test` cités n'est **pas** vérifiée : une faute de frappe est
-  silencieuse (le contrôle reste alors en `mineure`).
+  silencieuse (le contrôle reste alors en `mineure`), un motif sans correspondance
+  également.
 
 > Si vous **redéfinissez** `rapport_controles` dans votre propre `models/`
 > (voir *Overrides → Modèles*), la résolution des variables bascule dans le scope de

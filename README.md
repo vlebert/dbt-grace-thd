@@ -207,10 +207,10 @@ vars:
 
   grace_criticite:
     majeure:
-      - ctrl_rem_0001
-      - ctrl_fk_0002
+      - ctrl_uc_*        # motif de famille
+      - ctrl_rem_0001    # ou id exact
     bloquante:
-      - topo_0001
+      - ctrl_fk_*
 ```
 
 **Personnalisation** :
@@ -245,13 +245,16 @@ n'ayant pas la même gravité pour tous les exploitants :
 vars:
   grace_criticite:
     majeure:
+      - ctrl_uc_*         # toute la famille unicité
       - ctrl_rem_0001
-      - ctrl_fk_0002
     bloquante:
-      - topo_0001
+      - ctrl_fk_*
     "à valider MOE":      # libellé libre autorisé
       - ctrl_lv_0012
 ```
+
+Une entrée contenant `*` désigne une famille de contrôles, sinon c'est un id exact ;
+les ids exacts l'emportent sur les motifs, ce qui permet les exceptions nominatives.
 
 `majeure` et `bloquante` sont conventionnels, tout libellé est accepté. **Aucun n'a
 d'effet sur le run** : `bloquante` sert à la restitution, il n'interrompt rien
