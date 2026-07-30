@@ -47,6 +47,35 @@ models:
         description: Étage du local technique de départ
         data_type: varchar(254)
 
+      - name: sro_lc_code
+        description: |
+          Code du local si celui-ci est un SRO (`t_zsro.zs_lc_code`), sinon NULL
+          (y compris si le local de départ est un NRO).
+        data_type: varchar(254)
+
+      - name: sro_lc_codeext
+        description: Code externe du SRO (NULL si le local de départ n'est pas un SRO)
+        data_type: varchar(254)
+
+      - name: sro_lc_etiquet
+        description: Étiquette du SRO (NULL si le local de départ n'est pas un SRO)
+        data_type: varchar(20)
+
+      - name: nro_lc_code
+        description: |
+          Code du local NRO rattaché : le local de départ lui-même s'il est un
+          NRO (`t_znro.zn_lc_code`), sinon le NRO retrouvé via la zone arrière
+          du SRO de départ (`t_zsro.zs_zn_code` -> `t_znro.zn_code`).
+        data_type: varchar(254)
+
+      - name: nro_lc_codeext
+        description: Code externe du NRO rattaché
+        data_type: varchar(254)
+
+      - name: nro_lc_etiquet
+        description: Étiquette du NRO rattaché
+        data_type: varchar(20)
+
       - name: json_data
         description: |
           Tableau JSONB des routes optiques issues du local technique. Chaque
