@@ -6,6 +6,14 @@ Format : [Keep a Changelog](https://keepachangelog.com/fr/1.0.0/)
 
 ---
 
+## [1.8.0] - 2026-09-02
+
+### Added
+
+- **Rattachement SRO/NRO sur `ropt_json`** : nouvelles colonnes `sro_lc_code`/`sro_lc_codeext`/`sro_lc_etiquet` et `nro_lc_code`/`nro_lc_codeext`/`nro_lc_etiquet`. Si le local de départ est un SRO (`t_zsro.zs_lc_code`), le NRO rattaché est retrouvé via sa zone arrière (`zs_zn_code` -> `t_znro.zn_code` -> `zn_lc_code`) ; si le local de départ est lui-même un NRO (`t_znro.zn_lc_code`), les colonnes `sro_*` restent `NULL` et les colonnes `nro_*` reprennent le local de départ.
+
+---
+
 ## [1.7.0] - 2026-07-27
 
 ### Added
