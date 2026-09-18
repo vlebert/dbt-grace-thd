@@ -2,7 +2,7 @@
     config(
         materialized = 'table',
         schema = 'transformations',
-        tags = ['grace_meta'],
+        tags = ['grace_meta', 'grace_transfo'],
         post_hook = ["ALTER TABLE {{ this }} ADD PRIMARY KEY (id);"]
     )
 }}

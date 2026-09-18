@@ -6,6 +6,12 @@ Format : [Keep a Changelog](https://keepachangelog.com/fr/1.0.0/)
 
 ---
 
+## [1.9.0] - 2026-09-18
+
+### Changed
+
+- **Tag `grace_transfo` sur `meta_execution`** : la table de métadonnées (horaires d'intégration) porte désormais également le tag `grace_transfo` en plus de `grace_meta`. `dbt run --select tag:grace_transfo` couvre donc maintenant aussi les métadonnées du run.
+
 ## [1.8.0] - 2026-09-02
 
 ### Added

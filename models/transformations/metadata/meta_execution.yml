@@ -7,7 +7,7 @@ models:
       données (saisie manuellement via la variable `grace_date_donnees`), date
       d'exécution dbt et paramètres du package appliqués.
     config:
-      tags: ["grace_meta"]
+      tags: ["grace_meta", "grace_transfo"]
       schema: transformations
     columns:
       - name: id

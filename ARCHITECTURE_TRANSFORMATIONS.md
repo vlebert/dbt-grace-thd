@@ -187,6 +187,8 @@ dbt run --vars '{grace_date_donnees: 2026-07-01}'
 
 Le format `YYYY-MM-DD` est validé en Jinja : un format invalide **arrête le run** (`exceptions.raise_compiler_error`). Exception assumée au principe non-bloquant du package, qui vise les données sources et non un paramètre saisi à la main.
 
+Le modèle porte les tags `grace_meta` et `grace_transfo` : il est donc inclus dans la sélection `tag:grace_transfo` qui couvre l'ensemble des transformations.
+
 ---
 
 ## Configuration dbt
@@ -205,6 +207,9 @@ models:
       elementaires:
         +materialized: view  # Par défaut : vues
         +tags: ["grace_elem"]
+      metadata:
+        +materialized: table
+        +tags: ["grace_meta", "grace_transfo"]
       thematiques:
         +schema: transformations
 ```
