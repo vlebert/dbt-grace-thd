@@ -35,7 +35,7 @@ Besoin d'un accompagnement ou d'une mise en place sur votre territoire ?
 - Plans de boîte avec n8n
 
 <p align="center">
-  <video src="https://github.com/vlebert/dbt-grace-thd/releases/download/media/dbt-gracethd-demo.mp4" controls muted width="800"></video>
+  <video src="https://github.com/user-attachments/assets/33bfcf7b-1ae8-4f69-a9d5-849300150983" controls muted width="800"></video>
 </p>
 
 ---
