@@ -28,6 +28,18 @@ Besoin d'un accompagnement ou d'une mise en place sur votre territoire ?
 
 ---
 
+## Exemple de réalisation
+
+- Rapport d'erreur mis en forme sur Superset
+- Cartographie avec Lizmap
+- Plans de boîte avec n8n
+
+<p align="center">
+  <video src="https://github.com/vlebert/dbt-grace-thd/releases/download/media/dbt-gracethd-demo.mp4" controls muted width="800"></video>
+</p>
+
+---
+
 ## Par où commencer ?
 
 Ce dépôt est à la fois un **projet dbt exécutable tel quel** (avec un échantillon de données
